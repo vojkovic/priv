@@ -1,0 +1,19 @@
+stages:
+  - build
+
+build-and-push:
+  stage: build
+  image: docker:latest
+  variables:
+    DOCKER_HOST: "unix:///var/run/docker.sock"
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+  script:
+    - docker build -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA" -t "$CI_REGISTRY_IMAGE:latest" .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA"
+    - docker push "$CI_REGISTRY_IMAGE:latest"
+  after_script:
+    - docker logout "$CI_REGISTRY"
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+    - if: $CI_PIPELINE_SOURCE == "web"
