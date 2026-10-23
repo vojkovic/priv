@@ -126,16 +126,21 @@
 			target.hidden = true;
 	};
 
+	const proxied = "img.thumbnail, .image_thumb img, .infobox > img";
+	/* the proxy answers failed images with a placeholder of this size */
+	const failed = (img) => (img.complete && !img.naturalWidth) || (img.naturalWidth === 403 && img.naturalHeight === 302);
+
 	const brokenImages = () => {
-		for (const img of document.querySelectorAll("img.thumbnail, .image_thumb img, .infobox > img"))
-			if (img.complete && !img.naturalWidth)
+		for (const img of document.querySelectorAll(proxied))
+			if (failed(img))
 				hideBroken(img);
 	};
 
-	document.addEventListener("error", (event) => {
-		if (event.target.matches && event.target.matches("img.thumbnail, .image_thumb img, .infobox > img"))
-			hideBroken(event.target);
-	}, true);
+	for (const type of ["error", "load"])
+		document.addEventListener(type, (event) => {
+			if (event.target.matches && event.target.matches(proxied) && failed(event.target))
+				hideBroken(event.target);
+		}, true);
 
 	if (document.readyState === "loading")
 		document.addEventListener("DOMContentLoaded", brokenImages);

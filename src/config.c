@@ -8,6 +8,7 @@ static const char *paths[] = {"config.toml", "/etc/privy/config.toml"};
 
 /* settings from config.toml */
 const char *instance_name = "privy";
+const char **motd;
 const char *listen_addr = "::1";
 int listen_port = 8888;
 double search_timeout = 2.0;
@@ -162,6 +163,14 @@ set(struct parser *ps, const char *section, const char *k, struct value *v)
 	if (!*section && !strcmp(k, "instance_name")) {
 		expect(ps, v, STRING);
 		instance_name = v->s;
+	} else if (!*section && !strcmp(k, "motd")) {
+		if (v->type == STRING) {
+			motd = xcalloc(2, sizeof(*motd));
+			motd[0] = *v->s ? v->s : NULL;
+		} else {
+			expect(ps, v, ARRAY);
+			motd = v->list;
+		}
 	} else if (!*section && !strcmp(k, "listen")) {
 		expect(ps, v, STRING);
 		listen_addr = v->s;

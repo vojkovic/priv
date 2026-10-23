@@ -19,6 +19,7 @@ struct engine_toggle {
 };
 
 extern const char *instance_name;
+extern const char **motd;
 extern const char *listen_addr;
 extern int listen_port;
 extern double search_timeout;

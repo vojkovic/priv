@@ -211,6 +211,8 @@ body:has(#urls) .search_filters { visibility: visible; }
 	font-size: 3.5rem;
 	letter-spacing: -0.05em;
 }
+#main_index .title:has(+ .motd) { margin-bottom: 1rem; }
+.motd { max-width: 44rem; margin: 0 0 1.75rem; color: var(--subtext0); text-align: center; }
 
 /* header */
 

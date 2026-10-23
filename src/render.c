@@ -118,11 +118,15 @@ filter_params(struct buf *b, const struct filters *f)
 void
 render_home(struct buf *b)
 {
+	size_t n = 0;
+
 	doc_start(b, instance_name, "index_endpoint");
-	buf_html(b,
-	    "<main id=\"main_index\">\n<h1 class=\"title\">%s</h1>\n"
-	    "<form id=\"search\" action=\"/search\" method=\"get\" role=\"search\">\n",
-	    instance_name);
+	buf_html(b, "<main id=\"main_index\">\n<h1 class=\"title\">%s</h1>\n", instance_name);
+	while (motd && motd[n])
+		n++;
+	if (n)
+		buf_html(b, "<p class=\"motd\">%s</p>\n", motd[rnd((uint32_t)n)]);
+	buf_puts(b, "<form id=\"search\" action=\"/search\" method=\"get\" role=\"search\">\n");
 	search_box(b, "", "general", 1);
 	buf_puts(b, "</form>\n</main>\n</body>\n</html>\n");
 }
@@ -339,7 +343,7 @@ thumbnail(struct buf *b, struct search *s, struct main_result *m, const char *th
 {
 	buf_html(b,
 	    "<a class=\"thumbnail_link\" href=\"%s\" rel=\"noreferrer\">"
-	    "<img class=\"thumbnail_bg\" src=\"%s\" alt=\"\" aria-hidden=\"true\">"
+	    "<img class=\"thumbnail_bg\" src=\"%s\" alt=\"\" aria-hidden=\"true\" loading=\"lazy\">"
 	    "<img class=\"thumbnail\" src=\"%s\" alt=\"\" loading=\"lazy\">",
 	    m->url, thumb, image_src(s, m->thumbnail, thumb, INLINE_MAX));
 	if (video && m->length && *m->length)

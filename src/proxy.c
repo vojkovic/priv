@@ -8,6 +8,13 @@
 #include "proxy.h"
 
 #define MAX_IMAGE (5 << 20)
+/* sent for images that failed; privy.js recognises its odd 403x302 size and hides the result */
+#define FALLBACK_IMAGE \
+	"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"403\" height=\"302\" viewBox=\"0 0 403 302\">" \
+	"<rect width=\"403\" height=\"302\" fill=\"#363a4f\"/><g transform=\"translate(159.5 109) scale(3.5)\" " \
+	"fill=\"none\" stroke=\"#5b6078\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">" \
+	"<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><circle cx=\"8.5\" cy=\"8.5\" r=\"1.5\"/>" \
+	"<path d=\"M21 15l-5-5L5 21\"/></g></svg>"
 struct sha256 {
 	uint32_t h[8];
 	uint64_t len;
@@ -376,7 +383,8 @@ respond(struct conn *c, struct image *img)
 	struct buf h = {0};
 
 	if (img->state != READY) {
-		http_respond(c, 404, "Content-Type: text/plain\r\nCache-Control: max-age=3600\r\n", "", 0);
+		http_respond(c, 200, "Content-Type: image/svg+xml\r\nCache-Control: max-age=3600\r\n", FALLBACK_IMAGE,
+		    sizeof(FALLBACK_IMAGE) - 1);
 		return;
 	}
 	buf_printf(&h, "Content-Type: %s\r\nCache-Control: max-age=86400\r\n", img->mime);
