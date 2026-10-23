@@ -68,11 +68,42 @@ etag(char out[16], const unsigned char *data, size_t len)
 }
 
 static void
+preferences(struct conn *c, struct request *r)
+{
+	struct arena a = {0};
+	struct buf b = {0};
+	struct prefs p;
+	const struct locale *browser;
+	const char *error = NULL;
+	int secure = !strcmp(r->proto, "https");
+
+	prefs_parse(&a, r, &p);
+	if (query_param(&a, r->query, "reset")) {
+		memset(p.off, 0, sizeof(p.off));
+		p.ui_code = "";
+		p.language = NULL;
+		p.safesearch = -1;
+		http_respond(c, 302, aprintf(&a, "Location: /preferences\r\n%s", prefs_cookie(&a, &p, secure)), "", 0);
+	} else if (query_param(&a, r->query, "save") && !(error = prefs_from_form(&a, r, &p))) {
+		http_respond(c, 302, aprintf(&a, "Location: /preferences?saved=1\r\n%s", prefs_cookie(&a, &p, secure)),
+		    "", 0);
+	} else {
+		if (!(browser = client_locale(&a, r->accept_language)))
+			browser = &locales[0];
+		render_preferences(&b, &p, browser, query_param(&a, r->query, "saved") ? "Preferences saved." : NULL,
+		    error);
+		respond_buf(c, 200, HTML_HEADERS, &b);
+	}
+	arena_free(&a);
+}
+
+static void
 route(struct conn *c, struct request *r)
 {
 	struct arena a = {0};
 	struct buf b = {0};
 	struct filters f, scratch;
+	struct prefs prefs;
 	const char *q, *p;
 	int pageno = 1;
 	size_t n;
@@ -114,6 +145,10 @@ route(struct conn *c, struct request *r)
 		respond_buf(c, 200, "Content-Type: application/opensearchdescription+xml\r\n", &b);
 		return;
 	}
+	if (!strcmp(r->path, "/preferences")) {
+		preferences(c, r);
+		return;
+	}
 	if (strcmp(r->path, "/") && strcmp(r->path, "/search")) {
 		not_found(c);
 		return;
@@ -123,7 +158,8 @@ route(struct conn *c, struct request *r)
 		if (strcmp(r->path, "/")) {
 			http_respond(c, 302, "Location: /\r\n", "", 0);
 		} else {
-			render_home(&b);
+			prefs_parse(&a, r, &prefs);
+			render_home(&b, &prefs);
 			respond_buf(c, 200, HTML_HEADERS, &b);
 		}
 		arena_free(&a);

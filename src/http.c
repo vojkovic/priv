@@ -255,7 +255,7 @@ handle(struct conn *c, size_t hlen)
 	r.if_none_match = "";
 	r.proto = "http";
 	r.accept = r.user_agent = r.sec_ch_ua = r.accept_language = "";
-	r.accept_encoding = r.x_forwarded_for = r.x_real_ip = r.sec_fetch_mode = "";
+	r.accept_encoding = r.x_forwarded_for = r.x_real_ip = r.sec_fetch_mode = r.cookie = "";
 	r.remote_addr = c->peer;
 	r.has_accept = r.has_user_agent = 0;
 	for (line = next; line && *line; line = next) {
@@ -288,6 +288,8 @@ handle(struct conn *c, size_t hlen)
 			r.sec_ch_ua = v;
 		else if ((v = header(line, "Accept-Language")))
 			r.accept_language = v;
+		else if ((v = header(line, "Cookie")))
+			r.cookie = v;
 		else if ((v = header(line, "Connection"))) {
 			close_hdr = strcasestr(v, "close") != NULL;
 			keep_hdr = strcasestr(v, "keep-alive") != NULL;

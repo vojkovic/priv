@@ -116,10 +116,18 @@ search(struct job *j)
 	job_send(j, f, response);
 }
 
+/* whether this engine narrows results to the locale's language, for the preferences page */
+static int
+language(const struct locale *l)
+{
+	return *l->google_lr;
+}
+
 struct engine engine_google_news = {
     .name = "google news",
     .shortcut = "gon",
     .website = "news.google.com",
+    .language = language,
     .bang = "https://news.google.com/search?q=%s",
     .categories = {"news"},
     .paging = 1,

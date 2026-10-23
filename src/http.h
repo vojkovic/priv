@@ -20,6 +20,7 @@ struct request {
 	const char *x_forwarded_for;
 	const char *x_real_ip;
 	const char *sec_fetch_mode;
+	const char *cookie;
 	const char *remote_addr;
 	int head;
 	int has_accept, has_user_agent;

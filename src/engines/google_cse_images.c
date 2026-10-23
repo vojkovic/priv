@@ -179,10 +179,19 @@ search(struct job *j)
 	token_get(j, &token, request);
 }
 
+/* whether this engine narrows results to the locale's language, for the preferences page */
+static int
+language(const struct locale *l)
+{
+	return *l->google_lr;
+}
+
 struct engine engine_google_cse_images = {
     .name = "google cse images",
     .shortcut = "goci",
     .website = "cse.google.com",
+    .language = language,
+    .safesearch = 1,
     .bang = "https://www.google.com/search?tbm=isch&q=%s",
     .categories = {"images"},
     .paging = 1,

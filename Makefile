@@ -22,7 +22,7 @@ override LDLIBS += $(CURL_LIBS) $(XML_LIBS) -lm
 
 SRC = $(wildcard src/*.c src/engines/*.c)
 OBJ = $(SRC:%.c=obj/%.o) obj/lib/yyjson/yyjson.o
-GENERATED = src/locales.c
+GENERATED = src/locales.c src/i18n.c
 FORMAT_SRC = $(filter-out $(GENERATED),$(wildcard src/*.c src/*.h src/engines/*.c tools/*.c))
 LINT_SRC = $(filter %.c,$(FORMAT_SRC))
 

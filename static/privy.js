@@ -200,7 +200,8 @@
 			$(".detail_content").textContent = d.content;
 			const dl = $("dl");
 			dl.replaceChildren();
-			for (const [label, value] of [["Resolution", d.resolution], ["Format", d.format], ["Engines", d.engines]]) {
+			const l = dl.dataset;
+			for (const [label, value] of [[l.resolution, d.resolution], [l.format, d.format], [l.engines, d.engines]]) {
 				if (!value)
 					continue;
 				const dt = document.createElement("dt");

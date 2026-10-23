@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <string.h>
 
 #include "../engine.h"
@@ -131,10 +132,22 @@ search(struct job *j)
 	job_send(j, f, response);
 }
 
+/* whether this engine narrows results to the locale's language, for the preferences page */
+static int
+language(const struct locale *l)
+{
+	char lang[8];
+	const char *title;
+
+	snprintf(lang, sizeof(lang), "%.*s", (int)strcspn(l->tag, "-"), l->tag);
+	return wiki(lang, &title) != NULL || language_name(lang) != NULL;
+}
+
 struct engine engine_archlinux = {
     .name = "arch linux wiki",
     .shortcut = "al",
     .website = "wiki.archlinux.org",
+    .language = language,
     .bang = "https://wiki.archlinux.org/index.php?search=%s",
     .categories = {"tech"},
     .paging = 1,

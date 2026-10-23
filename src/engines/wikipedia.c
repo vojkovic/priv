@@ -183,10 +183,18 @@ search(struct job *j)
 	job_send(j, f, summary);
 }
 
+/* whether this engine narrows results to the locale's language, for the preferences page */
+static int
+language(const struct locale *l)
+{
+	return strcmp(l->wiki_netloc, "en.wikipedia.org") != 0;
+}
+
 struct engine engine_wikipedia = {
     .name = "wikipedia",
     .shortcut = "wp",
     .website = "www.wikipedia.org",
+    .language = language,
     .bang = "https://en.wikipedia.org/wiki/Special:Search?search=%s",
     .categories = {"general"},
     .search = search,

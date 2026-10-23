@@ -592,7 +592,7 @@ time_range_code(const struct filters *f, const char *day, const char *week, cons
 	return NULL;
 }
 
-static const struct locale *
+const struct locale *
 client_locale(struct arena *a, const char *header)
 {
 	char *list = astrdup(a, header), *item, *save, *semi, *q, *dash, *best = NULL;
@@ -767,17 +767,19 @@ filters_parse(struct arena *a, struct request *r, struct filters *f)
 {
 	const char *p, *t;
 
+	prefs_parse(a, r, &f->prefs);
 	f->category = category_find(query_param(a, r->query, "categories"));
 	if (!f->category)
 		f->category = "general";
 	f->engines = 0;
 	f->timeout = 0;
 	p = query_param(a, r->query, "language");
-	f->language = p && *p ? p : "en";
+	f->language = p && *p ? p : f->prefs.language ? f->prefs.language : "auto";
+	f->browser = client_locale(a, r->accept_language);
+	if (!f->browser)
+		f->browser = &locales[0];
 	if (!strcmp(f->language, "auto")) {
-		f->locale = client_locale(a, r->accept_language);
-		if (!f->locale)
-			f->locale = &locales[0];
+		f->locale = f->browser;
 	} else {
 		f->locale = locale_find(f->language);
 		f->language = f->locale->tag;
@@ -786,7 +788,7 @@ filters_parse(struct arena *a, struct request *r, struct filters *f)
 	f->time_range =
 	    t && (!strcmp(t, "day") || !strcmp(t, "week") || !strcmp(t, "month") || !strcmp(t, "year")) ? t : NULL;
 	p = query_param(a, r->query, "safesearch");
-	f->safesearch = p && (*p == '1' || *p == '2') && !p[1] ? *p - '0' : 0;
+	f->safesearch = p && *p >= '0' && *p <= '2' && !p[1] ? *p - '0' : MAX(f->prefs.safesearch, 0);
 }
 
 void
@@ -805,6 +807,8 @@ search_start(struct conn *c, const char *raw, int pageno, const struct filters *
 	s->query = query_parse(&s->a, raw, &s->filters);
 	s->pageno = pageno;
 	s->filters.language = astrdup(&s->a, s->filters.language);
+	if (s->filters.prefs.language)
+		s->filters.prefs.language = astrdup(&s->a, s->filters.prefs.language);
 	if (f->time_range)
 		s->filters.time_range = astrdup(&s->a, f->time_range);
 	s->start = now_ms();
@@ -827,7 +831,9 @@ search_start(struct conn *c, const char *raw, int pageno, const struct filters *
 			continue;
 		if (!*s->query)
 			break;
-		if (s->filters.engines ? !(s->filters.engines & ENGINE_BIT(e)) : !engine_in(e, s->filters.category))
+		if (s->filters.engines ? !(s->filters.engines & ENGINE_BIT(e)) :
+		                         !engine_in(e, s->filters.category) ||
+		            !prefs_engine_on(&s->filters.prefs, s->filters.category, e))
 			continue;
 		if (s->filters.time_range && !e->time_range)
 			continue;

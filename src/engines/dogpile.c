@@ -106,6 +106,7 @@ struct engine engine_dogpile = {
     .name = "dogpile",
     .shortcut = "dog",
     .website = "www.dogpile.com",
+    .safesearch = 1,
     .bang = "https://www.dogpile.com/serp?q=%s",
     .categories = {"general"},
     .paging = 1,

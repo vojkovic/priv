@@ -10,7 +10,9 @@
 	"X-Content-Type-Options: nosniff\r\n" \
 	"Referrer-Policy: no-referrer\r\n"
 
-void render_home(struct buf *b);
+void render_home(struct buf *b, const struct prefs *p);
+void render_preferences(struct buf *b, const struct prefs *p, const struct locale *browser, const char *notice,
+    const char *error);
 void render_head(struct buf *b, struct search *s);
 void render_results(struct buf *b, struct search *s);
 void render_opensearch(struct buf *b, const char *proto, const char *host);
