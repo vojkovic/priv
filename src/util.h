@@ -111,4 +111,9 @@ int mkdirs(char *p);
 const char *cache_get(const char *key);
 void cache_set(const char *key, const char *val, int ttl);
 
+/* svg must never run script */
+#define MEDIA_HEADERS \
+	"Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'; sandbox\r\n" \
+	"X-Content-Type-Options: nosniff\r\n"
+
 #endif

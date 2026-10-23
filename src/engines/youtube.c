@@ -136,7 +136,7 @@ search(struct job *j)
 		yyjson_mut_obj_add_str(d, client, "clientVersion", "2.20210310.12.01");
 		yyjson_mut_obj_add_val(d, yyjson_mut_obj_add_obj(d, root, "context"), "client", client);
 		yyjson_mut_obj_add_strcpy(d, root, "continuation", token);
-		body = yyjson_mut_write(d, 0, NULL);
+		body = yyjson_mut_write(d, YYJSON_WRITE_ALLOW_INVALID_UNICODE, NULL);
 		yyjson_mut_doc_free(d);
 		f = job_request(j, NEXT_PAGE_URL);
 		fetch_post(f, body, "application/json");

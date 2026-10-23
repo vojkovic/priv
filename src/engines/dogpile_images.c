@@ -44,7 +44,7 @@ request(struct job *j, const char *token)
 	yyjson_mut_obj_add_str(d, root, "q", j->query);
 	yyjson_mut_obj_add_str(d, root, "qadf", (const char *[]){"none", "moderate", "heavy"}[j->filters->safesearch]);
 	yyjson_mut_obj_add_int(d, root, "page", j->pageno);
-	body = yyjson_mut_write(d, 0, NULL);
+	body = yyjson_mut_write(d, YYJSON_WRITE_ALLOW_INVALID_UNICODE, NULL);
 	yyjson_mut_doc_free(d);
 
 	f = job_request(j, BASE_URL "/api/images");

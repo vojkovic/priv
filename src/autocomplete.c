@@ -195,7 +195,7 @@ render_json(struct pending *p, struct suggestion *v, size_t n)
 		if (v[i].trending)
 			yyjson_mut_obj_add_bool(d, o, "trending", 1);
 	}
-	r = yyjson_mut_write(d, 0, NULL);
+	r = yyjson_mut_write(d, YYJSON_WRITE_ALLOW_INVALID_UNICODE, NULL);
 	yyjson_mut_doc_free(d);
 	return r;
 }
@@ -249,7 +249,7 @@ render_omnibox(struct pending *p, struct suggestion *v, size_t n)
 	}
 	if (any)
 		yyjson_mut_obj_add_val(d, extras, "google:suggestdetail", details);
-	r = yyjson_mut_write(d, 0, NULL);
+	r = yyjson_mut_write(d, YYJSON_WRITE_ALLOW_INVALID_UNICODE, NULL);
 	yyjson_mut_doc_free(d);
 	return r;
 }

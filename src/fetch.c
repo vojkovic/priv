@@ -1,3 +1,4 @@
+#include <netinet/in.h>
 #include <stdlib.h>
 #include <string.h>
 #include <strings.h>
@@ -137,6 +138,44 @@ on_header(char *p, size_t size, size_t n, void *arg)
 	return size * n;
 }
 
+static int
+private_v4(const unsigned char *a)
+{
+	return a[0] == 0 || a[0] == 10 || a[0] == 127 || (a[0] == 100 && (a[1] & 0xc0) == 64) ||
+	    (a[0] == 169 && a[1] == 254) || (a[0] == 172 && (a[1] & 0xf0) == 16) || (a[0] == 192 && a[1] == 168) ||
+	    a[0] >= 224;
+}
+
+static int
+private_addr(const struct curl_sockaddr *addr)
+{
+	struct sockaddr_in v4;
+	struct sockaddr_in6 v6;
+	const unsigned char *a;
+
+	if (addr->family == AF_INET && addr->addrlen >= sizeof(v4)) {
+		memcpy(&v4, &addr->addr, sizeof(v4));
+		return private_v4((const unsigned char *)&v4.sin_addr);
+	}
+	if (addr->family != AF_INET6 || addr->addrlen < sizeof(v6))
+		return 1;
+	memcpy(&v6, &addr->addr, sizeof(v6));
+	a = v6.sin6_addr.s6_addr;
+	if (!memcmp(a, "\0\0\0\0\0\0\0\0\0\0\xff\xff", 12))
+		return private_v4(a + 12);
+	return !memcmp(a, "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 15) || (a[0] & 0xfe) == 0xfc ||
+	    (a[0] == 0xfe && (a[1] & 0xc0) == 0x80) || a[0] == 0xff;
+}
+
+/* upstream urls come from search results, so never let one (or its redirects) reach the local network */
+static curl_socket_t
+open_socket(void *arg, curlsocktype purpose, struct curl_sockaddr *addr)
+{
+	if (private_addr(addr))
+		return CURL_SOCKET_BAD;
+	return socket(addr->family, addr->socktype, addr->protocol);
+}
+
 struct fetch *
 fetch_new(const char *url)
 {
@@ -156,6 +195,7 @@ fetch_new(const char *url)
 	curl_easy_setopt(f->h, CURLOPT_PROTOCOLS_STR, "https");
 	curl_easy_setopt(f->h, CURLOPT_REDIR_PROTOCOLS_STR, "https");
 	curl_easy_setopt(f->h, CURLOPT_MAXREDIRS, 30L);
+	curl_easy_setopt(f->h, CURLOPT_OPENSOCKETFUNCTION, open_socket);
 	curl_easy_setopt(f->h, CURLOPT_MAXAGE_CONN, 86400L);
 	if (cainfo)
 		curl_easy_setopt(f->h, CURLOPT_CAINFO, cainfo);

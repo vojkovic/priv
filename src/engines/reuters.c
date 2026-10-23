@@ -62,7 +62,7 @@ search(struct job *j)
 		strftime(start, sizeof(start), "%Y-%m-%dT%H:%M:%S", localtime(&then));
 		yyjson_mut_obj_add_str(d, root, "start_date", start);
 	}
-	args = yyjson_mut_write(d, 0, NULL);
+	args = yyjson_mut_write(d, YYJSON_WRITE_ALLOW_INVALID_UNICODE, NULL);
 	url_quote(&q, args, "", 1);
 	free(args);
 	f = job_request(j,

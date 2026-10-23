@@ -383,11 +383,11 @@ respond(struct conn *c, struct image *img)
 	struct buf h = {0};
 
 	if (img->state != READY) {
-		http_respond(c, 200, "Content-Type: image/svg+xml\r\nCache-Control: max-age=3600\r\n", FALLBACK_IMAGE,
-		    sizeof(FALLBACK_IMAGE) - 1);
+		http_respond(c, 200, "Content-Type: image/svg+xml\r\nCache-Control: max-age=3600\r\n" MEDIA_HEADERS,
+		    FALLBACK_IMAGE, sizeof(FALLBACK_IMAGE) - 1);
 		return;
 	}
-	buf_printf(&h, "Content-Type: %s\r\nCache-Control: max-age=86400\r\n", img->mime);
+	buf_printf(&h, "Content-Type: %s\r\nCache-Control: max-age=86400\r\n" MEDIA_HEADERS, img->mime);
 	http_respond(c, 200, buf_str(&h), img->data, img->len);
 	buf_free(&h);
 }

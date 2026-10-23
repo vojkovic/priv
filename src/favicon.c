@@ -173,8 +173,8 @@ favicon_init(void)
 static void
 respond_default(struct conn *c)
 {
-	http_respond(c, 200, "Content-Type: image/svg+xml\r\nCache-Control: max-age=" MAX_AGE "\r\n", DEFAULT_FAVICON,
-	    sizeof(DEFAULT_FAVICON) - 1);
+	http_respond(c, 200, "Content-Type: image/svg+xml\r\nCache-Control: max-age=" MAX_AGE "\r\n" MEDIA_HEADERS,
+	    DEFAULT_FAVICON, sizeof(DEFAULT_FAVICON) - 1);
 }
 
 static void
@@ -182,7 +182,7 @@ respond_data(struct conn *c, const char *mime, const char *data, size_t len)
 {
 	struct buf h = {0};
 
-	buf_printf(&h, "Content-Type: %s\r\nCache-Control: max-age=" MAX_AGE "\r\n", mime);
+	buf_printf(&h, "Content-Type: %s\r\nCache-Control: max-age=" MAX_AGE "\r\n" MEDIA_HEADERS, mime);
 	http_respond(c, 200, buf_str(&h), data, len);
 	buf_free(&h);
 }

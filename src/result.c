@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
+#include <strings.h>
 
 #include "engine.h"
 #include "result.h"
@@ -37,6 +38,8 @@ normalize_main(struct arena *a, struct main_result *m)
 		m->parsed.netloc = idna_decode(a, m->parsed.netloc);
 	if (!m->parsed.scheme[0])
 		m->parsed.scheme = "http";
+	if (strcasecmp(m->parsed.scheme, "http") && strcasecmp(m->parsed.scheme, "https"))
+		return -1;
 	m->url = url_unparse(a, &m->parsed);
 	m->title = text_normalize(a, m->title, MAX_TITLE);
 	m->content = text_normalize(a, m->content, MAX_CONTENT);
@@ -359,5 +362,6 @@ results_close(struct results *r)
 			groups[j].count = 8;
 		}
 	}
-	memcpy(r->main, out, n * sizeof(*out));
+	if (n)
+		memcpy(r->main, out, n * sizeof(*out));
 }
