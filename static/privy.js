@@ -284,11 +284,6 @@
 		return slot;
 	};
 
-	const place = () => {
-		const bottom = q.closest(".search_box").getBoundingClientRect().bottom;
-		document.documentElement.style.setProperty("--autocomplete-top", Math.max(bottom + 6, 0) + "px");
-	};
-
 	const hide = () => {
 		suppress = true;
 		box.classList.remove("open");
@@ -327,7 +322,6 @@
 		if (suppress || id <= displayed || !items.length)
 			return;
 		displayed = id;
-		place();
 		box.classList.add("open");
 		const fragment = new DocumentFragment();
 		for (const item of items)
@@ -422,7 +416,6 @@
 			document.documentElement.classList.add("search_focus");
 		suppress = false;
 		if (list.children.length) {
-			place();
 			box.classList.add("open");
 			return;
 		}
