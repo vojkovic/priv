@@ -1,5 +1,5 @@
 instance_name = "privy"
-listen = "127.0.0.1"
+listen = "::1"
 port = 8888
 timeout = 2.0
 

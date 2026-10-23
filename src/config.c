@@ -8,7 +8,7 @@ static const char *paths[] = {"config.toml", "/etc/privy/config.toml"};
 
 /* settings from config.toml */
 const char *instance_name = "privy";
-const char *listen_addr = "127.0.0.1";
+const char *listen_addr = "::1";
 int listen_port = 8888;
 double search_timeout = 2.0;
 int limiter = 1;

@@ -136,29 +136,14 @@ route(struct conn *c, struct request *r)
 	arena_free(&a);
 }
 
-static void
-usage(const char *argv0)
-{
-	fprintf(stderr, "usage: %s [-l address] [-p port]\n", argv0);
-	exit(1);
-}
-
 int
-main(int argc, char **argv)
+main(void)
 {
-	const char *config = config_load(), *addr = listen_addr;
-	int port = listen_port, opt;
+	const char *config = config_load();
 	size_t i;
 
-	while ((opt = getopt(argc, argv, "l:p:")) != -1) {
-		switch (opt) {
-		case 'l': addr = optarg; break;
-		case 'p': port = (int)parse_long(optarg, -1); break;
-		default: usage(argv[0]);
-		}
-	}
-	if (optind != argc || port <= 0 || port > 65535)
-		usage(argv[0]);
+	if (listen_port <= 0 || listen_port > 65535)
+		die("config.toml: port must be between 1 and 65535");
 
 	setlocale(LC_CTYPE, "C.UTF-8");
 	signal(SIGPIPE, SIG_IGN);
@@ -176,9 +161,12 @@ main(int argc, char **argv)
 	engines_init();
 	for (i = 0; i < nengines; i++)
 		favicon_prefetch(engines[i]->website);
-	http_listen(addr, port, route);
-	fprintf(stderr, "%s listening on http://%s:%d (%s)\n", instance_name, addr, port,
-	    config ? config : "built-in settings");
+	http_listen(listen_addr, listen_port, route);
+	if (strchr(listen_addr, ':'))
+		fprintf(stderr, "%s listening on http://[%s]:%d", instance_name, listen_addr, listen_port);
+	else
+		fprintf(stderr, "%s listening on http://%s:%d", instance_name, listen_addr, listen_port);
+	fprintf(stderr, " (%s)\n", config ? config : "built-in settings");
 	ev_run();
 	return 0;
 }
