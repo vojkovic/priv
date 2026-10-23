@@ -29,9 +29,9 @@ doc_start(struct buf *b, const char *title, const char *body_class)
 	    "<title>%s</title>\n"
 	    "<link rel=\"icon\" href=\"/favicon.svg\" type=\"image/svg+xml\">\n"
 	    "<link rel=\"stylesheet\" href=\"/style.css\">\n"
-	    "<link rel=\"search\" type=\"application/opensearchdescription+xml\" title=\"privy\" href=\"/opensearch.xml\">\n"
+	    "<link rel=\"search\" type=\"application/opensearchdescription+xml\" title=\"%s\" href=\"/opensearch.xml\">\n"
 	    "<script src=\"/privy.js\" defer></script>\n",
-	    title);
+	    title, instance_name);
 	if (limiter && limiter_link_token)
 		buf_html(b, "<link rel=\"stylesheet\" href=\"/client%s.css\">\n", botdetect_token());
 	buf_html(b, "</head>\n<body class=\"%s\">\n", body_class);
@@ -118,10 +118,11 @@ filter_params(struct buf *b, const struct filters *f)
 void
 render_home(struct buf *b)
 {
-	doc_start(b, "privy", "index_endpoint");
-	buf_puts(b,
-	    "<main id=\"main_index\">\n<h1 class=\"title\">privy</h1>\n"
-	    "<form id=\"search\" action=\"/search\" method=\"get\" role=\"search\">\n");
+	doc_start(b, instance_name, "index_endpoint");
+	buf_html(b,
+	    "<main id=\"main_index\">\n<h1 class=\"title\">%s</h1>\n"
+	    "<form id=\"search\" action=\"/search\" method=\"get\" role=\"search\">\n",
+	    instance_name);
 	search_box(b, "", "general", 1);
 	buf_puts(b, "</form>\n</main>\n</body>\n</html>\n");
 }
@@ -130,12 +131,13 @@ void
 render_head(struct buf *b, struct search *s)
 {
 	doc_start(b,
-	    s->pageno > 1 ? aprintf(&s->a, "%s (page %d) - privy", s->raw, s->pageno) :
-	                    aprintf(&s->a, "%s - privy", s->raw),
+	    s->pageno > 1 ? aprintf(&s->a, "%s (page %d) - %s", s->raw, s->pageno, instance_name) :
+	                    aprintf(&s->a, "%s - %s", s->raw, instance_name),
 	    "results_endpoint");
-	buf_puts(b,
-	    "<header id=\"search_header\">\n<a id=\"search_logo\" href=\"/\" aria-label=\"privy\">" LOGO "</a>\n"
-	    "<form id=\"search\" action=\"/search\" method=\"get\" role=\"search\">\n");
+	buf_html(b,
+	    "<header id=\"search_header\">\n<a id=\"search_logo\" href=\"/\" aria-label=\"%s\">" LOGO "</a>\n"
+	    "<form id=\"search\" action=\"/search\" method=\"get\" role=\"search\">\n",
+	    instance_name);
 	search_box(b, s->raw, s->filters.category, 0);
 	category_tabs(b, s->filters.category);
 	buf_html(b,
@@ -757,11 +759,11 @@ render_opensearch(struct buf *b, const char *proto, const char *host)
 	buf_html(b,
 	    "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
 	    "<OpenSearchDescription xmlns=\"http://a9.com/-/spec/opensearch/1.1/\">\n"
-	    "<ShortName>privy</ShortName>\n"
-	    "<Description>privy metasearch</Description>\n"
+	    "<ShortName>%s</ShortName>\n"
+	    "<Description>%s metasearch</Description>\n"
 	    "<InputEncoding>UTF-8</InputEncoding>\n"
 	    "<Url type=\"text/html\" method=\"get\" template=\"%s://%s/search?q={searchTerms}\"/>\n"
 	    "<Url type=\"application/x-suggestions+json\" method=\"get\" template=\"%s://%s/autocompleter?q={searchTerms}\"/>\n"
 	    "</OpenSearchDescription>\n",
-	    proto, host, proto, host);
+	    instance_name, instance_name, proto, host, proto, host);
 }

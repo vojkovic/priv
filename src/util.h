@@ -13,12 +13,12 @@
 #define IS_ALPHA(c) (((c) >= 'a' && (c) <= 'z') || ((c) >= 'A' && (c) <= 'Z'))
 #define IS_ALNUM(c) (IS_ALPHA(c) || IS_DIGIT(c))
 
-struct engine_setting {
+struct engine_toggle {
 	const char *name;
-	int enabled;
 	double weight;
 };
 
+extern const char *instance_name;
 extern const char *listen_addr;
 extern int listen_port;
 extern double search_timeout;
@@ -26,13 +26,16 @@ extern const char *cache_dir;
 extern int favicon_hold_days;
 extern size_t favicon_cache_bytes;
 extern int limiter, limiter_link_token, limiter_filter_link_local, ipv4_prefix, ipv6_prefix, pass_searxng_org;
-extern const char *trusted_proxies[], *pass_ip[], *block_ip[];
+extern const char **trusted_proxies, *pass_ip[], *block_ip[];
 extern int ban_time_on_fail, max_ban_time_on_fail;
 extern int suspend_access_denied, suspend_captcha, suspend_too_many_requests;
 extern int suspend_cf_captcha, suspend_cf_access_denied, suspend_recaptcha;
 extern const char *impersonate_chrome, *impersonate_firefox;
 extern const char *useragent_os[], *useragent_versions[];
-extern struct engine_setting engine_settings[];
+extern struct engine_toggle *engine_toggles;
+extern size_t nengine_toggles;
+
+const char *config_load(void);
 
 struct buf {
 	char *p;

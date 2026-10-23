@@ -146,7 +146,7 @@ usage(const char *argv0)
 int
 main(int argc, char **argv)
 {
-	const char *addr = listen_addr;
+	const char *config = config_load(), *addr = listen_addr;
 	int port = listen_port, opt;
 	size_t i;
 
@@ -177,7 +177,8 @@ main(int argc, char **argv)
 	for (i = 0; i < nengines; i++)
 		favicon_prefetch(engines[i]->website);
 	http_listen(addr, port, route);
-	fprintf(stderr, "privy listening on http://%s:%d\n", addr, port);
+	fprintf(stderr, "%s listening on http://%s:%d (%s)\n", instance_name, addr, port,
+	    config ? config : "built-in settings");
 	ev_run();
 	return 0;
 }

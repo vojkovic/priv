@@ -21,7 +21,7 @@ override LDFLAGS += $(if $(STATIC),-static)
 override LDLIBS += $(CURL_LIBS) $(XML_LIBS) -lm
 
 SRC = $(wildcard src/*.c src/engines/*.c)
-OBJ = $(SRC:%.c=obj/%.o) obj/lib/yyjson/yyjson.o obj/config.o
+OBJ = $(SRC:%.c=obj/%.o) obj/lib/yyjson/yyjson.o
 GENERATED = src/locales.c
 FORMAT_SRC = $(filter-out $(GENERATED),$(wildcard src/*.c src/*.h src/engines/*.c tools/*.c))
 LINT_SRC = $(filter %.c,$(FORMAT_SRC))
@@ -30,16 +30,6 @@ all: privy
 
 privy: $(OBJ)
 	$(CC) $(LDFLAGS) -o $@ $(OBJ) $(LDLIBS)
-
-config.h:
-	cp config.def.h $@
-
-obj/config.c: config.h src/util.h
-	@mkdir -p obj
-	printf '#include "../src/util.h"\n#include "../config.h"\n' > $@
-
-obj/config.o: obj/config.c
-	$(CC) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
 
 obj/tools/embed: tools/embed.c
 	@mkdir -p $(@D)

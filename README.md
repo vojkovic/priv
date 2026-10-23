@@ -13,7 +13,13 @@ This whole project has been made possible through the use of LLMs (is vibecoding
 ## Run
 
     docker build -t privy .
-    docker run -d -p 127.0.0.1:8888:8888 -v privy-cache:/cache privy
+    docker run -d -p 127.0.0.1:8888:8888 -v privy-cache:/cache -v config.toml:/etc/privy/config.toml:ro privy
+
+## Configure
+
+Make privy yours!
+
+You can edit the `config.toml` to change things such as the instance name, listen address, timeout, bot detection and which engines are on.
 
 ## Develop
 

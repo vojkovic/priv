@@ -1,0 +1,61 @@
+instance_name = "privy"
+listen = "127.0.0.1"
+port = 8888
+timeout = 2.0
+
+[limiter]
+enabled = true
+link_token = false
+# IPs of the reverse proxies allowed to pass the client address in the X-Forwarded-For header
+trusted_proxies = ["127.0.0.0/8", "::1"]
+
+[engines]
+
+# general
+google = 1
+google_cse = 1
+brave = 1
+duckduckgo = 1
+duckduckgo_web = 1
+dogpile = 1
+privacywall = 1
+wikipedia = 2
+ddg_definitions = 2
+
+# images
+google_images = 1
+google_cse_images = 1
+brave_images = 1
+duckduckgo_images = 1
+dogpile_images = 1
+
+# videos
+google_videos = 1
+duckduckgo_videos = 1
+youtube = 1
+brave_videos = 1
+
+# news
+google_news = 1
+duckduckgo_news = 1
+reuters = 1
+brave_news = 1
+
+# music
+soundcloud = 1
+wikicommons_audio = 1
+
+# tech
+arch_linux_wiki = 1
+mdn = 1
+mankier = 1
+pypi = 1
+stackoverflow = 1
+askubuntu = 1
+superuser = 1
+
+# research
+arxiv = 1
+europepmc = 1
+pdbe = 1
+pubmed = 1

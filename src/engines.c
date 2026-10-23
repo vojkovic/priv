@@ -73,20 +73,41 @@ engine_in(const struct engine *e, const char *category)
 	return 0;
 }
 
+/* the name as written in config.toml: "google cse" is google_cse, "brave.images" is brave_images */
+static int
+config_name(const struct engine *e, const char *key)
+{
+	const char *n = e->name;
+
+	for (; *n && *key; n++, key++)
+		if (*key != (*n == ' ' || *n == '.' ? '_' : *n))
+			return 0;
+	return !*n && !*key;
+}
+
 void
 engines_init(void)
 {
-	struct engine_setting *s;
 	struct engine *e;
+	size_t i, k;
 
-	for (s = engine_settings; s->name; s++) {
-		if (!(e = engine_find(s->name)))
-			die("config.h: unknown engine '%s'", s->name);
-		if (!s->enabled || nengines == LEN(engines))
+	for (k = 0; k < nengine_toggles; k++) {
+		for (i = 0; i < LEN(available) && !config_name(available[i], engine_toggles[k].name); i++)
+			;
+		if (i == LEN(available))
+			die("config.toml: unknown engine '%s'", engine_toggles[k].name);
+	}
+	for (i = 0; i < LEN(available) && nengines < LEN(engines); i++) {
+		e = available[i];
+		if (e->weight <= 0)
+			e->weight = 1.0;
+		for (k = 0; k < nengine_toggles; k++)
+			if (config_name(e, engine_toggles[k].name))
+				e->weight = engine_toggles[k].weight;
+		if (e->weight <= 0)
 			continue;
 		e->index = (int)nengines;
 		e->enabled = 1;
-		e->weight = s->weight;
 		engines[nengines++] = e;
 		if (e->init)
 			e->init();
