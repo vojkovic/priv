@@ -40,6 +40,9 @@
 					const results = doc.querySelectorAll("#urls article.result");
 					for (const article of results)
 						urls.append(document.adoptNode(article));
+					const sprite = doc.querySelector("svg.sprite");
+					if (sprite)
+						document.body.append(document.adoptNode(sprite));
 					refit();
 					next = results.length ? doc.querySelector("#pagination .next_page") : null;
 				})
@@ -446,7 +449,7 @@
 		q.value = items[next].querySelector(".autocomplete-text").textContent;
 	});
 
-	const phone = window.matchMedia("(max-width: 50em)");
+	const phone = window.matchMedia("(max-width: 41.25em)");
 	const back = document.getElementById("search_back");
 
 	if (phone.matches && document.activeElement === q)

@@ -134,29 +134,6 @@ proto_bytes(struct buf *b, int field, const char *p, size_t n)
 }
 
 static char *
-base64(struct arena *a, const unsigned char *p, size_t n)
-{
-	static const char t[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-	char *r = amalloc(a, (n + 2) / 3 * 4 + 1), *w = r;
-	size_t i;
-
-	for (i = 0; i + 2 < n; i += 3) {
-		*w++ = t[p[i] >> 2];
-		*w++ = t[(p[i] & 3) << 4 | p[i + 1] >> 4];
-		*w++ = t[(p[i + 1] & 15) << 2 | p[i + 2] >> 6];
-		*w++ = t[p[i + 2] & 63];
-	}
-	if (i < n) {
-		*w++ = t[p[i] >> 2];
-		*w++ = t[(p[i] & 3) << 4 | (i + 1 < n ? p[i + 1] >> 4 : 0)];
-		*w++ = i + 1 < n ? t[(p[i + 1] & 15) << 2] : '=';
-		*w++ = '=';
-	}
-	*w = 0;
-	return r;
-}
-
-static char *
 suggest_template(struct arena *a, const char *image, const char *description)
 {
 	struct buf b = {0}, inner = {0};

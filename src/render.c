@@ -4,6 +4,7 @@
 
 #include "botdetect.h"
 #include "engine.h"
+#include "favicon.h"
 #include "icons.h"
 #include "proxy.h"
 #include "render.h"
@@ -42,7 +43,7 @@ search_box(struct buf *b, const char *query, const char *category, int autofocus
 	buf_html(b,
 	    "<div id=\"search_view\"><div class=\"search_box\">"
 	    "<button id=\"search_back\" type=\"button\" aria-label=\"Back\">" ICON_BACK "</button>"
-	    "<input id=\"q\" type=\"search\" name=\"q\" value=\"%s\" placeholder=\"Search for...\" aria-label=\"Search\" "
+	    "<input id=\"q\" type=\"search\" name=\"q\" tabindex=\"1\" value=\"%s\" placeholder=\"Search for...\" aria-label=\"Search\" "
 	    "autocomplete=\"off\" autocapitalize=\"none\" spellcheck=\"false\" required%r>"
 	    "<button id=\"send_search\" type=\"submit\" name=\"categories\" value=\"%s\" aria-label=\"Search\">" ICON_SEARCH
 	    "</button>"
@@ -258,14 +259,87 @@ attributes(struct buf *b, struct main_result *m)
 	buf_puts(b, "</div>\n");
 }
 
+/* images the proxy already prefetched go inline, the rest are fetched through it */
+#define INLINE_MAX (12 << 10)
+#define INFOBOX_INLINE_MAX (64 << 10)
+#define FAVICON_INLINE_MAX (3 << 10)
+#define FAVICON_INLINE_SITES 16
+
+static const char *
+image_src(struct search *s, const char *url, const char *proxied, size_t max)
+{
+	char *inlined = image_inline(&s->a, url, max);
+
+	return inlined ? inlined : proxied;
+}
+
+/* each site's favicon is inlined once, in a sprite at the end of the page, and referenced from there */
+struct favicon {
+	const char *authority, *data;
+	uint32_t id;
+};
+
+static struct favicon favicons[128];
+static size_t nfavicons, ninlined;
+
+static uint32_t
+favicon_id(const char *authority)
+{
+	uint32_t h = 2166136261u;
+
+	for (; *authority; authority++)
+		h = (h ^ (unsigned char)*authority) * 16777619u;
+	return h;
+}
+
 static void
-thumbnail(struct buf *b, struct main_result *m, const char *thumb, int video)
+favicon(struct buf *b, struct search *s, const char *authority)
+{
+	struct favicon *f = NULL;
+	size_t i;
+
+	if (!authority || !*authority)
+		return;
+	for (i = 0; i < nfavicons && !f; i++)
+		if (!strcmp(favicons[i].authority, authority))
+			f = &favicons[i];
+	if (!f && nfavicons < LEN(favicons)) {
+		f = &favicons[nfavicons++];
+		f->authority = authority;
+		f->data = ninlined < FAVICON_INLINE_SITES ? favicon_inline(&s->a, authority, FAVICON_INLINE_MAX) : NULL;
+		ninlined += f->data != NULL;
+		f->id = favicon_id(authority);
+	}
+	if (f && f->data)
+		buf_printf(b,
+		    "<svg class=\"fav\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><use href=\"#fav%08x\"/></svg>",
+		    f->id);
+	else
+		buf_html(b, "<img src=\"%s\" alt=\"\" loading=\"lazy\">", favicon_url(&s->a, authority));
+}
+
+static void
+favicon_sprite(struct buf *b, struct arena *a)
+{
+	size_t i;
+
+	buf_puts(b, "<svg class=\"sprite\" aria-hidden=\"true\"><defs>");
+	for (i = 0; i < nfavicons; i++)
+		if (favicons[i].data)
+			buf_html(b, "<image id=\"fav%r\" width=\"16\" height=\"16\" href=\"%s\"/>",
+			    aprintf(a, "%08x", favicons[i].id), favicons[i].data);
+	buf_puts(b, "</defs></svg>\n");
+	nfavicons = ninlined = 0;
+}
+
+static void
+thumbnail(struct buf *b, struct search *s, struct main_result *m, const char *thumb, int video)
 {
 	buf_html(b,
 	    "<a class=\"thumbnail_link\" href=\"%s\" rel=\"noreferrer\">"
 	    "<img class=\"thumbnail_bg\" src=\"%s\" alt=\"\" aria-hidden=\"true\">"
 	    "<img class=\"thumbnail\" src=\"%s\" alt=\"\" loading=\"lazy\">",
-	    m->url, thumb, thumb);
+	    m->url, thumb, image_src(s, m->thumbnail, thumb, INLINE_MAX));
 	if (video && m->length && *m->length)
 		buf_html(b, "<span class=\"thumbnail_length\">%s</span>", m->length);
 	buf_puts(b, "</a>\n");
@@ -287,23 +361,23 @@ static void
 main_result(struct buf *b, struct search *s, struct main_result *m)
 {
 	struct arena *a = &s->a;
-	char *thumb = image_url(a, m->thumbnail), *fav = favicon_url(a, m->parsed.netloc);
+	char *thumb = image_url(a, m->thumbnail);
 	int video = !strcmp(m->template, "videos");
 
 	buf_html(b, "<article class=\"result result-%s\">\n", m->template);
 	if (thumb && !video)
-		thumbnail(b, m, thumb, 0);
+		thumbnail(b, s, m, thumb, 0);
 	buf_html(b, "<a class=\"url_header\" href=\"%s\" rel=\"noreferrer\">", m->url);
-	if (fav)
-		buf_html(b, "<span class=\"favicon\"><img src=\"%s\" alt=\"\" loading=\"lazy\"></span>", fav);
-	buf_puts(b, "<span class=\"url_wrapper\">");
+	buf_puts(b, "<span class=\"favicon\">");
+	favicon(b, s, m->parsed.netloc);
+	buf_puts(b, "</span><span class=\"url_wrapper\">");
 	pretty_url(b, m);
 	buf_html(b, "</span></a>\n<h3><a href=\"%s\" rel=\"noreferrer\">%s</a></h3>\n", m->url,
 	    m->title[0] ? m->title : m->url);
 	if (video) {
 		buf_puts(b, "<div class=\"video_body\">\n");
 		if (thumb)
-			thumbnail(b, m, thumb, 1);
+			thumbnail(b, s, m, thumb, 1);
 		buf_puts(b, "<div class=\"video_text\">\n");
 	}
 	sub_header(b, m);
@@ -360,13 +434,13 @@ image_result(struct buf *b, struct search *s, struct main_result *m)
 	engine_names(b, m, ", ");
 	buf_html(b, "\">\n<a class=\"image_thumb\" href=\"%s\" rel=\"noreferrer\">", full);
 	if (thumb)
-		buf_html(b, "<img src=\"%s\" alt=\"\" loading=\"lazy\">", thumb);
+		buf_html(b, "<img src=\"%s\" alt=\"\" loading=\"lazy\">",
+		    image_src(s, *m->thumbnail_src ? m->thumbnail_src : m->img_src, thumb, INLINE_MAX));
 	if (*res)
 		buf_html(b, "<span class=\"image_resolution\">%s</span>", res);
 	buf_html(b, "</a>\n<a class=\"image_source\" href=\"%s\" rel=\"noreferrer\"><span class=\"image_site\">",
 	    m->url);
-	if (fav)
-		buf_html(b, "<img src=\"%s\" alt=\"\" loading=\"lazy\">", fav);
+	favicon(b, s, m->parsed.netloc);
 	buf_html(b, "<span>%s</span></span><span class=\"image_title\">%s</span></a>\n</article>\n", site,
 	    m->title[0] ? m->title : site);
 }
@@ -388,13 +462,13 @@ image_detail_template(struct buf *b)
 	    "</aside></template>\n");
 }
 
-static char *
-url_favicon(struct arena *a, const char *url)
+static const char *
+url_authority(struct arena *a, const char *url)
 {
 	struct url u;
 
 	url_parse(a, url, &u);
-	return favicon_url(a, u.netloc);
+	return u.netloc;
 }
 
 static int
@@ -426,7 +500,7 @@ infobox(struct buf *b, struct search *s, struct infobox *ib)
 {
 	struct infobox_url *u, *source = NULL;
 	struct infobox_attr *at;
-	char *img = image_url(&s->a, ib->img_src), *fav;
+	char *img = image_url(&s->a, ib->img_src);
 	int chips = 0;
 
 	for (u = ib->urls; u && !source; u = u->next)
@@ -434,7 +508,8 @@ infobox(struct buf *b, struct search *s, struct infobox *ib)
 			source = u;
 	buf_puts(b, "<aside class=\"infobox\">\n");
 	if (img)
-		buf_html(b, "<img class=\"infobox_image\" src=\"%s\" alt=\"\">\n", img);
+		buf_html(b, "<img class=\"infobox_image\" src=\"%s\" alt=\"\">\n",
+		    image_src(s, ib->img_src, img, INFOBOX_INLINE_MAX));
 	buf_html(b, "<h2 class=\"title\">%s</h2>\n", ib->title);
 	if (ib->description && *ib->description)
 		buf_html(b, "<p class=\"description\">%s</p>\n", ib->description);
@@ -463,10 +538,8 @@ infobox(struct buf *b, struct search *s, struct infobox *ib)
 			continue;
 		if (!chips++)
 			buf_puts(b, "<div class=\"links\">");
-		fav = url_favicon(&s->a, u->url);
 		buf_html(b, "<a href=\"%s\" rel=\"noreferrer\">", u->url);
-		if (fav)
-			buf_html(b, "<img src=\"%s\" alt=\"\" loading=\"lazy\">", fav);
+		favicon(b, s, url_authority(&s->a, u->url));
 		buf_html(b, "%s</a>", u->title && *u->title ? u->title : u->url);
 	}
 	if (chips)
@@ -571,10 +644,9 @@ engine_timing(struct buf *b, struct search *s)
 	    nok, n, aprintf(&s->a, "%.2f", max), aprintf(&s->a, "%.2f", limit));
 	for (i = 0; i < n; i++) {
 		int pct = rows[i].status == SUSPENDED ? 0 : (int)(100 * rows[i].seconds / limit + 0.5);
-		buf_html(b,
-		    "<li class=\"%r\"><span class=\"label\"><img src=\"%s\" alt=\"\" loading=\"lazy\">"
-		    "<span class=\"name\">%s</span>",
-		    cls[rows[i].status], favicon_url(&s->a, rows[i].engine->website), rows[i].engine->name);
+		buf_html(b, "<li class=\"%r\"><span class=\"label\">", cls[rows[i].status]);
+		favicon(b, s, rows[i].engine->website);
+		buf_html(b, "<span class=\"name\">%s</span>", rows[i].engine->name);
 		buf_html(b,
 		    "</span><svg class=\"track\" viewBox=\"0 0 100 2\" preserveAspectRatio=\"none\" aria-hidden=\"true\">"
 		    "<rect class=\"bg\" width=\"100\" height=\"2\"/><rect class=\"fill\" width=\"%d\" height=\"2\"/></svg>",
@@ -675,6 +747,7 @@ render_results(struct buf *b, struct search *s)
 	buf_puts(b, "</div>\n");
 	if (images)
 		image_detail_template(b);
+	favicon_sprite(b, &s->a);
 	buf_puts(b, "</body>\n</html>\n");
 }
 

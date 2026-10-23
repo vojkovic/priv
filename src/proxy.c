@@ -277,75 +277,160 @@ favicon_url(struct arena *a, const char *authority)
 	return r;
 }
 
-struct pending {
+#define CACHE_TTL 120
+#define FAILED_TTL 60
+#define CACHE_BYTES (64 << 20)
+#define MAX_PREFETCH 32
+
+enum { FETCHING, READY, FAILED };
+
+struct waiter {
 	struct conn *c;
-	struct fetch *f;
+	struct image *img;
+	struct waiter *next;
 };
 
-static void
-on_close(void *arg)
-{
-	struct pending *p = arg;
+/* upstream images kept briefly so prefetches can be inlined or served without a second fetch */
+struct image {
+	struct image *next;
+	char *url, *mime, *data;
+	size_t len;
+	int state;
+	double expires;
+	struct waiter *waiters;
+};
 
-	fetch_free(p->f);
-	free(p);
+static struct image *images[1024];
+static size_t cached, prefetching;
+
+static uint32_t
+url_hash(const char *s)
+{
+	uint32_t h = 2166136261u;
+
+	for (; *s; s++)
+		h = (h ^ (unsigned char)*s) * 16777619u;
+	return h;
+}
+
+static const char *
+normalize(struct arena *a, const char *url)
+{
+	return starts_with(url, "//") ? aprintf(a, "https:%s", url) : url;
 }
 
 static void
-start(struct conn *c, struct fetch *f, fetch_cb cb)
+image_free(struct image *img)
 {
-	struct pending *p = xmalloc(sizeof(*p));
+	cached -= img->len;
+	free(img->url);
+	free(img->mime);
+	free(img->data);
+	free(img);
+}
 
-	p->c = c;
-	p->f = f;
-	http_on_close(c, on_close, p);
-	fetch_start(f, cb, p);
+/* drops expired entries, then the soonest to expire until under the cap */
+static void
+sweep(void)
+{
+	struct image **pp, *img, **oldest;
+	double now = now_ms();
+	size_t i;
+
+	for (i = 0; i < LEN(images); i++)
+		for (pp = &images[i]; (img = *pp);)
+			if (img->state != FETCHING && img->expires < now) {
+				*pp = img->next;
+				image_free(img);
+			} else {
+				pp = &img->next;
+			}
+	while (cached > CACHE_BYTES) {
+		oldest = NULL;
+		for (i = 0; i < LEN(images); i++)
+			for (pp = &images[i]; *pp; pp = &(*pp)->next)
+				if ((*pp)->state == READY && (!oldest || (*pp)->expires < (*oldest)->expires))
+					oldest = pp;
+		if (!oldest)
+			return;
+		img = *oldest;
+		*oldest = img->next;
+		image_free(img);
+	}
+}
+
+static struct image *
+lookup(const char *url)
+{
+	struct image *img;
+
+	for (img = images[url_hash(url) % LEN(images)]; img; img = img->next)
+		if (!strcmp(img->url, url) && (img->state == FETCHING || img->expires >= now_ms()))
+			return img;
+	return NULL;
 }
 
 static void
-empty(struct conn *c, int status)
+respond(struct conn *c, struct image *img)
 {
-	http_respond(c, status, "Content-Type: text/plain\r\n", "", 0);
-}
-
-static void
-image_done(struct fetch *f, void *arg)
-{
-	struct pending *p = arg;
-	const char *ct = fetch_content_type(f);
 	struct buf h = {0};
 
-	http_on_close(p->c, NULL, NULL);
+	if (img->state != READY) {
+		http_respond(c, 404, "Content-Type: text/plain\r\nCache-Control: max-age=3600\r\n", "", 0);
+		return;
+	}
+	buf_printf(&h, "Content-Type: %s\r\nCache-Control: max-age=86400\r\n", img->mime);
+	http_respond(c, 200, buf_str(&h), img->data, img->len);
+	buf_free(&h);
+}
+
+static void
+fetched(struct fetch *f, void *arg)
+{
+	struct image *img = arg;
+	const char *ct = fetch_content_type(f);
+	struct waiter *w, *next;
+
+	prefetching--;
 	if (f->code != CURLE_OK || f->status != 200 ||
 	    (!starts_with(ct, "image/") && !starts_with(ct, "binary/octet-stream"))) {
 		fprintf(stderr, "image: %ld %s from %s\n", f->status, f->code ? curl_easy_strerror(f->code) : ct,
 		    fetch_url(f));
-		http_respond(p->c, 404, "Content-Type: text/plain\r\nCache-Control: max-age=3600\r\n", "", 0);
+		img->state = FAILED;
+		img->expires = now_ms() + FAILED_TTL * 1e3;
 	} else {
-		buf_printf(&h, "Content-Type: %s\r\nCache-Control: max-age=86400\r\n", ct);
-		http_respond(p->c, 200, buf_str(&h), f->body.p, f->body.len);
-		buf_free(&h);
+		img->state = READY;
+		img->mime = xstrdup(ct);
+		img->data = f->body.p;
+		img->len = f->body.len;
+		f->body.p = NULL;
+		f->body.len = f->body.cap = 0;
+		img->expires = now_ms() + CACHE_TTL * 1e3;
+		cached += img->len;
 	}
 	fetch_free(f);
-	free(p);
+	for (w = img->waiters; w; w = next) {
+		next = w->next;
+		http_on_close(w->c, NULL, NULL);
+		respond(w->c, img);
+		free(w);
+	}
+	img->waiters = NULL;
+	sweep();
 }
 
-void
-proxy_image(struct conn *c, struct request *r)
+static struct image *
+fetch_image(const char *url)
 {
-	struct arena a = {0};
-	const char *url = query_param(&a, r->query, "url");
-	struct fetch *f;
-	char *ua;
+	struct image *img = xcalloc(1, sizeof(*img));
+	struct image **head = &images[url_hash(url) % LEN(images)];
+	struct fetch *f = fetch_new(url);
+	char *ua = gen_useragent();
 
-	if (!url || !*url || !proxy_hmac_ok(url, query_param(&a, r->query, "h"))) {
-		arena_free(&a);
-		empty(c, 400);
-		return;
-	}
-	f = fetch_new(url);
-	arena_free(&a);
-	ua = gen_useragent();
+	img->url = xstrdup(url);
+	img->state = FETCHING;
+	img->next = *head;
+	*head = img;
 	fetch_header(f, "User-Agent: %s", ua);
 	free(ua);
 	fetch_header(f, "Accept: image/webp,*/*");
@@ -354,5 +439,80 @@ proxy_image(struct conn *c, struct request *r)
 	curl_easy_setopt(f->h, CURLOPT_FOLLOWLOCATION, 1L);
 	f->max_body = MAX_IMAGE;
 	fetch_timeout(f, 10000);
-	start(c, f, image_done);
+	prefetching++;
+	fetch_start(f, fetched, img);
+	return img;
+}
+
+void
+image_prefetch(const char *url)
+{
+	struct arena a = {0};
+
+	if (url && *url && !starts_with(url, "data:") && prefetching < MAX_PREFETCH) {
+		url = normalize(&a, url);
+		if (!lookup(url))
+			fetch_image(url);
+	}
+	arena_free(&a);
+}
+
+char *
+image_inline(struct arena *a, const char *url, size_t max)
+{
+	struct image *img;
+
+	if (!url || !*url || starts_with(url, "data:"))
+		return NULL;
+	img = lookup(normalize(a, url));
+	if (!img || img->state != READY || img->len > max || !starts_with(img->mime, "image/"))
+		return NULL;
+	return aprintf(a, "data:%s;base64,%s", img->mime, base64(a, (unsigned char *)img->data, img->len));
+}
+
+static void
+unwait(void *arg)
+{
+	struct waiter *w = arg, **pp;
+
+	for (pp = &w->img->waiters; *pp; pp = &(*pp)->next)
+		if (*pp == w) {
+			*pp = w->next;
+			break;
+		}
+	free(w);
+}
+
+static void
+empty(struct conn *c, int status)
+{
+	http_respond(c, status, "Content-Type: text/plain\r\n", "", 0);
+}
+
+void
+proxy_image(struct conn *c, struct request *r)
+{
+	struct arena a = {0};
+	const char *url = query_param(&a, r->query, "url");
+	struct image *img;
+	struct waiter *w;
+
+	if (!url || !*url || !proxy_hmac_ok(url, query_param(&a, r->query, "h"))) {
+		arena_free(&a);
+		empty(c, 400);
+		return;
+	}
+	if (!(img = lookup(url)))
+		img = fetch_image(url);
+	arena_free(&a);
+	if (img->state != FETCHING) {
+		respond(c, img);
+		return;
+	}
+	w = xmalloc(sizeof(*w));
+	w->c = c;
+	w->img = img;
+	w->next = img->waiters;
+	img->waiters = w;
+	http_on_close(c, unwait, w);
 }

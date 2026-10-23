@@ -93,6 +93,7 @@ char *py_strip(char *s);
 char *text_split_join(struct arena *a, const char *s);
 char *text_normalize(struct arena *a, const char *s, size_t max);
 char *html_to_text(struct arena *a, const char *s);
+char *base64(struct arena *a, const unsigned char *p, size_t n);
 size_t utf8_len(const char *s);
 int utf8_decode(const char *s, uint32_t *cp);
 int utf8_encode(char *out, uint32_t cp);

@@ -198,34 +198,63 @@ skip_lines(FILE *fp, int n)
 	return 0;
 }
 
+static char *
+read_blob(struct fav *f, size_t *len)
+{
+	char *data;
+	FILE *fp;
+	long off;
+
+	if (!(fp = fopen(path(f->authority), "rb")))
+		return NULL;
+	if (skip_lines(fp, 3) < 0 || (off = ftell(fp)) < 0 || (size_t)off > f->size) {
+		fclose(fp);
+		return NULL;
+	}
+	data = xmalloc(f->size - off + 1);
+	*len = fread(data, 1, f->size - off, fp);
+	fclose(fp);
+	if (*len != f->size - (size_t)off) {
+		free(data);
+		return NULL;
+	}
+	return data;
+}
+
 static int
 respond_disk(struct conn *c, struct fav *f)
 {
 	char *data;
 	size_t n;
-	FILE *fp;
-	long off;
 
 	if (!*f->mime) {
 		respond_default(c);
 		return 0;
 	}
-	if (!(fp = fopen(path(f->authority), "rb")))
+	if (!(data = read_blob(f, &n)))
 		return -1;
-	if (skip_lines(fp, 3) < 0 || (off = ftell(fp)) < 0 || (size_t)off > f->size) {
-		fclose(fp);
-		return -1;
-	}
-	data = xmalloc(f->size - off + 1);
-	n = fread(data, 1, f->size - off, fp);
-	fclose(fp);
-	if (n != f->size - (size_t)off) {
-		free(data);
-		return -1;
-	}
 	respond_data(c, f->mime, data, n);
 	free(data);
 	return 0;
+}
+
+char *
+favicon_inline(struct arena *a, const char *authority, size_t max)
+{
+	struct fav *f = authority ? find(authority, 0) : NULL;
+	char *data, *r;
+	size_t n;
+
+	if (!f || !fresh(f))
+		return NULL;
+	if (!*f->mime)
+		return aprintf(a, "data:image/svg+xml;base64,%s",
+		    base64(a, (const unsigned char *)DEFAULT_FAVICON, sizeof(DEFAULT_FAVICON) - 1));
+	if (f->size > max + 512 || !starts_with(f->mime, "image/") || !(data = read_blob(f, &n)))
+		return NULL;
+	r = n <= max ? aprintf(a, "data:%s;base64,%s", f->mime, base64(a, (unsigned char *)data, n)) : NULL;
+	free(data);
+	return r;
 }
 
 static void

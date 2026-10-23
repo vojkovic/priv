@@ -7,8 +7,12 @@
 #include "engine.h"
 #include "favicon.h"
 #include "icons.h"
+#include "proxy.h"
 #include "render.h"
 #include "search.h"
+
+#define PREFETCH_THUMBNAILS 10
+#define PREFETCH_IMAGES 6
 
 #define STREAM_HEADERS \
 	"Content-Type: text/html; charset=utf-8\r\n" \
@@ -150,17 +154,29 @@ on_client_close(void *arg)
 	search_free(arg);
 }
 
+/* warm favicons and the images likely to be on screen before the page asks for them */
 static void
-prefetch_favicons(struct job *j)
+prefetch(struct job *j)
 {
+	struct main_result *m;
 	struct result *r;
 	struct url u;
+	int images = 0, thumbnails = 0;
 
 	for (r = j->head; r; r = r->next) {
+		if (r->type == RESULT_INFOBOX)
+			image_prefetch(((struct infobox *)r)->img_src);
 		if (r->type != RESULT_MAIN)
 			continue;
-		url_parse(j->a, ((struct main_result *)r)->url, &u);
+		m = (struct main_result *)r;
+		url_parse(j->a, m->url, &u);
 		favicon_prefetch(starts_with(u.netloc, "xn--") ? idna_decode(j->a, u.netloc) : u.netloc);
+		if (m->template && !strcmp(m->template, "images")) {
+			if (images++ < PREFETCH_IMAGES)
+				image_prefetch(*m->thumbnail_src ? m->thumbnail_src : m->img_src);
+		} else if (m->thumbnail && *m->thumbnail && thumbnails++ < PREFETCH_THUMBNAILS) {
+			image_prefetch(m->thumbnail);
+		}
 	}
 }
 
@@ -172,7 +188,7 @@ job_done(struct job *j)
 	if (j->done)
 		return;
 	j->done = 1;
-	prefetch_favicons(j);
+	prefetch(j);
 	results_extend(&j->s->res, e, j->head);
 	results_timing(&j->s->res, e, (now_ms() - j->start) / 1e3, j->load);
 	e->continuous_errors = 0;
