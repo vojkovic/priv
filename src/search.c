@@ -13,7 +13,8 @@
 #define STREAM_HEADERS \
 	"Content-Type: text/html; charset=utf-8\r\n" \
 	"Cache-Control: no-store\r\n" \
-	"X-Accel-Buffering: no\r\n" SECURITY_HEADERS
+	"X-Accel-Buffering: no\r\n" \
+	"Trailer: Server-Timing\r\n" SECURITY_HEADERS
 
 const struct category categories[] = {
     {"general", "General", ICON_SEARCH},
@@ -59,10 +60,54 @@ search_free(struct search *s)
 	free(s);
 }
 
+static int
+by_total(const void *x, const void *y)
+{
+	const struct timing *a = x, *b = y;
+
+	return (a->seconds > b->seconds) - (a->seconds < b->seconds);
+}
+
+static const char *
+token(struct arena *a, const char *name)
+{
+	char *t = astrdup(a, name), *p;
+
+	for (p = t; *p; p++)
+		if (!IS_ALNUM(*p) && *p != '.' && *p != '-')
+			*p = '_';
+	return t;
+}
+
+/* searxng's Server-Timing, sent as a trailer since the head is streamed before the engines finish */
+static const char *
+server_timing(struct search *s, double render_ms)
+{
+	struct results *r = &s->res;
+	struct buf b = {0};
+	const char *out;
+	size_t i;
+
+	qsort(r->timings, r->ntimings, sizeof(*r->timings), by_total);
+	buf_printf(&b, "Server-Timing: total;dur=%.3f, render;dur=%.3f", now_ms() - s->start, render_ms);
+	for (i = 0; i < r->ntimings; i++)
+		buf_printf(&b, ", total_%zu_%s;dur=%.3f", i, token(&s->a, r->timings[i].engine->name),
+		    r->timings[i].seconds * 1e3);
+	for (i = 0; i < r->ntimings; i++)
+		if (r->timings[i].load > 0)
+			buf_printf(&b, ", load_%zu_%s;dur=%.3f", i, token(&s->a, r->timings[i].engine->name),
+			    r->timings[i].load * 1e3);
+	buf_puts(&b, "\r\n");
+	out = astrdup(&s->a, buf_str(&b));
+	buf_free(&b);
+	return out;
+}
+
 static void
 search_finish(struct search *s)
 {
 	struct buf b = {0};
+	double render_start;
 	size_t i;
 
 	ev_timer_stop(&s->deadline);
@@ -72,15 +117,16 @@ search_finish(struct search *s)
 		s->jobs[i].done = 1;
 		job_cleanup(&s->jobs[i]);
 		results_unresponsive(&s->res, s->jobs[i].e, "timeout", 0);
-		results_timing(&s->res, s->jobs[i].e, (now_ms() - s->start) / 1e3);
+		results_timing(&s->res, s->jobs[i].e, (now_ms() - s->start) / 1e3, s->jobs[i].load);
 		fprintf(stderr, "%s: timeout\n", s->jobs[i].e->name);
 	}
 	s->elapsed = (now_ms() - s->start) / 1e3;
 	results_close(&s->res);
+	render_start = now_ms();
 	render_results(&b, s);
 	http_on_close(s->c, NULL, NULL);
 	http_write(s->c, b.p, b.len);
-	http_end(s->c);
+	http_end_trailers(s->c, server_timing(s, now_ms() - render_start));
 	buf_free(&b);
 	search_free(s);
 }
@@ -128,7 +174,7 @@ job_done(struct job *j)
 	j->done = 1;
 	prefetch_favicons(j);
 	results_extend(&j->s->res, e, j->head);
-	results_timing(&j->s->res, e, (now_ms() - j->start) / 1e3);
+	results_timing(&j->s->res, e, (now_ms() - j->start) / 1e3, j->load);
 	e->continuous_errors = 0;
 	e->suspend_end = 0;
 	e->suspend_reason[0] = 0;
@@ -147,7 +193,7 @@ job_fail(struct job *j, const char *error, int suspend)
 		return;
 	j->done = 1;
 	results_unresponsive(&j->s->res, e, astrdup(&j->s->a, error), 0);
-	results_timing(&j->s->res, e, (now_ms() - j->start) / 1e3);
+	results_timing(&j->s->res, e, (now_ms() - j->start) / 1e3, j->load);
 	fprintf(stderr, "%s: %s (%.2fs)\n", e->name, error, (now_ms() - j->start) / 1e3);
 	if (suspend != SUSPEND_NONE) {
 		secs = suspend == SUSPEND_DEFAULT ? MIN(max_ban_time_on_fail, ban_time_on_fail) : suspend;
@@ -166,7 +212,11 @@ trampoline(struct fetch *f, void *arg)
 	struct job *j = arg;
 	job_cb cb = j->cb;
 
+	curl_off_t us = 0;
+
 	j->f = NULL;
+	if (curl_easy_getinfo(f->h, CURLINFO_TOTAL_TIME_T, &us) == CURLE_OK)
+		j->load += us / 1e6;
 	cb(j, f);
 	fetch_free(f);
 }
@@ -743,8 +793,8 @@ search_start(struct conn *c, const char *raw, int pageno, const struct filters *
 	s->start = now_ms();
 	s->jobs = xcalloc(nengines, sizeof(*s->jobs));
 
-	http_begin(c, 200, STREAM_HEADERS);
 	render_head(&b, s);
+	http_begin(c, 200, aprintf(&s->a, STREAM_HEADERS "Server-Timing: head;dur=%.3f\r\n", now_ms() - s->start));
 	http_write(c, b.p, b.len);
 	buf_free(&b);
 

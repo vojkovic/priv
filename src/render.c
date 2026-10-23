@@ -41,6 +41,7 @@ search_box(struct buf *b, const char *query, const char *category, int autofocus
 {
 	buf_html(b,
 	    "<div id=\"search_view\"><div class=\"search_box\">"
+	    "<button id=\"search_back\" type=\"button\" aria-label=\"Back\">" ICON_BACK "</button>"
 	    "<input id=\"q\" type=\"search\" name=\"q\" value=\"%s\" placeholder=\"Search for...\" aria-label=\"Search\" "
 	    "autocomplete=\"off\" autocapitalize=\"none\" spellcheck=\"false\" required%r>"
 	    "<button id=\"send_search\" type=\"submit\" name=\"categories\" value=\"%s\" aria-label=\"Search\">" ICON_SEARCH

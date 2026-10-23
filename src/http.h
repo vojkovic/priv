@@ -32,6 +32,7 @@ void http_respond(struct conn *c, int status, const char *headers, const char *b
 void http_begin(struct conn *c, int status, const char *headers);
 void http_write(struct conn *c, const char *p, size_t n);
 void http_end(struct conn *c);
+void http_end_trailers(struct conn *c, const char *trailers);
 void http_on_close(struct conn *c, void (*cb)(void *), void *arg);
 
 #endif

@@ -89,6 +89,19 @@ svg:not(.icon, .logo) { fill: none; stroke: currentColor; stroke-width: 2; strok
 	cursor: pointer;
 }
 #send_search svg { display: block; width: 1.3rem; height: 1.3rem; }
+#search_back {
+	display: none;
+	flex: none;
+	align-items: center;
+	justify-content: center;
+	width: 3rem;
+	padding: 0;
+	color: var(--text);
+	background: transparent;
+	border: 0;
+	cursor: pointer;
+}
+#search_back svg { width: 1.4rem; height: 1.4rem; }
 #send_search:hover { color: var(--surface0); background: var(--accent); }
 
 /* filters */
@@ -188,7 +201,8 @@ body:has(#urls) .search_filters { visibility: visible; }
 	min-height: 100vh;
 	padding: 0 1rem 8rem;
 }
-#main_index #search { display: flex; flex-direction: column; align-items: center; width: 44rem; }
+#main_index #search { display: flex; flex-direction: column; align-items: center; width: min(44rem, 100%); }
+#main_index #search_view { width: 100%; }
 #main_index .title {
 	margin: 0 0 3.5rem;
 	color: var(--accent);
@@ -721,14 +735,20 @@ article.result.result-images {
 	}
 	.search_filters { width: min(45rem, 100%); margin: 0.6rem auto 0; padding: 0 0.5em; }
 	#results {
-		grid-template-columns: minmax(0, 45rem);
-		grid-template-rows: none;
-		grid-template-areas: "answers" "urls" "pagination" "sidebar";
-		justify-content: center;
-		margin: 1rem 0.5rem 2rem;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		max-width: 46rem;
+		margin: 1rem auto 2rem;
+		padding: 0 0.5rem;
 	}
-	#sidebar { margin: 0 0.5em; }
-	#results.category-images { margin: 1rem 1rem 2rem; }
+	#sidebar { display: contents; }
+	#answers { order: 1; }
+	#infoboxes { order: 2; margin: 0 0.5em; }
+	#urls { order: 3; }
+	#pagination, .infinite_loader { order: 4; }
+	#engines_msg { order: 5; margin: 0.5em; }
+	#results.category-images { display: block; max-width: none; margin: 1rem 0 2rem; padding: 0 1rem; }
 	.image_detail_open #results.category-images { margin-right: calc(min(38rem, 42vw) + 1rem); }
 }
 
@@ -736,26 +756,63 @@ article.result.result-images {
 
 @media (max-width: 50em) {
 	#search_header {
-		grid-template-columns: 2.6rem minmax(0, 1fr);
+		grid-template-columns: 3rem minmax(0, 1fr);
 		grid-template-areas: "logo search" "categories categories";
-		gap: 0;
+		gap: 0.4rem 0;
 		padding: 0.6rem 0.6rem 0 0;
 	}
 	#search_logo svg { width: 1.4rem; height: 1.4rem; margin-top: 0; }
 	#search_view { padding-top: 0; }
+	.search_focus body { overflow: hidden; }
+	.search_focus .search_box {
+		position: fixed;
+		top: 0;
+		right: 0;
+		left: 0;
+		z-index: 6001;
+		width: 100%;
+		max-width: none;
+		height: 3.6rem;
+		background: var(--mantle);
+		border-bottom: 1px solid var(--surface0);
+		border-radius: 0;
+		box-shadow: none;
+	}
+	.search_focus #search_back { display: flex; }
+	.search_focus .autocomplete {
+		position: fixed;
+		top: 3.6rem;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		display: block;
+		max-height: none;
+		margin: 0;
+		background: var(--base);
+		border-radius: 0;
+		box-shadow: none;
+	}
+	.autocomplete li { padding: 0.55rem 1rem; }
 	#categories { overflow-x: auto; scrollbar-width: none; }
 	#categories::-webkit-scrollbar { display: none; }
 	#search_header #categories { padding: 0.4rem 10px; }
 	#categories_container { flex-wrap: nowrap; gap: 0.25rem; width: max-content; min-width: 100%; }
 	.category_button { flex: 1 1 0; min-width: 2.75rem; padding: 0.6rem 0; }
 	.search_filters { flex-wrap: nowrap; gap: 0; width: auto; margin: 0 10px; padding: 0.5rem 0; }
-	.search_filters select { flex: 1 1 0; max-width: none; margin-right: 0.5rem; font-size: 0.85rem; }
+	.search_filters select { flex: 1 1 0; max-width: none; margin-right: 0.5rem; padding-top: 0.6rem; padding-bottom: 0.6rem; font-size: 0.85rem; }
 	.search_filters select:last-of-type { margin-right: 0; }
-	#results { margin: 0.5rem 0 2rem; }
-	article.result, #answers { margin: 0.5em 0.3em; }
+	#results { margin: 0.25rem 0 2rem; padding: 0; }
+	article.result, #answers { margin: 0.5em; }
+	.infobox .infobox_image { max-height: 9rem; }
+	.infobox .extract {
+		display: -webkit-box;
+		overflow: hidden;
+		-webkit-line-clamp: 5;
+		-webkit-box-orient: vertical;
+	}
 	a.thumbnail_link { width: 6rem; }
 	.video_body a.thumbnail_link { width: 8rem; }
-	#results.category-images { margin: 0.5rem 0.5rem 2rem; }
+	#results.category-images { margin: 0.5rem 0 2rem; padding: 0 0.5rem; }
 	.category-images #urls { grid-template-columns: repeat(auto-fill, minmax(1.75rem, 1fr)); gap: 0.8rem 0.4rem; }
 	.category-images #engines_msg { grid-column: 1 / -1; grid-row: auto; order: 1; }
 	.image_thumb { height: 6rem; }

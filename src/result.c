@@ -258,9 +258,9 @@ results_unresponsive(struct results *r, const struct engine *e, const char *erro
 }
 
 void
-results_timing(struct results *r, const struct engine *e, double seconds)
+results_timing(struct results *r, const struct engine *e, double seconds, double load)
 {
-	struct timing t = {e, seconds};
+	struct timing t = {e, seconds, load};
 
 	PUSH(r->timings, r->ntimings, r->captimings, t);
 }

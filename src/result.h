@@ -72,7 +72,7 @@ struct unresponsive {
 
 struct timing {
 	const struct engine *engine;
-	double seconds;
+	double seconds, load;
 };
 
 struct results {
@@ -92,7 +92,7 @@ struct results {
 
 void results_extend(struct results *r, const struct engine *e, struct result *list);
 void results_unresponsive(struct results *r, const struct engine *e, const char *error, int suspended);
-void results_timing(struct results *r, const struct engine *e, double seconds);
+void results_timing(struct results *r, const struct engine *e, double seconds, double load);
 void results_close(struct results *r);
 
 #endif

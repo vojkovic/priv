@@ -284,6 +284,11 @@
 		return slot;
 	};
 
+	const place = () => {
+		const bottom = q.closest(".search_box").getBoundingClientRect().bottom;
+		document.documentElement.style.setProperty("--autocomplete-top", Math.max(bottom + 6, 0) + "px");
+	};
+
 	const hide = () => {
 		suppress = true;
 		box.classList.remove("open");
@@ -322,6 +327,7 @@
 		if (suppress || id <= displayed || !items.length)
 			return;
 		displayed = id;
+		place();
 		box.classList.add("open");
 		const fragment = new DocumentFragment();
 		for (const item of items)
@@ -394,11 +400,29 @@
 		q.value = items[next].querySelector(".autocomplete-text").textContent;
 	});
 
-	q.addEventListener("blur", hide);
+	const phone = window.matchMedia("(max-width: 50em)");
+	const back = document.getElementById("search_back");
+
+	if (phone.matches && document.activeElement === q)
+		q.blur();
+
+	q.addEventListener("blur", () => {
+		hide();
+		document.documentElement.classList.remove("search_focus");
+	});
+
+	if (back)
+		back.addEventListener("pointerdown", (event) => {
+			event.preventDefault();
+			q.blur();
+		});
 
 	q.addEventListener("focus", () => {
+		if (phone.matches)
+			document.documentElement.classList.add("search_focus");
 		suppress = false;
 		if (list.children.length) {
+			place();
 			box.classList.add("open");
 			return;
 		}

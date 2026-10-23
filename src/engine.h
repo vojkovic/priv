@@ -46,7 +46,7 @@ struct job {
 	struct fetch *f;
 	job_cb cb;
 	struct result *head, **tail;
-	double start;
+	double start, load;
 	int done;
 	struct {
 		void (*fn)(void *);

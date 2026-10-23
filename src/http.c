@@ -169,10 +169,19 @@ http_write(struct conn *c, const char *p, size_t n)
 void
 http_end(struct conn *c)
 {
+	http_end_trailers(c, "");
+}
+
+void
+http_end_trailers(struct conn *c, const char *trailers)
+{
 	if (c->dead)
 		return;
-	if (!c->head)
-		buf_puts(&c->out, "0\r\n\r\n");
+	if (!c->head) {
+		buf_puts(&c->out, "0\r\n");
+		buf_puts(&c->out, trailers);
+		buf_puts(&c->out, "\r\n");
+	}
 	c->chunked = 0;
 	c->on_close = NULL;
 	finish(c);
