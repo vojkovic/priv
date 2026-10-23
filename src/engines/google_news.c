@@ -111,7 +111,7 @@ search(struct job *j)
 	f = job_request(j, aprintf(j->a, "https://www.google.com/search?%s", buf_str(&q)));
 	buf_free(&q);
 	fetch_impersonate(f, NULL, 0);
-	fetch_header(f, "User-Agent: SAMSUNG-GT-S5230");
+	fetch_header(f, "User-Agent: Nokia6230i/2.0 (03.80) Profile/MIDP-2.0 Configuration/CLDC-1.1");
 	curl_easy_setopt(f->h, CURLOPT_FORBID_REUSE, 1L);
 	job_send(j, f, response);
 }
