@@ -403,7 +403,7 @@ fetched(struct fetch *f, void *arg)
 	if (f->code != CURLE_OK || f->status != 200 ||
 	    (!starts_with(ct, "image/") && !starts_with(ct, "binary/octet-stream"))) {
 		fprintf(stderr, "image: %ld %s from %s\n", f->status, f->code ? curl_easy_strerror(f->code) : ct,
-		    fetch_url(f));
+		    fetch_host(f));
 		img->state = FAILED;
 		img->expires = now_ms() + FAILED_TTL * 1e3;
 	} else {

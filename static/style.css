@@ -148,17 +148,19 @@ body:has(#urls) .search_filters { visibility: visible; }
 	left: 0;
 	right: 0;
 	display: none;
-	margin-top: 0.4rem;
-	max-height: 32rem;
+	max-height: min(32rem, var(--room, 32rem));
 	overflow: hidden auto;
 	color: var(--subtext1);
 	background: var(--surface0);
-	border-radius: 0.8rem;
-	box-shadow: 0 2px 8px var(--crust);
+	border-radius: 0 0 0.8rem 0.8rem;
+	box-shadow: 0 4px 8px var(--crust);
+	clip-path: inset(0 -1rem -1rem -1rem);
 	z-index: 5000;
 }
 .autocomplete.open:has(li) { display: block; }
-.autocomplete ul { margin: 0; padding: 0.3rem 0; list-style: none; }
+.search_box:has(.autocomplete.open li) { border-radius: 0.8rem 0.8rem 0 0; }
+.autocomplete ul { margin: 0; padding: 0 0 0.5rem; list-style: none; }
+.autocomplete ul::before { content: ""; display: block; margin: 0 1rem 0.5rem; border-top: 1px solid var(--surface1); }
 .autocomplete li {
 	display: flex;
 	align-items: center;
@@ -189,8 +191,8 @@ body:has(#urls) .search_filters { visibility: visible; }
 .autocomplete-icon-trending svg { width: 1.25rem; height: 1.25rem; fill: currentColor; stroke: none; }
 .autocomplete-content { display: flex; flex: 1 1 0; flex-direction: column; min-width: 0; }
 .autocomplete-text, .autocomplete-description { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.autocomplete-text { line-height: 1.2; }
-.autocomplete-text b { color: var(--text); }
+.autocomplete-text { line-height: 1.2; color: var(--text); }
+.autocomplete-text b { font-weight: 700; }
 .autocomplete-description { font-size: 0.8125rem; line-height: 1.15; opacity: 0.62; }
 
 /* index */
@@ -794,8 +796,11 @@ article.result.result-images {
 		background: var(--base);
 		border-radius: 0;
 		box-shadow: none;
+		clip-path: none;
 	}
-	.autocomplete li { padding: 0.55rem 1rem; }
+	.search_focus .autocomplete ul::before { display: none; }
+	.search_focus .search_box:has(.autocomplete.open li) { border-radius: 0; }
+	.autocomplete li { padding: 0.35rem 1rem; }
 	#categories { overflow-x: auto; scrollbar-width: none; }
 	#categories::-webkit-scrollbar { display: none; }
 	#search_header #categories { margin-right: -0.6rem; padding: 0.4rem 0.5em; }

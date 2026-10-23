@@ -16,6 +16,9 @@
 #define SUSPICIOUS_IP_WINDOW (3600 * 24 * 30)
 #define SUSPICIOUS_IP_MAX 3
 #define TOKEN_LIVE_TIME 600
+#define ESCALATE_TIME LONG_WINDOW
+#define ESCALATE_CHILDREN 3
+#define MAX_ESCALATED 1024
 #define PING_LIVE_TIME 3600
 
 #define USER_AGENT \
@@ -53,6 +56,12 @@ static regex_t ua_re;
 static struct net *trusted, *passlist, *blocklist;
 static size_t ntrusted, npass, nblock;
 static struct counter *counters[1024];
+/* ipv6 networks blocked for rate limits, so neighbouring /48s from one allocation add up to a wider block */
+static struct {
+	struct net net;
+	double expire;
+} escalated[MAX_ESCALATED];
+static const int levels[] = {48, 44, 40, 36, 32, 29};
 static char token[17];
 static double token_expire;
 
@@ -102,6 +111,82 @@ in_net(const struct ip *ip, const struct net *n)
 			return 0;
 	}
 	return 1;
+}
+
+static struct net
+masked(const struct ip *ip, int prefix)
+{
+	struct net n = {*ip, prefix};
+	int bits = prefix, i;
+
+	for (i = 0; i < 16; i++, bits -= 8)
+		n.ip.a[i] &= bits >= 8 ? 0xff : bits > 0 ? (unsigned char)(0xff << (8 - bits)) : 0;
+	return n;
+}
+
+static int
+same_net(const struct net *x, const struct net *y)
+{
+	return x->prefix == y->prefix && !memcmp(x->ip.a, y->ip.a, sizeof(x->ip.a));
+}
+
+static int
+mark_escalated(const struct net *n, double now)
+{
+	size_t i, slot = 0;
+
+	for (i = 0; i < LEN(escalated); i++) {
+		if (escalated[i].expire > now && same_net(&escalated[i].net, n)) {
+			escalated[i].expire = now + ESCALATE_TIME * 1e3;
+			return 0;
+		}
+		if (escalated[i].expire < escalated[slot].expire)
+			slot = i;
+	}
+	escalated[slot].net = *n;
+	escalated[slot].expire = now + ESCALATE_TIME * 1e3;
+	return 1;
+}
+
+/* block the /48, then each parent once ESCALATE_CHILDREN of its direct children are blocked, up to /29 */
+static void
+escalate(const struct ip *ip)
+{
+	double now = now_ms();
+	struct net parent, child;
+	char addr[64];
+	size_t l, i, n;
+
+	if (!ip->v6)
+		return;
+	child = masked(ip, levels[0]);
+	mark_escalated(&child, now);
+	for (l = 1; l < LEN(levels); l++) {
+		parent = masked(ip, levels[l]);
+		for (i = n = 0; i < LEN(escalated); i++)
+			if (escalated[i].expire > now && escalated[i].net.prefix == levels[l - 1] &&
+			    in_net(&escalated[i].net.ip, &parent))
+				n++;
+		if (n < ESCALATE_CHILDREN)
+			return;
+		if (!mark_escalated(&parent, now))
+			continue;
+		inet_ntop(AF_INET6, parent.ip.a, addr, sizeof(addr));
+		fprintf(stderr, "botdetect: BLOCK %s/%d: %zu blocked /%d networks inside\n", addr, levels[l], n,
+		    levels[l - 1]);
+	}
+}
+
+static int
+escalated_block(const struct ip *ip)
+{
+	double now = now_ms();
+	size_t i;
+
+	for (i = 0; ip->v6 && i < LEN(escalated); i++)
+		if (escalated[i].expire > now && escalated[i].net.prefix < levels[0] && in_net(ip, &escalated[i].net))
+			return 1;
+	return 0;
 }
 
 static void
@@ -415,12 +500,24 @@ bad_user_agent(struct request *r)
 }
 
 static int
+limited(struct conn *c, const struct ip *ip, const char *net, const char *why)
+{
+	too_many(c, net, why);
+	escalate(ip);
+	return 1;
+}
+
+static int
 ip_limit(struct conn *c, const struct ip *ip, const char *net, struct request *r)
 {
 	char pk[1024];
 
 	if (link_local(ip) && !limiter_filter_link_local)
 		return 0;
+	if (escalated_block(ip)) {
+		http_respond(c, 429, "Content-Type: text/plain\r\n", "Too Many Requests", 17);
+		return 1;
+	}
 	if (limiter_link_token) {
 		snprintf(pk, sizeof(pk), "%s", ping_key(net, r));
 		if (cache_get(pk)) {
@@ -434,15 +531,15 @@ ip_limit(struct conn *c, const struct ip *ip, const char *net, struct request *r
 			return redirect_index(c);
 		}
 		if (incr_sliding_window("BURST_WINDOW", net, BURST_WINDOW) > BURST_WINDOW_MAX_SUSPICIOUS)
-			return too_many(c, net, "too many request in BURST_WINDOW (BURST_WINDOW_MAX_SUSPICIOUS)");
+			return limited(c, ip, net, "too many request in BURST_WINDOW (BURST_WINDOW_MAX_SUSPICIOUS)");
 		if (incr_sliding_window("LONG_WINDOW", net, LONG_WINDOW) > LONG_WINDOW_MAX_SUSPICIOUS)
-			return too_many(c, net, "too many request in LONG_WINDOW (LONG_WINDOW_MAX_SUSPICIOUS)");
+			return limited(c, ip, net, "too many request in LONG_WINDOW (LONG_WINDOW_MAX_SUSPICIOUS)");
 		return 0;
 	}
 	if (incr_sliding_window("BURST_WINDOW", net, BURST_WINDOW) > BURST_WINDOW_MAX)
-		return too_many(c, net, "too many request in BURST_WINDOW (BURST_WINDOW_MAX)");
+		return limited(c, ip, net, "too many request in BURST_WINDOW (BURST_WINDOW_MAX)");
 	if (incr_sliding_window("LONG_WINDOW", net, LONG_WINDOW) > LONG_WINDOW_MAX)
-		return too_many(c, net, "too many request in LONG_WINDOW (LONG_WINDOW_MAX)");
+		return limited(c, ip, net, "too many request in LONG_WINDOW (LONG_WINDOW_MAX)");
 	return 0;
 }
 

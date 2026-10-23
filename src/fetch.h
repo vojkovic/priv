@@ -37,6 +37,7 @@ void fetch_timeout(struct fetch *f, long ms);
 void fetch_start(struct fetch *f, fetch_cb cb, void *arg);
 void fetch_free(struct fetch *f);
 const char *fetch_url(struct fetch *f);
+const char *fetch_host(struct fetch *f);
 const char *fetch_body(struct fetch *f);
 const char *fetch_content_type(struct fetch *f);
 

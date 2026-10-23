@@ -8,7 +8,7 @@
 	const send = document.getElementById("send_search");
 	const searchIcon = send && send.querySelector("svg");
 	const language = document.querySelector("select[name=language]");
-	const MIN_LENGTH = 2;
+	const MIN_LENGTH = 1;
 
 	if (!form || !q)
 		return;
@@ -269,7 +269,6 @@
 	let suppress = false;
 	let counter = 0;
 	let displayed = 0;
-	let trending = null;
 
 	const text = (item) => (typeof item === "string" ? item : item.text || "");
 	const rich = (item) => (typeof item === "string" ? {} : item);
@@ -324,9 +323,23 @@
 		if (icon) {
 			const img = document.createElement("img");
 			img.className = "autocomplete-icon-image";
-			img.src = icon;
 			img.alt = "";
 			img.decoding = "async";
+			const drop = () => {
+				const span = document.createElement("span");
+				span.className = "autocomplete-icon-fallback";
+				span.setAttribute("aria-hidden", "true");
+				if (searchIcon)
+					span.append(searchIcon.cloneNode(true));
+				slot.classList.remove("is-entity");
+				img.replaceWith(span);
+			};
+			img.addEventListener("error", drop);
+			img.addEventListener("load", () => {
+				if (img.naturalWidth === 403 && img.naturalHeight === 302)
+					drop();
+			});
+			img.src = icon;
 			slot.append(img);
 		} else {
 			const span = document.createElement("span");
@@ -378,10 +391,14 @@
 		return li;
 	};
 
+	const fit = () => box.style.setProperty("--room", Math.max(160, window.innerHeight - box.parentElement.getBoundingClientRect().bottom - 16) + "px");
+	window.addEventListener("resize", fit);
+
 	const display = (items, id) => {
 		if (suppress || id <= displayed || !items.length)
 			return;
 		displayed = id;
+		fit();
 		box.classList.add("open");
 		const fragment = new DocumentFragment();
 		for (const item of items)
@@ -390,28 +407,37 @@
 		list.replaceChildren(fragment);
 	};
 
-	const fetchResults = (query, id) => {
-		if (query.length === 0 && trending) {
-			display(trending, id);
-			return;
-		}
+	const seen = new Map();
+
+	const load = (query) => {
 		let url = "/autocompleter?q=" + encodeURIComponent(query);
 		if (language)
 			url += "&language=" + encodeURIComponent(language.value);
-		fetch(url, { headers: { Accept: "application/json" }, cache: "no-store" })
-			.then((res) => {
-				if (!res.ok)
-					throw new Error(res.status + " " + res.statusText);
-				return res.json();
-			})
-			.then((results) => {
-				const items = (results && results[1]) || [];
-				if (query.length === 0 && items.length)
-					trending = items;
-				display(items, id);
-			})
+		if (!seen.has(url))
+			seen.set(
+				url,
+				fetch(url, { headers: { Accept: "application/json" }, cache: "no-store" })
+					.then((res) => {
+						if (!res.ok)
+							throw new Error(res.status + " " + res.statusText);
+						return res.json();
+					})
+					.then((results) => (results && results[1]) || [])
+					.catch((err) => {
+						seen.delete(url);
+						throw err;
+					}),
+			);
+		return seen.get(url);
+	};
+
+	const fetchResults = (query, id) => {
+		load(query)
+			.then((items) => display(items, id))
 			.catch(() => {});
 	};
+
+	(window.requestIdleCallback || ((cb) => setTimeout(cb, 200)))(() => load("").catch(() => {}));
 
 	const schedule = (query) => {
 		if (!shouldFetch(query)) {
@@ -476,6 +502,7 @@
 			document.documentElement.classList.add("search_focus");
 		suppress = false;
 		if (list.children.length) {
+			fit();
 			box.classList.add("open");
 			return;
 		}

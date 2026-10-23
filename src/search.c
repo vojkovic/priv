@@ -287,7 +287,8 @@ job_ok(struct job *j, struct fetch *f)
 	case CURLE_COULDNT_CONNECT: msg = "HTTP connection error"; break;
 	default: msg = "network error"; break;
 	}
-	fprintf(stderr, "%s: %s: %s\n", j->e->name, fetch_url(f), f->error[0] ? f->error : curl_easy_strerror(f->code));
+	fprintf(stderr, "%s: %s: %s\n", j->e->name, fetch_host(f),
+	    f->error[0] ? f->error : curl_easy_strerror(f->code));
 	job_fail(j, msg, SUSPEND_DEFAULT);
 	return 0;
 }
@@ -302,7 +303,7 @@ job_http_ok(struct job *j, struct fetch *f)
 		return 0;
 	if (st < 400)
 		return 1;
-	fprintf(stderr, "%s: HTTP %ld from %s\n", j->e->name, st, fetch_url(f));
+	fprintf(stderr, "%s: HTTP %ld from %s\n", j->e->name, st, fetch_host(f));
 	if (starts_with(f->server, "cloudflare")) {
 		if (((st == 429 || st == 503) &&
 		        (strstr(body, "__cf_chl_jschl_tk__=") ||

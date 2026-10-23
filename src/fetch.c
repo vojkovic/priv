@@ -292,6 +292,21 @@ fetch_url(struct fetch *f)
 	return u ? u : "";
 }
 
+/* only the host is ever logged, since the rest of an upstream url can carry the user's query */
+const char *
+fetch_host(struct fetch *f)
+{
+	static char host[256];
+	const char *u = fetch_url(f), *p = strstr(u, "://");
+	size_t n;
+
+	p = p ? p + 3 : u;
+	n = MIN(strcspn(p, "/?#"), sizeof(host) - 1);
+	memcpy(host, p, n);
+	host[n] = 0;
+	return host;
+}
+
 const char *
 fetch_body(struct fetch *f)
 {
