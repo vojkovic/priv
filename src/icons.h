@@ -39,6 +39,8 @@
 
 #define ICON_FORWARD ICON("<path d=\"M9 6l6 6l-6 6\"/>")
 
+#define ICON_EXPAND ICON("<path d=\"M6 9l6 6l6 -6\"/>")
+
 #define ICON_ARROW_NE ICON("<path d=\"M17 7l-10 10\"/><path d=\"M8 7l9 0l0 9\"/>")
 
 #endif

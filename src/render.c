@@ -330,29 +330,33 @@ resolution(const char *res, long *w, long *h)
 	return *w > 0 && *h > 0;
 }
 
+static double
+aspect(struct main_result *m)
+{
+	long w, h;
+
+	return resolution(m->resolution, &w, &h) ? MIN(MAX((double)w / h, 0.6), 2.2) : 4.0 / 3;
+}
+
 static void
 image_result(struct buf *b, struct search *s, struct main_result *m)
 {
 	struct arena *a = &s->a;
 	const char *site = *m->source ? m->source : m->parsed.netloc, *res = "";
-	int span;
 	char *full = image_url(a, m->img_src), *thumb = image_url(a, *m->thumbnail_src ? m->thumbnail_src : m->img_src);
 	char *fav = favicon_url(a, m->parsed.netloc);
-	double r = 4.0 / 3;
 	long w, h;
 
 	if (!full)
 		return;
-	if (resolution(m->resolution, &w, &h)) {
+	if (resolution(m->resolution, &w, &h))
 		res = aprintf(a, "%ld \xc3\x97 %ld", w, h);
-		r = MIN(MAX((double)w / h, 0.6), 2.2);
-	}
-	span = MIN(MAX((int)(r * 8 / 3 + 0.5), 2), 6);
 	buf_html(b,
 	    "<article class=\"result result-images s%d\" data-title=\"%s\" data-content=\"%s\" "
 	    "data-url=\"%s\" data-site=\"%s\" data-favicon=\"%s\" data-resolution=\"%s\" data-format=\"%s\" "
 	    "data-engines=\"",
-	    span, m->title, m->content, m->url, site, fav ? fav : "", res, m->img_format);
+	    MIN(MAX((int)(aspect(m) * 8 / 3 + 0.5), 2), 6), m->title, m->content, m->url, site, fav ? fav : "", res,
+	    m->img_format);
 	engine_names(b, m, ", ");
 	buf_html(b, "\">\n<a class=\"image_thumb\" href=\"%s\" rel=\"noreferrer\">", full);
 	if (thumb)
@@ -559,8 +563,11 @@ engine_timing(struct buf *b, struct search *s)
 	qsort(rows, n, sizeof(*rows), row_cmp);
 
 	buf_html(b,
-	    "<section id=\"engines_msg\" aria-label=\"Response time\">\n<header><span class=\"count\">%z of %z engines</span>"
-	    "<span class=\"total\">%r<span class=\"limit\"> / %rs</span></span></header>\n<ol class=\"timings\">\n",
+	    "<section id=\"engines_msg\" aria-label=\"Response time\">\n"
+	    "<input type=\"checkbox\" id=\"timings_toggle\" hidden>"
+	    "<label for=\"timings_toggle\" class=\"timings_header\"><span class=\"count\">%z of %z engines</span>"
+	    "<span class=\"total\">%r<span class=\"limit\"> / %rs</span></span>" ICON_EXPAND "</label>\n"
+	    "<ol class=\"timings\">\n",
 	    nok, n, aprintf(&s->a, "%.2f", max), aprintf(&s->a, "%.2f", limit));
 	for (i = 0; i < n; i++) {
 		int pct = rows[i].status == SUSPENDED ? 0 : (int)(100 * rows[i].seconds / limit + 0.5);
@@ -652,7 +659,7 @@ render_results(struct buf *b, struct search *s)
 	if (images)
 		engine_timing(b, s);
 	for (i = 0; i < r->nmain; i++) {
-		if (!strcmp(r->main[i]->template, "images"))
+		if (images)
 			image_result(b, s, r->main[i]);
 		else
 			main_result(b, s, r->main[i]);

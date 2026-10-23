@@ -37,9 +37,10 @@
 				.then((res) => res.text())
 				.then((html) => {
 					const doc = new DOMParser().parseFromString(html, "text/html");
-					const results = doc.querySelectorAll("#urls > article.result");
+					const results = doc.querySelectorAll("#urls article.result");
 					for (const article of results)
 						urls.append(document.adoptNode(article));
+					refit();
 					next = results.length ? doc.querySelector("#pagination .next_page") : null;
 				})
 				.catch(() => {
@@ -65,10 +66,59 @@
 	else
 		infiniteScroll();
 
+	/* widen images in rows the grid packing left short, so every row but the last reaches both edges */
+	const fillRows = () => {
+		const urls = document.querySelector(".category-images #urls");
+		if (!urls)
+			return;
+		const items = [...urls.querySelectorAll(":scope > article.result-images")];
+		for (const el of items)
+			el.style.removeProperty("grid-column");
+		const columns = getComputedStyle(urls).gridTemplateColumns.split(" ").length;
+		const span = (el) => parseInt(el.style.gridColumn.replace("span ", ""), 10) ||
+			parseInt(getComputedStyle(el).getPropertyValue("--s"), 10);
+		const card = urls.querySelector(":scope > #engines_msg");
+		for (let pass = 0; pass < items.length; pass++) {
+			const rows = new Map();
+			for (const el of items) {
+				const top = el.offsetTop;
+				if (!rows.has(top))
+					rows.set(top, []);
+				rows.get(top).push(el);
+			}
+			const tops = [...rows.keys()].sort((x, y) => x - y);
+			const short = tops.slice(0, -1).find((top) => {
+				const used = rows.get(top).reduce((sum, el) => sum + span(el), 0) +
+					(card && card.offsetTop === top && columns > 14 ? 7 : 0);
+				return used < columns;
+			});
+			if (short === undefined)
+				break;
+			const row = rows.get(short);
+			let free = columns - row.reduce((sum, el) => sum + span(el), 0) -
+				(card && card.offsetTop === short && columns > 14 ? 7 : 0);
+			for (let i = 0; free > 0; i = (i + 1) % row.length, free--)
+				row[i].style.gridColumn = "span " + (span(row[i]) + 1);
+		}
+	};
+
+	let fitting = 0;
+	const refit = () => {
+		cancelAnimationFrame(fitting);
+		fitting = requestAnimationFrame(fillRows);
+	};
+	window.addEventListener("resize", refit);
+	if (document.readyState === "loading")
+		document.addEventListener("DOMContentLoaded", fillRows);
+	else
+		fillRows();
+
 	const hideBroken = (img) => {
 		const target = img.closest(".result-images") || img.closest(".thumbnail_link") || img;
-		if (target.matches(".result-images"))
+		if (target.matches(".result-images")) {
 			target.remove();
+			refit();
+		}
 		else
 			target.hidden = true;
 	};
@@ -99,7 +149,7 @@
 
 		const $ = (selector) => panel.querySelector(selector);
 		const articles = () =>
-			[...document.querySelectorAll("#urls > article.result-images")]
+			[...document.querySelectorAll("#urls article.result-images")]
 				.map((el) => ({ el, rect: el.getBoundingClientRect() }))
 				.sort((x, y) => Math.round(x.rect.top - y.rect.top) || x.rect.left - y.rect.left)
 				.map((x) => x.el);
@@ -157,6 +207,7 @@
 			$(".detail_next").disabled = i < 0 || i >= all.length - 1;
 			panel.hidden = false;
 			document.documentElement.classList.add("image_detail_open");
+			refit();
 			article.scrollIntoView({ block: "nearest" });
 		};
 
@@ -165,6 +216,7 @@
 				return;
 			panel.hidden = true;
 			document.documentElement.classList.remove("image_detail_open");
+			refit();
 			if (current)
 				current.classList.remove("selected");
 			current = null;
