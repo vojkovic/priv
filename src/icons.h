@@ -1,7 +1,7 @@
 #ifndef ICONS_H
 #define ICONS_H
 
-/* tabler icons 3.24.0, https://tabler.io/icons (MIT) */
+/* tabler icons 3.24.0, https://tabler.io/icons (MIT), and feather 4.29.2, https://feathericons.com (MIT) for images */
 
 #define ICON(body) \
 	"<svg viewBox=\"0 0 24 24\" class=\"icon\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" " \
@@ -10,10 +10,8 @@
 #define ICON_SEARCH ICON("<path d=\"M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0\"/><path d=\"M21 21l-6 -6\"/>")
 
 #define ICON_IMAGES \
-	ICON( \
-	    "<path d=\"M15 8h.01\"/><path d=\"M3 6a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 " \
-	    "-3v-12z\"/><path d=\"M3 16l5 -5c.928 -.893 2.072 -.893 3 0l5 5\"/><path d=\"M14 14l1 -1c.928 -.893 " \
-	    "2.072 -.893 3 0l3 3\"/>")
+	ICON("<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\" ry=\"2\"/><circle cx=\"8.5\" cy=\"8.5\" " \
+	     "r=\"1.5\"/><path d=\"M21 15l-5-5L5 21\"/>")
 
 #define ICON_VIDEOS ICON("<path d=\"M7 4v16l13 -8z\"/>")
 
@@ -30,8 +28,9 @@
 
 #define ICON_RESEARCH \
 	ICON( \
-	    "<path d=\"M9 3l6 0\"/><path d=\"M10 9l4 0\"/><path d=\"M10 3v6l-4 11a.7 .7 0 0 0 .5 1h11a.7 .7 0 0 0 .5 " \
-	    "-1l-4 -11v-6\"/>")
+	    "<path d=\"M6 21l6 -5l6 5\"/><path d=\"M12 13v8\"/><path d=\"M3.294 13.678l.166 .281c.52 .88 1.624 1.265 " \
+	    "2.605 .91l14.242 -5.165a1.023 1.023 0 0 0 .565 -1.456l-2.62 -4.705a1.087 1.087 0 0 0 -1.447 -.42l-.056 " \
+	    ".032l-12.694 7.618c-1.02 .613 -1.357 1.897 -.76 2.905z\"/><path d=\"M14 5l3 5.5\"/>")
 
 #define ICON_CLOSE ICON("<path d=\"M18 6l-12 12\"/><path d=\"M6 6l12 12\"/>")
 
