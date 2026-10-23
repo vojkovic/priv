@@ -411,21 +411,11 @@ a.thumbnail_link {
 	background: var(--base);
 	border-radius: 0.5rem;
 }
-img.thumbnail_bg {
-	position: absolute;
-	inset: 0;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	filter: blur(2rem) brightness(0.5);
-	pointer-events: none;
-}
 img.thumbnail {
-	position: relative;
 	display: block;
 	width: 100%;
 	height: 100%;
-	object-fit: contain;
+	object-fit: cover;
 }
 
 #answers {
@@ -439,14 +429,9 @@ img.thumbnail {
 .answer + .answer { margin-top: 1em; padding-top: 1em; border-top: 1px solid var(--surface0); }
 
 
-.dialog-error-block {
-	margin: 0.5em;
-	padding: 1em 1.5em;
-	background: var(--surface0);
-	border-left: 0.3rem solid var(--red);
-	border-radius: 0.5em;
-}
-.dialog-error-block p { margin: 0.3em 0; }
+.no-results { margin: 1.5em 0.5em; }
+.no-results p { margin: 0.4em 0; }
+.no-results p + p { color: var(--subtext0); font-size: 0.9em; }
 
 /* pagination */
 
@@ -607,7 +592,7 @@ img.thumbnail {
 	gap: 1rem 0.5rem;
 }
 .category-images #engines_msg { grid-column: -8 / -1; grid-row: 1; align-self: start; margin: 0; }
-.category-images .dialog-error-block { grid-column: 1 / -1; grid-row: 1; }
+.category-images .no-results { grid-column: 1 / -1; grid-row: 1; }
 
 article.result.result-images {
 	display: flex;

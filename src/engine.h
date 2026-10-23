@@ -21,6 +21,7 @@ struct engine {
 	const char *name;
 	const char *shortcut;
 	const char *website;
+	const char *bang;
 	const char *categories[MAX_CATEGORIES];
 	int paging, max_page, time_range;
 	int no_accept_language;

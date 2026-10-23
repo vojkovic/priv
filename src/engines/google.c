@@ -106,8 +106,9 @@ search(struct job *j)
 
 struct engine engine_google = {
     .name = "google",
-    .shortcut = "go",
+    .shortcut = "g",
     .website = "www.google.com",
+    .bang = "https://www.google.com/search?q=%s",
     .categories = {"general"},
     .paging = 1,
     .max_page = 50,

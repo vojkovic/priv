@@ -44,7 +44,7 @@ search_box(struct buf *b, const char *query, const char *category, int autofocus
 	    "<div id=\"search_view\"><div class=\"search_box\">"
 	    "<button id=\"search_back\" type=\"button\" aria-label=\"Back\">" ICON_BACK "</button>"
 	    "<input id=\"q\" type=\"search\" name=\"q\" tabindex=\"1\" value=\"%s\" placeholder=\"Search for...\" aria-label=\"Search\" "
-	    "autocomplete=\"off\" autocapitalize=\"none\" spellcheck=\"false\" required%r>"
+	    "autocomplete=\"off\" autocapitalize=\"none\" spellcheck=\"false\"%r>"
 	    "<button id=\"send_search\" type=\"submit\" name=\"categories\" value=\"%s\" aria-label=\"Search\">" ICON_SEARCH
 	    "</button>"
 	    "<div class=\"autocomplete\"><ul></ul></div>"
@@ -343,9 +343,8 @@ thumbnail(struct buf *b, struct search *s, struct main_result *m, const char *th
 {
 	buf_html(b,
 	    "<a class=\"thumbnail_link\" href=\"%s\" rel=\"noreferrer\">"
-	    "<img class=\"thumbnail_bg\" src=\"%s\" alt=\"\" aria-hidden=\"true\" loading=\"lazy\">"
 	    "<img class=\"thumbnail\" src=\"%s\" alt=\"\" loading=\"lazy\">",
-	    m->url, thumb, image_src(s, m->thumbnail, thumb, INLINE_MAX));
+	    m->url, image_src(s, m->thumbnail, thumb, INLINE_MAX));
 	if (video && m->length && *m->length)
 		buf_html(b, "<span class=\"thumbnail_length\">%s</span>", m->length);
 	buf_puts(b, "</a>\n");
@@ -744,9 +743,11 @@ render_results(struct buf *b, struct search *s)
 	}
 	if (!r->nmain && !r->nanswers)
 		buf_html(b,
-		    "<div class=\"dialog-error-block\" role=\"alert\"><p><strong>%r</strong></p><p>%r</p></div>\n",
-		    s->pageno == 1 ? "Sorry!" : "",
-		    s->pageno == 1 ? "No results were found." : "There are no more results.");
+		    s->pageno == 1 ?
+		        "<div class=\"no-results\" role=\"alert\"><p>No results for <strong>%s</strong></p>"
+		        "<p>Try different words or another category.</p></div>\n" :
+		        "<div class=\"no-results\" role=\"alert\"><p>No more results for <strong>%s</strong></p></div>\n",
+		    s->query);
 	buf_puts(b, "</div>\n");
 	if (r->paging)
 		pagination(b, s);

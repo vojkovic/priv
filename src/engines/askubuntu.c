@@ -57,6 +57,7 @@ struct engine engine_askubuntu = {
     .name = "askubuntu",
     .shortcut = "ubuntu",
     .website = "askubuntu.com",
+    .bang = "https://askubuntu.com/search?q=%s",
     .categories = {"tech"},
     .paging = 1,
     .search = search,

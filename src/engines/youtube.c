@@ -161,6 +161,7 @@ struct engine engine_youtube = {
     .name = "youtube",
     .shortcut = "yt",
     .website = "www.youtube.com",
+    .bang = "https://www.youtube.com/results?search_query=%s",
     .categories = {"videos", "music"},
     .paging = 1,
     .time_range = 1,

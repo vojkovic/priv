@@ -132,6 +132,7 @@ struct engine engine_duckduckgo_images = {
     .name = "duckduckgo images",
     .shortcut = "ddi",
     .website = "duckduckgo.com",
+    .bang = "https://duckduckgo.com/?q=%s&iax=images&ia=images",
     .categories = {"images"},
     .paging = 1,
     .no_accept_language = 1,

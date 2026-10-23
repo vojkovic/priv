@@ -48,6 +48,7 @@ struct engine engine_privacywall = {
     .name = "privacywall",
     .shortcut = "pw",
     .website = "www.privacywall.org",
+    .bang = "https://www.privacywall.org/search/secure?q=%s",
     .categories = {"general"},
     .time_range = 1,
     .search = search,

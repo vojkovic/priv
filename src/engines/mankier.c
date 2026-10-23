@@ -35,6 +35,7 @@ struct engine engine_mankier = {
     .name = "mankier",
     .shortcut = "man",
     .website = "www.mankier.com",
+    .bang = "https://www.mankier.com/?q=%s",
     .categories = {"tech"},
     .search = search,
 };

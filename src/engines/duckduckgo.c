@@ -154,6 +154,7 @@ struct engine engine_duckduckgo = {
     .name = "duckduckgo",
     .shortcut = "ddg",
     .website = "duckduckgo.com",
+    .bang = "https://duckduckgo.com/?q=%s",
     .categories = {"general"},
     .paging = 1,
     .time_range = 1,

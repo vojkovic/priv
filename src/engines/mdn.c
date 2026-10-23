@@ -37,6 +37,7 @@ struct engine engine_mdn = {
     .name = "mdn",
     .shortcut = "mdn",
     .website = "developer.mozilla.org",
+    .bang = "https://developer.mozilla.org/en-US/search?q=%s",
     .categories = {"tech"},
     .paging = 1,
     .search = search,

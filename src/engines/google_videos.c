@@ -130,6 +130,7 @@ struct engine engine_google_videos = {
     .name = "google videos",
     .shortcut = "gov",
     .website = "www.google.com",
+    .bang = "https://www.google.com/search?tbm=vid&q=%s",
     .categories = {"videos"},
     .paging = 1,
     .max_page = 50,

@@ -1,6 +1,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
+#include <strings.h>
 
 #include "../lib/yyjson/yyjson.h"
 #include "autocomplete.h"
@@ -286,7 +287,7 @@ done(struct fetch *f, void *arg)
 static int
 special(const char *w)
 {
-	return (w[0] == '!' && w[1] != '!') || w[0] == ':' || w[0] == '<';
+	return w[0] == '!' || w[0] == ':' || w[0] == '<';
 }
 
 static char *
@@ -385,9 +386,33 @@ complete_language(struct pending *p, struct suggestion *v, const char *before, c
 }
 
 static size_t
-complete_timeout(struct pending *p, struct suggestion *v, const char *before)
+complete_external(struct pending *p, struct suggestion *v, const char *before, const char *word)
 {
-	return add(p, v, 0, before, "<3", "3 second timeout");
+	size_t i;
+
+	for (i = 0; i < nengines; i++)
+		if (engines[i]->bang && !strcasecmp(engines[i]->shortcut, word))
+			return add(p, v, 0, before, aprintf(&p->a, "!!%s", engines[i]->shortcut),
+			    aprintf(&p->a, "Go to %s", engines[i]->website));
+	return 0;
+}
+
+static size_t
+complete_timeout(struct pending *p, struct suggestion *v, const char *before, const char *word)
+{
+	const char *c;
+	long n;
+
+	for (c = word; IS_DIGIT(*c); c++)
+		;
+	if (!*word || *c)
+		return 0;
+	n = parse_long(word, 0);
+	if (n >= 100 && n < 10000)
+		return add(p, v, 0, before, aprintf(&p->a, "<%s", word), aprintf(&p->a, "%ld ms timeout", n));
+	n = n < 100 ? MIN(n, 10) : 10;
+	return add(p, v, 0, before, aprintf(&p->a, "<%s", word),
+	    aprintf(&p->a, "%ld second%s timeout", n, n == 1 ? "" : "s"));
 }
 
 static int
@@ -404,12 +429,14 @@ complete_local(struct pending *p)
 	if (!special(word))
 		return 0;
 	v = amalloc(&p->a, MAX_LOCAL * sizeof(*v));
-	if (word[0] == '!')
+	if (word[0] == '!' && word[1] == '!')
+		n = complete_external(p, v, astrndup(&p->a, q, word - q), word + 2);
+	else if (word[0] == '!')
 		n = complete_bang(p, v, astrndup(&p->a, q, word - q), word + 1);
 	else if (word[0] == ':')
 		n = complete_language(p, v, astrndup(&p->a, q, word - q), word + 1);
 	else
-		n = complete_timeout(p, v, astrndup(&p->a, q, word - q));
+		n = complete_timeout(p, v, astrndup(&p->a, q, word - q), word + 1);
 	respond(p, v, n);
 	return 1;
 }

@@ -183,6 +183,7 @@ struct engine engine_google_cse_images = {
     .name = "google cse images",
     .shortcut = "goci",
     .website = "cse.google.com",
+    .bang = "https://www.google.com/search?tbm=isch&q=%s",
     .categories = {"images"},
     .paging = 1,
     .max_page = 5,

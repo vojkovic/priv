@@ -135,6 +135,7 @@ struct engine engine_archlinux = {
     .name = "arch linux wiki",
     .shortcut = "al",
     .website = "wiki.archlinux.org",
+    .bang = "https://wiki.archlinux.org/index.php?search=%s",
     .categories = {"tech"},
     .paging = 1,
     .search = search,

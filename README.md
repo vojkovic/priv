@@ -40,7 +40,7 @@ The `tools` stage of Dockerfile can also be used e.g:
 
 Most of the bangs are supported:
 
-- `!go`, `!br`, `!yt` (or `!google_images` by name)
+- `!g`, `!br`, `!yt` (or `!google_images` by name) (and `!!g` to redirect)
 - `!images`, `!videos`, `!news`, `!music`, `!tech`, `!research` a whole category
 - `:de`, `:en-AU`, `:german`, `:deutschland` the search language
 - `<3` a timeout of 3 seconds max

@@ -57,6 +57,7 @@ struct engine engine_stackoverflow = {
     .name = "stackoverflow",
     .shortcut = "st",
     .website = "stackoverflow.com",
+    .bang = "https://stackoverflow.com/search?q=%s",
     .categories = {"tech"},
     .paging = 1,
     .search = search,

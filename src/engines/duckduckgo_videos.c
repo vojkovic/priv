@@ -134,6 +134,7 @@ struct engine engine_duckduckgo_videos = {
     .name = "duckduckgo videos",
     .shortcut = "ddv",
     .website = "duckduckgo.com",
+    .bang = "https://duckduckgo.com/?q=%s&iax=videos&ia=videos",
     .categories = {"videos"},
     .paging = 1,
     .no_accept_language = 1,

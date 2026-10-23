@@ -9,6 +9,7 @@
 #include <libxml/parser.h>
 
 #include "autocomplete.h"
+#include "bangs.h"
 #include "botdetect.h"
 #include "engine.h"
 #include "ev.h"
@@ -71,7 +72,7 @@ route(struct conn *c, struct request *r)
 {
 	struct arena a = {0};
 	struct buf b = {0};
-	struct filters f;
+	struct filters f, scratch;
 	const char *q, *p;
 	int pageno = 1;
 	size_t n;
@@ -128,10 +129,21 @@ route(struct conn *c, struct request *r)
 		arena_free(&a);
 		return;
 	}
+	if ((p = bang_redirect(&a, q))) {
+		http_respond(c, 302, aprintf(&a, "Location: %s\r\n", p), "", 0);
+		arena_free(&a);
+		return;
+	}
 	if ((p = query_param(&a, r->query, "p")))
 		pageno = (int)parse_long(p, 1);
 	pageno = pageno < 1 ? 1 : pageno > 50 ? 50 : pageno;
 	filters_parse(&a, r, &f);
+	scratch = f;
+	if (!*query_parse(&a, q, &scratch)) {
+		http_respond(c, 302, "Location: /\r\n", "", 0);
+		arena_free(&a);
+		return;
+	}
 	search_start(c, q, pageno, &f);
 	arena_free(&a);
 }

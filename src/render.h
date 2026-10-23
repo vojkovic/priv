@@ -6,7 +6,7 @@
 
 #define SECURITY_HEADERS \
 	"Content-Security-Policy: default-src 'none'; style-src 'self'; img-src 'self' data:; script-src 'self'; connect-src 'self'; " \
-	"form-action 'self'; base-uri 'none'; frame-ancestors 'none'\r\n" \
+	"form-action 'self' https:; base-uri 'none'; frame-ancestors 'none'\r\n" \
 	"X-Content-Type-Options: nosniff\r\n" \
 	"Referrer-Policy: no-referrer\r\n"
 

@@ -82,6 +82,7 @@ struct engine engine_brave_images = {
     .name = "brave.images",
     .shortcut = "brimg",
     .website = "search.brave.com",
+    .bang = "https://search.brave.com/images?q=%s",
     .categories = {"images"},
     .search = search,
 };

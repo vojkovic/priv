@@ -138,6 +138,7 @@ struct engine engine_duckduckgo_news = {
     .name = "duckduckgo news",
     .shortcut = "ddn",
     .website = "duckduckgo.com",
+    .bang = "https://duckduckgo.com/?q=%s&iar=news&ia=news",
     .categories = {"news"},
     .paging = 1,
     .no_accept_language = 1,

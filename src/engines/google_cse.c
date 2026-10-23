@@ -177,6 +177,7 @@ struct engine engine_google_cse = {
     .name = "google cse",
     .shortcut = "goc",
     .website = "www.google.com",
+    .bang = "https://www.google.com/search?q=%s",
     .categories = {"general"},
     .paging = 1,
     .max_page = 5,

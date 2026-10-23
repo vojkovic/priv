@@ -187,6 +187,7 @@ struct engine engine_wikipedia = {
     .name = "wikipedia",
     .shortcut = "wp",
     .website = "www.wikipedia.org",
+    .bang = "https://en.wikipedia.org/wiki/Special:Search?search=%s",
     .categories = {"general"},
     .search = search,
 };

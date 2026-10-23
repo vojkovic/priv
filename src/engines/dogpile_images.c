@@ -112,6 +112,7 @@ struct engine engine_dogpile_images = {
     .name = "dogpile images",
     .shortcut = "dogi",
     .website = "www.dogpile.com",
+    .bang = "https://www.dogpile.com/serp/images?q=%s",
     .categories = {"images"},
     .paging = 1,
     .init = init,

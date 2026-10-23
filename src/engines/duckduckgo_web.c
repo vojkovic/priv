@@ -222,6 +222,7 @@ struct engine engine_duckduckgo_web = {
     .name = "duckduckgo web",
     .shortcut = "ddgw",
     .website = "duckduckgo.com",
+    .bang = "https://html.duckduckgo.com/html/?q=%s",
     .categories = {"general"},
     .paging = 1,
     .search = search,

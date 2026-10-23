@@ -76,6 +76,7 @@ struct engine engine_brave_news = {
     .name = "brave.news",
     .shortcut = "brnews",
     .website = "search.brave.com",
+    .bang = "https://search.brave.com/news?q=%s",
     .categories = {"news"},
     .search = search,
 };
