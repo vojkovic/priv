@@ -49,6 +49,7 @@ request(struct job *j, const char *token)
 
 	f = job_request(j, BASE_URL "/api/images");
 	fetch_header(f, "Origin: " BASE_URL);
+	fetch_header(f, "Referer: " BASE_URL "/search");
 	fetch_header(f, "Sec-Fetch-Site: same-origin");
 	fetch_header(f, "Sec-Fetch-Mode: cors");
 	fetch_header(f, "x-dogpile-token: %s", token);
