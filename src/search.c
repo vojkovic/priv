@@ -601,7 +601,7 @@ time_range_code(const struct filters *f, const char *day, const char *week, cons
 const struct locale *
 client_locale(struct arena *a, const char *header)
 {
-	char *list = astrdup(a, header), *item, *save, *semi, *q, *dash, *best = NULL;
+	char *list = astrdup(a, header), *item, *save, *semi, *q, *best = NULL;
 	const struct locale *l;
 	double bq = -1, qv;
 	size_t i;
@@ -621,22 +621,11 @@ client_locale(struct arena *a, const char *header)
 	}
 	if (!best)
 		return NULL;
+	/* auto keeps only the language, en-GB searches as en */
+	best[strcspn(best, "-_")] = 0;
 	for (i = 0; best[i]; i++)
-		best[i] = best[i] == '_' ? '-' : best[i];
-	if ((dash = strchr(best, '-'))) {
-		for (i = 0; i < (size_t)(dash - best); i++)
-			best[i] = tolower((unsigned char)best[i]);
-		for (i = 1; dash[i]; i++)
-			dash[i] = toupper((unsigned char)dash[i]);
-	}
-	if ((l = locale_find(best)) != &locales[0])
-		return l;
-	if (dash) {
-		*dash = 0;
-		if ((l = locale_find(best)) != &locales[0])
-			return l;
-	}
-	return NULL;
+		best[i] = (char)tolower((unsigned char)best[i]);
+	return (l = locale_find(best)) != &locales[0] ? l : NULL;
 }
 
 static const char *

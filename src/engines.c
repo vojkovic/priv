@@ -2,7 +2,7 @@
 
 #include "engine.h"
 
-extern struct engine engine_google, engine_bing, engine_google_cse, engine_brave, engine_duckduckgo,
+extern struct engine engine_google, engine_google_docs, engine_bing, engine_google_cse, engine_brave, engine_duckduckgo,
     engine_duckduckgo_web, engine_dogpile, engine_privacywall, engine_oceanhero, engine_swisscows, engine_iseek,
     engine_s1search, engine_wikipedia, engine_duckduckgo_definitions, engine_google_images, engine_google_cse_images,
     engine_brave_images, engine_duckduckgo_images, engine_dogpile_images, engine_google_videos,
@@ -13,6 +13,7 @@ extern struct engine engine_google, engine_bing, engine_google_cse, engine_brave
 
 static struct engine *available[] = {
     &engine_google,
+    &engine_google_docs,
     &engine_bing,
     &engine_google_cse,
     &engine_brave,

@@ -17,6 +17,7 @@ trusted_proxies = ["127.0.0.0/8", "::1"]
 
 # general
 google = 2
+google_docs = 1
 bing = 2
 google_cse = 2
 brave = 2
