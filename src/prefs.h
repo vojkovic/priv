@@ -8,6 +8,7 @@
 #include "util.h"
 
 #define PREFS_CATEGORIES 16
+#define SAFESEARCH_DEFAULT 1
 
 struct engine;
 

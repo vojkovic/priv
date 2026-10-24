@@ -222,7 +222,7 @@ filter_params(struct buf *b, const struct filters *f)
 		buf_html(b, "&amp;language=%u", f->language);
 	if (f->time_range)
 		buf_html(b, "&amp;time_range=%u", f->time_range);
-	if (f->safesearch != MAX(f->prefs.safesearch, 0))
+	if (f->safesearch != f->prefs.safesearch)
 		buf_html(b, "&amp;safesearch=%d", f->safesearch);
 }
 
@@ -1069,7 +1069,7 @@ render_preferences(struct buf *b, const struct prefs *p, const struct locale *br
 
 	pref_select(b, "safesearch", "SafeSearch", "Filter content");
 	for (i = 0; i < 3; i++)
-		option(b, (const char *[]){"0", "1", "2"}[i], tr(safe_levels[i]), MAX(p->safesearch, 0) == (int)i);
+		option(b, (const char *[]){"0", "1", "2"}[i], tr(safe_levels[i]), p->safesearch == (int)i);
 	buf_puts(b, "</select></div>\n");
 
 	for (i = 0; i < ncategories && i < PREFS_CATEGORIES; i++)

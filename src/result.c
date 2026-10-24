@@ -52,12 +52,41 @@ normalize_main(struct arena *a, struct main_result *m)
 }
 
 static int
+hex(int c)
+{
+	return IS_DIGIT(c) ? c - '0' : (c | 0x20) >= 'a' && (c | 0x20) <= 'f' ? (c | 0x20) - 'a' + 10 : -1;
+}
+
+static int
+next_byte(const char **s)
+{
+	const char *p = *s;
+
+	if (p[0] == '%' && hex(p[1]) >= 0 && hex(p[2]) >= 0) {
+		*s += 3;
+		return hex(p[1]) << 4 | hex(p[2]);
+	}
+	*s += 1;
+	return (unsigned char)p[0];
+}
+
+/* engines escape urls differently */
+static int
+same_part(const char *a, const char *b)
+{
+	while (*a && *b)
+		if (next_byte(&a) != next_byte(&b))
+			return 0;
+	return !*a && !*b;
+}
+
+static int
 same_main(const struct main_result *x, const struct main_result *y)
 {
 	const struct url *a = &x->parsed, *b = &y->parsed;
 
-	return !strcmp(x->template, y->template) && !strcmp(a->netloc, b->netloc) && !strcmp(a->path, b->path) &&
-	    !strcmp(a->params, b->params) && !strcmp(a->query, b->query) && !strcmp(a->fragment, b->fragment) &&
+	return !strcmp(x->template, y->template) && !strcasecmp(a->netloc, b->netloc) && same_part(a->path, b->path) &&
+	    same_part(a->params, b->params) && same_part(a->query, b->query) && same_part(a->fragment, b->fragment) &&
 	    !strcmp(x->img_src ? x->img_src : "", y->img_src ? y->img_src : "");
 }
 

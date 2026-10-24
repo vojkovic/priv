@@ -170,7 +170,7 @@ prefs_parse(struct arena *a, struct request *r, struct prefs *p)
 
 	memset(p, 0, sizeof(*p));
 	p->ui_code = "";
-	p->safesearch = -1;
+	p->safesearch = SAFESEARCH_DEFAULT;
 	if (c) {
 		if ((p->ui = ui_find(query_param(a, c, "ui"))))
 			p->ui_code = p->ui->code;
@@ -214,7 +214,7 @@ prefs_from_form(struct arena *a, struct request *r, struct prefs *p)
 	v = query_param(a, qs, "language");
 	p->language = v && valid_language(v) ? v : NULL;
 	v = query_param(a, qs, "safesearch");
-	p->safesearch = v && v[0] >= '0' && v[0] <= '2' && !v[1] ? v[0] - '0' : -1;
+	p->safesearch = v && v[0] >= '0' && v[0] <= '2' && !v[1] ? v[0] - '0' : SAFESEARCH_DEFAULT;
 	for (; *qs; qs = *end ? end + 1 : end) {
 		end = qs + strcspn(qs, "&");
 		eq = memchr(qs, '=', end - qs);
@@ -244,7 +244,7 @@ prefs_cookie(struct arena *a, const struct prefs *p, int secure)
 		buf_printf(&b, "&ui=%s", p->ui_code);
 	if (p->language)
 		buf_printf(&b, "&language=%s", p->language);
-	if (p->safesearch >= 0)
+	if (p->safesearch != SAFESEARCH_DEFAULT)
 		buf_printf(&b, "&safesearch=%d", p->safesearch);
 	for (i = 0; i < ncategories && i < PREFS_CATEGORIES; i++)
 		for (j = 0; j < nengines; j++)

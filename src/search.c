@@ -792,7 +792,7 @@ filters_parse(struct arena *a, struct request *r, struct filters *f)
 	f->time_range =
 	    t && (!strcmp(t, "day") || !strcmp(t, "week") || !strcmp(t, "month") || !strcmp(t, "year")) ? t : NULL;
 	p = query_param(a, r->query, "safesearch");
-	f->safesearch = p && *p >= '0' && *p <= '2' && !p[1] ? *p - '0' : MAX(f->prefs.safesearch, 0);
+	f->safesearch = p && *p >= '0' && *p <= '2' && !p[1] ? *p - '0' : f->prefs.safesearch;
 }
 
 void
