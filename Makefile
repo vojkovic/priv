@@ -75,11 +75,19 @@ format:
 format-check:
 	clang-format --dry-run -Werror $(FORMAT_SRC)
 
-lint: obj/style.h obj/script.h obj/favicon_svg.h $(CURL_IMPERSONATE)/libcurl-impersonate.a
-	clang-tidy --quiet $(LINT_SRC) -- $(CPPFLAGS) $(CFLAGS) -DCURL_DISABLE_TYPECHECK
-	cppcheck --quiet --error-exitcode=1 --std=c11 --enable=warning,performance,portability \
+lint:
+	@$(MAKE) -s --no-print-directory -j$(shell nproc) lint-files
+
+lint-files: $(LINT_SRC:%.c=obj/lint/%.ok)
+
+obj/lint/%.ok: %.c $(wildcard src/*.h) .clang-tidy | obj/style.h obj/script.h obj/favicon_svg.h $(CURL_IMPERSONATE)/libcurl-impersonate.a
+	@mkdir -p $(@D)
+	@out=$$(clang-tidy --quiet $< -- $(CPPFLAGS) $(CFLAGS) -DCURL_DISABLE_TYPECHECK 2>&1) || \
+		{ echo "$$out" | grep -v 'warnings* generated\.$$'; exit 1; }
+	@cppcheck --quiet --error-exitcode=1 --std=c11 --enable=warning,performance,portability \
 		--check-level=exhaustive --inline-suppr --suppress=missingIncludeSystem --suppress='*:lib/*' \
-		-D_GNU_SOURCE -DYYJSON_HAS_STDINT_H=1 -Isrc -Iobj $(LINT_SRC)
+		-D_GNU_SOURCE -DYYJSON_HAS_STDINT_H=1 -Isrc -Iobj $<
+	@touch $@
 
 docker:
 	docker build -t privy .
@@ -90,4 +98,4 @@ docker-check:
 clean:
 	rm -rf obj privy
 
-.PHONY: all clean format format-check lint docker docker-check
+.PHONY: all clean format format-check lint lint-files docker docker-check
