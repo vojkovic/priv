@@ -850,8 +850,7 @@ pref_select(struct buf *b, const char *name, const char *label, const char *help
 }
 
 void
-render_preferences(struct buf *b, const struct prefs *p, const struct locale *browser, const char *notice,
-    const char *error)
+render_preferences(struct buf *b, const struct prefs *p, const struct locale *browser, const char *notice)
 {
 	struct arena a = {0};
 	size_t i, j, on, total;
@@ -862,11 +861,6 @@ render_preferences(struct buf *b, const struct prefs *p, const struct locale *br
 	    tr("Back"), tr("Preferences"));
 	if (notice)
 		buf_html(b, "<p class=\"notice\" role=\"status\">%s</p>\n", tr(notice));
-	if (error) {
-		buf_puts(b, "<p class=\"notice error\" role=\"alert\">");
-		put_tr(b, "Too many engines in {0}: the most is 10.", html_str(&a, tr(error)), "");
-		buf_puts(b, "</p>\n");
-	}
 	buf_puts(b,
 	    "<form action=\"/preferences\" method=\"get\">\n<input type=\"hidden\" name=\"save\" value=\"1\">\n");
 
@@ -886,7 +880,7 @@ render_preferences(struct buf *b, const struct prefs *p, const struct locale *br
 		option(b, (const char *[]){"0", "1", "2"}[i], tr(safe_levels[i]), MAX(p->safesearch, 0) == (int)i);
 	buf_puts(b, "</select></div>\n");
 
-	buf_html(b, "<h2>%s</h2>\n<p class=\"hint\">%s</p>\n", tr("Engines"), tr("Up to 10 engines per category."));
+	buf_html(b, "<h2>%s</h2>\n", tr("Engines"));
 	for (i = 0; i < ncategories && i < PREFS_CATEGORIES; i++) {
 		for (j = on = total = 0; j < nengines; j++)
 			if (engine_in(engines[j], categories[i].name)) {

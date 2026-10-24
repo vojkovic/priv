@@ -75,21 +75,20 @@ preferences(struct conn *c, struct request *r)
 	struct buf b = {0};
 	struct prefs p;
 	const struct locale *browser;
-	const char *error = NULL;
 	int secure = !strcmp(r->proto, "https");
 
 	prefs_parse(&a, r, &p);
 	if (query_param(&a, r->query, "reset")) {
 		http_respond(c, 302, aprintf(&a, "Location: /preferences\r\n%s", prefs_cookie(&a, NULL, secure)), "",
 		    0);
-	} else if (query_param(&a, r->query, "save") && !(error = prefs_from_form(&a, r, &p))) {
+	} else if (query_param(&a, r->query, "save")) {
+		prefs_from_form(&a, r, &p);
 		http_respond(c, 302, aprintf(&a, "Location: /preferences?saved=1\r\n%s", prefs_cookie(&a, &p, secure)),
 		    "", 0);
 	} else {
 		if (!(browser = client_locale(&a, r->accept_language)))
 			browser = &locales[0];
-		render_preferences(&b, &p, browser, query_param(&a, r->query, "saved") ? "Preferences saved." : NULL,
-		    error);
+		render_preferences(&b, &p, browser, query_param(&a, r->query, "saved") ? "Preferences saved." : NULL);
 		respond_buf(c, 200, HTML_HEADERS, &b);
 	}
 	arena_free(&a);

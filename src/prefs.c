@@ -196,14 +196,14 @@ prefs_parse(struct arena *a, struct request *r, struct prefs *p)
 		p->ui = p->ui_auto;
 }
 
-/* reads a submitted /preferences form, returning the label of a category with too many engines */
-const char *
+/* reads a submitted /preferences form */
+void
 prefs_from_form(struct arena *a, struct request *r, struct prefs *p)
 {
 	uint64_t on[PREFS_CATEGORIES] = {0};
 	const struct engine *e;
 	const char *qs = r->query, *end, *eq, *v;
-	size_t i, j, cat, n;
+	size_t i, j, cat;
 	char *k;
 
 	p->ui_auto = ui_accept(a, r->accept_language);
@@ -224,18 +224,10 @@ prefs_from_form(struct arena *a, struct request *r, struct prefs *p)
 	}
 	for (i = 0; i < ncategories && i < PREFS_CATEGORIES; i++) {
 		p->off[i] = 0;
-		for (j = n = 0; j < nengines; j++) {
-			if (!engine_in(engines[j], categories[i].name))
-				continue;
-			if (on[i] & ENGINE_BIT(engines[j]))
-				n++;
-			else
+		for (j = 0; j < nengines; j++)
+			if (engine_in(engines[j], categories[i].name) && !(on[i] & ENGINE_BIT(engines[j])))
 				p->off[i] |= ENGINE_BIT(engines[j]);
-		}
-		if (n > MAX_CATEGORY_ENGINES)
-			return categories[i].label;
 	}
-	return NULL;
 }
 
 char *

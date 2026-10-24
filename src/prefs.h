@@ -8,7 +8,6 @@
 #include "util.h"
 
 #define PREFS_CATEGORIES 16
-#define MAX_CATEGORY_ENGINES 10
 
 struct engine;
 
@@ -21,7 +20,7 @@ struct prefs {
 };
 
 void prefs_parse(struct arena *a, struct request *r, struct prefs *p);
-const char *prefs_from_form(struct arena *a, struct request *r, struct prefs *p);
+void prefs_from_form(struct arena *a, struct request *r, struct prefs *p);
 char *prefs_cookie(struct arena *a, const struct prefs *p, int secure);
 int prefs_engine_on(const struct prefs *p, const char *category, const struct engine *e);
 

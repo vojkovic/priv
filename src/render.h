@@ -13,8 +13,7 @@
 void render_home(struct buf *b, const struct prefs *p);
 void render_stats(struct buf *b, const struct prefs *p);
 void render_about(struct buf *b, const struct prefs *p, const char *origin);
-void render_preferences(struct buf *b, const struct prefs *p, const struct locale *browser, const char *notice,
-    const char *error);
+void render_preferences(struct buf *b, const struct prefs *p, const struct locale *browser, const char *notice);
 void render_head(struct buf *b, struct search *s);
 void render_results(struct buf *b, struct search *s);
 void render_opensearch(struct buf *b, const char *proto, const char *host);
