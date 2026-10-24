@@ -17,13 +17,13 @@ trusted_proxies = ["127.0.0.0/8", "::1"]
 
 # general
 google = 2
+bing = 2
 google_cse = 2
 brave = 2
 duckduckgo = 2
 duckduckgo_web = 1
 dogpile = 2
 privacywall = 2
-t_online = 1
 oceanhero = 2
 swisscows = 2
 iseek = 1
