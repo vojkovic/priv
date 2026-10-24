@@ -29,6 +29,42 @@ default_scheme(struct arena *a, const char *url)
 }
 
 static int
+tracker(const char *p, size_t n)
+{
+	static const char *names[] = {"srsltid", "msockid", "gclid", "fbclid", "_hsenc", "_hsmi", "mc_eid"};
+	size_t i, k;
+
+	if (n > 4 && !strncmp(p, "utm_", 4))
+		return 1;
+	for (i = 0; i < LEN(names); i++)
+		if ((k = strlen(names[i])) && (n == k || (n > k && p[k] == '=')) && !strncmp(p, names[i], k))
+			return 1;
+	return 0;
+}
+
+/* the ids engines and sites add to links to track clicks, which also split one page into several results */
+static void
+strip_trackers(struct arena *a, struct url *u)
+{
+	char *q = astrdup(a, u->query), *w = q;
+	const char *p, *end;
+	size_t n;
+
+	for (p = u->query; *p; p = *end ? end + 1 : end) {
+		end = p + strcspn(p, "&");
+		n = (size_t)(end - p);
+		if (!n || tracker(p, n))
+			continue;
+		if (w != q)
+			*w++ = '&';
+		memmove(w, p, n);
+		w += n;
+	}
+	*w = 0;
+	u->query = q;
+}
+
+static int
 normalize_main(struct arena *a, struct main_result *m)
 {
 	if (!m->url || !*m->url)
@@ -40,6 +76,7 @@ normalize_main(struct arena *a, struct main_result *m)
 		m->parsed.scheme = "http";
 	if (strcasecmp(m->parsed.scheme, "http") && strcasecmp(m->parsed.scheme, "https"))
 		return -1;
+	strip_trackers(a, &m->parsed);
 	m->url = url_unparse(a, &m->parsed);
 	m->title = text_normalize(a, m->title, MAX_TITLE);
 	m->content = text_normalize(a, m->content, MAX_CONTENT);
