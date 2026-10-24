@@ -46,7 +46,7 @@ response(struct job *j, struct fetch *f)
 	root = yyjson_doc_get_root(doc);
 	if ((err = yyjson_obj_get(root, "error"))) {
 		const char *msg = yyjson_get_str(yyjson_obj_get(err, "message"));
-		fprintf(stderr, "google cse: %s\n", msg ? msg : "unknown error");
+		j->detail = msg ? msg : "unknown error";
 		if (yyjson_get_int(yyjson_obj_get(err, "code")) == 429)
 			job_fail(j, "too many requests", suspend_too_many_requests);
 		else

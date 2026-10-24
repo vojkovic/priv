@@ -10,6 +10,7 @@
 #include "proxy.h"
 #include "render.h"
 #include "search.h"
+#include "stats.h"
 
 #define PREFETCH_THUMBNAILS 10
 #define PREFETCH_IMAGES 6
@@ -122,7 +123,7 @@ search_finish(struct search *s)
 		job_cleanup(&s->jobs[i]);
 		results_unresponsive(&s->res, s->jobs[i].e, "timeout", 0);
 		results_timing(&s->res, s->jobs[i].e, (now_ms() - s->start) / 1e3, s->jobs[i].load);
-		fprintf(stderr, "%s: timeout\n", s->jobs[i].e->name);
+		stats_record(s->jobs[i].e, OUTCOME_TIMEOUT, (now_ms() - s->start) / 1e3, "timeout");
 	}
 	s->elapsed = (now_ms() - s->start) / 1e3;
 	results_close(&s->res);
@@ -184,10 +185,15 @@ void
 job_done(struct job *j)
 {
 	struct engine *e = j->e;
+	struct result *r;
+	int found = 0;
 
 	if (j->done)
 		return;
 	j->done = 1;
+	for (r = j->head; r && !found; r = r->next)
+		found = 1;
+	stats_record(e, found ? OUTCOME_OK : OUTCOME_EMPTY, (now_ms() - j->start) / 1e3, NULL);
 	prefetch(j);
 	results_extend(&j->s->res, e, j->head);
 	results_timing(&j->s->res, e, (now_ms() - j->start) / 1e3, j->load);
@@ -210,7 +216,8 @@ job_fail(struct job *j, const char *error, int suspend)
 	j->done = 1;
 	results_unresponsive(&j->s->res, e, astrdup(&j->s->a, error), 0);
 	results_timing(&j->s->res, e, (now_ms() - j->start) / 1e3, j->load);
-	fprintf(stderr, "%s: %s (%.2fs)\n", e->name, error, (now_ms() - j->start) / 1e3);
+	stats_record(e, OUTCOME_ERROR, (now_ms() - j->start) / 1e3,
+	    j->detail ? aprintf(&j->s->a, "%s: %s", error, j->detail) : error);
 	if (suspend != SUSPEND_NONE) {
 		secs = suspend == SUSPEND_DEFAULT ? MIN(max_ban_time_on_fail, ban_time_on_fail) : suspend;
 		e->continuous_errors++;
@@ -287,8 +294,7 @@ job_ok(struct job *j, struct fetch *f)
 	case CURLE_COULDNT_CONNECT: msg = "HTTP connection error"; break;
 	default: msg = "network error"; break;
 	}
-	fprintf(stderr, "%s: %s: %s\n", j->e->name, fetch_host(f),
-	    f->error[0] ? f->error : curl_easy_strerror(f->code));
+	j->detail = aprintf(j->a, "%s (%s)", f->error[0] ? f->error : curl_easy_strerror(f->code), fetch_host(f));
 	job_fail(j, msg, SUSPEND_DEFAULT);
 	return 0;
 }
@@ -303,7 +309,7 @@ job_http_ok(struct job *j, struct fetch *f)
 		return 0;
 	if (st < 400)
 		return 1;
-	fprintf(stderr, "%s: HTTP %ld from %s\n", j->e->name, st, fetch_host(f));
+	j->detail = aprintf(j->a, "HTTP %ld from %s", st, fetch_host(f));
 	if (starts_with(f->server, "cloudflare")) {
 		if (((st == 429 || st == 503) &&
 		        (strstr(body, "__cf_chl_jschl_tk__=") ||

@@ -8,6 +8,7 @@
 #include "icons.h"
 #include "proxy.h"
 #include "render.h"
+#include "stats.h"
 
 #define LOGO \
 	"<svg class=\"logo\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 92 92\" aria-hidden=\"true\"><g " \
@@ -957,6 +958,80 @@ render_about(struct buf *b, const struct prefs *p, const char *origin)
 	    "<dt><code>&lt;3 cats</code></dt><dd>Set timeout to 3 seconds.</dd>\n</dl>\n"
 	    "</main>\n</body>\n</html>\n",
 	    instance_name, instance_name, instance_name, origin, origin);
+	arena_free(&scratch);
+}
+
+struct stats_row {
+	const struct engine *e;
+	int reliability, suspended;
+	double typical;
+	const char *error;
+};
+
+static int
+float_cmp(const void *x, const void *y)
+{
+	float a = *(const float *)x, b = *(const float *)y;
+
+	return a < b ? -1 : a > b;
+}
+
+static int
+stats_cmp(const void *x, const void *y)
+{
+	return strcmp(((const struct stats_row *)x)->e->name, ((const struct stats_row *)y)->e->name);
+}
+
+void
+render_stats(struct buf *b, const struct prefs *p)
+{
+	const struct engine_stats *st;
+	struct stats_row *rows;
+	float times[STATS_WINDOW] = {0};
+	size_t i, k, n, answered;
+
+	page_start(b, p, "Engine stats", "Engine stats");
+	rows = amalloc(&scratch, (nengines + 1) * sizeof(*rows));
+	for (i = 0; i < nengines; i++) {
+		rows[i].e = engines[i];
+		rows[i].suspended = engines[i]->suspend_end > now_ms();
+		rows[i].reliability = -1;
+		rows[i].typical = 0;
+		rows[i].error = NULL;
+		if (!(st = stats_of(engines[i])))
+			continue;
+		for (k = n = answered = 0; k < st->nrecent; k++)
+			if (st->recent[k].outcome == OUTCOME_OK || st->recent[k].outcome == OUTCOME_EMPTY) {
+				answered++;
+				times[n++] = st->recent[k].seconds;
+			}
+		qsort(times, n, sizeof(*times), float_cmp);
+		if (st->nrecent)
+			rows[i].reliability = (int)(answered * 100 / st->nrecent);
+		rows[i].typical = n ? times[n / 2] : 0;
+		rows[i].error = *st->error ? st->error : NULL;
+	}
+	qsort(rows, nengines, sizeof(*rows), stats_cmp);
+	buf_puts(b,
+	    "<div class=\"stats\"><table>\n<thead><tr><th>Engine</th><th>Reliability</th><th>Response time</th>"
+	    "<th>Last error</th></tr></thead><tbody>\n");
+	for (i = 0; i < nengines; i++) {
+		struct stats_row *r = &rows[i];
+		const char *cls = r->suspended || (r->reliability >= 0 && r->reliability < 50) ? "bad" :
+		    r->reliability >= 0 && r->reliability < 85                                 ? "warn" :
+		                                                                                 "";
+		buf_html(b, "<tr><td><img src=\"%s\" alt=\"\" loading=\"lazy\">%s</td><td class=\"%r\">",
+		    favicon_url(&scratch, r->e->website), r->e->name, cls);
+		if (r->suspended)
+			buf_puts(b, "suspended");
+		else if (r->reliability >= 0)
+			buf_printf(b, "%d%%", r->reliability);
+		buf_puts(b, "</td><td>");
+		if (r->typical > 0)
+			buf_printf(b, "%.2fs", r->typical);
+		buf_html(b, "</td><td>%s</td></tr>\n", r->suspended ? r->e->suspend_reason : r->error ? r->error : "");
+	}
+	buf_puts(b, "</tbody></table></div>\n</main>\n</body>\n</html>\n");
 	arena_free(&scratch);
 }
 

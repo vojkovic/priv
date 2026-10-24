@@ -102,7 +102,7 @@ vqd_response(struct job *j, struct fetch *f)
 	if (f->status == 200 && (v = find_between(fetch_body(f), "vqd=\"", "\"", &n)) && n)
 		cache_set(vqd_key(j), astrndup(j->a, v, n), 3600);
 	else
-		fprintf(stderr, "duckduckgo videos: no vqd (HTTP %ld)\n", f->status);
+		j->detail = aprintf(j->a, "no vqd (HTTP %ld)", f->status);
 	request(j, v && n ? astrndup(j->a, v, n) : "");
 }
 

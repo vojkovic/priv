@@ -49,6 +49,7 @@ struct job {
 	struct result *head, **tail;
 	double start, load;
 	int done;
+	const char *detail;
 	struct {
 		void (*fn)(void *);
 		void *p;

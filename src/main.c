@@ -22,6 +22,7 @@
 #include "render.h"
 #include "script.h"
 #include "search.h"
+#include "stats.h"
 #include "style.h"
 
 #define HTML_HEADERS "Content-Type: text/html; charset=utf-8\r\n" SECURITY_HEADERS
@@ -140,6 +141,13 @@ route(struct conn *c, struct request *r)
 	if (!strcmp(r->path, "/opensearch.xml")) {
 		render_opensearch(&b, r->proto, r->host[0] ? r->host : "localhost");
 		respond_buf(c, 200, "Content-Type: application/opensearchdescription+xml\r\n", &b);
+		return;
+	}
+	if (!strcmp(r->path, "/stats")) {
+		prefs_parse(&a, r, &prefs);
+		render_stats(&b, &prefs);
+		respond_buf(c, 200, HTML_HEADERS "Cache-Control: no-store\r\n", &b);
+		arena_free(&a);
 		return;
 	}
 	if (!strcmp(r->path, "/about")) {

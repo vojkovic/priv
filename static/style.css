@@ -929,6 +929,27 @@ article.result.result-images {
 #preferences .buttons a { color: var(--subtext0); }
 #preferences .buttons a:hover { color: var(--text); }
 
+/* stats */
+
+.stats { overflow-x: auto; background: var(--mantle); border-radius: 0.8rem; }
+.stats table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.stats th { padding: 0.6rem 0.75rem; color: var(--subtext0); font-size: 0.8rem; font-weight: 600; text-align: start; white-space: nowrap; }
+.stats td { padding: 0.5rem 0.75rem; border-top: 1px solid var(--surface0); color: var(--subtext1); }
+.stats td:first-child { color: var(--text); white-space: nowrap; }
+.stats td:first-child img {
+	width: 1.1rem;
+	height: 1.1rem;
+	margin-inline-end: 0.5rem;
+	vertical-align: -4px;
+	background-color: var(--favicon-bg);
+	border: 1px solid var(--favicon-border);
+	border-radius: 17%;
+}
+.stats td:nth-child(2), .stats td:nth-child(3) { white-space: nowrap; }
+.stats td:last-child { color: var(--subtext0); font-size: 0.85rem; overflow-wrap: anywhere; }
+.stats .warn { color: var(--yellow); }
+.stats .bad { color: var(--red); }
+
 /* phone */
 
 @media (max-width: 41.25em) {
