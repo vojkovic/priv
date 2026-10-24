@@ -105,15 +105,12 @@ engines_init(void)
 	}
 	for (i = 0; i < LEN(available) && nengines < LEN(engines); i++) {
 		e = available[i];
-		if (e->weight <= 0)
-			e->weight = 1.0;
 		for (k = 0; k < nengine_toggles && !config_name(e, engine_toggles[k].name); k++)
 			;
 		if (k < nengine_toggles) {
-			if (engine_toggles[k].inactive)
+			if (engine_toggles[k].state == 0)
 				continue;
-			e->weight = engine_toggles[k].weight;
-			e->starts_off = !engine_toggles[k].on;
+			e->starts_off = engine_toggles[k].state == 1;
 		}
 		e->index = (int)nengines;
 		e->enabled = 1;

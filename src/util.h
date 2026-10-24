@@ -13,10 +13,10 @@
 #define IS_ALPHA(c) (((c) >= 'a' && (c) <= 'z') || ((c) >= 'A' && (c) <= 'Z'))
 #define IS_ALNUM(c) (IS_ALPHA(c) || IS_DIGIT(c))
 
+/* 0 leaves an engine out, 1 offers it switched off, 2 offers it switched on */
 struct engine_toggle {
 	const char *name;
-	double weight;
-	int on, inactive;
+	int state;
 };
 
 extern const char *instance_name;

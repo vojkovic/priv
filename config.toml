@@ -11,59 +11,60 @@ link_token = false
 trusted_proxies = ["127.0.0.0/8", "::1"]
 
 [engines]
-# weight: how strongly its results rank, default: whether it starts on for users,
-# inactive: disable the engine entirely
+# 0: off, not offered at all
+# 1: offered, but switched off until a user turns it on
+# 2: on (by default)
 
 # general
-google            = { weight = 1, default = true, inactive = false }
-google_cse        = { weight = 1, default = true, inactive = false }
-brave             = { weight = 1, default = true, inactive = false }
-duckduckgo        = { weight = 1, default = true, inactive = false }
-duckduckgo_web    = { weight = 1, default = false, inactive = false }
-dogpile           = { weight = 1, default = true, inactive = false }
-privacywall       = { weight = 1, default = true, inactive = false }
-t_online          = { weight = 1, default = false, inactive = false }
-oceanhero         = { weight = 1, default = true, inactive = false }
-swisscows         = { weight = 1, default = true, inactive = false }
-iseek             = { weight = 1, default = false, inactive = false }
-s1search          = { weight = 1, default = false, inactive = false }
-wikipedia         = { weight = 2, default = true, inactive = false }
-ddg_definitions   = { weight = 2, default = true, inactive = false }
+google = 2
+google_cse = 2
+brave = 2
+duckduckgo = 2
+duckduckgo_web = 1
+dogpile = 2
+privacywall = 2
+t_online = 1
+oceanhero = 2
+swisscows = 2
+iseek = 1
+s1search = 1
+wikipedia = 2
+ddg_definitions = 2
 
 # images
-google_images     = { weight = 1, default = true, inactive = false }
-google_cse_images = { weight = 1, default = true, inactive = false }
-brave_images      = { weight = 1, default = true, inactive = false }
-duckduckgo_images = { weight = 1, default = true, inactive = false }
-dogpile_images    = { weight = 1, default = true, inactive = false }
+google_images = 2
+google_cse_images = 2
+brave_images = 2
+duckduckgo_images = 2
+dogpile_images = 2
 
 # videos
-google_videos     = { weight = 1, default = true, inactive = false }
-duckduckgo_videos = { weight = 1, default = true, inactive = false }
-youtube           = { weight = 1, default = true, inactive = false }
-brave_videos      = { weight = 1, default = true, inactive = false }
+google_videos = 2
+duckduckgo_videos = 2
+youtube = 2
+brave_videos = 2
 
 # news
-google_news       = { weight = 1, default = true, inactive = false }
-duckduckgo_news   = { weight = 1, default = true, inactive = false }
-reuters           = { weight = 1, default = true, inactive = false }
-brave_news        = { weight = 1, default = true, inactive = false }
+google_news = 2
+duckduckgo_news = 2
+reuters = 2
+brave_news = 2
 
 # music
-soundcloud        = { weight = 1, default = true, inactive = false }
-wikicommons_audio = { weight = 1, default = true, inactive = false }
+soundcloud = 2
+wikicommons_audio = 2
 
 # tech
-arch_linux_wiki   = { weight = 1, default = true, inactive = false }
-mdn               = { weight = 1, default = true, inactive = false }
-mankier           = { weight = 1, default = true, inactive = false }
-pypi              = { weight = 1, default = true, inactive = false }
-stackoverflow     = { weight = 1, default = true, inactive = false }
-askubuntu         = { weight = 1, default = true, inactive = false }
-superuser         = { weight = 1, default = true, inactive = false }
+arch_linux_wiki = 2
+mdn = 2
+mankier = 2
+pypi = 2
+stackoverflow = 2
+askubuntu = 2
+superuser = 2
 
 # research
-arxiv             = { weight = 1, default = true, inactive = false }
-europepmc         = { weight = 1, default = true, inactive = false }
-pdbe              = { weight = 1, default = true, inactive = false }
-pubmed            = { weight = 1, default = true, inactive = false }
+arxiv = 2
+europepmc = 2
+pdbe = 2
+pubmed = 2

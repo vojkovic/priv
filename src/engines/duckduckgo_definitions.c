@@ -262,7 +262,6 @@ search(struct job *j)
 struct engine engine_duckduckgo_definitions = {
     .name = "ddg definitions",
     .shortcut = "ddd",
-    .weight = 2.0,
     .website = "duckduckgo.com",
     .bang = "https://duckduckgo.com/?q=%s",
     .categories = {"general"},

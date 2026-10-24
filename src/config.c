@@ -42,9 +42,7 @@ const char *impersonate_firefox = "firefox147";
 const char *useragent_os[] = {"Windows NT 10.0; Win64; x64", "X11; Linux x86_64", NULL};
 const char *useragent_versions[] = {"157.0", "156.0", NULL};
 
-enum type { STRING, BOOL, NUMBER, ARRAY, TABLE };
-
-struct field;
+enum type { STRING, BOOL, NUMBER, ARRAY };
 
 struct value {
 	enum type type;
@@ -52,14 +50,6 @@ struct value {
 	double n;
 	int b;
 	const char **list;
-	struct field *fields;
-	size_t nfields;
-};
-
-/* one key of an inline table, like weight in { weight = 2 } */
-struct field {
-	char *key;
-	struct value v;
 };
 
 static struct arena scratch;
@@ -130,27 +120,6 @@ value(struct parser *ps, struct value *v)
 		v->type = BOOL;
 		v->b = *ps->p == 't';
 		ps->p += v->b ? 4 : 5;
-	} else if (*ps->p == '{') {
-		v->type = TABLE;
-		for (ps->p++;;) {
-			skip_space(ps);
-			if (*ps->p == '}')
-				break;
-			v->fields = xrealloc(v->fields, (n + 1) * sizeof(*v->fields));
-			v->fields[n].key = key(ps);
-			skip_space(ps);
-			if (*ps->p++ != '=')
-				fail(ps, "expected = in table");
-			skip_space(ps);
-			value(ps, &v->fields[n++].v);
-			v->nfields = n;
-			skip_space(ps);
-			if (*ps->p == ',')
-				ps->p++;
-			else if (*ps->p != '}')
-				fail(ps, "expected , or } in table");
-		}
-		ps->p++;
 	} else if (*ps->p == '[') {
 		v->type = ARRAY;
 		v->list = xcalloc(1, sizeof(*v->list));
@@ -182,7 +151,7 @@ value(struct parser *ps, struct value *v)
 static void
 expect(struct parser *ps, const struct value *v, enum type type)
 {
-	static const char *names[] = {"a string", "true or false", "a number", "a list of strings", "a { ... } table"};
+	static const char *names[] = {"a string", "true or false", "a number", "a list of strings"};
 
 	if (v->type != type)
 		fail(ps, aprintf(&scratch, "expected %s", names[type]));
@@ -221,31 +190,12 @@ set(struct parser *ps, const char *section, const char *k, struct value *v)
 		expect(ps, v, ARRAY);
 		trusted_proxies = v->list;
 	} else if (!strcmp(section, "engines")) {
-		struct engine_toggle t = {xstrdup(k), 1.0, 1, 0};
-		size_t i;
-
-		expect(ps, v, TABLE);
-		for (i = 0; i < v->nfields; i++) {
-			struct field *f = &v->fields[i];
-			if (!strcmp(f->key, "weight")) {
-				expect(ps, &f->v, NUMBER);
-				if (f->v.n <= 0)
-					fail(ps, "an engine's weight must be above 0");
-				t.weight = f->v.n;
-			} else if (!strcmp(f->key, "default")) {
-				expect(ps, &f->v, BOOL);
-				t.on = f->v.b;
-			} else if (!strcmp(f->key, "inactive")) {
-				expect(ps, &f->v, BOOL);
-				t.inactive = f->v.b;
-			} else {
-				fail(ps,
-				    aprintf(&scratch, "unknown engine setting %s, expected weight, default or inactive",
-				        f->key));
-			}
-		}
+		expect(ps, v, NUMBER);
+		if (v->n != 0 && v->n != 1 && v->n != 2)
+			fail(ps, "an engine is 0 (off), 1 (offered but switched off) or 2 (on)");
 		engine_toggles = xrealloc(engine_toggles, (nengine_toggles + 1) * sizeof(*engine_toggles));
-		engine_toggles[nengine_toggles++] = t;
+		engine_toggles[nengine_toggles].name = xstrdup(k);
+		engine_toggles[nengine_toggles++].state = (int)v->n;
 	} else {
 		fail(ps, aprintf(&scratch, "unknown setting %s%s%s", section, *section ? "." : "", k));
 	}

@@ -30,7 +30,6 @@ struct engine {
 	void (*search)(struct job *j);
 
 	int index, enabled;
-	double weight;
 	int continuous_errors;
 	double suspend_end;
 	char suspend_reason[128];

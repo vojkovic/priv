@@ -144,11 +144,8 @@ merge_infoboxes(struct arena *ar, struct infobox *o, struct infobox *n)
 {
 	struct infobox_url *u2, *u1, **tail, *cu;
 	struct infobox_attr *a2, *last, **atail, *ca;
-	double w1 = o->base.engine->weight, w2 = n->base.engine->weight;
 	int unique;
 
-	if (w2 > w1)
-		o->base.engine = n->base.engine;
 	o->engines |= n->engines;
 
 	for (u2 = n->urls; u2; u2 = u2->next) {
@@ -169,7 +166,7 @@ merge_infoboxes(struct arena *ar, struct infobox *o, struct infobox *n)
 		o->description = n->description;
 	if (!o->also)
 		o->also = n->also;
-	if (n->img_src && *n->img_src && (!o->img_src || !*o->img_src || w2 > w1))
+	if (n->img_src && *n->img_src && (!o->img_src || !*o->img_src))
 		o->img_src = n->img_src;
 
 	if (n->attrs && !o->attrs) {
@@ -271,16 +268,11 @@ results_timing(struct results *r, const struct engine *e, double seconds, double
 static double
 score(struct main_result *m)
 {
-	double weight = 1.0, s = 0;
-	size_t i;
+	double s = 0;
 	int p;
 
-	for (i = 0; i < nengines; i++)
-		if (m->engines & ENGINE_BIT(engines[i]))
-			weight *= engines[i]->weight;
-	weight *= m->npositions;
 	for (p = 0; p < m->npositions; p++)
-		s += weight / m->positions[p];
+		s += (double)m->npositions / m->positions[p];
 	return s;
 }
 
