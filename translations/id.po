@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: id\n"
+"X-Name: Indonesia\n"
+
+msgid "About"
+msgstr "Tentang"
+
+msgid "Allow"
+msgstr "Izinkan"
+
+msgid "Also refers to"
+msgstr "Juga dapat merujuk ke"
+
+msgid "Anytime"
+msgstr "Kapan saja"
+
+msgid "Author"
+msgstr "Penulis"
+
+msgid "Auto"
+msgstr "Otomatis"
+
+msgid "Back"
+msgstr "Kembali"
+
+msgid "Change the language of the layout"
+msgstr "Ubah bahasa tata letak"
+
+msgid "Close"
+msgstr "Tutup"
+
+msgid "Comments"
+msgstr "Komentar"
+
+msgid "Default language"
+msgstr "Bahasa bawaan"
+
+msgid "Engine name"
+msgstr "Nama mesin"
+
+msgid "Engines"
+msgstr "Mesin"
+
+msgid "Filter content"
+msgstr "Tapis konten"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "General"
+msgstr "Umum"
+
+msgid "Image details"
+msgstr "Detail gambar"
+
+msgid "Images"
+msgstr "Gambar"
+
+msgid "Interface language"
+msgstr "Bahasa antarmuka"
+
+msgid "Journal"
+msgstr "Jurnal"
+
+msgid "Last day"
+msgstr "Kemarin"
+
+msgid "Last month"
+msgstr "Bulan kemarin"
+
+msgid "Last week"
+msgstr "Minggu kemarin"
+
+msgid "Last year"
+msgstr "Tahun kemarin"
+
+msgid "Length"
+msgstr "Durasi"
+
+msgid "Moderate"
+msgstr "Menengah"
+
+msgid "Music"
+msgstr "Musik"
+
+msgid "News"
+msgstr "Berita"
+
+msgid "Next image"
+msgstr "Gambar berikutnya"
+
+msgid "Next page"
+msgstr "Laman berikutnya"
+
+msgid "No more results for {0}"
+msgstr "Tidak ada hasil lagi untuk {0}"
+
+msgid "No results for {0}"
+msgstr "Tidak ada hasil untuk {0}"
+
+msgid "None"
+msgstr "Mati"
+
+msgid "Package"
+msgstr "Paket"
+
+msgid "Page {0}"
+msgstr "Halaman {0}"
+
+msgid "Pages"
+msgstr "Halaman"
+
+msgid "Preferences"
+msgstr "Preferensi"
+
+msgid "Previous image"
+msgstr "Gambar sebelumnya"
+
+msgid "Previous page"
+msgstr "Laman sebelumnya"
+
+msgid "Research"
+msgstr "Riset"
+
+msgid "Reset defaults"
+msgstr "Atur ulang ke bawaan"
+
+msgid "Resolution"
+msgstr "Resolusi"
+
+msgid "Response time"
+msgstr "Waktu respons"
+
+msgid "SafeSearch"
+msgstr "Pencarian Aman"
+
+msgid "Save"
+msgstr "Simpan"
+
+msgid "Search"
+msgstr "Cari"
+
+msgid "Search for..."
+msgstr "Cari..."
+
+msgid "Search language"
+msgstr "Bahasa pencarian"
+
+msgid "Searching"
+msgstr "Mencari"
+
+msgid "Strict"
+msgstr "Ketat"
+
+msgid "Tags"
+msgstr "Penanda"
+
+msgid "Tech"
+msgstr "Teknologi"
+
+msgid "This site did not provide any description."
+msgstr "Situs ini tidak memberikan deskripsi apa pun."
+
+msgid "Time range"
+msgstr "Rentang waktu"
+
+msgid "Try different words or another category."
+msgstr "Coba kata lain atau kategori lain."
+
+msgid "Type"
+msgstr "Jenis"
+
+msgid "Version"
+msgstr "Versi"
+
+msgid "Videos"
+msgstr "Video"
+
+msgid "Views"
+msgstr "Tampilan"
+
+msgid "What language do you prefer for search?"
+msgstr "Anda ingin mencari dalam bahasa apa?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} dari {1} mesin"

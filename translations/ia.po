@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: ia\n"
+"X-Name: Interlingua\n"
+
+msgid "About"
+msgstr "A proposito"
+
+msgid "Allow"
+msgstr "Permitter"
+
+msgid "Also refers to"
+msgstr "Pote etiam referer se a"
+
+msgid "Anytime"
+msgstr "Aliquando"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Auto"
+msgstr "Automatic"
+
+msgid "Back"
+msgstr "Retro"
+
+msgid "Change the language of the layout"
+msgstr "Cambia le lingua del interfacie"
+
+msgid "Close"
+msgstr "Clauder"
+
+msgid "Comments"
+msgstr "Commentos"
+
+msgid "Default language"
+msgstr "Lingua predefinite"
+
+msgid "Engine name"
+msgstr "Nomine del motor"
+
+msgid "Engines"
+msgstr "Motores"
+
+msgid "Filter content"
+msgstr "Filtrar contento"
+
+msgid "Format"
+msgstr "Formato"
+
+msgid "General"
+msgstr "General"
+
+msgid "Image details"
+msgstr "Detalios del imagine"
+
+msgid "Images"
+msgstr "Imagines"
+
+msgid "Interface language"
+msgstr "Lingua del interfacie"
+
+msgid "Journal"
+msgstr "Jornal"
+
+msgid "Last day"
+msgstr "Le die passate"
+
+msgid "Last month"
+msgstr "Le mense passate"
+
+msgid "Last week"
+msgstr "Le septimana passate"
+
+msgid "Last year"
+msgstr "Le anno passate"
+
+msgid "Length"
+msgstr "Longitude"
+
+msgid "Moderate"
+msgstr "Moderate"
+
+msgid "Music"
+msgstr "Musica"
+
+msgid "News"
+msgstr "Novas"
+
+msgid "Next image"
+msgstr "Imagine sequente"
+
+msgid "Next page"
+msgstr "Pagina sequente"
+
+msgid "No more results for {0}"
+msgstr "Nulle altere resultatos pro {0}"
+
+msgid "No results for {0}"
+msgstr "Nulle resultatos pro {0}"
+
+msgid "None"
+msgstr "Nulle"
+
+msgid "Package"
+msgstr "Pacchetto"
+
+msgid "Page {0}"
+msgstr "Pagina {0}"
+
+msgid "Pages"
+msgstr "Paginas"
+
+msgid "Preferences"
+msgstr "Preferentias"
+
+msgid "Previous image"
+msgstr "Imagine precedente"
+
+msgid "Previous page"
+msgstr "Pagina precedente"
+
+msgid "Research"
+msgstr "Recerca"
+
+msgid "Reset defaults"
+msgstr "Restablir configurationes"
+
+msgid "Resolution"
+msgstr "Resolution"
+
+msgid "Response time"
+msgstr "Tempore de responsa"
+
+msgid "SafeSearch"
+msgstr "Filtro de contento potentialmente offensive"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Search"
+msgstr "Cercar"
+
+msgid "Search for..."
+msgstr "Recercar re..."
+
+msgid "Search language"
+msgstr "Lingua pro le recerca"
+
+msgid "Searching"
+msgstr "Cercante"
+
+msgid "Strict"
+msgstr "Rigorose"
+
+msgid "Tags"
+msgstr "Etiquettas"
+
+msgid "Tech"
+msgstr "Technologia"
+
+msgid "This site did not provide any description."
+msgstr "Iste sito non forniva alcun description."
+
+msgid "Time range"
+msgstr "Intervallo de tempore"
+
+msgid "Try different words or another category."
+msgstr "Essaya altere parolas o un altere categoria."
+
+msgid "Type"
+msgstr "Typo"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Videos"
+msgstr "Videos"
+
+msgid "Views"
+msgstr "Visualisationes"
+
+msgid "What language do you prefer for search?"
+msgstr "Qual lingua tu prefere pro recercar?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} de {1} motores"

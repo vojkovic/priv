@@ -801,7 +801,6 @@ article.result.result-images {
 #preferences h1 svg { width: 1.4rem; height: 1.4rem; }
 [dir="rtl"] #preferences h1 svg { transform: scaleX(-1); }
 #preferences h2 { margin: 2.25rem 0 0.25rem; font-size: 1.2rem; }
-#preferences .notice { margin: 0 0 1.5rem; padding: 0.75rem 1rem; background: var(--surface0); border-radius: 0.6rem; }
 .pref {
 	display: flex;
 	flex-wrap: wrap;
@@ -834,6 +833,7 @@ article.result.result-images {
 	cursor: pointer;
 }
 .engine_group { margin-bottom: 0.75rem; overflow: hidden; background: var(--mantle); border-radius: 0.8rem; }
+.engine_group:first-of-type { margin-top: 1.5rem; }
 .engine_group summary {
 	display: flex;
 	align-items: center;
@@ -907,6 +907,7 @@ article.result.result-images {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
+	justify-content: space-between;
 	gap: 1.25rem;
 	margin: 1.5rem -1rem 0;
 	padding: 1rem;

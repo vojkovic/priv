@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: eo\n"
+"X-Name: Esperanto\n"
+
+msgid "About"
+msgstr "Pri"
+
+msgid "Allow"
+msgstr "Permesi"
+
+msgid "Also refers to"
+msgstr "Povas ankaŭ signifi"
+
+msgid "Anytime"
+msgstr "Iam ajn"
+
+msgid "Author"
+msgstr "Verkisto"
+
+msgid "Auto"
+msgstr "Aŭtomate"
+
+msgid "Back"
+msgstr "Reen"
+
+msgid "Change the language of the layout"
+msgstr "Ŝanĝi lingvon de la fasono"
+
+msgid "Close"
+msgstr "Fermi"
+
+msgid "Comments"
+msgstr "Komentoj"
+
+msgid "Default language"
+msgstr "Defaŭlta lingvo"
+
+msgid "Engine name"
+msgstr "Nomo de serĉilo"
+
+msgid "Engines"
+msgstr "Serĉiloj"
+
+msgid "Filter content"
+msgstr "Filtri enhavon"
+
+msgid "Format"
+msgstr "Formato"
+
+msgid "General"
+msgstr "Ĝenerala"
+
+msgid "Image details"
+msgstr "Detaloj de la bildo"
+
+msgid "Images"
+msgstr "Bildoj"
+
+msgid "Interface language"
+msgstr "Fasada lingvo"
+
+msgid "Journal"
+msgstr "Revuo"
+
+msgid "Last day"
+msgstr "Pasinta tago"
+
+msgid "Last month"
+msgstr "Pasinta monato"
+
+msgid "Last week"
+msgstr "Pasinta semajno"
+
+msgid "Last year"
+msgstr "Pasinta jaro"
+
+msgid "Length"
+msgstr "Longo"
+
+msgid "Moderate"
+msgstr "Modera"
+
+msgid "Music"
+msgstr "Muziko"
+
+msgid "News"
+msgstr "Novaĵoj"
+
+msgid "Next image"
+msgstr "Sekva bildo"
+
+msgid "Next page"
+msgstr "Sekva paĝo"
+
+msgid "No more results for {0}"
+msgstr "Ne plu rezultoj por {0}"
+
+msgid "No results for {0}"
+msgstr "Neniuj rezultoj por {0}"
+
+msgid "None"
+msgstr "Neniu"
+
+msgid "Package"
+msgstr "Pakaĵo"
+
+msgid "Page {0}"
+msgstr "Paĝo {0}"
+
+msgid "Pages"
+msgstr "Paĝoj"
+
+msgid "Preferences"
+msgstr "Agordoj"
+
+msgid "Previous image"
+msgstr "Antaŭa bildo"
+
+msgid "Previous page"
+msgstr "Antaŭa paĝo"
+
+msgid "Research"
+msgstr "Esploro"
+
+msgid "Reset defaults"
+msgstr "Reagordi al defaŭlto"
+
+msgid "Resolution"
+msgstr "Distingivo"
+
+msgid "Response time"
+msgstr "Tempo de respondo"
+
+msgid "SafeSearch"
+msgstr "SekuraSerĉo"
+
+msgid "Save"
+msgstr "Konservi"
+
+msgid "Search"
+msgstr "Serĉi"
+
+msgid "Search for..."
+msgstr "Serĉi..."
+
+msgid "Search language"
+msgstr "Serĉolingvo"
+
+msgid "Searching"
+msgstr "Serĉante"
+
+msgid "Strict"
+msgstr "Strikta"
+
+msgid "Tags"
+msgstr "Etikedoj"
+
+msgid "Tech"
+msgstr "Teknologio"
+
+msgid "This site did not provide any description."
+msgstr "Ĉi tiu retejo ne disponigis ajnan priskribon."
+
+msgid "Time range"
+msgstr "Tempa intervalo"
+
+msgid "Try different words or another category."
+msgstr "Provu aliajn vortojn aŭ alian kategorion."
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Version"
+msgstr "Versio"
+
+msgid "Videos"
+msgstr "Videoj"
+
+msgid "Views"
+msgstr "Spektoj"
+
+msgid "What language do you prefer for search?"
+msgstr "Kiun lingvon vi pli ŝatas por serĉi?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} el {1} serĉiloj"

@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: bo\n"
+"X-Name: བོད་སྐད་\n"
+
+msgid "About"
+msgstr "སྐོར།"
+
+msgid "Allow"
+msgstr "ཆོག་མཆན།"
+
+msgid "Also refers to"
+msgstr "དེ་མིན་གྱི་དོན།"
+
+msgid "Anytime"
+msgstr "དུས་ངེས་མེད།"
+
+msgid "Author"
+msgstr "རྩོམ་པ་པོ།"
+
+msgid "Auto"
+msgstr "རང་འགུལ།"
+
+msgid "Back"
+msgstr "ཕྱིར་ལོག"
+
+msgid "Change the language of the layout"
+msgstr "སྐད་རིགས་གདམ་གསེས་ཀྱི་དྲ་ངོས་བརྗེ་བསྒྱུར།"
+
+msgid "Close"
+msgstr "ཁ་རྒྱག"
+
+msgid "Comments"
+msgstr "མཆན་འགྲེལ།"
+
+msgid "Default language"
+msgstr "གཞི་བཞག་སྐད་རིགས།"
+
+msgid "Engine name"
+msgstr "སྒུལ་བྱེད་ཀྱི་མིང་།"
+
+msgid "Engines"
+msgstr "སྒུལ་བྱེད།"
+
+msgid "Filter content"
+msgstr "ནང་དོན་བཙག་བྱེད།"
+
+msgid "Format"
+msgstr "རྣམ་གཞག"
+
+msgid "General"
+msgstr "དྲ་སྦྲེལ།"
+
+msgid "Image details"
+msgstr "པར་རིས་ཀྱི་ཞིབ་ཕྲ།"
+
+msgid "Images"
+msgstr "པར་རིས།"
+
+msgid "Interface language"
+msgstr "དྲ་ངོས་སྐད་རིགས།"
+
+msgid "Journal"
+msgstr "དུས་དེབ།"
+
+msgid "Last day"
+msgstr "ཉིན་སྔོན་མ།"
+
+msgid "Last month"
+msgstr "ཟླ་བ་སྔོན་མ།"
+
+msgid "Last week"
+msgstr "གཟའ་སྔོན་མ།"
+
+msgid "Last year"
+msgstr "ལོ་སྔོན་མ།"
+
+msgid "Length"
+msgstr "རིང་ཚད།"
+
+msgid "Moderate"
+msgstr "འབྲིང་ཙམ།"
+
+msgid "Music"
+msgstr "རོལ་མོ།"
+
+msgid "News"
+msgstr "གསར་འགྱུར།"
+
+msgid "Next image"
+msgstr "པར་རིས་རྗེས་མ།"
+
+msgid "Next page"
+msgstr "ཤོག་ལྷེ་རྗེས་མ།"
+
+msgid "No more results for {0}"
+msgstr "{0}ཡི་འབྲས་བུ་གཞན་མི་འདུག"
+
+msgid "No results for {0}"
+msgstr "{0}ཡི་འབྲས་བུ་མི་འདུག"
+
+msgid "None"
+msgstr "གང་ཡང་མེད།"
+
+msgid "Package"
+msgstr "ཐུམ་སྒྲིལ།"
+
+msgid "Page {0}"
+msgstr "ཤོག་ལྷེ་{0}"
+
+msgid "Pages"
+msgstr "ཤོག་ལྷེ།"
+
+msgid "Preferences"
+msgstr "སྒྲིག་བཀོད།"
+
+msgid "Previous image"
+msgstr "པར་རིས་སྔ་མ།"
+
+msgid "Previous page"
+msgstr "ཤོག་ལྷེ་སྔ་མ།"
+
+msgid "Research"
+msgstr "ཞིབ་འཇུག"
+
+msgid "Reset defaults"
+msgstr "གཞི་བཞག་གི་རྣམ་པར་སྒྲིག་བཀོད་བྱེད།"
+
+msgid "Resolution"
+msgstr "གསལ་ཚད།"
+
+msgid "Response time"
+msgstr "ལན་འདེབས་དུས་ཚོད།"
+
+msgid "SafeSearch"
+msgstr "བདེ་འཇགས་འཚོལ་བཤེར།"
+
+msgid "Save"
+msgstr "ཉར་ཚགས།"
+
+msgid "Search"
+msgstr "འཚོལ་བ།"
+
+msgid "Search for..."
+msgstr "འཚོལ་བཤེར་ནང་དོན།"
+
+msgid "Search language"
+msgstr "འཚོལ་བཤེར་ནང་དོན་མཚོན་བྱེད་ཀྱི་སྐད་རིགས།"
+
+msgid "Searching"
+msgstr "འཚོལ་བཞིན་པ།"
+
+msgid "Strict"
+msgstr "ནན་ཏན།"
+
+msgid "Tags"
+msgstr "མཚོན་རྟགས།"
+
+msgid "Tech"
+msgstr "ལག་རྩལ།"
+
+msgid "This site did not provide any description."
+msgstr "དྲ་ཚིགས་འདིས་འགྲེལ་བཤད་གང་ཡང་མ་སྤྲད།"
+
+msgid "Time range"
+msgstr "དུས་ཀྱི་ཁྱབ་ཁོངས།"
+
+msgid "Try different words or another category."
+msgstr "ཚིག་གཞན་ནམ་རིགས་གཞན་ཞིག་ལ་ཚོད་ལྟ་གྱིས།"
+
+msgid "Type"
+msgstr "རིགས།"
+
+msgid "Version"
+msgstr "པར་གཞི།"
+
+msgid "Videos"
+msgstr "བརྙན་ཟློས།"
+
+msgid "Views"
+msgstr "ལྟ་ཐེངས།"
+
+msgid "What language do you prefer for search?"
+msgstr "ཁྱེད་ཀྱིས་ཆེས་སྤྱོད་བདེ་པའི་འཚོལ་བཤེར་སྐད་རིགས་གང་ཡིན་ནམ།"
+
+msgid "{0} of {1} engines"
+msgstr "འཕྲུལ་འཁོར་{1}ནང་ནས་{0}"

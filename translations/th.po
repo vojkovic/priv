@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: th\n"
+"X-Name: ไทย\n"
+
+msgid "About"
+msgstr "เกี่ยวกับ"
+
+msgid "Allow"
+msgstr "อนุญาต"
+
+msgid "Also refers to"
+msgstr "อาจหมายถึง"
+
+msgid "Anytime"
+msgstr "ทุกเวลา"
+
+msgid "Author"
+msgstr "ผู้เขียน"
+
+msgid "Auto"
+msgstr "อัตโนมัติ"
+
+msgid "Back"
+msgstr "กลับ"
+
+msgid "Change the language of the layout"
+msgstr "เปลี่ยนภาษาของเค้าโครง"
+
+msgid "Close"
+msgstr "ปิด"
+
+msgid "Comments"
+msgstr "คอมเมนต์"
+
+msgid "Default language"
+msgstr "ภาษาเริ่มต้น"
+
+msgid "Engine name"
+msgstr "ชื่อเครื่องมือ"
+
+msgid "Engines"
+msgstr "เครื่องมือ"
+
+msgid "Filter content"
+msgstr "ตัวกรอกเนื้อหา"
+
+msgid "Format"
+msgstr "รูปแบบ"
+
+msgid "General"
+msgstr "ทั่วไป"
+
+msgid "Image details"
+msgstr "รายละเอียดรูปภาพ"
+
+msgid "Images"
+msgstr "รูปภาพ"
+
+msgid "Interface language"
+msgstr "ภาษาส่วนต่อประสาน"
+
+msgid "Journal"
+msgstr "วารสาร"
+
+msgid "Last day"
+msgstr "วันล่าสุด"
+
+msgid "Last month"
+msgstr "เดือนล่าสุด"
+
+msgid "Last week"
+msgstr "สัปดาห์ล่าสุด"
+
+msgid "Last year"
+msgstr "ปีล่าสุด"
+
+msgid "Length"
+msgstr "ความยาว"
+
+msgid "Moderate"
+msgstr "ปานกลาง"
+
+msgid "Music"
+msgstr "ดนตรี"
+
+msgid "News"
+msgstr "ข่าว"
+
+msgid "Next image"
+msgstr "รูปภาพถัดไป"
+
+msgid "Next page"
+msgstr "หน้าต่อไป"
+
+msgid "No more results for {0}"
+msgstr "ไม่มีผลลัพธ์เพิ่มเติมสำหรับ {0}"
+
+msgid "No results for {0}"
+msgstr "ไม่พบผลลัพธ์สำหรับ {0}"
+
+msgid "None"
+msgstr "ไม่มี"
+
+msgid "Package"
+msgstr "แพ็กเกจ"
+
+msgid "Page {0}"
+msgstr "หน้า {0}"
+
+msgid "Pages"
+msgstr "หน้า"
+
+msgid "Preferences"
+msgstr "การตั้งค่า"
+
+msgid "Previous image"
+msgstr "รูปภาพก่อนหน้า"
+
+msgid "Previous page"
+msgstr "หน้าก่อนหน้านี้"
+
+msgid "Research"
+msgstr "งานวิจัย"
+
+msgid "Reset defaults"
+msgstr "รีเซ็ตค่าเริ่มต้น"
+
+msgid "Resolution"
+msgstr "ความละเอียดจอ"
+
+msgid "Response time"
+msgstr "เวลาตอบสนอง"
+
+msgid "SafeSearch"
+msgstr "ค้นหาแบบปลอดภัย"
+
+msgid "Save"
+msgstr "บันทึก"
+
+msgid "Search"
+msgstr "ค้นหา"
+
+msgid "Search for..."
+msgstr "ค้นหา..."
+
+msgid "Search language"
+msgstr "ค้นหาภาษา"
+
+msgid "Searching"
+msgstr "กำลังค้นหา"
+
+msgid "Strict"
+msgstr "เข้มงวด"
+
+msgid "Tags"
+msgstr "แท็ก"
+
+msgid "Tech"
+msgstr "เทคโนโลยี"
+
+msgid "This site did not provide any description."
+msgstr "ไซต์นี้ไม่ได้ให้คำอธิบายใดๆไว้"
+
+msgid "Time range"
+msgstr "ช่วงเวลา"
+
+msgid "Try different words or another category."
+msgstr "ลองใช้คำอื่นหรือหมวดหมู่อื่น"
+
+msgid "Type"
+msgstr "พิมพ์"
+
+msgid "Version"
+msgstr "เวอร์ชัน"
+
+msgid "Videos"
+msgstr "วิดีโอ"
+
+msgid "Views"
+msgstr "มุมมอง"
+
+msgid "What language do you prefer for search?"
+msgstr "คุณต้องการค้นหาภาษาใด?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} จาก {1} เครื่องมือค้นหา"

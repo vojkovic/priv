@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: sk\n"
+"X-Name: Slovenčina\n"
+
+msgid "About"
+msgstr "O nás"
+
+msgid "Allow"
+msgstr "Povoliť"
+
+msgid "Also refers to"
+msgstr "Môže tiež označovať"
+
+msgid "Anytime"
+msgstr "Kedykoľvek"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Auto"
+msgstr "Automaticky"
+
+msgid "Back"
+msgstr "Späť"
+
+msgid "Change the language of the layout"
+msgstr "Zmena jazyku rozhrania"
+
+msgid "Close"
+msgstr "Zavrieť"
+
+msgid "Comments"
+msgstr "Komentáre"
+
+msgid "Default language"
+msgstr "Predvolený jazyk"
+
+msgid "Engine name"
+msgstr "Názov vyhľadávača"
+
+msgid "Engines"
+msgstr "Vyhľadávače"
+
+msgid "Filter content"
+msgstr "Filtrovanie obsahu"
+
+msgid "Format"
+msgstr "Formát"
+
+msgid "General"
+msgstr "Všeobecné"
+
+msgid "Image details"
+msgstr "Podrobnosti obrázka"
+
+msgid "Images"
+msgstr "Obrázky"
+
+msgid "Interface language"
+msgstr "Jazyk rozhrania"
+
+msgid "Journal"
+msgstr "Žurnál"
+
+msgid "Last day"
+msgstr "Posledný deň"
+
+msgid "Last month"
+msgstr "Posledný mesiac"
+
+msgid "Last week"
+msgstr "Posledný týždeň"
+
+msgid "Last year"
+msgstr "Posledný rok"
+
+msgid "Length"
+msgstr "Dĺžka"
+
+msgid "Moderate"
+msgstr "Mierne"
+
+msgid "Music"
+msgstr "Hudba"
+
+msgid "News"
+msgstr "Správy"
+
+msgid "Next image"
+msgstr "Ďalší obrázok"
+
+msgid "Next page"
+msgstr "Ďalšia strana"
+
+msgid "No more results for {0}"
+msgstr "Žiadne ďalšie výsledky pre {0}"
+
+msgid "No results for {0}"
+msgstr "Žiadne výsledky pre {0}"
+
+msgid "None"
+msgstr "Žiadne"
+
+msgid "Package"
+msgstr "Balík"
+
+msgid "Page {0}"
+msgstr "Strana {0}"
+
+msgid "Pages"
+msgstr "Strany"
+
+msgid "Preferences"
+msgstr "Nastavenia"
+
+msgid "Previous image"
+msgstr "Predchádzajúci obrázok"
+
+msgid "Previous page"
+msgstr "Predošlá strana"
+
+msgid "Research"
+msgstr "Výskum"
+
+msgid "Reset defaults"
+msgstr "Obnoviť predvolené"
+
+msgid "Resolution"
+msgstr "Rozlíšenie"
+
+msgid "Response time"
+msgstr "Doba odozvy"
+
+msgid "SafeSearch"
+msgstr "Bezpečné vyhľadávanie"
+
+msgid "Save"
+msgstr "Uložiť"
+
+msgid "Search"
+msgstr "Hľadať"
+
+msgid "Search for..."
+msgstr "Hľadať..."
+
+msgid "Search language"
+msgstr "Jazyk vyhľadávania"
+
+msgid "Searching"
+msgstr "Hľadá sa"
+
+msgid "Strict"
+msgstr "Striktné"
+
+msgid "Tags"
+msgstr "Značky"
+
+msgid "Tech"
+msgstr "Technológie"
+
+msgid "This site did not provide any description."
+msgstr "Táto stránka neposkytuje žiaden popis."
+
+msgid "Time range"
+msgstr "Časový rozsah"
+
+msgid "Try different words or another category."
+msgstr "Skúste iné slová alebo inú kategóriu."
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Version"
+msgstr "Verzia"
+
+msgid "Videos"
+msgstr "Videá"
+
+msgid "Views"
+msgstr "Zobrazenia"
+
+msgid "What language do you prefer for search?"
+msgstr "Aký jazyk preferujete pre vyhľadávanie?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} z {1} vyhľadávačov"

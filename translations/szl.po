@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: szl\n"
+"X-Name: Ślōnski\n"
+
+msgid "About"
+msgstr "Informacyje"
+
+msgid "Allow"
+msgstr "Zwōl"
+
+msgid "Also refers to"
+msgstr "Może tyż ôznaczać"
+
+msgid "Anytime"
+msgstr "Z leda kedy"
+
+msgid "Author"
+msgstr "Autōr"
+
+msgid "Auto"
+msgstr "Autōmatycznie"
+
+msgid "Back"
+msgstr "Nazod"
+
+msgid "Change the language of the layout"
+msgstr "Zmiyń jynzyk układu"
+
+msgid "Close"
+msgstr "Zawrzij"
+
+msgid "Comments"
+msgstr "Kōmyntorze"
+
+msgid "Default language"
+msgstr "Wychodny jynzyk"
+
+msgid "Engine name"
+msgstr "Miano ôd wyszukowarki"
+
+msgid "Engines"
+msgstr "Wyszukowarki"
+
+msgid "Filter content"
+msgstr "Filtruj treści"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "General"
+msgstr "Ôgōlne"
+
+msgid "Image details"
+msgstr "Szczegōły ôbrazka"
+
+msgid "Images"
+msgstr "Ôbrazy"
+
+msgid "Interface language"
+msgstr "Jynzyk interfejsu"
+
+msgid "Journal"
+msgstr "Cajtōng"
+
+msgid "Last day"
+msgstr "Z ôstatnigo dnia"
+
+msgid "Last month"
+msgstr "Z ôstatnigo miesiōnca"
+
+msgid "Last week"
+msgstr "Z ôstatnigo tydnia"
+
+msgid "Last year"
+msgstr "Z ôstatnigo roku"
+
+msgid "Length"
+msgstr "Dugość"
+
+msgid "Moderate"
+msgstr "Postrzednie"
+
+msgid "Music"
+msgstr "Muzyka"
+
+msgid "News"
+msgstr "Wiadōmości"
+
+msgid "Next image"
+msgstr "Nastympny ôbrazek"
+
+msgid "Next page"
+msgstr "Dalszo strōna"
+
+msgid "No more results for {0}"
+msgstr "Niy ma wiyncyj wynikōw do {0}"
+
+msgid "No results for {0}"
+msgstr "Brak wynikōw do {0}"
+
+msgid "None"
+msgstr "Brak"
+
+msgid "Package"
+msgstr "Paket"
+
+msgid "Page {0}"
+msgstr "Strōna {0}"
+
+msgid "Pages"
+msgstr "Strōny"
+
+msgid "Preferences"
+msgstr "Preferyncyje"
+
+msgid "Previous image"
+msgstr "Piyrwyjszy ôbrazek"
+
+msgid "Previous page"
+msgstr "Piyrwyjszo strōna"
+
+msgid "Research"
+msgstr "Badania"
+
+msgid "Reset defaults"
+msgstr "Prziwrōć wychodne"
+
+msgid "Resolution"
+msgstr "Rozdzielczość"
+
+msgid "Response time"
+msgstr "Czas ôdpowiedzi"
+
+msgid "SafeSearch"
+msgstr "Bezpieczne szukanie"
+
+msgid "Save"
+msgstr "Spamiyntej"
+
+msgid "Search"
+msgstr "Szukanie"
+
+msgid "Search for..."
+msgstr "Szukej..."
+
+msgid "Search language"
+msgstr "Jynzyk wyszukowanio"
+
+msgid "Searching"
+msgstr "Szukanie"
+
+msgid "Strict"
+msgstr "Ścisłe"
+
+msgid "Tags"
+msgstr "Etykety"
+
+msgid "Tech"
+msgstr "Technologijo"
+
+msgid "This site did not provide any description."
+msgstr "Ta strōna niy podała żodnego ôpisu."
+
+msgid "Time range"
+msgstr "Zakres czasu"
+
+msgid "Try different words or another category."
+msgstr "Sprōbuj inkszych słōw abo inkszyj kategoryje."
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Version"
+msgstr "Wersyjo"
+
+msgid "Videos"
+msgstr "Wideo"
+
+msgid "Views"
+msgstr "Ôbejrzynia"
+
+msgid "What language do you prefer for search?"
+msgstr "W jakim jynzyku wolisz wyszukować?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} ze {1} wyszukiwarek"

@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: tr\n"
+"X-Name: Türkçe\n"
+
+msgid "About"
+msgstr "Hakkında"
+
+msgid "Allow"
+msgstr "İzin ver"
+
+msgid "Also refers to"
+msgstr "Şunlara da atıfta bulunabilir"
+
+msgid "Anytime"
+msgstr "Herhangi bir zaman"
+
+msgid "Author"
+msgstr "Hazırlayan"
+
+msgid "Auto"
+msgstr "Otomatik"
+
+msgid "Back"
+msgstr "Geri"
+
+msgid "Change the language of the layout"
+msgstr "Düzen dilini değiştirin"
+
+msgid "Close"
+msgstr "Kapat"
+
+msgid "Comments"
+msgstr "Yorumlar"
+
+msgid "Default language"
+msgstr "Varsayılan dil"
+
+msgid "Engine name"
+msgstr "Motor adı"
+
+msgid "Engines"
+msgstr "Motorlar"
+
+msgid "Filter content"
+msgstr "İçeriği süzün"
+
+msgid "Format"
+msgstr "Biçim"
+
+msgid "General"
+msgstr "Genel"
+
+msgid "Image details"
+msgstr "Görsel ayrıntıları"
+
+msgid "Images"
+msgstr "Görseller"
+
+msgid "Interface language"
+msgstr "Arayüz dili"
+
+msgid "Journal"
+msgstr "Günlük"
+
+msgid "Last day"
+msgstr "Geçen gün"
+
+msgid "Last month"
+msgstr "Geçen ay"
+
+msgid "Last week"
+msgstr "Geçen hafta"
+
+msgid "Last year"
+msgstr "Geçen yıl"
+
+msgid "Length"
+msgstr "Uzunluk"
+
+msgid "Moderate"
+msgstr "Orta"
+
+msgid "Music"
+msgstr "Müzik"
+
+msgid "News"
+msgstr "Haberler"
+
+msgid "Next image"
+msgstr "Sonraki görsel"
+
+msgid "Next page"
+msgstr "Sonraki sayfa"
+
+msgid "No more results for {0}"
+msgstr "{0} için başka sonuç yok"
+
+msgid "No results for {0}"
+msgstr "{0} için sonuç yok"
+
+msgid "None"
+msgstr "Yok"
+
+msgid "Package"
+msgstr "Paket"
+
+msgid "Page {0}"
+msgstr "Sayfa {0}"
+
+msgid "Pages"
+msgstr "Sayfalar"
+
+msgid "Preferences"
+msgstr "Tercihler"
+
+msgid "Previous image"
+msgstr "Önceki görsel"
+
+msgid "Previous page"
+msgstr "Önceki sayfa"
+
+msgid "Research"
+msgstr "Araştırma"
+
+msgid "Reset defaults"
+msgstr "Varsayılanları sıfırla"
+
+msgid "Resolution"
+msgstr "Çözünürlük"
+
+msgid "Response time"
+msgstr "Yanıt süresi"
+
+msgid "SafeSearch"
+msgstr "Güvenli Arama"
+
+msgid "Save"
+msgstr "Kaydet"
+
+msgid "Search"
+msgstr "Ara"
+
+msgid "Search for..."
+msgstr "Aranan..."
+
+msgid "Search language"
+msgstr "Arama dili"
+
+msgid "Searching"
+msgstr "Aranıyor"
+
+msgid "Strict"
+msgstr "Sıkı"
+
+msgid "Tags"
+msgstr "Etiketler"
+
+msgid "Tech"
+msgstr "Teknoloji"
+
+msgid "This site did not provide any description."
+msgstr "Bu site herhangi bir açıklama sağlamadı."
+
+msgid "Time range"
+msgstr "Zaman aralığı"
+
+msgid "Try different words or another category."
+msgstr "Farklı kelimeler veya başka bir kategori deneyin."
+
+msgid "Type"
+msgstr "Yaz"
+
+msgid "Version"
+msgstr "Sürüm"
+
+msgid "Videos"
+msgstr "Videolar"
+
+msgid "Views"
+msgstr "Görüntülemeler"
+
+msgid "What language do you prefer for search?"
+msgstr "Arama için hangi dili tercih edersiniz?"
+
+msgid "{0} of {1} engines"
+msgstr "{1} motordan {0} tanesi"

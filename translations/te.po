@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: te\n"
+"X-Name: తెలుగు\n"
+
+msgid "About"
+msgstr "గురించి"
+
+msgid "Allow"
+msgstr "అనుమతించు"
+
+msgid "Also refers to"
+msgstr "దీనిని కూడా సూచించవచ్చు"
+
+msgid "Anytime"
+msgstr "ఎప్పుడైనా"
+
+msgid "Author"
+msgstr "రచయిత"
+
+msgid "Auto"
+msgstr "ఆటోమేటిక్"
+
+msgid "Back"
+msgstr "వెనుకకు"
+
+msgid "Change the language of the layout"
+msgstr "వినిమయసీమ యొక్క భాషను మార్చు"
+
+msgid "Close"
+msgstr "మూసివేయండి"
+
+msgid "Comments"
+msgstr "కామెంట్ లు"
+
+msgid "Default language"
+msgstr "నిష్క్రియ భాష"
+
+msgid "Engine name"
+msgstr "యంత్రం పేరు"
+
+msgid "Engines"
+msgstr "యంత్రాలు"
+
+msgid "Filter content"
+msgstr "విషయాలను వడకట్టు"
+
+msgid "Format"
+msgstr "ఫార్మాట్"
+
+msgid "General"
+msgstr "సాధారణ"
+
+msgid "Image details"
+msgstr "చిత్ర వివరాలు"
+
+msgid "Images"
+msgstr "చిత్రాలు"
+
+msgid "Interface language"
+msgstr "వినిమయసీమ భాష"
+
+msgid "Journal"
+msgstr "జర్నల్"
+
+msgid "Last day"
+msgstr "క్రిందటి రోజు"
+
+msgid "Last month"
+msgstr "క్రిందటి నెల"
+
+msgid "Last week"
+msgstr "క్రిందటి వారం"
+
+msgid "Last year"
+msgstr "క్రిందటి సంవత్సరం"
+
+msgid "Length"
+msgstr "పొడవు"
+
+msgid "Moderate"
+msgstr "మితమైన"
+
+msgid "Music"
+msgstr "సంగీతం"
+
+msgid "News"
+msgstr "వార్తలు"
+
+msgid "Next image"
+msgstr "తదుపరి చిత్రం"
+
+msgid "Next page"
+msgstr "తరువాతి పేజీ"
+
+msgid "No more results for {0}"
+msgstr "{0} కోసం మరిన్ని ఫలితాలు లేవు"
+
+msgid "No results for {0}"
+msgstr "{0} కోసం ఫలితాలు లేవు"
+
+msgid "None"
+msgstr "ఏమీ లేదు"
+
+msgid "Package"
+msgstr "ప్యాకేజీ"
+
+msgid "Page {0}"
+msgstr "పేజీ {0}"
+
+msgid "Pages"
+msgstr "పేజీలు"
+
+msgid "Preferences"
+msgstr "అభిరుచులు"
+
+msgid "Previous image"
+msgstr "మునుపటి చిత్రం"
+
+msgid "Previous page"
+msgstr "ముందు పేజి"
+
+msgid "Research"
+msgstr "పరిశోధన"
+
+msgid "Reset defaults"
+msgstr "నిష్క్రియాలకు అమర్చు"
+
+msgid "Resolution"
+msgstr "స్పష్టత"
+
+msgid "Response time"
+msgstr "ప్రతిస్పందన సమయం"
+
+msgid "SafeSearch"
+msgstr "సురక్షితశోధన"
+
+msgid "Save"
+msgstr "సేవ్ చేయండి"
+
+msgid "Search"
+msgstr "వెతకండి"
+
+msgid "Search for..."
+msgstr "శోధించు..."
+
+msgid "Search language"
+msgstr "శోధన భాష"
+
+msgid "Searching"
+msgstr "వెతుకుతోంది"
+
+msgid "Strict"
+msgstr "కఠినమైన"
+
+msgid "Tags"
+msgstr "ట్యాగ్‌లు"
+
+msgid "Tech"
+msgstr "సాంకేతికత"
+
+msgid "This site did not provide any description."
+msgstr "ఈ సైట్ ఎలాంటి వివరణను అందించలేదు."
+
+msgid "Time range"
+msgstr "కాల శ్రేణి"
+
+msgid "Try different words or another category."
+msgstr "వేరే పదాలు లేదా వేరే వర్గాన్ని ప్రయత్నించండి."
+
+msgid "Type"
+msgstr "రకం"
+
+msgid "Version"
+msgstr "వెర్షన్"
+
+msgid "Videos"
+msgstr "వీడియోలు"
+
+msgid "Views"
+msgstr "వ్యూస్"
+
+msgid "What language do you prefer for search?"
+msgstr "శోధన కోసం మీరు ఏ భాషను ఇష్టపడతారు?"
+
+msgid "{0} of {1} engines"
+msgstr "{1} ఇంజిన్లలో {0}"

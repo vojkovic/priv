@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: ru\n"
+"X-Name: Русский\n"
+
+msgid "About"
+msgstr "О программе"
+
+msgid "Allow"
+msgstr "Использовать"
+
+msgid "Also refers to"
+msgstr "Может также означать"
+
+msgid "Anytime"
+msgstr "Любой период"
+
+msgid "Author"
+msgstr "Автор"
+
+msgid "Auto"
+msgstr "Автоматически"
+
+msgid "Back"
+msgstr "Назад"
+
+msgid "Change the language of the layout"
+msgstr "Изменить язык интерфейса"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Comments"
+msgstr "Комментарии"
+
+msgid "Default language"
+msgstr "Язык по умолчанию"
+
+msgid "Engine name"
+msgstr "Поисковая система"
+
+msgid "Engines"
+msgstr "Поисковые системы"
+
+msgid "Filter content"
+msgstr "Отбирает только пристойные результаты"
+
+msgid "Format"
+msgstr "Формат"
+
+msgid "General"
+msgstr "Общие"
+
+msgid "Image details"
+msgstr "Сведения об изображении"
+
+msgid "Images"
+msgstr "Изображения"
+
+msgid "Interface language"
+msgstr "Язык интерфейса"
+
+msgid "Journal"
+msgstr "Журнал"
+
+msgid "Last day"
+msgstr "Последние сутки"
+
+msgid "Last month"
+msgstr "Последний месяц"
+
+msgid "Last week"
+msgstr "Последняя неделя"
+
+msgid "Last year"
+msgstr "Последний год"
+
+msgid "Length"
+msgstr "Длительность"
+
+msgid "Moderate"
+msgstr "Умеренный"
+
+msgid "Music"
+msgstr "Музыка"
+
+msgid "News"
+msgstr "Новости"
+
+msgid "Next image"
+msgstr "Следующее изображение"
+
+msgid "Next page"
+msgstr "Следующая страница"
+
+msgid "No more results for {0}"
+msgstr "Больше нет результатов по запросу {0}"
+
+msgid "No results for {0}"
+msgstr "Нет результатов по запросу {0}"
+
+msgid "None"
+msgstr "Отключен"
+
+msgid "Package"
+msgstr "Пакет"
+
+msgid "Page {0}"
+msgstr "Страница {0}"
+
+msgid "Pages"
+msgstr "Страницы"
+
+msgid "Preferences"
+msgstr "Настройки"
+
+msgid "Previous image"
+msgstr "Предыдущее изображение"
+
+msgid "Previous page"
+msgstr "Предыдущая страница"
+
+msgid "Research"
+msgstr "Наука"
+
+msgid "Reset defaults"
+msgstr "Восстановить настройки по умолчанию"
+
+msgid "Resolution"
+msgstr "Разрешение"
+
+msgid "Response time"
+msgstr "Время отклика"
+
+msgid "SafeSearch"
+msgstr "Безопасный поиск"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "Search for..."
+msgstr "Искать..."
+
+msgid "Search language"
+msgstr "Язык поиска"
+
+msgid "Searching"
+msgstr "Идёт поиск"
+
+msgid "Strict"
+msgstr "Строгий"
+
+msgid "Tags"
+msgstr "Теги"
+
+msgid "Tech"
+msgstr "Технологии"
+
+msgid "This site did not provide any description."
+msgstr "Этот сайт не предоставил описания."
+
+msgid "Time range"
+msgstr "Временной диапазон"
+
+msgid "Try different words or another category."
+msgstr "Попробуйте другие слова или другую категорию."
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Version"
+msgstr "Версия"
+
+msgid "Videos"
+msgstr "Видео"
+
+msgid "Views"
+msgstr "Просмотры"
+
+msgid "What language do you prefer for search?"
+msgstr "Какой язык предпочтителен для поиска?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} из {1} поисковиков"

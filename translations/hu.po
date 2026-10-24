@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: hu\n"
+"X-Name: Magyar\n"
+
+msgid "About"
+msgstr "Névjegy"
+
+msgid "Allow"
+msgstr "Engedélyezés"
+
+msgid "Also refers to"
+msgstr "További jelentések"
+
+msgid "Anytime"
+msgstr "Bármikor"
+
+msgid "Author"
+msgstr "Szerző"
+
+msgid "Auto"
+msgstr "Automatikus"
+
+msgid "Back"
+msgstr "Vissza"
+
+msgid "Change the language of the layout"
+msgstr "A felület nyelvének megváltoztatása"
+
+msgid "Close"
+msgstr "Bezárás"
+
+msgid "Comments"
+msgstr "Kommentek"
+
+msgid "Default language"
+msgstr "Alapértelmezett nyelv"
+
+msgid "Engine name"
+msgstr "Keresőmotor neve"
+
+msgid "Engines"
+msgstr "Keresőmotorok"
+
+msgid "Filter content"
+msgstr "Tartalomszűrés"
+
+msgid "Format"
+msgstr "Formátum"
+
+msgid "General"
+msgstr "Általános"
+
+msgid "Image details"
+msgstr "Kép részletei"
+
+msgid "Images"
+msgstr "Képek"
+
+msgid "Interface language"
+msgstr "Felület nyelve"
+
+msgid "Journal"
+msgstr "Folyóirat"
+
+msgid "Last day"
+msgstr "Legutóbbi nap"
+
+msgid "Last month"
+msgstr "Legutóbbi hónap"
+
+msgid "Last week"
+msgstr "Legutóbbi hét"
+
+msgid "Last year"
+msgstr "Előző év"
+
+msgid "Length"
+msgstr "Hossz"
+
+msgid "Moderate"
+msgstr "Enyhe"
+
+msgid "Music"
+msgstr "Zene"
+
+msgid "News"
+msgstr "Hírek"
+
+msgid "Next image"
+msgstr "Következő kép"
+
+msgid "Next page"
+msgstr "Következő oldal"
+
+msgid "No more results for {0}"
+msgstr "Nincs több találat erre: {0}"
+
+msgid "No results for {0}"
+msgstr "Nincs találat erre: {0}"
+
+msgid "None"
+msgstr "Nincs"
+
+msgid "Package"
+msgstr "Csomag"
+
+msgid "Page {0}"
+msgstr "{0}. oldal"
+
+msgid "Pages"
+msgstr "Oldalak"
+
+msgid "Preferences"
+msgstr "Beállítások"
+
+msgid "Previous image"
+msgstr "Előző kép"
+
+msgid "Previous page"
+msgstr "Előző oldal"
+
+msgid "Research"
+msgstr "Kutatás"
+
+msgid "Reset defaults"
+msgstr "Alaphelyzetbe állítás"
+
+msgid "Resolution"
+msgstr "Felbontás"
+
+msgid "Response time"
+msgstr "Válaszidő"
+
+msgid "SafeSearch"
+msgstr "Felnőtt tartalom szűrése"
+
+msgid "Save"
+msgstr "Mentés"
+
+msgid "Search"
+msgstr "Keresés"
+
+msgid "Search for..."
+msgstr "Keresés…"
+
+msgid "Search language"
+msgstr "Keresés nyelve"
+
+msgid "Searching"
+msgstr "Keresés folyamatban"
+
+msgid "Strict"
+msgstr "Erős"
+
+msgid "Tags"
+msgstr "Címkék"
+
+msgid "Tech"
+msgstr "Technológia"
+
+msgid "This site did not provide any description."
+msgstr "Ennek a weblapnak nincsen leírása."
+
+msgid "Time range"
+msgstr "Időintervallum"
+
+msgid "Try different words or another category."
+msgstr "Próbáljon más szavakat vagy másik kategóriát."
+
+msgid "Type"
+msgstr "Típus"
+
+msgid "Version"
+msgstr "Verzió"
+
+msgid "Videos"
+msgstr "Videók"
+
+msgid "Views"
+msgstr "Nézetek"
+
+msgid "What language do you prefer for search?"
+msgstr "Milyen nyelven keres?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} / {1} keresőmotor"

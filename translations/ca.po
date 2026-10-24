@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: ca\n"
+"X-Name: Català\n"
+
+msgid "About"
+msgstr "Quant a"
+
+msgid "Allow"
+msgstr "Permetre"
+
+msgid "Also refers to"
+msgstr "També es refereix a"
+
+msgid "Anytime"
+msgstr "Qualsevol moment"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Auto"
+msgstr "Automàtic"
+
+msgid "Back"
+msgstr "Enrere"
+
+msgid "Change the language of the layout"
+msgstr "Canvia la llengua de la disposició"
+
+msgid "Close"
+msgstr "Tanca"
+
+msgid "Comments"
+msgstr "Comentaris"
+
+msgid "Default language"
+msgstr "Llengua predeterminada"
+
+msgid "Engine name"
+msgstr "Nom del cercador"
+
+msgid "Engines"
+msgstr "Motors de cerca"
+
+msgid "Filter content"
+msgstr "Filtra el contingut"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "General"
+msgstr "General"
+
+msgid "Image details"
+msgstr "Detalls de la imatge"
+
+msgid "Images"
+msgstr "Imatges"
+
+msgid "Interface language"
+msgstr "Idioma de la interfície"
+
+msgid "Journal"
+msgstr "Diari"
+
+msgid "Last day"
+msgstr "Les 24 darreres hores"
+
+msgid "Last month"
+msgstr "El darrer mes"
+
+msgid "Last week"
+msgstr "La setmana passada"
+
+msgid "Last year"
+msgstr "El darrer any"
+
+msgid "Length"
+msgstr "Longitud"
+
+msgid "Moderate"
+msgstr "Moderada"
+
+msgid "Music"
+msgstr "Música"
+
+msgid "News"
+msgstr "Notícies"
+
+msgid "Next image"
+msgstr "Imatge següent"
+
+msgid "Next page"
+msgstr "Pàgina següent"
+
+msgid "No more results for {0}"
+msgstr "No hi ha més resultats per a {0}"
+
+msgid "No results for {0}"
+msgstr "No hi ha resultats per a {0}"
+
+msgid "None"
+msgstr "Desactivat"
+
+msgid "Package"
+msgstr "Paquet"
+
+msgid "Page {0}"
+msgstr "Pàgina {0}"
+
+msgid "Pages"
+msgstr "Pàgines"
+
+msgid "Preferences"
+msgstr "Preferències"
+
+msgid "Previous image"
+msgstr "Imatge anterior"
+
+msgid "Previous page"
+msgstr "Pàgina anterior"
+
+msgid "Research"
+msgstr "Recerca"
+
+msgid "Reset defaults"
+msgstr "Restaura els valors predeterminats"
+
+msgid "Resolution"
+msgstr "Resolució"
+
+msgid "Response time"
+msgstr "Temps de resposta"
+
+msgid "SafeSearch"
+msgstr "Cerca segura"
+
+msgid "Save"
+msgstr "Desa"
+
+msgid "Search"
+msgstr "Cerca"
+
+msgid "Search for..."
+msgstr "Cerca..."
+
+msgid "Search language"
+msgstr "Llengua de cerca"
+
+msgid "Searching"
+msgstr "S'està cercant"
+
+msgid "Strict"
+msgstr "Estricta"
+
+msgid "Tags"
+msgstr "Etiquetes"
+
+msgid "Tech"
+msgstr "Tecnologia"
+
+msgid "This site did not provide any description."
+msgstr "Aquest lloc no proporciona cap descripció."
+
+msgid "Time range"
+msgstr "Interval de temps"
+
+msgid "Try different words or another category."
+msgstr "Prova altres paraules o una altra categoria."
+
+msgid "Type"
+msgstr "Tipus"
+
+msgid "Version"
+msgstr "Versió"
+
+msgid "Videos"
+msgstr "Vídeos"
+
+msgid "Views"
+msgstr "Vistes"
+
+msgid "What language do you prefer for search?"
+msgstr "En quina llengua preferiu cercar?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} de {1} motors"

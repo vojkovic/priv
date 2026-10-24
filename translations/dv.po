@@ -1,0 +1,188 @@
+msgid ""
+msgstr ""
+"Language: dv\n"
+"X-Name: ދިވެހި\n"
+"X-Direction: rtl\n"
+
+msgid "About"
+msgstr "ތަޢާރަފް"
+
+msgid "Allow"
+msgstr "ހުއްދަ"
+
+msgid "Also refers to"
+msgstr "މީގެ އިތުރު މާނަތައް"
+
+msgid "Anytime"
+msgstr "ކޮންމެ ވަގުތެއް"
+
+msgid "Author"
+msgstr "ލިޔުންތެރިޔާ"
+
+msgid "Auto"
+msgstr "އޮޓޯ"
+
+msgid "Back"
+msgstr "ފަހަތަށް"
+
+msgid "Change the language of the layout"
+msgstr "ލޭއައުޓްގެ ބަސް ބަދަލުކުރޭ"
+
+msgid "Close"
+msgstr "ބަންދުކުރޭ"
+
+msgid "Comments"
+msgstr "ކޮމެންޓުތައް"
+
+msgid "Default language"
+msgstr "ޑިފޯލްޓް ބަސް"
+
+msgid "Engine name"
+msgstr "އިންޖީނު"
+
+msgid "Engines"
+msgstr "އިންޖީނުތައް"
+
+msgid "Filter content"
+msgstr "ކޮންޓެންޓް ފިލްޓަރުކުރޭ"
+
+msgid "Format"
+msgstr "ފޯމެޓް"
+
+msgid "General"
+msgstr "އާންމުގޮތެއްގައި"
+
+msgid "Image details"
+msgstr "ފޮޓޯގެ ތަފްސީލު"
+
+msgid "Images"
+msgstr "ފޮޓޯ"
+
+msgid "Interface language"
+msgstr "އިންޓަފޭސްގެ ބަސް"
+
+msgid "Journal"
+msgstr "ޖާނަލް"
+
+msgid "Last day"
+msgstr "ފާއިތުވި ދުވަސް"
+
+msgid "Last month"
+msgstr "ފާއިތުވި މަސް"
+
+msgid "Last week"
+msgstr "ފާއިތުވި ހަފްތާ"
+
+msgid "Last year"
+msgstr "ފާއިތުވި އަހަރު"
+
+msgid "Length"
+msgstr "ދިގުމިން"
+
+msgid "Moderate"
+msgstr "މެދުމިނުން"
+
+msgid "Music"
+msgstr "މިއުޒިކު"
+
+msgid "News"
+msgstr "ޚަބަރު"
+
+msgid "Next image"
+msgstr "ދެން އޮތް ފޮޓޯ"
+
+msgid "Next page"
+msgstr "ދެން އޮތް ޞަފްޙާ"
+
+msgid "No more results for {0}"
+msgstr "{0} އަށް އިތުރު ނަތީޖާއެއް ނެތް"
+
+msgid "No results for {0}"
+msgstr "{0} އަށް ނަތީޖާއެއް ނެތް"
+
+msgid "None"
+msgstr "ނެތް"
+
+msgid "Package"
+msgstr "ޕެކޭޖް"
+
+msgid "Page {0}"
+msgstr "ޞަފްޙާ {0}"
+
+msgid "Pages"
+msgstr "ޞަފްޙާތައް"
+
+msgid "Preferences"
+msgstr "ތަރުޖީހުތައް"
+
+msgid "Previous image"
+msgstr "ކުރީގެ ފޮޓޯ"
+
+msgid "Previous page"
+msgstr "ކުރީގެ ޞަފްޙާ"
+
+msgid "Research"
+msgstr "ދިރާސާ"
+
+msgid "Reset defaults"
+msgstr "ޑިފޯލްޓަށް ރީސެޓްކުރޭ"
+
+msgid "Resolution"
+msgstr "ރިޒޮލިއުޝަން"
+
+msgid "Response time"
+msgstr "ޖަވާބު ދިން ވަގުތު"
+
+msgid "SafeSearch"
+msgstr "ރައްކާތެރި ހޯދުން"
+
+msgid "Save"
+msgstr "ރައްކާކުރޭ"
+
+msgid "Search"
+msgstr "ހޯދާ"
+
+msgid "Search for..."
+msgstr "ހޯދާ..."
+
+msgid "Search language"
+msgstr "ހޯދާ ބަސް"
+
+msgid "Searching"
+msgstr "ހޯދަނީ"
+
+msgid "Strict"
+msgstr "ހަރުކަށި"
+
+msgid "Tags"
+msgstr "ޓެގުތައް"
+
+msgid "Tech"
+msgstr "ޓެކްނޮލޮޖީ"
+
+msgid "This site did not provide any description."
+msgstr "މި ސައިޓުން އެއްވެސް ތަފްޞީލެއް ނުދެއެވެ."
+
+msgid "Time range"
+msgstr "ވަގުތުގެ ދާއިރާ"
+
+msgid "Try different words or another category."
+msgstr "އެހެން ބަހެއް ނުވަތަ އެހެން ބައެއް ބޭނުންކޮށްލާ."
+
+msgid "Type"
+msgstr "ބާވަތް"
+
+msgid "Version"
+msgstr "ވާޝަން"
+
+msgid "Videos"
+msgstr "ވީޑިޔޯތައް"
+
+msgid "Views"
+msgstr "ބެލުންތައް"
+
+msgid "What language do you prefer for search?"
+msgstr "ހޯދުމަށް ބޭނުންވަނީ ކޮން ބަހެއް؟"
+
+msgid "{0} of {1} engines"
+msgstr "{1} އިންޖީނުން {0}"

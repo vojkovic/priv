@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: sr\n"
+"X-Name: Српски\n"
+
+msgid "About"
+msgstr "О нама"
+
+msgid "Allow"
+msgstr "Допусти"
+
+msgid "Also refers to"
+msgstr "Може се односити и на"
+
+msgid "Anytime"
+msgstr "Било када"
+
+msgid "Author"
+msgstr "Аутор"
+
+msgid "Auto"
+msgstr "Аутоматски"
+
+msgid "Back"
+msgstr "Назад"
+
+msgid "Change the language of the layout"
+msgstr "Промените језик сајта"
+
+msgid "Close"
+msgstr "Затвори"
+
+msgid "Comments"
+msgstr "Коментари"
+
+msgid "Default language"
+msgstr "Подразумевани језик"
+
+msgid "Engine name"
+msgstr "Име претраживача"
+
+msgid "Engines"
+msgstr "Претраживачи"
+
+msgid "Filter content"
+msgstr "Филтрирајте садржај"
+
+msgid "Format"
+msgstr "Формат"
+
+msgid "General"
+msgstr "Уопштено"
+
+msgid "Image details"
+msgstr "Детаљи слике"
+
+msgid "Images"
+msgstr "Слике"
+
+msgid "Interface language"
+msgstr "Језик интерфејса"
+
+msgid "Journal"
+msgstr "Дневник"
+
+msgid "Last day"
+msgstr "Последњи дан"
+
+msgid "Last month"
+msgstr "Последњи месец"
+
+msgid "Last week"
+msgstr "Последња недеља"
+
+msgid "Last year"
+msgstr "Последња година"
+
+msgid "Length"
+msgstr "Дужина"
+
+msgid "Moderate"
+msgstr "Умерено"
+
+msgid "Music"
+msgstr "Музика"
+
+msgid "News"
+msgstr "Новости"
+
+msgid "Next image"
+msgstr "Следећа слика"
+
+msgid "Next page"
+msgstr "Следећа страница"
+
+msgid "No more results for {0}"
+msgstr "Нема више резултата за {0}"
+
+msgid "No results for {0}"
+msgstr "Нема резултата за {0}"
+
+msgid "None"
+msgstr "Ништа"
+
+msgid "Package"
+msgstr "Пакет"
+
+msgid "Page {0}"
+msgstr "Страница {0}"
+
+msgid "Pages"
+msgstr "Странице"
+
+msgid "Preferences"
+msgstr "Подешавања"
+
+msgid "Previous image"
+msgstr "Претходна слика"
+
+msgid "Previous page"
+msgstr "Претходна страница"
+
+msgid "Research"
+msgstr "Истраживање"
+
+msgid "Reset defaults"
+msgstr "Врати на подразумевано"
+
+msgid "Resolution"
+msgstr "Резолуција"
+
+msgid "Response time"
+msgstr "Време одзива"
+
+msgid "SafeSearch"
+msgstr "Безбедна Претрага"
+
+msgid "Save"
+msgstr "Сачувати"
+
+msgid "Search"
+msgstr "Претрага"
+
+msgid "Search for..."
+msgstr "Тражи ..."
+
+msgid "Search language"
+msgstr "Језик претраге"
+
+msgid "Searching"
+msgstr "Претрага у току"
+
+msgid "Strict"
+msgstr "Стриктно"
+
+msgid "Tags"
+msgstr "Tagovi"
+
+msgid "Tech"
+msgstr "Технологија"
+
+msgid "This site did not provide any description."
+msgstr "Овај сајт није дао никакав опис."
+
+msgid "Time range"
+msgstr "Временски опсег"
+
+msgid "Try different words or another category."
+msgstr "Покушајте другим речима или другом категоријом."
+
+msgid "Type"
+msgstr "Tip"
+
+msgid "Version"
+msgstr "Верзија"
+
+msgid "Videos"
+msgstr "Видео снимци"
+
+msgid "Views"
+msgstr "Прегледи"
+
+msgid "What language do you prefer for search?"
+msgstr "Који језик преферирате за претрагу?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} од {1} претраживача"

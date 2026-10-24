@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: pap\n"
+"X-Name: Papiamentu\n"
+
+msgid "About"
+msgstr "Tokante"
+
+msgid "Allow"
+msgstr "Pèrmití"
+
+msgid "Also refers to"
+msgstr "Por referí tambe na"
+
+msgid "Anytime"
+msgstr "Kualke ora"
+
+msgid "Author"
+msgstr "Outor"
+
+msgid "Auto"
+msgstr "Outomátiko"
+
+msgid "Back"
+msgstr "Bèk"
+
+msgid "Change the language of the layout"
+msgstr "Kambia e idioma di e diseño"
+
+msgid "Close"
+msgstr "Sera"
+
+msgid "Comments"
+msgstr "Komentario"
+
+msgid "Default language"
+msgstr "Idioma predeterminá"
+
+msgid "Engine name"
+msgstr "Motor"
+
+msgid "Engines"
+msgstr "Motor"
+
+msgid "Filter content"
+msgstr "Filtrá kontenido"
+
+msgid "Format"
+msgstr "Formato"
+
+msgid "General"
+msgstr "General"
+
+msgid "Image details"
+msgstr "Detaye di e imágen"
+
+msgid "Images"
+msgstr "Imagenan"
+
+msgid "Interface language"
+msgstr "Idioma di interfas"
+
+msgid "Journal"
+msgstr "Revista"
+
+msgid "Last day"
+msgstr "Último dia"
+
+msgid "Last month"
+msgstr "Último luna"
+
+msgid "Last week"
+msgstr "Último siman"
+
+msgid "Last year"
+msgstr "Último aña"
+
+msgid "Length"
+msgstr "Largura"
+
+msgid "Moderate"
+msgstr "Moderá"
+
+msgid "Music"
+msgstr "Muzik"
+
+msgid "News"
+msgstr "Notisia"
+
+msgid "Next image"
+msgstr "Siguiente imágen"
+
+msgid "Next page"
+msgstr "Siguiente página"
+
+msgid "No more results for {0}"
+msgstr "No tin mas resultado pa {0}"
+
+msgid "No results for {0}"
+msgstr "No tin resultado pa {0}"
+
+msgid "None"
+msgstr "Ningun"
+
+msgid "Package"
+msgstr "Pakete"
+
+msgid "Page {0}"
+msgstr "Página {0}"
+
+msgid "Pages"
+msgstr "Página"
+
+msgid "Preferences"
+msgstr "Preferensia"
+
+msgid "Previous image"
+msgstr "Imágen anterior"
+
+msgid "Previous page"
+msgstr "Página anterior"
+
+msgid "Research"
+msgstr "Investigashon"
+
+msgid "Reset defaults"
+msgstr "Bolbe na predeterminá"
+
+msgid "Resolution"
+msgstr "Resolushon"
+
+msgid "Response time"
+msgstr "Tempu di kontesta"
+
+msgid "SafeSearch"
+msgstr "Búsketa sigur"
+
+msgid "Save"
+msgstr "Warda"
+
+msgid "Search"
+msgstr "Buska"
+
+msgid "Search for..."
+msgstr "Buska..."
+
+msgid "Search language"
+msgstr "Idioma di búsketa"
+
+msgid "Searching"
+msgstr "Ta buska"
+
+msgid "Strict"
+msgstr "Struktu"
+
+msgid "Tags"
+msgstr "Etiketa"
+
+msgid "Tech"
+msgstr "Teknologia"
+
+msgid "This site did not provide any description."
+msgstr "E sitio aki no a duna ningun deskripshon."
+
+msgid "Time range"
+msgstr "Periodo"
+
+msgid "Try different words or another category."
+msgstr "Purba otro palabra òf otro kategoria."
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Version"
+msgstr "Vershon"
+
+msgid "Videos"
+msgstr "Videonan"
+
+msgid "Views"
+msgstr "Bista"
+
+msgid "What language do you prefer for search?"
+msgstr "Ki idioma bo ta preferá pa buska?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} di {1} motor"

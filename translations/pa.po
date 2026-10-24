@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: pa\n"
+"X-Name: ਪੰਜਾਬੀ\n"
+
+msgid "About"
+msgstr "ਬਾਰੇ"
+
+msgid "Allow"
+msgstr "ਇਜਾਜ਼ਤ"
+
+msgid "Also refers to"
+msgstr "ਇਹ ਵੀ ਦਰਸਾਉਂਦਾ ਹੈ"
+
+msgid "Anytime"
+msgstr "ਕਦੇ ਵੀ"
+
+msgid "Author"
+msgstr "ਲੇਖਕ"
+
+msgid "Auto"
+msgstr "ਆਟੋ"
+
+msgid "Back"
+msgstr "ਵਾਪਸ"
+
+msgid "Change the language of the layout"
+msgstr "ਖਾਕੇ ਦੀ ਭਾਸ਼ਾ ਬਦਲੋ"
+
+msgid "Close"
+msgstr "ਬੰਦ ਕਰੋ"
+
+msgid "Comments"
+msgstr "ਟਿੱਪਣੀਆਂ"
+
+msgid "Default language"
+msgstr "ਮੂਲ ਭਾਸ਼ਾ"
+
+msgid "Engine name"
+msgstr "ਇੰਜਣ"
+
+msgid "Engines"
+msgstr "ਇੰਜਣ"
+
+msgid "Filter content"
+msgstr "ਸਮੱਗਰੀ ਫਿਲਟਰ ਕਰੋ"
+
+msgid "Format"
+msgstr "ਫ਼ਾਰਮੈਟ"
+
+msgid "General"
+msgstr "ਆਮ"
+
+msgid "Image details"
+msgstr "ਤਸਵੀਰ ਦੇ ਵੇਰਵੇ"
+
+msgid "Images"
+msgstr "ਤਸਵੀਰਾਂ"
+
+msgid "Interface language"
+msgstr "ਇੰਟਰਫੇਸ ਭਾਸ਼ਾ"
+
+msgid "Journal"
+msgstr "ਰਸਾਲਾ"
+
+msgid "Last day"
+msgstr "ਪਿਛਲਾ ਦਿਨ"
+
+msgid "Last month"
+msgstr "ਪਿਛਲਾ ਮਹੀਨਾ"
+
+msgid "Last week"
+msgstr "ਪਿਛਲਾ ਹਫ਼ਤਾ"
+
+msgid "Last year"
+msgstr "ਪਿਛਲਾ ਸਾਲ"
+
+msgid "Length"
+msgstr "ਲੰਬਾਈ"
+
+msgid "Moderate"
+msgstr "ਦਰਮਿਆਨਾ"
+
+msgid "Music"
+msgstr "ਸੰਗੀਤ"
+
+msgid "News"
+msgstr "ਖ਼ਬਰਾਂ"
+
+msgid "Next image"
+msgstr "ਅਗਲੀ ਤਸਵੀਰ"
+
+msgid "Next page"
+msgstr "ਅਗਲਾ ਪੰਨਾ"
+
+msgid "No more results for {0}"
+msgstr "{0} ਲਈ ਹੋਰ ਨਤੀਜੇ ਨਹੀਂ"
+
+msgid "No results for {0}"
+msgstr "{0} ਲਈ ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ"
+
+msgid "None"
+msgstr "ਕੋਈ ਨਹੀਂ"
+
+msgid "Package"
+msgstr "ਪੈਕੇਜ"
+
+msgid "Page {0}"
+msgstr "ਪੰਨਾ {0}"
+
+msgid "Pages"
+msgstr "ਪੰਨੇ"
+
+msgid "Preferences"
+msgstr "ਤਰਜੀਹਾਂ"
+
+msgid "Previous image"
+msgstr "ਪਿਛਲੀ ਤਸਵੀਰ"
+
+msgid "Previous page"
+msgstr "ਪਿਛਲਾ ਪੰਨਾ"
+
+msgid "Research"
+msgstr "ਖੋਜ"
+
+msgid "Reset defaults"
+msgstr "ਮੂਲ ਸੈਟਿੰਗਾਂ ਮੁੜ ਲਾਓ"
+
+msgid "Resolution"
+msgstr "ਰੈਜ਼ੋਲਿਊਸ਼ਨ"
+
+msgid "Response time"
+msgstr "ਜਵਾਬ ਦਾ ਸਮਾਂ"
+
+msgid "SafeSearch"
+msgstr "ਸੁਰੱਖਿਅਤ ਖੋਜ"
+
+msgid "Save"
+msgstr "ਸੰਭਾਲੋ"
+
+msgid "Search"
+msgstr "ਖੋਜੋ"
+
+msgid "Search for..."
+msgstr "ਖੋਜੋ..."
+
+msgid "Search language"
+msgstr "ਖੋਜ ਭਾਸ਼ਾ"
+
+msgid "Searching"
+msgstr "ਖੋਜਿਆ ਜਾ ਰਿਹਾ ਹੈ"
+
+msgid "Strict"
+msgstr "ਸਖ਼ਤ"
+
+msgid "Tags"
+msgstr "ਟੈਗ"
+
+msgid "Tech"
+msgstr "ਤਕਨੀਕ"
+
+msgid "This site did not provide any description."
+msgstr "ਇਸ ਸਾਈਟ ਨੇ ਕੋਈ ਵੇਰਵਾ ਨਹੀਂ ਦਿੱਤਾ।"
+
+msgid "Time range"
+msgstr "ਸਮਾਂ ਸੀਮਾ"
+
+msgid "Try different words or another category."
+msgstr "ਹੋਰ ਸ਼ਬਦ ਜਾਂ ਕੋਈ ਹੋਰ ਸ਼੍ਰੇਣੀ ਅਜ਼ਮਾਓ।"
+
+msgid "Type"
+msgstr "ਕਿਸਮ"
+
+msgid "Version"
+msgstr "ਸੰਸਕਰਣ"
+
+msgid "Videos"
+msgstr "ਵੀਡੀਓ"
+
+msgid "Views"
+msgstr "ਵਿਊ"
+
+msgid "What language do you prefer for search?"
+msgstr "ਤੁਸੀਂ ਖੋਜ ਲਈ ਕਿਹੜੀ ਭਾਸ਼ਾ ਪਸੰਦ ਕਰਦੇ ਹੋ?"
+
+msgid "{0} of {1} engines"
+msgstr "{1} ਵਿੱਚੋਂ {0} ਇੰਜਣ"

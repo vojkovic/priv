@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: tt\n"
+"X-Name: Татарча\n"
+
+msgid "About"
+msgstr "Програм турында"
+
+msgid "Allow"
+msgstr "Рөхсәт бирү"
+
+msgid "Also refers to"
+msgstr "Шулай ук аңлатырга мөмкин"
+
+msgid "Anytime"
+msgstr "Теләсә вакыт"
+
+msgid "Author"
+msgstr "Автор"
+
+msgid "Auto"
+msgstr "Автоматик"
+
+msgid "Back"
+msgstr "Артка"
+
+msgid "Change the language of the layout"
+msgstr "Интерфәйс телен үзгәртү"
+
+msgid "Close"
+msgstr "Ябу"
+
+msgid "Comments"
+msgstr "Аңлатмалар"
+
+msgid "Default language"
+msgstr "Беренчел тел"
+
+msgid "Engine name"
+msgstr "Эзләгеч исеме"
+
+msgid "Engines"
+msgstr "Эзләгечләр"
+
+msgid "Filter content"
+msgstr "Эчтәлекне фильтрлау"
+
+msgid "Format"
+msgstr "Формат"
+
+msgid "General"
+msgstr "Гомуми"
+
+msgid "Image details"
+msgstr "Рәсем турында мәгълүмат"
+
+msgid "Images"
+msgstr "Сурәтләр"
+
+msgid "Interface language"
+msgstr "Интерфәйс теле"
+
+msgid "Journal"
+msgstr "Журнал"
+
+msgid "Last day"
+msgstr "Соңгы көн"
+
+msgid "Last month"
+msgstr "Соңгы ай"
+
+msgid "Last week"
+msgstr "Соңгы атна"
+
+msgid "Last year"
+msgstr "Соңгы ел"
+
+msgid "Length"
+msgstr "Озынлык"
+
+msgid "Moderate"
+msgstr "Уртача"
+
+msgid "Music"
+msgstr "Моң"
+
+msgid "News"
+msgstr "Яңалыклар"
+
+msgid "Next image"
+msgstr "Киләсе рәсем"
+
+msgid "Next page"
+msgstr "Киләсе бит"
+
+msgid "No more results for {0}"
+msgstr "{0} буенча башка нәтиҗә юк"
+
+msgid "No results for {0}"
+msgstr "{0} буенча нәтиҗә юк"
+
+msgid "None"
+msgstr "Сүнек"
+
+msgid "Package"
+msgstr "Пакет"
+
+msgid "Page {0}"
+msgstr "{0} бит"
+
+msgid "Pages"
+msgstr "Битләр"
+
+msgid "Preferences"
+msgstr "Көйләүләр"
+
+msgid "Previous image"
+msgstr "Алдагы рәсем"
+
+msgid "Previous page"
+msgstr "Элеккеге бит"
+
+msgid "Research"
+msgstr "Тикшеренү"
+
+msgid "Reset defaults"
+msgstr "Әүвәлге"
+
+msgid "Resolution"
+msgstr "Ачыклык"
+
+msgid "Response time"
+msgstr "Җавап вакыты"
+
+msgid "SafeSearch"
+msgstr "Имин эзләү"
+
+msgid "Save"
+msgstr "Саклау"
+
+msgid "Search"
+msgstr "Эзләү"
+
+msgid "Search for..."
+msgstr "Эзләү..."
+
+msgid "Search language"
+msgstr "Эзләү теле"
+
+msgid "Searching"
+msgstr "Эзләү бара"
+
+msgid "Strict"
+msgstr "Каты"
+
+msgid "Tags"
+msgstr "Тәгләр"
+
+msgid "Tech"
+msgstr "Технологияләр"
+
+msgid "This site did not provide any description."
+msgstr "Бу сайт тасвирламаны бирмәде."
+
+msgid "Time range"
+msgstr "Вакыт арасы"
+
+msgid "Try different words or another category."
+msgstr "Башка сүзләр яки башка категория белән карагыз."
+
+msgid "Type"
+msgstr "Төр"
+
+msgid "Version"
+msgstr "Версия"
+
+msgid "Videos"
+msgstr "Видео"
+
+msgid "Views"
+msgstr "Карау"
+
+msgid "What language do you prefer for search?"
+msgstr "Эзләү өчен сез нинди телне яхшырак табасыз?"
+
+msgid "{0} of {1} engines"
+msgstr "{1} эзләү системасыннан {0}"

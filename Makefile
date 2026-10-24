@@ -21,8 +21,8 @@ override LDFLAGS += $(if $(STATIC),-static)
 override LDLIBS += $(CURL_LIBS) $(XML_LIBS) -lm
 
 SRC = $(wildcard src/*.c src/engines/*.c)
-OBJ = $(SRC:%.c=obj/%.o) obj/lib/yyjson/yyjson.o
-GENERATED = src/locales.c src/i18n.c
+OBJ = $(SRC:%.c=obj/%.o) obj/i18n.o obj/lib/yyjson/yyjson.o
+GENERATED = src/locales.c
 FORMAT_SRC = $(filter-out $(GENERATED),$(wildcard src/*.c src/*.h src/engines/*.c tools/*.c))
 LINT_SRC = $(filter %.c,$(FORMAT_SRC))
 
@@ -45,6 +45,16 @@ obj/favicon_svg.h: static/favicon.svg obj/tools/embed
 	obj/tools/embed favicon_svg static/favicon.svg > $@
 
 obj/src/main.o: obj/style.h obj/script.h obj/favicon_svg.h
+
+obj/tools/po2c: tools/po2c.c
+	@mkdir -p $(@D)
+	$(CC) -o $@ $<
+
+obj/i18n.c: $(wildcard translations/*.po) obj/tools/po2c
+	obj/tools/po2c translations/*.po > $@
+
+obj/i18n.o: obj/i18n.c src/i18n.h
+	$(CC) $(CPPFLAGS) -Isrc -O2 -c -o $@ $<
 
 obj/lib/yyjson/yyjson.o: lib/yyjson/yyjson.c
 	@mkdir -p $(@D)

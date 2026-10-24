@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: en\n"
+"X-Name: English\n"
+
+msgid "About"
+msgstr ""
+
+msgid "Allow"
+msgstr "On"
+
+msgid "Also refers to"
+msgstr ""
+
+msgid "Anytime"
+msgstr "Any time"
+
+msgid "Author"
+msgstr ""
+
+msgid "Auto"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Change the language of the layout"
+msgstr "The language of menus and buttons"
+
+msgid "Close"
+msgstr ""
+
+msgid "Comments"
+msgstr ""
+
+msgid "Default language"
+msgstr "All languages"
+
+msgid "Engine name"
+msgstr "Engine"
+
+msgid "Engines"
+msgstr ""
+
+msgid "Filter content"
+msgstr "Hide explicit results"
+
+msgid "Format"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Image details"
+msgstr ""
+
+msgid "Images"
+msgstr ""
+
+msgid "Interface language"
+msgstr ""
+
+msgid "Journal"
+msgstr ""
+
+msgid "Last day"
+msgstr "Past 24 hours"
+
+msgid "Last month"
+msgstr "Past month"
+
+msgid "Last week"
+msgstr "Past week"
+
+msgid "Last year"
+msgstr "Past year"
+
+msgid "Length"
+msgstr ""
+
+msgid "Moderate"
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "News"
+msgstr ""
+
+msgid "Next image"
+msgstr ""
+
+msgid "Next page"
+msgstr ""
+
+msgid "No more results for {0}"
+msgstr ""
+
+msgid "No results for {0}"
+msgstr ""
+
+msgid "None"
+msgstr "Off"
+
+msgid "Package"
+msgstr ""
+
+msgid "Page {0}"
+msgstr ""
+
+msgid "Pages"
+msgstr ""
+
+msgid "Preferences"
+msgstr ""
+
+msgid "Previous image"
+msgstr ""
+
+msgid "Previous page"
+msgstr ""
+
+msgid "Research"
+msgstr ""
+
+msgid "Reset defaults"
+msgstr "Restore defaults"
+
+msgid "Resolution"
+msgstr ""
+
+msgid "Response time"
+msgstr ""
+
+msgid "SafeSearch"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Search for..."
+msgstr ""
+
+msgid "Search language"
+msgstr ""
+
+msgid "Searching"
+msgstr ""
+
+msgid "Strict"
+msgstr ""
+
+msgid "Tags"
+msgstr ""
+
+msgid "Tech"
+msgstr ""
+
+msgid "This site did not provide any description."
+msgstr "No description available."
+
+msgid "Time range"
+msgstr ""
+
+msgid "Try different words or another category."
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Version"
+msgstr ""
+
+msgid "Videos"
+msgstr ""
+
+msgid "Views"
+msgstr ""
+
+msgid "What language do you prefer for search?"
+msgstr "The language results should be in"
+
+msgid "{0} of {1} engines"
+msgstr ""

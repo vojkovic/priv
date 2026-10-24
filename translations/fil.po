@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: fil\n"
+"X-Name: Filipino\n"
+
+msgid "About"
+msgstr "Tungkol"
+
+msgid "Allow"
+msgstr "Payagan"
+
+msgid "Also refers to"
+msgstr "Maaari ring tumukoy sa"
+
+msgid "Anytime"
+msgstr "Kahit anong oras"
+
+msgid "Author"
+msgstr "Awtor"
+
+msgid "Auto"
+msgstr "Awtomatiko"
+
+msgid "Back"
+msgstr "Bumalik"
+
+msgid "Change the language of the layout"
+msgstr "Ibahin ang layout pangwika"
+
+msgid "Close"
+msgstr "Isara"
+
+msgid "Comments"
+msgstr "Mga komento"
+
+msgid "Default language"
+msgstr "Default na wika"
+
+msgid "Engine name"
+msgstr "Pangalan ng engine"
+
+msgid "Engines"
+msgstr "Engines"
+
+msgid "Filter content"
+msgstr "Salain ang mga nilalaman"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "General"
+msgstr "Pangkalahatan"
+
+msgid "Image details"
+msgstr "Mga detalye ng larawan"
+
+msgid "Images"
+msgstr "Mga larawan"
+
+msgid "Interface language"
+msgstr "Ang wika ng Interface"
+
+msgid "Journal"
+msgstr "Talaan"
+
+msgid "Last day"
+msgstr "Nakaraang araw"
+
+msgid "Last month"
+msgstr "Nakaraang buwan"
+
+msgid "Last week"
+msgstr "Nakaraang linggo"
+
+msgid "Last year"
+msgstr "Nakaraang taon"
+
+msgid "Length"
+msgstr "Haba"
+
+msgid "Moderate"
+msgstr "Banayad"
+
+msgid "Music"
+msgstr "Musika"
+
+msgid "News"
+msgstr "Mga balita"
+
+msgid "Next image"
+msgstr "Susunod na larawan"
+
+msgid "Next page"
+msgstr "Susunod na page"
+
+msgid "No more results for {0}"
+msgstr "Wala nang resulta para sa {0}"
+
+msgid "No results for {0}"
+msgstr "Walang resulta para sa {0}"
+
+msgid "None"
+msgstr "Wala"
+
+msgid "Package"
+msgstr "Package"
+
+msgid "Page {0}"
+msgstr "Pahina {0}"
+
+msgid "Pages"
+msgstr "Mga pahina"
+
+msgid "Preferences"
+msgstr "Mga Kagustuhan"
+
+msgid "Previous image"
+msgstr "Nakaraang larawan"
+
+msgid "Previous page"
+msgstr "Kaninang Pahina"
+
+msgid "Research"
+msgstr "Pananaliksik"
+
+msgid "Reset defaults"
+msgstr "I-reset ang defaults"
+
+msgid "Resolution"
+msgstr "Resolusyon"
+
+msgid "Response time"
+msgstr "Oras ng pagtugon"
+
+msgid "SafeSearch"
+msgstr "Ligtas na Paghahanap"
+
+msgid "Save"
+msgstr "I-save"
+
+msgid "Search"
+msgstr "Maghanap"
+
+msgid "Search for..."
+msgstr "Maghanap ng..."
+
+msgid "Search language"
+msgstr "Ang wika ng paghahanap"
+
+msgid "Searching"
+msgstr "Naghahanap"
+
+msgid "Strict"
+msgstr "Mahigpit"
+
+msgid "Tags"
+msgstr "Mga Tag/Tatak"
+
+msgid "Tech"
+msgstr "Teknolohiya"
+
+msgid "This site did not provide any description."
+msgstr "Ang site na ito ay hindi nagbigay ng deskripsyon."
+
+msgid "Time range"
+msgstr "Agwat ng oras"
+
+msgid "Try different words or another category."
+msgstr "Subukan ang ibang mga salita o ibang kategorya."
+
+msgid "Type"
+msgstr "Uri"
+
+msgid "Version"
+msgstr "Bersyon"
+
+msgid "Videos"
+msgstr "Mga bidyo"
+
+msgid "Views"
+msgstr "mga pananaw"
+
+msgid "What language do you prefer for search?"
+msgstr "Ano ang gusto mong wika sa paghahanap?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} sa {1} na engine"

@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: gl\n"
+"X-Name: Galego\n"
+
+msgid "About"
+msgstr "Sobre"
+
+msgid "Allow"
+msgstr "Permitir"
+
+msgid "Also refers to"
+msgstr "Tamén pode referirse a"
+
+msgid "Anytime"
+msgstr "Calquera momento"
+
+msgid "Author"
+msgstr "Autoría"
+
+msgid "Auto"
+msgstr "Automático"
+
+msgid "Back"
+msgstr "Volver"
+
+msgid "Change the language of the layout"
+msgstr "Cambiar o idioma da interface"
+
+msgid "Close"
+msgstr "Pechar"
+
+msgid "Comments"
+msgstr "Comentarios"
+
+msgid "Default language"
+msgstr "Idioma por defecto"
+
+msgid "Engine name"
+msgstr "Nome do motor"
+
+msgid "Engines"
+msgstr "Motores"
+
+msgid "Filter content"
+msgstr "Filtro de contido"
+
+msgid "Format"
+msgstr "Formato"
+
+msgid "General"
+msgstr "Xeral"
+
+msgid "Image details"
+msgstr "Detalles da imaxe"
+
+msgid "Images"
+msgstr "Imaxes"
+
+msgid "Interface language"
+msgstr "Idioma da interface"
+
+msgid "Journal"
+msgstr "Xornal"
+
+msgid "Last day"
+msgstr "Último día"
+
+msgid "Last month"
+msgstr "Último mes"
+
+msgid "Last week"
+msgstr "Última semana"
+
+msgid "Last year"
+msgstr "Último ano"
+
+msgid "Length"
+msgstr "Duración"
+
+msgid "Moderate"
+msgstr "Moderada"
+
+msgid "Music"
+msgstr "Música"
+
+msgid "News"
+msgstr "Novas"
+
+msgid "Next image"
+msgstr "Imaxe seguinte"
+
+msgid "Next page"
+msgstr "Páxina seguinte"
+
+msgid "No more results for {0}"
+msgstr "Non hai máis resultados para {0}"
+
+msgid "No results for {0}"
+msgstr "Non hai resultados para {0}"
+
+msgid "None"
+msgstr "Ningunha"
+
+msgid "Package"
+msgstr "Paquete"
+
+msgid "Page {0}"
+msgstr "Páxina {0}"
+
+msgid "Pages"
+msgstr "Páxinas"
+
+msgid "Preferences"
+msgstr "Axustes"
+
+msgid "Previous image"
+msgstr "Imaxe anterior"
+
+msgid "Previous page"
+msgstr "Páxina anterior"
+
+msgid "Research"
+msgstr "Investigación"
+
+msgid "Reset defaults"
+msgstr "Restablecer"
+
+msgid "Resolution"
+msgstr "Resolución"
+
+msgid "Response time"
+msgstr "Tempo de resposta"
+
+msgid "SafeSearch"
+msgstr "Busca segura"
+
+msgid "Save"
+msgstr "Gardar"
+
+msgid "Search"
+msgstr "Buscar"
+
+msgid "Search for..."
+msgstr "Buscar por..."
+
+msgid "Search language"
+msgstr "Idioma de busca"
+
+msgid "Searching"
+msgstr "Buscando"
+
+msgid "Strict"
+msgstr "Estrita"
+
+msgid "Tags"
+msgstr "Etiquetas"
+
+msgid "Tech"
+msgstr "Tecnoloxía"
+
+msgid "This site did not provide any description."
+msgstr "A web non proporcionou unha descrición."
+
+msgid "Time range"
+msgstr "Marco temporal"
+
+msgid "Try different words or another category."
+msgstr "Proba con outras palabras ou outra categoría."
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Version"
+msgstr "Versión"
+
+msgid "Videos"
+msgstr "Vídeos"
+
+msgid "Views"
+msgstr "Visualizacións"
+
+msgid "What language do you prefer for search?"
+msgstr "Que idioma prefires para buscar?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} de {1} motores"

@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: nl\n"
+"X-Name: Nederlands\n"
+
+msgid "About"
+msgstr "Over"
+
+msgid "Allow"
+msgstr "Toestaan"
+
+msgid "Also refers to"
+msgstr "Kan ook verwijzen naar"
+
+msgid "Anytime"
+msgstr "Enig moment"
+
+msgid "Author"
+msgstr "Auteur"
+
+msgid "Auto"
+msgstr "Automatisch"
+
+msgid "Back"
+msgstr "Terug"
+
+msgid "Change the language of the layout"
+msgstr "Wijzig de taal van de lay-out"
+
+msgid "Close"
+msgstr "Sluiten"
+
+msgid "Comments"
+msgstr "Reacties"
+
+msgid "Default language"
+msgstr "Standaardtaal"
+
+msgid "Engine name"
+msgstr "Naam zoekmachine"
+
+msgid "Engines"
+msgstr "Zoekmachines"
+
+msgid "Filter content"
+msgstr "Filteren op inhoud"
+
+msgid "Format"
+msgstr "Formaat"
+
+msgid "General"
+msgstr "Algemeen"
+
+msgid "Image details"
+msgstr "Afbeeldingsdetails"
+
+msgid "Images"
+msgstr "Afbeeldingen"
+
+msgid "Interface language"
+msgstr "Interfacetaal"
+
+msgid "Journal"
+msgstr "Dagboek"
+
+msgid "Last day"
+msgstr "Gisteren"
+
+msgid "Last month"
+msgstr "Afgelopen maand"
+
+msgid "Last week"
+msgstr "Afgelopen week"
+
+msgid "Last year"
+msgstr "Afgelopen jaar"
+
+msgid "Length"
+msgstr "Lengte"
+
+msgid "Moderate"
+msgstr "Gemiddeld"
+
+msgid "Music"
+msgstr "Muziek"
+
+msgid "News"
+msgstr "Nieuws"
+
+msgid "Next image"
+msgstr "Volgende afbeelding"
+
+msgid "Next page"
+msgstr "Volgende pagina"
+
+msgid "No more results for {0}"
+msgstr "Geen verdere resultaten voor {0}"
+
+msgid "No results for {0}"
+msgstr "Geen resultaten voor {0}"
+
+msgid "None"
+msgstr "Geen"
+
+msgid "Package"
+msgstr "Pakket"
+
+msgid "Page {0}"
+msgstr "Pagina {0}"
+
+msgid "Pages"
+msgstr "Pagina's"
+
+msgid "Preferences"
+msgstr "Voorkeuren"
+
+msgid "Previous image"
+msgstr "Vorige afbeelding"
+
+msgid "Previous page"
+msgstr "Vorige pagina"
+
+msgid "Research"
+msgstr "Onderzoek"
+
+msgid "Reset defaults"
+msgstr "Herstel standaardinstellingen"
+
+msgid "Resolution"
+msgstr "Resolutie"
+
+msgid "Response time"
+msgstr "Responstijd"
+
+msgid "SafeSearch"
+msgstr "VeiligZoeken"
+
+msgid "Save"
+msgstr "Opslaan"
+
+msgid "Search"
+msgstr "Zoeken"
+
+msgid "Search for..."
+msgstr "Zoeken naar..."
+
+msgid "Search language"
+msgstr "Zoektaal"
+
+msgid "Searching"
+msgstr "Bezig met zoeken"
+
+msgid "Strict"
+msgstr "Strikt"
+
+msgid "Tags"
+msgstr "Labels"
+
+msgid "Tech"
+msgstr "Technologie"
+
+msgid "This site did not provide any description."
+msgstr "Deze site heeft geen beschrijving gegeven."
+
+msgid "Time range"
+msgstr "Tijdspanne"
+
+msgid "Try different words or another category."
+msgstr "Probeer andere woorden of een andere categorie."
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Version"
+msgstr "Versie"
+
+msgid "Videos"
+msgstr "Video’s"
+
+msgid "Views"
+msgstr "Aantal keer bekeken"
+
+msgid "What language do you prefer for search?"
+msgstr "Met welke taalinstelling wil je zoeken?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} van {1} zoekmachines"

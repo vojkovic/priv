@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: ta\n"
+"X-Name: தமிழ்\n"
+
+msgid "About"
+msgstr "பற்றி"
+
+msgid "Allow"
+msgstr "அனுமதி"
+
+msgid "Also refers to"
+msgstr "இதையும் குறிக்கலாம்"
+
+msgid "Anytime"
+msgstr "எந்நேரமும்"
+
+msgid "Author"
+msgstr "நூலாசிரியர்"
+
+msgid "Auto"
+msgstr "தானியங்கு"
+
+msgid "Back"
+msgstr "பின்"
+
+msgid "Change the language of the layout"
+msgstr "வடிவமைப்பின் மொழியை மாற்று"
+
+msgid "Close"
+msgstr "மூடு"
+
+msgid "Comments"
+msgstr "கருத்துக்கள்"
+
+msgid "Default language"
+msgstr "இயல்புநிலை மொழி"
+
+msgid "Engine name"
+msgstr "எந்திரத்தின் பெயர்"
+
+msgid "Engines"
+msgstr "எந்திரங்கள்"
+
+msgid "Filter content"
+msgstr "வடிகட்டி உள்ளடக்கம்"
+
+msgid "Format"
+msgstr "வடிவம்"
+
+msgid "General"
+msgstr "பொதுத் தேடல்"
+
+msgid "Image details"
+msgstr "படத்தின் விவரங்கள்"
+
+msgid "Images"
+msgstr "படங்கள்"
+
+msgid "Interface language"
+msgstr "முகப்பின் மொழி"
+
+msgid "Journal"
+msgstr "பத்திரிகை"
+
+msgid "Last day"
+msgstr "நேற்று"
+
+msgid "Last month"
+msgstr "கடந்த மாதம்"
+
+msgid "Last week"
+msgstr "கடந்த வாரம்"
+
+msgid "Last year"
+msgstr "கடந்த ஆண்டு"
+
+msgid "Length"
+msgstr "நீளம்"
+
+msgid "Moderate"
+msgstr "மிதமான"
+
+msgid "Music"
+msgstr "இசை"
+
+msgid "News"
+msgstr "செய்திகள்"
+
+msgid "Next image"
+msgstr "அடுத்த படம்"
+
+msgid "Next page"
+msgstr "அடுத்த பக்கம்"
+
+msgid "No more results for {0}"
+msgstr "{0}க்கு மேலும் முடிவுகள் இல்லை"
+
+msgid "No results for {0}"
+msgstr "{0}க்கு முடிவுகள் இல்லை"
+
+msgid "None"
+msgstr "எதுவுமில்லை"
+
+msgid "Package"
+msgstr "தொகுப்பு"
+
+msgid "Page {0}"
+msgstr "பக்கம் {0}"
+
+msgid "Pages"
+msgstr "பக்கங்கள்"
+
+msgid "Preferences"
+msgstr "விருப்பத்தேர்வு"
+
+msgid "Previous image"
+msgstr "முந்தைய படம்"
+
+msgid "Previous page"
+msgstr "முந்தைய பக்கம்"
+
+msgid "Research"
+msgstr "ஆராய்ச்சி"
+
+msgid "Reset defaults"
+msgstr "இயல்புநிலைக்குத் திருப்பவும்"
+
+msgid "Resolution"
+msgstr "பகுத்தல்"
+
+msgid "Response time"
+msgstr "பதில் நேரம்"
+
+msgid "SafeSearch"
+msgstr "பாதுகாப்பன தேடல்"
+
+msgid "Save"
+msgstr "சேமி"
+
+msgid "Search"
+msgstr "தேடு"
+
+msgid "Search for..."
+msgstr "எதைப்பற்றி தேட வேண்டும..."
+
+msgid "Search language"
+msgstr "தேடல் மொழி"
+
+msgid "Searching"
+msgstr "தேடுகிறது"
+
+msgid "Strict"
+msgstr "கண்டிப்பான"
+
+msgid "Tags"
+msgstr "குறிச்சொற்கள்"
+
+msgid "Tech"
+msgstr "தொழில்நுட்பம்"
+
+msgid "This site did not provide any description."
+msgstr "இந்த தளம் எந்த விளக்கத்தையும் வழங்கவில்லை."
+
+msgid "Time range"
+msgstr "நேர வரம்பு"
+
+msgid "Try different words or another category."
+msgstr "வேறு சொற்களையோ வேறு வகையையோ முயலவும்."
+
+msgid "Type"
+msgstr "வகை"
+
+msgid "Version"
+msgstr "பதிப்பு"
+
+msgid "Videos"
+msgstr "காணொளிகள்"
+
+msgid "Views"
+msgstr "பார்க்கப்பட்டது"
+
+msgid "What language do you prefer for search?"
+msgstr "தேடலுக்கு எந்த மொழியை விரும்புகிறீர்கள்?"
+
+msgid "{0} of {1} engines"
+msgstr "{1} பொறிகளில் {0}"

@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: sv\n"
+"X-Name: Svenska\n"
+
+msgid "About"
+msgstr "Om"
+
+msgid "Allow"
+msgstr "Tillåt"
+
+msgid "Also refers to"
+msgstr "Kan också syfta på"
+
+msgid "Anytime"
+msgstr "Närsom"
+
+msgid "Author"
+msgstr "Upphovsman"
+
+msgid "Auto"
+msgstr "Automatiskt"
+
+msgid "Back"
+msgstr "Tillbaka"
+
+msgid "Change the language of the layout"
+msgstr "Ändra språk för layouten"
+
+msgid "Close"
+msgstr "Stäng"
+
+msgid "Comments"
+msgstr "Kommentarer"
+
+msgid "Default language"
+msgstr "Standardspråk"
+
+msgid "Engine name"
+msgstr "Sökmotorns namn"
+
+msgid "Engines"
+msgstr "Sökmotorer"
+
+msgid "Filter content"
+msgstr "Filtrera innehåll"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "General"
+msgstr "Allmänt"
+
+msgid "Image details"
+msgstr "Bilddetaljer"
+
+msgid "Images"
+msgstr "Bilder"
+
+msgid "Interface language"
+msgstr "Gränssnittspråk"
+
+msgid "Journal"
+msgstr "Journal"
+
+msgid "Last day"
+msgstr "Igår"
+
+msgid "Last month"
+msgstr "Förra månaden"
+
+msgid "Last week"
+msgstr "Förra veckan"
+
+msgid "Last year"
+msgstr "Förra året"
+
+msgid "Length"
+msgstr "Längd"
+
+msgid "Moderate"
+msgstr "Måttlig"
+
+msgid "Music"
+msgstr "Musik"
+
+msgid "News"
+msgstr "Nyheter"
+
+msgid "Next image"
+msgstr "Nästa bild"
+
+msgid "Next page"
+msgstr "Nästa sida"
+
+msgid "No more results for {0}"
+msgstr "Inga fler resultat för {0}"
+
+msgid "No results for {0}"
+msgstr "Inga resultat för {0}"
+
+msgid "None"
+msgstr "Inga"
+
+msgid "Package"
+msgstr "Paket"
+
+msgid "Page {0}"
+msgstr "Sida {0}"
+
+msgid "Pages"
+msgstr "Sidor"
+
+msgid "Preferences"
+msgstr "Inställningar"
+
+msgid "Previous image"
+msgstr "Föregående bild"
+
+msgid "Previous page"
+msgstr "Föregående sida"
+
+msgid "Research"
+msgstr "Forskning"
+
+msgid "Reset defaults"
+msgstr "Återställ standardvärden"
+
+msgid "Resolution"
+msgstr "Upplösning"
+
+msgid "Response time"
+msgstr "Svarstid"
+
+msgid "SafeSearch"
+msgstr "Säker sökning"
+
+msgid "Save"
+msgstr "Spara"
+
+msgid "Search"
+msgstr "Sök"
+
+msgid "Search for..."
+msgstr "Sök efter..."
+
+msgid "Search language"
+msgstr "Sökspråk"
+
+msgid "Searching"
+msgstr "Söker"
+
+msgid "Strict"
+msgstr "Strikt"
+
+msgid "Tags"
+msgstr "Taggar"
+
+msgid "Tech"
+msgstr "Teknik"
+
+msgid "This site did not provide any description."
+msgstr "Denna sida gav ingen beskrivning."
+
+msgid "Time range"
+msgstr "Tidsintervall"
+
+msgid "Try different words or another category."
+msgstr "Prova andra ord eller en annan kategori."
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Videos"
+msgstr "Videor"
+
+msgid "Views"
+msgstr "Visningar"
+
+msgid "What language do you prefer for search?"
+msgstr "Vilket språk föredrar du för att söka?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} av {1} sökmotorer"

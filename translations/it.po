@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: it\n"
+"X-Name: Italiano\n"
+
+msgid "About"
+msgstr "Al riguardo"
+
+msgid "Allow"
+msgstr "Autorizza"
+
+msgid "Also refers to"
+msgstr "Può riferirsi anche a"
+
+msgid "Anytime"
+msgstr "Qualsiasi data"
+
+msgid "Author"
+msgstr "Autore"
+
+msgid "Auto"
+msgstr "Automatico"
+
+msgid "Back"
+msgstr "Indietro"
+
+msgid "Change the language of the layout"
+msgstr "Cambia la lingua dell'interfaccia"
+
+msgid "Close"
+msgstr "Chiudi"
+
+msgid "Comments"
+msgstr "Commenti"
+
+msgid "Default language"
+msgstr "Lingua predefinita"
+
+msgid "Engine name"
+msgstr "Nome del motore"
+
+msgid "Engines"
+msgstr "Motori"
+
+msgid "Filter content"
+msgstr "Filtra il contenuto"
+
+msgid "Format"
+msgstr "Formato"
+
+msgid "General"
+msgstr "Generale"
+
+msgid "Image details"
+msgstr "Dettagli immagine"
+
+msgid "Images"
+msgstr "Immagini"
+
+msgid "Interface language"
+msgstr "Lingua dell'interfaccia"
+
+msgid "Journal"
+msgstr "Giornale"
+
+msgid "Last day"
+msgstr "Ultimo giorno"
+
+msgid "Last month"
+msgstr "Ultimo mese"
+
+msgid "Last week"
+msgstr "Ultima settimana"
+
+msgid "Last year"
+msgstr "Ultimo anno"
+
+msgid "Length"
+msgstr "Lunghezza"
+
+msgid "Moderate"
+msgstr "Moderata"
+
+msgid "Music"
+msgstr "Musica"
+
+msgid "News"
+msgstr "Notizie"
+
+msgid "Next image"
+msgstr "Immagine successiva"
+
+msgid "Next page"
+msgstr "Pagina successiva"
+
+msgid "No more results for {0}"
+msgstr "Nessun altro risultato per {0}"
+
+msgid "No results for {0}"
+msgstr "Nessun risultato per {0}"
+
+msgid "None"
+msgstr "Nessuna"
+
+msgid "Package"
+msgstr "Pacchetto"
+
+msgid "Page {0}"
+msgstr "Pagina {0}"
+
+msgid "Pages"
+msgstr "Pagine"
+
+msgid "Preferences"
+msgstr "Preferenze"
+
+msgid "Previous image"
+msgstr "Immagine precedente"
+
+msgid "Previous page"
+msgstr "Pagina precedente"
+
+msgid "Research"
+msgstr "Ricerca scientifica"
+
+msgid "Reset defaults"
+msgstr "Ripristina i valori predefiniti"
+
+msgid "Resolution"
+msgstr "Risoluzione"
+
+msgid "Response time"
+msgstr "Tempo di risposta"
+
+msgid "SafeSearch"
+msgstr "Ricerca Sicura"
+
+msgid "Save"
+msgstr "Salva"
+
+msgid "Search"
+msgstr "Cerca"
+
+msgid "Search for..."
+msgstr "Cerca..."
+
+msgid "Search language"
+msgstr "Lingua di ricerca"
+
+msgid "Searching"
+msgstr "Ricerca in corso"
+
+msgid "Strict"
+msgstr "Severo"
+
+msgid "Tags"
+msgstr "Etichette"
+
+msgid "Tech"
+msgstr "Tecnologia"
+
+msgid "This site did not provide any description."
+msgstr "Questo sito non fornisce nessuna descrizione."
+
+msgid "Time range"
+msgstr "Intervallo di tempo"
+
+msgid "Try different words or another category."
+msgstr "Prova con altre parole o un'altra categoria."
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Version"
+msgstr "Versione"
+
+msgid "Videos"
+msgstr "Video"
+
+msgid "Views"
+msgstr "Visualizzazioni"
+
+msgid "What language do you prefer for search?"
+msgstr "Che lingua preferisci per eseguire la ricerca?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} di {1} motori"

@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: vi\n"
+"X-Name: Tiếng Việt\n"
+
+msgid "About"
+msgstr "Thông tin"
+
+msgid "Allow"
+msgstr "Cho phép"
+
+msgid "Also refers to"
+msgstr "Cũng có thể là"
+
+msgid "Anytime"
+msgstr "Bất kỳ lúc nào"
+
+msgid "Author"
+msgstr "Tác giả"
+
+msgid "Auto"
+msgstr "Tự động"
+
+msgid "Back"
+msgstr "Quay lại"
+
+msgid "Change the language of the layout"
+msgstr "Thay đổi ngôn ngữ giao diện"
+
+msgid "Close"
+msgstr "Đóng"
+
+msgid "Comments"
+msgstr "Bình luận"
+
+msgid "Default language"
+msgstr "Ngôn ngữ mặc định"
+
+msgid "Engine name"
+msgstr "Tên trình tìm kiếm"
+
+msgid "Engines"
+msgstr "Các trình tìm kiếm"
+
+msgid "Filter content"
+msgstr "Lọc nội dung"
+
+msgid "Format"
+msgstr "Định dạng"
+
+msgid "General"
+msgstr "Chung"
+
+msgid "Image details"
+msgstr "Chi tiết hình ảnh"
+
+msgid "Images"
+msgstr "Ảnh"
+
+msgid "Interface language"
+msgstr "Ngôn ngữ giao diện"
+
+msgid "Journal"
+msgstr "Tạp chí"
+
+msgid "Last day"
+msgstr "Hôm trước"
+
+msgid "Last month"
+msgstr "Tháng trước"
+
+msgid "Last week"
+msgstr "Tuần trước"
+
+msgid "Last year"
+msgstr "Năm trước"
+
+msgid "Length"
+msgstr "Độ dài"
+
+msgid "Moderate"
+msgstr "Vừa phải"
+
+msgid "Music"
+msgstr "Nhạc"
+
+msgid "News"
+msgstr "Tin tức"
+
+msgid "Next image"
+msgstr "Hình ảnh tiếp theo"
+
+msgid "Next page"
+msgstr "Trang sau"
+
+msgid "No more results for {0}"
+msgstr "Không còn kết quả cho {0}"
+
+msgid "No results for {0}"
+msgstr "Không có kết quả cho {0}"
+
+msgid "None"
+msgstr "Không"
+
+msgid "Package"
+msgstr "Gói"
+
+msgid "Page {0}"
+msgstr "Trang {0}"
+
+msgid "Pages"
+msgstr "Trang"
+
+msgid "Preferences"
+msgstr "Tuỳ chỉnh"
+
+msgid "Previous image"
+msgstr "Hình ảnh trước"
+
+msgid "Previous page"
+msgstr "Trang trước"
+
+msgid "Research"
+msgstr "Nghiên cứu"
+
+msgid "Reset defaults"
+msgstr "Đưa về mặc định"
+
+msgid "Resolution"
+msgstr "Độ phân giải"
+
+msgid "Response time"
+msgstr "Thời gian phản hồi"
+
+msgid "SafeSearch"
+msgstr "Tìm Kiếm An Toàn"
+
+msgid "Save"
+msgstr "Lưu"
+
+msgid "Search"
+msgstr "Tìm kiếm"
+
+msgid "Search for..."
+msgstr "Tìm kiếm về..."
+
+msgid "Search language"
+msgstr "Ngôn ngữ tìm kiếm"
+
+msgid "Searching"
+msgstr "Đang tìm kiếm"
+
+msgid "Strict"
+msgstr "Nghiêm ngặt"
+
+msgid "Tags"
+msgstr "Thẻ"
+
+msgid "Tech"
+msgstr "Công nghệ"
+
+msgid "This site did not provide any description."
+msgstr "Trang web này không cung cấp bất kỳ mô tả nào."
+
+msgid "Time range"
+msgstr "Khoảng thời gian"
+
+msgid "Try different words or another category."
+msgstr "Hãy thử từ khác hoặc danh mục khác."
+
+msgid "Type"
+msgstr "Loại"
+
+msgid "Version"
+msgstr "Phiên bản"
+
+msgid "Videos"
+msgstr "Video"
+
+msgid "Views"
+msgstr "Lượt xem"
+
+msgid "What language do you prefer for search?"
+msgstr "Bạn muốn tìm kiếm bằng ngôn ngữ nào?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} trên {1} công cụ"

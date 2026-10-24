@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: ml\n"
+"X-Name: മലയാളം\n"
+
+msgid "About"
+msgstr "കുറിച്ച്"
+
+msgid "Allow"
+msgstr "അനുവദിക്കുക"
+
+msgid "Also refers to"
+msgstr "ഇതും സൂചിപ്പിക്കാം"
+
+msgid "Anytime"
+msgstr "ഏതു സമയത്തും"
+
+msgid "Author"
+msgstr "രചയിതാവ്"
+
+msgid "Auto"
+msgstr "സ്വയമേവ"
+
+msgid "Back"
+msgstr "തിരികെ"
+
+msgid "Change the language of the layout"
+msgstr "ലേഔട്ടിന്റെ ഭാഷ മാറ്റുക"
+
+msgid "Close"
+msgstr "അടയ്ക്കുക"
+
+msgid "Comments"
+msgstr "അഭിപ്രായങ്ങൾ"
+
+msgid "Default language"
+msgstr "സ്ഥിര ഭാഷ"
+
+msgid "Engine name"
+msgstr "എഞ്ചിൻ"
+
+msgid "Engines"
+msgstr "എഞ്ചിനുകൾ"
+
+msgid "Filter content"
+msgstr "ഉള്ളടക്കം ഫിൽട്ടർ ചെയ്യുക"
+
+msgid "Format"
+msgstr "ഫോർമാറ്റ്"
+
+msgid "General"
+msgstr "പൊതുവായ"
+
+msgid "Image details"
+msgstr "ചിത്രത്തിന്റെ വിശദാംശങ്ങൾ"
+
+msgid "Images"
+msgstr "ചിത്രങ്ങൾ"
+
+msgid "Interface language"
+msgstr "ഇന്റർഫേസ് ഭാഷ"
+
+msgid "Journal"
+msgstr "ജേണൽ"
+
+msgid "Last day"
+msgstr "കഴിഞ്ഞ ദിവസം"
+
+msgid "Last month"
+msgstr "കഴിഞ്ഞ മാസം"
+
+msgid "Last week"
+msgstr "കഴിഞ്ഞ ആഴ്ച"
+
+msgid "Last year"
+msgstr "കഴിഞ്ഞ വർഷം"
+
+msgid "Length"
+msgstr "ദൈർഘ്യം"
+
+msgid "Moderate"
+msgstr "മിതമായ"
+
+msgid "Music"
+msgstr "സംഗീതം"
+
+msgid "News"
+msgstr "വാർത്ത"
+
+msgid "Next image"
+msgstr "അടുത്ത ചിത്രം"
+
+msgid "Next page"
+msgstr "അടുത്ത പേജ്"
+
+msgid "No more results for {0}"
+msgstr "{0} എന്നതിന് കൂടുതൽ ഫലങ്ങളില്ല"
+
+msgid "No results for {0}"
+msgstr "{0} എന്നതിന് ഫലങ്ങളൊന്നുമില്ല"
+
+msgid "None"
+msgstr "ഒന്നുമില്ല"
+
+msgid "Package"
+msgstr "പാക്കേജ്"
+
+msgid "Page {0}"
+msgstr "പേജ് {0}"
+
+msgid "Pages"
+msgstr "പേജുകൾ"
+
+msgid "Preferences"
+msgstr "മുൻഗണനകൾ"
+
+msgid "Previous image"
+msgstr "മുമ്പത്തെ ചിത്രം"
+
+msgid "Previous page"
+msgstr "മുമ്പത്തെ പേജ്"
+
+msgid "Research"
+msgstr "ഗവേഷണം"
+
+msgid "Reset defaults"
+msgstr "സ്ഥിരസ്ഥിതികൾ പുനഃസജ്ജമാക്കുക"
+
+msgid "Resolution"
+msgstr "റെസല്യൂഷൻ"
+
+msgid "Response time"
+msgstr "പ്രതികരണ സമയം"
+
+msgid "SafeSearch"
+msgstr "സുരക്ഷിത തിരയൽ"
+
+msgid "Save"
+msgstr "സംരക്ഷിക്കുക"
+
+msgid "Search"
+msgstr "തിരയുക"
+
+msgid "Search for..."
+msgstr "തിരയുക..."
+
+msgid "Search language"
+msgstr "തിരയൽ ഭാഷ"
+
+msgid "Searching"
+msgstr "തിരയുന്നു"
+
+msgid "Strict"
+msgstr "കർശനം"
+
+msgid "Tags"
+msgstr "ടാഗുകൾ"
+
+msgid "Tech"
+msgstr "സാങ്കേതികവിദ്യ"
+
+msgid "This site did not provide any description."
+msgstr "ഈ സൈറ്റ് വിവരണമൊന്നും നൽകിയില്ല."
+
+msgid "Time range"
+msgstr "സമയ പരിധി"
+
+msgid "Try different words or another category."
+msgstr "മറ്റ് വാക്കുകളോ മറ്റൊരു വിഭാഗമോ ശ്രമിക്കുക."
+
+msgid "Type"
+msgstr "തരം"
+
+msgid "Version"
+msgstr "പതിപ്പ്"
+
+msgid "Videos"
+msgstr "വീഡിയോകൾ"
+
+msgid "Views"
+msgstr "കാഴ്ചകൾ"
+
+msgid "What language do you prefer for search?"
+msgstr "തിരയലിന് ഏത് ഭാഷയാണ് നിങ്ങൾക്ക് ഇഷ്ടം?"
+
+msgid "{0} of {1} engines"
+msgstr "{1} എഞ്ചിനുകളിൽ {0}"

@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: et\n"
+"X-Name: Eesti\n"
+
+msgid "About"
+msgstr "SearXNG teave"
+
+msgid "Allow"
+msgstr "Luba"
+
+msgid "Also refers to"
+msgstr "Võib viidata ka"
+
+msgid "Anytime"
+msgstr "Millal iganes"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Auto"
+msgstr "Automaatne"
+
+msgid "Back"
+msgstr "Tagasi"
+
+msgid "Change the language of the layout"
+msgstr "Muuda paigutuse keelt"
+
+msgid "Close"
+msgstr "Sulge"
+
+msgid "Comments"
+msgstr "Kommentaare"
+
+msgid "Default language"
+msgstr "Vaikimisi keel"
+
+msgid "Engine name"
+msgstr "Otsingumootori nimi"
+
+msgid "Engines"
+msgstr "Otsingumootorid"
+
+msgid "Filter content"
+msgstr "Filtreeri sisu"
+
+msgid "Format"
+msgstr "Vorming"
+
+msgid "General"
+msgstr "Üldine"
+
+msgid "Image details"
+msgstr "Pildi üksikasjad"
+
+msgid "Images"
+msgstr "Pildid"
+
+msgid "Interface language"
+msgstr "Kasutajaliidese keel"
+
+msgid "Journal"
+msgstr "Ajakiri"
+
+msgid "Last day"
+msgstr "Viimase päeva jooksul"
+
+msgid "Last month"
+msgstr "Eelmisel kuul"
+
+msgid "Last week"
+msgstr "Eelmisel nädalal"
+
+msgid "Last year"
+msgstr "Eelmisel aastal"
+
+msgid "Length"
+msgstr "Pikkus"
+
+msgid "Moderate"
+msgstr "Mõõdukas"
+
+msgid "Music"
+msgstr "Muusika"
+
+msgid "News"
+msgstr "Uudised"
+
+msgid "Next image"
+msgstr "Järgmine pilt"
+
+msgid "Next page"
+msgstr "Järgmine lehekülg"
+
+msgid "No more results for {0}"
+msgstr "Päringule {0} rohkem tulemusi pole"
+
+msgid "No results for {0}"
+msgstr "Päringule {0} tulemusi pole"
+
+msgid "None"
+msgstr "Puudub"
+
+msgid "Package"
+msgstr "Pakett"
+
+msgid "Page {0}"
+msgstr "Lehekülg {0}"
+
+msgid "Pages"
+msgstr "Leheküljed"
+
+msgid "Preferences"
+msgstr "Eelistused"
+
+msgid "Previous image"
+msgstr "Eelmine pilt"
+
+msgid "Previous page"
+msgstr "Eelmine lehekülg"
+
+msgid "Research"
+msgstr "Teadus"
+
+msgid "Reset defaults"
+msgstr "Lähtesta vaikeseaded"
+
+msgid "Resolution"
+msgstr "Resolutsioon"
+
+msgid "Response time"
+msgstr "Vastamise aeg"
+
+msgid "SafeSearch"
+msgstr "Ohutu otsing"
+
+msgid "Save"
+msgstr "Salvesta"
+
+msgid "Search"
+msgstr "Otsing"
+
+msgid "Search for..."
+msgstr "Otsi..."
+
+msgid "Search language"
+msgstr "Otsingukeel"
+
+msgid "Searching"
+msgstr "Otsimine"
+
+msgid "Strict"
+msgstr "Range"
+
+msgid "Tags"
+msgstr "Sildid"
+
+msgid "Tech"
+msgstr "Tehnoloogia"
+
+msgid "This site did not provide any description."
+msgstr "See sait ei andnud mingit kirjeldust."
+
+msgid "Time range"
+msgstr "Ajavahemik"
+
+msgid "Try different words or another category."
+msgstr "Proovi teisi sõnu või muud kategooriat."
+
+msgid "Type"
+msgstr "Tüüp"
+
+msgid "Version"
+msgstr "Versioon"
+
+msgid "Videos"
+msgstr "Videod"
+
+msgid "Views"
+msgstr "Vaateid"
+
+msgid "What language do you prefer for search?"
+msgstr "Mis keelt sa otsinguks eelistad?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} / {1} otsingumootorit"

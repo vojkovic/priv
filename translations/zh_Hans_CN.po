@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: zh_Hans_CN\n"
+"X-Name: 中文 (简体, 中国)\n"
+
+msgid "About"
+msgstr "关于"
+
+msgid "Allow"
+msgstr "允许"
+
+msgid "Also refers to"
+msgstr "也可指"
+
+msgid "Anytime"
+msgstr "不限时间"
+
+msgid "Author"
+msgstr "作者"
+
+msgid "Auto"
+msgstr "自动"
+
+msgid "Back"
+msgstr "返回"
+
+msgid "Change the language of the layout"
+msgstr "更改界面语言"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Comments"
+msgstr "评论"
+
+msgid "Default language"
+msgstr "默认语言"
+
+msgid "Engine name"
+msgstr "引擎名称"
+
+msgid "Engines"
+msgstr "搜索引擎"
+
+msgid "Filter content"
+msgstr "内容过滤"
+
+msgid "Format"
+msgstr "格式"
+
+msgid "General"
+msgstr "综合"
+
+msgid "Image details"
+msgstr "图片详情"
+
+msgid "Images"
+msgstr "图片"
+
+msgid "Interface language"
+msgstr "界面语言"
+
+msgid "Journal"
+msgstr "杂志"
+
+msgid "Last day"
+msgstr "过去一天内"
+
+msgid "Last month"
+msgstr "过去一个月内"
+
+msgid "Last week"
+msgstr "过去一周内"
+
+msgid "Last year"
+msgstr "过去一年内"
+
+msgid "Length"
+msgstr "长度"
+
+msgid "Moderate"
+msgstr "中等"
+
+msgid "Music"
+msgstr "音乐"
+
+msgid "News"
+msgstr "新闻"
+
+msgid "Next image"
+msgstr "下一张图片"
+
+msgid "Next page"
+msgstr "下一页"
+
+msgid "No more results for {0}"
+msgstr "没有更多与 {0} 相关的结果"
+
+msgid "No results for {0}"
+msgstr "没有与 {0} 相关的结果"
+
+msgid "None"
+msgstr "无"
+
+msgid "Package"
+msgstr "软件包"
+
+msgid "Page {0}"
+msgstr "第 {0} 页"
+
+msgid "Pages"
+msgstr "页数"
+
+msgid "Preferences"
+msgstr "首选项"
+
+msgid "Previous image"
+msgstr "上一张图片"
+
+msgid "Previous page"
+msgstr "上一页"
+
+msgid "Research"
+msgstr "研究"
+
+msgid "Reset defaults"
+msgstr "恢复默认设置"
+
+msgid "Resolution"
+msgstr "分辨率"
+
+msgid "Response time"
+msgstr "响应时间"
+
+msgid "SafeSearch"
+msgstr "安全搜索"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Search"
+msgstr "搜索"
+
+msgid "Search for..."
+msgstr "搜索…"
+
+msgid "Search language"
+msgstr "搜索语言"
+
+msgid "Searching"
+msgstr "正在搜索"
+
+msgid "Strict"
+msgstr "严格"
+
+msgid "Tags"
+msgstr "标签"
+
+msgid "Tech"
+msgstr "科技"
+
+msgid "This site did not provide any description."
+msgstr "此站点未提供任何描述。"
+
+msgid "Time range"
+msgstr "时间范围"
+
+msgid "Try different words or another category."
+msgstr "请尝试其他词语或其他类别。"
+
+msgid "Type"
+msgstr "输入"
+
+msgid "Version"
+msgstr "版本"
+
+msgid "Videos"
+msgstr "视频"
+
+msgid "Views"
+msgstr "查看次数"
+
+msgid "What language do you prefer for search?"
+msgstr "您偏好搜索哪种语言？"
+
+msgid "{0} of {1} engines"
+msgstr "{1} 个引擎中的 {0} 个"

@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: sl\n"
+"X-Name: Slovenščina\n"
+
+msgid "About"
+msgstr "O nas"
+
+msgid "Allow"
+msgstr "Dovoli"
+
+msgid "Also refers to"
+msgstr "Lahko se nanaša tudi na"
+
+msgid "Anytime"
+msgstr "Kadarkoli"
+
+msgid "Author"
+msgstr "Avtor"
+
+msgid "Auto"
+msgstr "Samodejno"
+
+msgid "Back"
+msgstr "Nazaj"
+
+msgid "Change the language of the layout"
+msgstr "Spremeni jezik vmesnika"
+
+msgid "Close"
+msgstr "Zapri"
+
+msgid "Comments"
+msgstr "Komentarji"
+
+msgid "Default language"
+msgstr "Privzeti jezik"
+
+msgid "Engine name"
+msgstr "Ime iskalnika"
+
+msgid "Engines"
+msgstr "Iskalniki"
+
+msgid "Filter content"
+msgstr "Filtriraj vsebino"
+
+msgid "Format"
+msgstr "Oblika"
+
+msgid "General"
+msgstr "Splošno"
+
+msgid "Image details"
+msgstr "Podrobnosti slike"
+
+msgid "Images"
+msgstr "Slike"
+
+msgid "Interface language"
+msgstr "Jezik vmesnika"
+
+msgid "Journal"
+msgstr "Revija"
+
+msgid "Last day"
+msgstr "V zadnjem dnevu"
+
+msgid "Last month"
+msgstr "V zadnjem mesecu"
+
+msgid "Last week"
+msgstr "V zadnjem tednu"
+
+msgid "Last year"
+msgstr "V zadnjem letu"
+
+msgid "Length"
+msgstr "Dolžina"
+
+msgid "Moderate"
+msgstr "Zmerno"
+
+msgid "Music"
+msgstr "Glasba"
+
+msgid "News"
+msgstr "Novice"
+
+msgid "Next image"
+msgstr "Naslednja slika"
+
+msgid "Next page"
+msgstr "Naslednja stran"
+
+msgid "No more results for {0}"
+msgstr "Ni več rezultatov za {0}"
+
+msgid "No results for {0}"
+msgstr "Ni rezultatov za {0}"
+
+msgid "None"
+msgstr "Brez"
+
+msgid "Package"
+msgstr "Paket"
+
+msgid "Page {0}"
+msgstr "Stran {0}"
+
+msgid "Pages"
+msgstr "Strani"
+
+msgid "Preferences"
+msgstr "Nastavitve"
+
+msgid "Previous image"
+msgstr "Prejšnja slika"
+
+msgid "Previous page"
+msgstr "Prejšnja stran"
+
+msgid "Research"
+msgstr "Raziskave"
+
+msgid "Reset defaults"
+msgstr "Ponastavi na privzeto"
+
+msgid "Resolution"
+msgstr "Ločljivost"
+
+msgid "Response time"
+msgstr "Odzivni čas"
+
+msgid "SafeSearch"
+msgstr "Varno iskanje"
+
+msgid "Save"
+msgstr "Shrani"
+
+msgid "Search"
+msgstr "Išči"
+
+msgid "Search for..."
+msgstr "Poišči..."
+
+msgid "Search language"
+msgstr "Jezik iskanja"
+
+msgid "Searching"
+msgstr "Iskanje"
+
+msgid "Strict"
+msgstr "Strogo"
+
+msgid "Tags"
+msgstr "Oznake"
+
+msgid "Tech"
+msgstr "Tehnologija"
+
+msgid "This site did not provide any description."
+msgstr "Ta stran ni posredovala nobenega opisa."
+
+msgid "Time range"
+msgstr "Časovni razpon"
+
+msgid "Try different words or another category."
+msgstr "Poskusite z drugimi besedami ali drugo kategorijo."
+
+msgid "Type"
+msgstr "Vrsta"
+
+msgid "Version"
+msgstr "Različica"
+
+msgid "Videos"
+msgstr "Videi"
+
+msgid "Views"
+msgstr "Ogledi"
+
+msgid "What language do you prefer for search?"
+msgstr "V katerem jeziku želite iskati?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} od {1} iskalnikov"

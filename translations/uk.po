@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: uk\n"
+"X-Name: Українська\n"
+
+msgid "About"
+msgstr "Про"
+
+msgid "Allow"
+msgstr "Дозволити"
+
+msgid "Also refers to"
+msgstr "Може також означати"
+
+msgid "Anytime"
+msgstr "За весь час"
+
+msgid "Author"
+msgstr "Автор"
+
+msgid "Auto"
+msgstr "Автоматично"
+
+msgid "Back"
+msgstr "Назад"
+
+msgid "Change the language of the layout"
+msgstr "Змінити мову сайту"
+
+msgid "Close"
+msgstr "Закрити"
+
+msgid "Comments"
+msgstr "Коментарів"
+
+msgid "Default language"
+msgstr "Стандартна мова"
+
+msgid "Engine name"
+msgstr "Назва пошукової системи"
+
+msgid "Engines"
+msgstr "Пошукові системи"
+
+msgid "Filter content"
+msgstr "Фільтр контенту"
+
+msgid "Format"
+msgstr "Формат"
+
+msgid "General"
+msgstr "Загальні"
+
+msgid "Image details"
+msgstr "Деталі зображення"
+
+msgid "Images"
+msgstr "Зображення"
+
+msgid "Interface language"
+msgstr "Мова інтерфейсу"
+
+msgid "Journal"
+msgstr "Журнал"
+
+msgid "Last day"
+msgstr "За останній день"
+
+msgid "Last month"
+msgstr "За останній місяць"
+
+msgid "Last week"
+msgstr "За останній тиждень"
+
+msgid "Last year"
+msgstr "За останній рік"
+
+msgid "Length"
+msgstr "Довжина"
+
+msgid "Moderate"
+msgstr "Помірний"
+
+msgid "Music"
+msgstr "Музика"
+
+msgid "News"
+msgstr "Новини"
+
+msgid "Next image"
+msgstr "Наступне зображення"
+
+msgid "Next page"
+msgstr "Наступна сторінка"
+
+msgid "No more results for {0}"
+msgstr "Більше немає результатів для {0}"
+
+msgid "No results for {0}"
+msgstr "Немає результатів для {0}"
+
+msgid "None"
+msgstr "Вимкнений"
+
+msgid "Package"
+msgstr "Пакет"
+
+msgid "Page {0}"
+msgstr "Сторінка {0}"
+
+msgid "Pages"
+msgstr "Сторінки"
+
+msgid "Preferences"
+msgstr "Опції"
+
+msgid "Previous image"
+msgstr "Попереднє зображення"
+
+msgid "Previous page"
+msgstr "Попередня сторінка"
+
+msgid "Research"
+msgstr "Наука"
+
+msgid "Reset defaults"
+msgstr "Відновити стандартні налаштування"
+
+msgid "Resolution"
+msgstr "Роздільна здатність"
+
+msgid "Response time"
+msgstr "Час відгуку"
+
+msgid "SafeSearch"
+msgstr "Безпечний пошук"
+
+msgid "Save"
+msgstr "Зберегти"
+
+msgid "Search"
+msgstr "Шукати"
+
+msgid "Search for..."
+msgstr "Шукати..."
+
+msgid "Search language"
+msgstr "Мова пошуку"
+
+msgid "Searching"
+msgstr "Триває пошук"
+
+msgid "Strict"
+msgstr "Строгий"
+
+msgid "Tags"
+msgstr "Теги"
+
+msgid "Tech"
+msgstr "Технології"
+
+msgid "This site did not provide any description."
+msgstr "Цей сайт не надає опису."
+
+msgid "Time range"
+msgstr "Часовий діапазон"
+
+msgid "Try different words or another category."
+msgstr "Спробуйте інші слова або іншу категорію."
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Version"
+msgstr "Версія"
+
+msgid "Videos"
+msgstr "Відео"
+
+msgid "Views"
+msgstr "Перегляди"
+
+msgid "What language do you prefer for search?"
+msgstr "Якій мові ви віддаєте перевагу для пошуку?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} з {1} пошукових систем"

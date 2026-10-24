@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: ko\n"
+"X-Name: 한국어\n"
+
+msgid "About"
+msgstr "정보"
+
+msgid "Allow"
+msgstr "허용"
+
+msgid "Also refers to"
+msgstr "다른 뜻"
+
+msgid "Anytime"
+msgstr "모든 날짜"
+
+msgid "Author"
+msgstr "저자"
+
+msgid "Auto"
+msgstr "자동"
+
+msgid "Back"
+msgstr "뒤로"
+
+msgid "Change the language of the layout"
+msgstr "레이아웃 언어 변경"
+
+msgid "Close"
+msgstr "닫기"
+
+msgid "Comments"
+msgstr "댓글"
+
+msgid "Default language"
+msgstr "기본 언어"
+
+msgid "Engine name"
+msgstr "검색엔진 이름"
+
+msgid "Engines"
+msgstr "검색엔진"
+
+msgid "Filter content"
+msgstr "콘텐츠 필터링"
+
+msgid "Format"
+msgstr "형식"
+
+msgid "General"
+msgstr "일반"
+
+msgid "Image details"
+msgstr "이미지 세부정보"
+
+msgid "Images"
+msgstr "이미지"
+
+msgid "Interface language"
+msgstr "인터페이스 언어"
+
+msgid "Journal"
+msgstr "발행처"
+
+msgid "Last day"
+msgstr "지난 1일"
+
+msgid "Last month"
+msgstr "지난 1개월"
+
+msgid "Last week"
+msgstr "지난 1주"
+
+msgid "Last year"
+msgstr "지난 1년"
+
+msgid "Length"
+msgstr "길이"
+
+msgid "Moderate"
+msgstr "보통"
+
+msgid "Music"
+msgstr "음악"
+
+msgid "News"
+msgstr "뉴스"
+
+msgid "Next image"
+msgstr "다음 이미지"
+
+msgid "Next page"
+msgstr "다음 페이지"
+
+msgid "No more results for {0}"
+msgstr "{0}에 대한 결과가 더 이상 없습니다"
+
+msgid "No results for {0}"
+msgstr "{0}에 대한 결과가 없습니다"
+
+msgid "None"
+msgstr "없음"
+
+msgid "Package"
+msgstr "패키지"
+
+msgid "Page {0}"
+msgstr "{0} 페이지"
+
+msgid "Pages"
+msgstr "페이지"
+
+msgid "Preferences"
+msgstr "설정"
+
+msgid "Previous image"
+msgstr "이전 이미지"
+
+msgid "Previous page"
+msgstr "이전 페이지"
+
+msgid "Research"
+msgstr "연구"
+
+msgid "Reset defaults"
+msgstr "기본값 복원"
+
+msgid "Resolution"
+msgstr "해상도"
+
+msgid "Response time"
+msgstr "응답시간"
+
+msgid "SafeSearch"
+msgstr "세이프서치"
+
+msgid "Save"
+msgstr "저장"
+
+msgid "Search"
+msgstr "검색"
+
+msgid "Search for..."
+msgstr "다음을 검색..."
+
+msgid "Search language"
+msgstr "검색 언어"
+
+msgid "Searching"
+msgstr "검색 중"
+
+msgid "Strict"
+msgstr "엄격"
+
+msgid "Tags"
+msgstr "태그"
+
+msgid "Tech"
+msgstr "기술"
+
+msgid "This site did not provide any description."
+msgstr "사이트에서 소개를 제공하지 않았습니다."
+
+msgid "Time range"
+msgstr "기간"
+
+msgid "Try different words or another category."
+msgstr "다른 단어나 다른 카테고리로 시도해 보세요."
+
+msgid "Type"
+msgstr "분류"
+
+msgid "Version"
+msgstr "버전"
+
+msgid "Videos"
+msgstr "비디오"
+
+msgid "Views"
+msgstr "조회수"
+
+msgid "What language do you prefer for search?"
+msgstr "어떤 언어로 검색하시겠습니까?"
+
+msgid "{0} of {1} engines"
+msgstr "엔진 {1}개 중 {0}개"

@@ -850,17 +850,15 @@ pref_select(struct buf *b, const char *name, const char *label, const char *help
 }
 
 void
-render_preferences(struct buf *b, const struct prefs *p, const struct locale *browser, const char *notice)
+render_preferences(struct buf *b, const struct prefs *p, const struct locale *browser)
 {
 	struct arena a = {0};
-	size_t i, j, on, total;
+	size_t i, j, total;
 
 	doc_start(b, aprintf(&a, "%s - %s", tr("Preferences"), instance_name), "preferences_endpoint", p->ui);
 	nav_links(b);
 	buf_html(b, "<main id=\"preferences\">\n<h1><a href=\"/\" aria-label=\"%s\">" ICON_BACK "</a>%s</h1>\n",
 	    tr("Back"), tr("Preferences"));
-	if (notice)
-		buf_html(b, "<p class=\"notice\" role=\"status\">%s</p>\n", tr(notice));
 	buf_puts(b,
 	    "<form action=\"/preferences\" method=\"get\">\n<input type=\"hidden\" name=\"save\" value=\"1\">\n");
 
@@ -880,19 +878,15 @@ render_preferences(struct buf *b, const struct prefs *p, const struct locale *br
 		option(b, (const char *[]){"0", "1", "2"}[i], tr(safe_levels[i]), MAX(p->safesearch, 0) == (int)i);
 	buf_puts(b, "</select></div>\n");
 
-	buf_html(b, "<h2>%s</h2>\n", tr("Engines"));
 	for (i = 0; i < ncategories && i < PREFS_CATEGORIES; i++) {
-		for (j = on = total = 0; j < nengines; j++)
-			if (engine_in(engines[j], categories[i].name)) {
-				total++;
-				on += !(p->off[i] & ENGINE_BIT(engines[j]));
-			}
+		for (j = total = 0; j < nengines; j++)
+			total += engine_in(engines[j], categories[i].name);
 		buf_html(b,
-		    "<details class=\"engine_group\"%r><summary>%r<span>%s</span><span class=\"count\">%z / %z</span>" ICON_EXPAND
+		    "<details class=\"engine_group\"%r><summary>%r<span>%s</span><span class=\"count\">%z</span>" ICON_EXPAND
 		    "</summary><div class=\"table\"><table>\n"
 		    "<thead><tr><th>%s</th><th>%s</th><th>!bang</th><th>%s</th><th>%s</th><th>%s</th></tr></thead>"
 		    "<tbody>\n",
-		    i ? "" : " open", categories[i].icon, tr(categories[i].label), on, total, tr("Allow"),
+		    i ? "" : " open", categories[i].icon, tr(categories[i].label), total, tr("Allow"),
 		    tr("Engine name"), tr("Pages"), tr("SafeSearch"), tr("Time range"));
 		for (j = 0; j < nengines; j++) {
 			const struct engine *e = engines[j];
@@ -908,9 +902,9 @@ render_preferences(struct buf *b, const struct prefs *p, const struct locale *br
 		buf_puts(b, "</tbody></table></div></details>\n");
 	}
 	buf_html(b,
-	    "<div class=\"buttons\"><button type=\"submit\">%s</button>"
-	    "<a href=\"/preferences?reset=1\">%s</a></div>\n</form>\n</main>\n</body>\n</html>\n",
-	    tr("Save"), tr("Reset defaults"));
+	    "<div class=\"buttons\"><a href=\"/preferences?reset=1\">%s</a><button type=\"submit\">%s</button></div>\n"
+	    "</form>\n</main>\n</body>\n</html>\n",
+	    tr("Reset defaults"), tr("Save"));
 	arena_free(&a);
 }
 

@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: fi\n"
+"X-Name: Suomi\n"
+
+msgid "About"
+msgstr "Tietoa SearXNG:stä"
+
+msgid "Allow"
+msgstr "Salli"
+
+msgid "Also refers to"
+msgstr "Voi tarkoittaa myös"
+
+msgid "Anytime"
+msgstr "Milloin tahansa"
+
+msgid "Author"
+msgstr "Tekijä"
+
+msgid "Auto"
+msgstr "Automaattinen"
+
+msgid "Back"
+msgstr "Takaisin"
+
+msgid "Change the language of the layout"
+msgstr "Vaihda asettelun kieltä"
+
+msgid "Close"
+msgstr "Sulje"
+
+msgid "Comments"
+msgstr "Kommentit"
+
+msgid "Default language"
+msgstr "Oletuskieli"
+
+msgid "Engine name"
+msgstr "Hakukoneen nimi"
+
+msgid "Engines"
+msgstr "Hakukoneet"
+
+msgid "Filter content"
+msgstr "Suodata hakutulosten sisältöä"
+
+msgid "Format"
+msgstr "Muoto"
+
+msgid "General"
+msgstr "Yleiset"
+
+msgid "Image details"
+msgstr "Kuvan tiedot"
+
+msgid "Images"
+msgstr "Kuvat"
+
+msgid "Interface language"
+msgstr "Käyttöliittymän kieli"
+
+msgid "Journal"
+msgstr "Journaali"
+
+msgid "Last day"
+msgstr "Viimeinen päivä"
+
+msgid "Last month"
+msgstr "Viimeinen kuukausi"
+
+msgid "Last week"
+msgstr "Viimeinen viikko"
+
+msgid "Last year"
+msgstr "Viimeinen vuosi"
+
+msgid "Length"
+msgstr "Pituus"
+
+msgid "Moderate"
+msgstr "Keskitaso"
+
+msgid "Music"
+msgstr "Musiikki"
+
+msgid "News"
+msgstr "Uutiset"
+
+msgid "Next image"
+msgstr "Seuraava kuva"
+
+msgid "Next page"
+msgstr "Seuraava sivu"
+
+msgid "No more results for {0}"
+msgstr "Ei enempää tuloksia haulle {0}"
+
+msgid "No results for {0}"
+msgstr "Ei tuloksia haulle {0}"
+
+msgid "None"
+msgstr "Ei mitään"
+
+msgid "Package"
+msgstr "Paketti"
+
+msgid "Page {0}"
+msgstr "Sivu {0}"
+
+msgid "Pages"
+msgstr "Sivut"
+
+msgid "Preferences"
+msgstr "Asetukset"
+
+msgid "Previous image"
+msgstr "Edellinen kuva"
+
+msgid "Previous page"
+msgstr "Edellinen sivu"
+
+msgid "Research"
+msgstr "Tutkimus"
+
+msgid "Reset defaults"
+msgstr "Palauta oletukset"
+
+msgid "Resolution"
+msgstr "Resoluutio"
+
+msgid "Response time"
+msgstr "Vastausaika"
+
+msgid "SafeSearch"
+msgstr "Turvahaku"
+
+msgid "Save"
+msgstr "Tallenna"
+
+msgid "Search"
+msgstr "Haku"
+
+msgid "Search for..."
+msgstr "Etsi..."
+
+msgid "Search language"
+msgstr "Haun kieli"
+
+msgid "Searching"
+msgstr "Haetaan"
+
+msgid "Strict"
+msgstr "Tiukka"
+
+msgid "Tags"
+msgstr "Tägit"
+
+msgid "Tech"
+msgstr "Tekniikka"
+
+msgid "This site did not provide any description."
+msgstr "Tämä sivu ei antanut mitään kuvausta."
+
+msgid "Time range"
+msgstr "Aikaväli"
+
+msgid "Try different words or another category."
+msgstr "Kokeile muita sanoja tai toista luokkaa."
+
+msgid "Type"
+msgstr "Tyyppi"
+
+msgid "Version"
+msgstr "Versio"
+
+msgid "Videos"
+msgstr "Videot"
+
+msgid "Views"
+msgstr "Näkymät"
+
+msgid "What language do you prefer for search?"
+msgstr "Millä kielellä haluat etsiä ensisijaisesti?"
+
+msgid "{0} of {1} engines"
+msgstr "{0}/{1} hakukonetta"

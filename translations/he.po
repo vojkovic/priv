@@ -1,0 +1,188 @@
+msgid ""
+msgstr ""
+"Language: he\n"
+"X-Name: עברית\n"
+"X-Direction: rtl\n"
+
+msgid "About"
+msgstr "על אודות"
+
+msgid "Allow"
+msgstr "הפעל"
+
+msgid "Also refers to"
+msgstr "עשוי להתייחס גם ל"
+
+msgid "Anytime"
+msgstr "כל זמן"
+
+msgid "Author"
+msgstr "מחבר"
+
+msgid "Auto"
+msgstr "אוטומטי"
+
+msgid "Back"
+msgstr "חזור"
+
+msgid "Change the language of the layout"
+msgstr "שנה את שפת הממשק"
+
+msgid "Close"
+msgstr "סגירה"
+
+msgid "Comments"
+msgstr "הערות"
+
+msgid "Default language"
+msgstr "שפה ברירת מחדל"
+
+msgid "Engine name"
+msgstr "שם מנוע חיפוש"
+
+msgid "Engines"
+msgstr "מנועי חיפוש"
+
+msgid "Filter content"
+msgstr "סנן תוכן"
+
+msgid "Format"
+msgstr "תבנית"
+
+msgid "General"
+msgstr "כללי"
+
+msgid "Image details"
+msgstr "פרטי התמונה"
+
+msgid "Images"
+msgstr "תמונות"
+
+msgid "Interface language"
+msgstr "שפת ממשק"
+
+msgid "Journal"
+msgstr "יומן"
+
+msgid "Last day"
+msgstr "מהיום האחרון"
+
+msgid "Last month"
+msgstr "מהחודש האחרון"
+
+msgid "Last week"
+msgstr "מהשבוע האחרון"
+
+msgid "Last year"
+msgstr "מהשנה האחרונה"
+
+msgid "Length"
+msgstr "אורך"
+
+msgid "Moderate"
+msgstr "מתון"
+
+msgid "Music"
+msgstr "מוזיקה"
+
+msgid "News"
+msgstr "חדשות"
+
+msgid "Next image"
+msgstr "התמונה הבאה"
+
+msgid "Next page"
+msgstr "עמוד הבא"
+
+msgid "No more results for {0}"
+msgstr "אין עוד תוצאות עבור {0}"
+
+msgid "No results for {0}"
+msgstr "אין תוצאות עבור {0}"
+
+msgid "None"
+msgstr "כבוי"
+
+msgid "Package"
+msgstr "חבילה"
+
+msgid "Page {0}"
+msgstr "עמוד {0}"
+
+msgid "Pages"
+msgstr "עמודים"
+
+msgid "Preferences"
+msgstr "העדפות"
+
+msgid "Previous image"
+msgstr "התמונה הקודמת"
+
+msgid "Previous page"
+msgstr "עמוד קודם"
+
+msgid "Research"
+msgstr "מחקר"
+
+msgid "Reset defaults"
+msgstr "אפס העדפות"
+
+msgid "Resolution"
+msgstr "רזולוציה"
+
+msgid "Response time"
+msgstr "זמן תגובה"
+
+msgid "SafeSearch"
+msgstr "חיפוש בטוח"
+
+msgid "Save"
+msgstr "שמור"
+
+msgid "Search"
+msgstr "חיפוש"
+
+msgid "Search for..."
+msgstr "חיפוש..."
+
+msgid "Search language"
+msgstr "שפת חיפוש"
+
+msgid "Searching"
+msgstr "מחפש"
+
+msgid "Strict"
+msgstr "מחמיר"
+
+msgid "Tags"
+msgstr "תגים"
+
+msgid "Tech"
+msgstr "טכנולוגיה"
+
+msgid "This site did not provide any description."
+msgstr "אתר זה לא סיפק תיאור."
+
+msgid "Time range"
+msgstr "טווח זמן"
+
+msgid "Try different words or another category."
+msgstr "נסו מילים אחרות או קטגוריה אחרת."
+
+msgid "Type"
+msgstr "סוג"
+
+msgid "Version"
+msgstr "גרסה"
+
+msgid "Videos"
+msgstr "וידאו"
+
+msgid "Views"
+msgstr "צפיות"
+
+msgid "What language do you prefer for search?"
+msgstr "באיזו שפה ברצונך לחפש?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} מתוך {1} מנועים"

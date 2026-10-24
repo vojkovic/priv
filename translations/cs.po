@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: cs\n"
+"X-Name: Čeština\n"
+
+msgid "About"
+msgstr "O SearXNG"
+
+msgid "Allow"
+msgstr "Povolit"
+
+msgid "Also refers to"
+msgstr "Může také označovat"
+
+msgid "Anytime"
+msgstr "Kdykoli"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Auto"
+msgstr "Automaticky"
+
+msgid "Back"
+msgstr "Zpět"
+
+msgid "Change the language of the layout"
+msgstr "Nastavit jazyk rozhraní"
+
+msgid "Close"
+msgstr "Zavřít"
+
+msgid "Comments"
+msgstr "Komentáře"
+
+msgid "Default language"
+msgstr "Výchozí jazyk"
+
+msgid "Engine name"
+msgstr "Jméno vyhledávače"
+
+msgid "Engines"
+msgstr "Vyhledávače"
+
+msgid "Filter content"
+msgstr "Filtrovat obsah"
+
+msgid "Format"
+msgstr "Formát"
+
+msgid "General"
+msgstr "Obecné"
+
+msgid "Image details"
+msgstr "Podrobnosti obrázku"
+
+msgid "Images"
+msgstr "Obrázky"
+
+msgid "Interface language"
+msgstr "Jazyk rozhraní"
+
+msgid "Journal"
+msgstr "Časopis"
+
+msgid "Last day"
+msgstr "Dnes"
+
+msgid "Last month"
+msgstr "Měsíc"
+
+msgid "Last week"
+msgstr "Tento týden"
+
+msgid "Last year"
+msgstr "Rok"
+
+msgid "Length"
+msgstr "Délka"
+
+msgid "Moderate"
+msgstr "Střední"
+
+msgid "Music"
+msgstr "Hudba"
+
+msgid "News"
+msgstr "Zprávy"
+
+msgid "Next image"
+msgstr "Další obrázek"
+
+msgid "Next page"
+msgstr "Další stránka"
+
+msgid "No more results for {0}"
+msgstr "Žádné další výsledky pro {0}"
+
+msgid "No results for {0}"
+msgstr "Žádné výsledky pro {0}"
+
+msgid "None"
+msgstr "Vypnuto"
+
+msgid "Package"
+msgstr "Balíček"
+
+msgid "Page {0}"
+msgstr "Strana {0}"
+
+msgid "Pages"
+msgstr "Stránky"
+
+msgid "Preferences"
+msgstr "Nastavení"
+
+msgid "Previous image"
+msgstr "Předchozí obrázek"
+
+msgid "Previous page"
+msgstr "Předchozí stránka"
+
+msgid "Research"
+msgstr "Výzkum"
+
+msgid "Reset defaults"
+msgstr "Obnovit výchozí"
+
+msgid "Resolution"
+msgstr "Rozlišení"
+
+msgid "Response time"
+msgstr "Čas odpovědi"
+
+msgid "SafeSearch"
+msgstr "Bezpečné vyhledávání"
+
+msgid "Save"
+msgstr "Uložit"
+
+msgid "Search"
+msgstr "Vyhledat"
+
+msgid "Search for..."
+msgstr "Hledat…"
+
+msgid "Search language"
+msgstr "Jazyk hledání"
+
+msgid "Searching"
+msgstr "Hledání"
+
+msgid "Strict"
+msgstr "Přísné"
+
+msgid "Tags"
+msgstr "Značky"
+
+msgid "Tech"
+msgstr "Technologie"
+
+msgid "This site did not provide any description."
+msgstr "Tato stránka nemá žádný popis."
+
+msgid "Time range"
+msgstr "Časový interval"
+
+msgid "Try different words or another category."
+msgstr "Zkuste jiná slova nebo jinou kategorii."
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Version"
+msgstr "Verze"
+
+msgid "Videos"
+msgstr "Videa"
+
+msgid "Views"
+msgstr "Zhlédnutí"
+
+msgid "What language do you prefer for search?"
+msgstr "Jaký jazyk vyhledávání upřednostňujete?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} z {1} vyhledávačů"

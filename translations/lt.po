@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: lt\n"
+"X-Name: Lietuvių\n"
+
+msgid "About"
+msgstr "Apie"
+
+msgid "Allow"
+msgstr "Leisti"
+
+msgid "Also refers to"
+msgstr "Taip pat gali reikšti"
+
+msgid "Anytime"
+msgstr "Bet kada"
+
+msgid "Author"
+msgstr "Autorius"
+
+msgid "Auto"
+msgstr "Automatiškai"
+
+msgid "Back"
+msgstr "Atgal"
+
+msgid "Change the language of the layout"
+msgstr "Keisti išdėstymo kalbą"
+
+msgid "Close"
+msgstr "Uždaryti"
+
+msgid "Comments"
+msgstr "Komentarai"
+
+msgid "Default language"
+msgstr "Numatytoji kalba"
+
+msgid "Engine name"
+msgstr "Sistemos pavadinimas"
+
+msgid "Engines"
+msgstr "Sistemos"
+
+msgid "Filter content"
+msgstr "Filtruoti turinį"
+
+msgid "Format"
+msgstr "Formatas"
+
+msgid "General"
+msgstr "Bendra"
+
+msgid "Image details"
+msgstr "Paveikslėlio informacija"
+
+msgid "Images"
+msgstr "Nuotraukos"
+
+msgid "Interface language"
+msgstr "Sąsajos kalba"
+
+msgid "Journal"
+msgstr "Žurnalas"
+
+msgid "Last day"
+msgstr "Praeitą dieną"
+
+msgid "Last month"
+msgstr "Praeitą mėnesį"
+
+msgid "Last week"
+msgstr "Praeitą savaitę"
+
+msgid "Last year"
+msgstr "Praeitais metais"
+
+msgid "Length"
+msgstr "Trukmė"
+
+msgid "Moderate"
+msgstr "Nuosaiki"
+
+msgid "Music"
+msgstr "Muzika"
+
+msgid "News"
+msgstr "Naujienos"
+
+msgid "Next image"
+msgstr "Kitas paveikslėlis"
+
+msgid "Next page"
+msgstr "Kitas puslapis"
+
+msgid "No more results for {0}"
+msgstr "Daugiau rezultatų užklausai {0} nėra"
+
+msgid "No results for {0}"
+msgstr "Nėra rezultatų užklausai {0}"
+
+msgid "None"
+msgstr "Nėra"
+
+msgid "Package"
+msgstr "Paketas"
+
+msgid "Page {0}"
+msgstr "{0} puslapis"
+
+msgid "Pages"
+msgstr "Puslapiai"
+
+msgid "Preferences"
+msgstr "Nuostatos"
+
+msgid "Previous image"
+msgstr "Ankstesnis paveikslėlis"
+
+msgid "Previous page"
+msgstr "Praitas puslapis"
+
+msgid "Research"
+msgstr "Mokslas"
+
+msgid "Reset defaults"
+msgstr "Atstatyti numatytasias nuostatas"
+
+msgid "Resolution"
+msgstr "Raiška"
+
+msgid "Response time"
+msgstr "Atsakymo greitis"
+
+msgid "SafeSearch"
+msgstr "Saugi paieška"
+
+msgid "Save"
+msgstr "Išsaugoti"
+
+msgid "Search"
+msgstr "Ieškoti"
+
+msgid "Search for..."
+msgstr "Ko ieškoti..."
+
+msgid "Search language"
+msgstr "Paieškos kalba"
+
+msgid "Searching"
+msgstr "Ieškoma"
+
+msgid "Strict"
+msgstr "Griežta"
+
+msgid "Tags"
+msgstr "Žymės"
+
+msgid "Tech"
+msgstr "Technologijos"
+
+msgid "This site did not provide any description."
+msgstr "Šis tiklalapis nepridėjo jokio aprašymo."
+
+msgid "Time range"
+msgstr "Laiko diapazonas"
+
+msgid "Try different words or another category."
+msgstr "Pabandykite kitus žodžius arba kitą kategoriją."
+
+msgid "Type"
+msgstr "Tipas"
+
+msgid "Version"
+msgstr "Versija"
+
+msgid "Videos"
+msgstr "Vaizdo įrašai"
+
+msgid "Views"
+msgstr "Peržiūros"
+
+msgid "What language do you prefer for search?"
+msgstr "Kokią kalbą pageidaujate paieškai?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} iš {1} paieškos sistemų"

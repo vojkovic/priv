@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: ga\n"
+"X-Name: Gaeilge\n"
+
+msgid "About"
+msgstr "Maidir"
+
+msgid "Allow"
+msgstr "Ceadaigh"
+
+msgid "Also refers to"
+msgstr "D'fhéadfadh sé tagairt freisin do"
+
+msgid "Anytime"
+msgstr "Am ar bith"
+
+msgid "Author"
+msgstr "Údar"
+
+msgid "Auto"
+msgstr "Uathoibríoch"
+
+msgid "Back"
+msgstr "Ar ais"
+
+msgid "Change the language of the layout"
+msgstr "Athraigh teanga an leagan amach"
+
+msgid "Close"
+msgstr "Dún"
+
+msgid "Comments"
+msgstr "Tráchtanna"
+
+msgid "Default language"
+msgstr "Teanga réamhshocraithe"
+
+msgid "Engine name"
+msgstr "Ainm an innill"
+
+msgid "Engines"
+msgstr "Innill"
+
+msgid "Filter content"
+msgstr "Ábhar scagaire"
+
+msgid "Format"
+msgstr "Formáid"
+
+msgid "General"
+msgstr "Ginearálta"
+
+msgid "Image details"
+msgstr "Sonraí na híomhá"
+
+msgid "Images"
+msgstr "Íomhánna"
+
+msgid "Interface language"
+msgstr "Teanga comhéadain"
+
+msgid "Journal"
+msgstr "Dialann"
+
+msgid "Last day"
+msgstr "An lá deireanach"
+
+msgid "Last month"
+msgstr "An mhí seo caite"
+
+msgid "Last week"
+msgstr "An tseachtain seo caite"
+
+msgid "Last year"
+msgstr "An bhliain seo caite"
+
+msgid "Length"
+msgstr "Fad"
+
+msgid "Moderate"
+msgstr "Measartha"
+
+msgid "Music"
+msgstr "Ceol"
+
+msgid "News"
+msgstr "Nuacht"
+
+msgid "Next image"
+msgstr "An chéad íomhá eile"
+
+msgid "Next page"
+msgstr "An chéad leathanach eile"
+
+msgid "No more results for {0}"
+msgstr "Níl a thuilleadh torthaí do {0}"
+
+msgid "No results for {0}"
+msgstr "Níl aon torthaí do {0}"
+
+msgid "None"
+msgstr "Níl aon"
+
+msgid "Package"
+msgstr "Pacáiste"
+
+msgid "Page {0}"
+msgstr "Leathanach {0}"
+
+msgid "Pages"
+msgstr "Leathanaigh"
+
+msgid "Preferences"
+msgstr "Roghanna"
+
+msgid "Previous image"
+msgstr "Íomhá roimhe seo"
+
+msgid "Previous page"
+msgstr "Leathanach roimhe seo"
+
+msgid "Research"
+msgstr "Taighde"
+
+msgid "Reset defaults"
+msgstr "Athshocraigh réamhshocruithe"
+
+msgid "Resolution"
+msgstr "Réiteach"
+
+msgid "Response time"
+msgstr "Am freagartha"
+
+msgid "SafeSearch"
+msgstr "Cuardach Sábháilte"
+
+msgid "Save"
+msgstr "Sábháil"
+
+msgid "Search"
+msgstr "Cuardaigh"
+
+msgid "Search for..."
+msgstr "Cuardaigh do..."
+
+msgid "Search language"
+msgstr "Teanga cuardaigh"
+
+msgid "Searching"
+msgstr "Ag cuardach"
+
+msgid "Strict"
+msgstr "Docht"
+
+msgid "Tags"
+msgstr "Clibeanna"
+
+msgid "Tech"
+msgstr "Teicneolaíocht"
+
+msgid "This site did not provide any description."
+msgstr "Níor thug an suíomh seo aon tuairisc ar fáil."
+
+msgid "Time range"
+msgstr "Raon ama"
+
+msgid "Try different words or another category."
+msgstr "Bain triail as focail eile nó catagóir eile."
+
+msgid "Type"
+msgstr "Cineál"
+
+msgid "Version"
+msgstr "Leagan"
+
+msgid "Videos"
+msgstr "Físeáin"
+
+msgid "Views"
+msgstr "Amharcanna"
+
+msgid "What language do you prefer for search?"
+msgstr "Cén teanga is fearr leat le haghaidh cuardaigh?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} as {1} inneall"

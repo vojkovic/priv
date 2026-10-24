@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: ja\n"
+"X-Name: 日本語\n"
+
+msgid "About"
+msgstr "関連情報"
+
+msgid "Allow"
+msgstr "許可する"
+
+msgid "Also refers to"
+msgstr "他の意味"
+
+msgid "Anytime"
+msgstr "期間指定なし"
+
+msgid "Author"
+msgstr "作者"
+
+msgid "Auto"
+msgstr "自動"
+
+msgid "Back"
+msgstr "戻る"
+
+msgid "Change the language of the layout"
+msgstr "表示する言語を変更"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Comments"
+msgstr "コメント"
+
+msgid "Default language"
+msgstr "デフォルトの言語"
+
+msgid "Engine name"
+msgstr "検索エンジン名"
+
+msgid "Engines"
+msgstr "検索エンジン"
+
+msgid "Filter content"
+msgstr "コンテンツをフィルタリングする"
+
+msgid "Format"
+msgstr "形式"
+
+msgid "General"
+msgstr "一般"
+
+msgid "Image details"
+msgstr "画像の詳細"
+
+msgid "Images"
+msgstr "画像"
+
+msgid "Interface language"
+msgstr "インターフェースの言語"
+
+msgid "Journal"
+msgstr "刊行物"
+
+msgid "Last day"
+msgstr "24 時間以内"
+
+msgid "Last month"
+msgstr "1 か月以内"
+
+msgid "Last week"
+msgstr "1 週間以内"
+
+msgid "Last year"
+msgstr "1 年以内"
+
+msgid "Length"
+msgstr "長さ"
+
+msgid "Moderate"
+msgstr "標準"
+
+msgid "Music"
+msgstr "音楽"
+
+msgid "News"
+msgstr "ニュース"
+
+msgid "Next image"
+msgstr "次の画像"
+
+msgid "Next page"
+msgstr "次のページ"
+
+msgid "No more results for {0}"
+msgstr "{0} の検索結果はこれ以上ありません"
+
+msgid "No results for {0}"
+msgstr "{0} の検索結果はありません"
+
+msgid "None"
+msgstr "オフ"
+
+msgid "Package"
+msgstr "パッケージ"
+
+msgid "Page {0}"
+msgstr "{0} ページ"
+
+msgid "Pages"
+msgstr "ページ"
+
+msgid "Preferences"
+msgstr "設定"
+
+msgid "Previous image"
+msgstr "前の画像"
+
+msgid "Previous page"
+msgstr "前のページ"
+
+msgid "Research"
+msgstr "研究"
+
+msgid "Reset defaults"
+msgstr "デフォルト設定に戻す"
+
+msgid "Resolution"
+msgstr "解像度"
+
+msgid "Response time"
+msgstr "応答時間"
+
+msgid "SafeSearch"
+msgstr "セーフサーチ"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Search"
+msgstr "検索"
+
+msgid "Search for..."
+msgstr "検索する..."
+
+msgid "Search language"
+msgstr "検索の言語"
+
+msgid "Searching"
+msgstr "検索中"
+
+msgid "Strict"
+msgstr "厳重"
+
+msgid "Tags"
+msgstr "タグ"
+
+msgid "Tech"
+msgstr "テクノロジー"
+
+msgid "This site did not provide any description."
+msgstr "このサイトは説明を提供しませんでした。"
+
+msgid "Time range"
+msgstr "時間範囲"
+
+msgid "Try different words or another category."
+msgstr "別の言葉や別のカテゴリで試してください。"
+
+msgid "Type"
+msgstr "分類"
+
+msgid "Version"
+msgstr "バージョン"
+
+msgid "Videos"
+msgstr "動画"
+
+msgid "Views"
+msgstr "閲覧数"
+
+msgid "What language do you prefer for search?"
+msgstr "どの言語で検索しますか？"
+
+msgid "{0} of {1} engines"
+msgstr "{1} 件中 {0} 件のエンジン"

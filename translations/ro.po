@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: ro\n"
+"X-Name: Română\n"
+
+msgid "About"
+msgstr "Despre"
+
+msgid "Allow"
+msgstr "Permite"
+
+msgid "Also refers to"
+msgstr "Se mai poate referi la"
+
+msgid "Anytime"
+msgstr "Oricând"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Auto"
+msgstr "Automat"
+
+msgid "Back"
+msgstr "Înapoi"
+
+msgid "Change the language of the layout"
+msgstr "Schimbă limba aspectului"
+
+msgid "Close"
+msgstr "Închide"
+
+msgid "Comments"
+msgstr "Comentarii"
+
+msgid "Default language"
+msgstr "Limbă implicită"
+
+msgid "Engine name"
+msgstr "Numele motorului"
+
+msgid "Engines"
+msgstr "Motoare de căutare"
+
+msgid "Filter content"
+msgstr "Filtrează conținutul"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "General"
+msgstr "General"
+
+msgid "Image details"
+msgstr "Detaliile imaginii"
+
+msgid "Images"
+msgstr "Imagini"
+
+msgid "Interface language"
+msgstr "Limba interfeței"
+
+msgid "Journal"
+msgstr "Jurnal"
+
+msgid "Last day"
+msgstr "Ultima zi"
+
+msgid "Last month"
+msgstr "Ultima lună"
+
+msgid "Last week"
+msgstr "Ultima săptămână"
+
+msgid "Last year"
+msgstr "Ultimul an"
+
+msgid "Length"
+msgstr "Lungime"
+
+msgid "Moderate"
+msgstr "Moderat"
+
+msgid "Music"
+msgstr "Muzică"
+
+msgid "News"
+msgstr "Știri"
+
+msgid "Next image"
+msgstr "Imaginea următoare"
+
+msgid "Next page"
+msgstr "Pagina următoare"
+
+msgid "No more results for {0}"
+msgstr "Nu mai sunt rezultate pentru {0}"
+
+msgid "No results for {0}"
+msgstr "Niciun rezultat pentru {0}"
+
+msgid "None"
+msgstr "Nimic"
+
+msgid "Package"
+msgstr "Pachet"
+
+msgid "Page {0}"
+msgstr "Pagina {0}"
+
+msgid "Pages"
+msgstr "Pagini"
+
+msgid "Preferences"
+msgstr "Preferințe"
+
+msgid "Previous image"
+msgstr "Imaginea anterioară"
+
+msgid "Previous page"
+msgstr "Pagina precedentă"
+
+msgid "Research"
+msgstr "Cercetare"
+
+msgid "Reset defaults"
+msgstr "Restabilește la valorile implicite"
+
+msgid "Resolution"
+msgstr "Rezoluție"
+
+msgid "Response time"
+msgstr "Timp de răspuns"
+
+msgid "SafeSearch"
+msgstr "CăutareSigură"
+
+msgid "Save"
+msgstr "Salvați"
+
+msgid "Search"
+msgstr "Căutați"
+
+msgid "Search for..."
+msgstr "Caută..."
+
+msgid "Search language"
+msgstr "Limba de căutare"
+
+msgid "Searching"
+msgstr "Se caută"
+
+msgid "Strict"
+msgstr "strictă"
+
+msgid "Tags"
+msgstr "Etichete"
+
+msgid "Tech"
+msgstr "Tehnologie"
+
+msgid "This site did not provide any description."
+msgstr "Acest site nu a oferit nici o descriere."
+
+msgid "Time range"
+msgstr "Interval de timp"
+
+msgid "Try different words or another category."
+msgstr "Încercați alte cuvinte sau altă categorie."
+
+msgid "Type"
+msgstr "Tip"
+
+msgid "Version"
+msgstr "Versiune"
+
+msgid "Videos"
+msgstr "Videouri"
+
+msgid "Views"
+msgstr "Afișări"
+
+msgid "What language do you prefer for search?"
+msgstr "Ce limbă preferați pentru căutare?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} din {1} motoare"

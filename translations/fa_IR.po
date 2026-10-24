@@ -1,0 +1,188 @@
+msgid ""
+msgstr ""
+"Language: fa_IR\n"
+"X-Name: فارسی (ایران)\n"
+"X-Direction: rtl\n"
+
+msgid "About"
+msgstr "درباره"
+
+msgid "Allow"
+msgstr "اجازه"
+
+msgid "Also refers to"
+msgstr "همچنین اشاره دارد به"
+
+msgid "Anytime"
+msgstr "هر زمان"
+
+msgid "Author"
+msgstr "نویسنده"
+
+msgid "Auto"
+msgstr "خودکار"
+
+msgid "Back"
+msgstr "بازگشت"
+
+msgid "Change the language of the layout"
+msgstr "تغییر زبان رابط کاربری"
+
+msgid "Close"
+msgstr "بستن"
+
+msgid "Comments"
+msgstr "نظر ها"
+
+msgid "Default language"
+msgstr "زبان پیش‌گزیده"
+
+msgid "Engine name"
+msgstr "نام موتور"
+
+msgid "Engines"
+msgstr "موتورها"
+
+msgid "Filter content"
+msgstr "فیلتر کردن محتوا"
+
+msgid "Format"
+msgstr "قالب"
+
+msgid "General"
+msgstr "عمومی"
+
+msgid "Image details"
+msgstr "جزئیات تصویر"
+
+msgid "Images"
+msgstr "تصاویر"
+
+msgid "Interface language"
+msgstr "زبان رابط کاربری"
+
+msgid "Journal"
+msgstr "مجله"
+
+msgid "Last day"
+msgstr "روز گذشته"
+
+msgid "Last month"
+msgstr "ماه گذشته"
+
+msgid "Last week"
+msgstr "هفتهٔ گذشته"
+
+msgid "Last year"
+msgstr "سال گذشته"
+
+msgid "Length"
+msgstr "طول"
+
+msgid "Moderate"
+msgstr "متعادل"
+
+msgid "Music"
+msgstr "موسیقی"
+
+msgid "News"
+msgstr "اخبار"
+
+msgid "Next image"
+msgstr "تصویر بعدی"
+
+msgid "Next page"
+msgstr "صفحهٔ بعدی"
+
+msgid "No more results for {0}"
+msgstr "نتیجهٔ دیگری برای {0} نیست"
+
+msgid "No results for {0}"
+msgstr "نتیجه‌ای برای {0} یافت نشد"
+
+msgid "None"
+msgstr "هیچ"
+
+msgid "Package"
+msgstr "بسته"
+
+msgid "Page {0}"
+msgstr "صفحهٔ {0}"
+
+msgid "Pages"
+msgstr "صفحه‌ها"
+
+msgid "Preferences"
+msgstr "تنظیمات"
+
+msgid "Previous image"
+msgstr "تصویر قبلی"
+
+msgid "Previous page"
+msgstr "صفحهٔ پیشین"
+
+msgid "Research"
+msgstr "پژوهش"
+
+msgid "Reset defaults"
+msgstr "بازنشانی پیش‌فرض‌ها"
+
+msgid "Resolution"
+msgstr "رزولیشن"
+
+msgid "Response time"
+msgstr "زمان پاسخ‌دهی"
+
+msgid "SafeSearch"
+msgstr "جست‌وجوی امن"
+
+msgid "Save"
+msgstr "ذخیره"
+
+msgid "Search"
+msgstr "جست‌وجو"
+
+msgid "Search for..."
+msgstr "جست‌وجو برای..."
+
+msgid "Search language"
+msgstr "زبان جست‌وجو"
+
+msgid "Searching"
+msgstr "در حال جستجو"
+
+msgid "Strict"
+msgstr "سخت‌گیر"
+
+msgid "Tags"
+msgstr "تگ ها"
+
+msgid "Tech"
+msgstr "فناوری"
+
+msgid "This site did not provide any description."
+msgstr "این سایت هیچ توصیفی ندارد."
+
+msgid "Time range"
+msgstr "بازهٔ زمانی"
+
+msgid "Try different words or another category."
+msgstr "کلمات دیگر یا دستهٔ دیگری را امتحان کنید."
+
+msgid "Type"
+msgstr "نوع"
+
+msgid "Version"
+msgstr "ورژن"
+
+msgid "Videos"
+msgstr "ویدیوها"
+
+msgid "Views"
+msgstr "بازدید‌ها"
+
+msgid "What language do you prefer for search?"
+msgstr "چه زبانی را برای جست‌وجو می‌پسندید؟"
+
+msgid "{0} of {1} engines"
+msgstr "{0} از {1} موتور"

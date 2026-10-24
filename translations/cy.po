@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: cy\n"
+"X-Name: Cymraeg\n"
+
+msgid "About"
+msgstr "Ynghylch"
+
+msgid "Allow"
+msgstr "Caniatáu"
+
+msgid "Also refers to"
+msgstr "Gall hefyd gyfeirio at"
+
+msgid "Anytime"
+msgstr "Unrhyw bryd"
+
+msgid "Author"
+msgstr "Awdur"
+
+msgid "Auto"
+msgstr "Awtomatig"
+
+msgid "Back"
+msgstr "Yn ôl"
+
+msgid "Change the language of the layout"
+msgstr "Newid iaith y rhyngwyneb"
+
+msgid "Close"
+msgstr "Cau"
+
+msgid "Comments"
+msgstr "Sylwadau"
+
+msgid "Default language"
+msgstr "Iaith ragosodedig"
+
+msgid "Engine name"
+msgstr "Enw'r peiriant"
+
+msgid "Engines"
+msgstr "Peiriannau"
+
+msgid "Filter content"
+msgstr "Hidlo cynnwys"
+
+msgid "Format"
+msgstr "Fformat"
+
+msgid "General"
+msgstr "Cyffredinol"
+
+msgid "Image details"
+msgstr "Manylion y ddelwedd"
+
+msgid "Images"
+msgstr "Delweddau"
+
+msgid "Interface language"
+msgstr "Iaith y rhyngwyneb"
+
+msgid "Journal"
+msgstr "Cylchgrawn"
+
+msgid "Last day"
+msgstr "Y diwrnod diwethaf"
+
+msgid "Last month"
+msgstr "Y mis diwethaf"
+
+msgid "Last week"
+msgstr "Yr wythnos diwethaf"
+
+msgid "Last year"
+msgstr "Y flwyddyn ddiwethaf"
+
+msgid "Length"
+msgstr "Hyd"
+
+msgid "Moderate"
+msgstr "Cymedrol"
+
+msgid "Music"
+msgstr "Cerddoriaeth"
+
+msgid "News"
+msgstr "Newyddion"
+
+msgid "Next image"
+msgstr "Delwedd nesaf"
+
+msgid "Next page"
+msgstr "Tudalen nesaf"
+
+msgid "No more results for {0}"
+msgstr "Dim mwy o ganlyniadau ar gyfer {0}"
+
+msgid "No results for {0}"
+msgstr "Dim canlyniadau ar gyfer {0}"
+
+msgid "None"
+msgstr "Dim"
+
+msgid "Package"
+msgstr "Pecyn"
+
+msgid "Page {0}"
+msgstr "Tudalen {0}"
+
+msgid "Pages"
+msgstr "Tudalennau"
+
+msgid "Preferences"
+msgstr "Dewisiadau"
+
+msgid "Previous image"
+msgstr "Delwedd flaenorol"
+
+msgid "Previous page"
+msgstr "Tudalen flaenorol"
+
+msgid "Research"
+msgstr "Ymchwil"
+
+msgid "Reset defaults"
+msgstr "Ailosod y rhagosodiadau"
+
+msgid "Resolution"
+msgstr "Cydraniad"
+
+msgid "Response time"
+msgstr "Amser ymateb"
+
+msgid "SafeSearch"
+msgstr "Chwilio'n ddiogel"
+
+msgid "Save"
+msgstr "Cadw"
+
+msgid "Search"
+msgstr "Chwilio"
+
+msgid "Search for..."
+msgstr "Chwilio am..."
+
+msgid "Search language"
+msgstr "Iaith chwilio"
+
+msgid "Searching"
+msgstr "Yn chwilio"
+
+msgid "Strict"
+msgstr "Llym"
+
+msgid "Tags"
+msgstr "Tagiau"
+
+msgid "Tech"
+msgstr "Technoleg"
+
+msgid "This site did not provide any description."
+msgstr "Ni wnaeth y wefan ddarparu disgrifiad."
+
+msgid "Time range"
+msgstr "Cyfnod amser"
+
+msgid "Try different words or another category."
+msgstr "Rhowch gynnig ar eiriau gwahanol neu gategori arall."
+
+msgid "Type"
+msgstr "Math"
+
+msgid "Version"
+msgstr "Fersiwn"
+
+msgid "Videos"
+msgstr "Fideos"
+
+msgid "Views"
+msgstr "Golygon"
+
+msgid "What language do you prefer for search?"
+msgstr "Ym mha iaith ydych chi'n ffafrio chwilio?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} o {1} peiriant"

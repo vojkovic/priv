@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: zh_Hant_TW\n"
+"X-Name: 中文 (繁體, 台灣)\n"
+
+msgid "About"
+msgstr "關於"
+
+msgid "Allow"
+msgstr "允許"
+
+msgid "Also refers to"
+msgstr "也可指"
+
+msgid "Anytime"
+msgstr "不限時間"
+
+msgid "Author"
+msgstr "作者"
+
+msgid "Auto"
+msgstr "自動"
+
+msgid "Back"
+msgstr "返回"
+
+msgid "Change the language of the layout"
+msgstr "變更版面配置的語言"
+
+msgid "Close"
+msgstr "關閉"
+
+msgid "Comments"
+msgstr "留言"
+
+msgid "Default language"
+msgstr "預設語言"
+
+msgid "Engine name"
+msgstr "引擎名稱"
+
+msgid "Engines"
+msgstr "搜尋引擎"
+
+msgid "Filter content"
+msgstr "過濾內容"
+
+msgid "Format"
+msgstr "格式"
+
+msgid "General"
+msgstr "一般"
+
+msgid "Image details"
+msgstr "圖片詳細資料"
+
+msgid "Images"
+msgstr "圖片"
+
+msgid "Interface language"
+msgstr "介面語言"
+
+msgid "Journal"
+msgstr "期刊"
+
+msgid "Last day"
+msgstr "一天內"
+
+msgid "Last month"
+msgstr "一個月內"
+
+msgid "Last week"
+msgstr "一週內"
+
+msgid "Last year"
+msgstr "一年內"
+
+msgid "Length"
+msgstr "長度"
+
+msgid "Moderate"
+msgstr "適中"
+
+msgid "Music"
+msgstr "音樂"
+
+msgid "News"
+msgstr "新聞"
+
+msgid "Next image"
+msgstr "下一張圖片"
+
+msgid "Next page"
+msgstr "下一頁"
+
+msgid "No more results for {0}"
+msgstr "沒有更多與 {0} 相關的結果"
+
+msgid "No results for {0}"
+msgstr "找不到與 {0} 相關的結果"
+
+msgid "None"
+msgstr "無"
+
+msgid "Package"
+msgstr "套件"
+
+msgid "Page {0}"
+msgstr "第 {0} 頁"
+
+msgid "Pages"
+msgstr "頁數"
+
+msgid "Preferences"
+msgstr "偏好設定"
+
+msgid "Previous image"
+msgstr "上一張圖片"
+
+msgid "Previous page"
+msgstr "上一頁"
+
+msgid "Research"
+msgstr "研究"
+
+msgid "Reset defaults"
+msgstr "重設為預設值"
+
+msgid "Resolution"
+msgstr "解析度"
+
+msgid "Response time"
+msgstr "反應時間"
+
+msgid "SafeSearch"
+msgstr "安全搜尋"
+
+msgid "Save"
+msgstr "儲存"
+
+msgid "Search"
+msgstr "搜尋"
+
+msgid "Search for..."
+msgstr "搜尋..."
+
+msgid "Search language"
+msgstr "搜尋語言"
+
+msgid "Searching"
+msgstr "搜尋中"
+
+msgid "Strict"
+msgstr "嚴格"
+
+msgid "Tags"
+msgstr "標籤"
+
+msgid "Tech"
+msgstr "科技"
+
+msgid "This site did not provide any description."
+msgstr "此網站未提供任何描述。"
+
+msgid "Time range"
+msgstr "時間範圍"
+
+msgid "Try different words or another category."
+msgstr "請嘗試其他字詞或其他類別。"
+
+msgid "Type"
+msgstr "分類"
+
+msgid "Version"
+msgstr "版本"
+
+msgid "Videos"
+msgstr "影片"
+
+msgid "Views"
+msgstr "檢視次數"
+
+msgid "What language do you prefer for search?"
+msgstr "您偏好用哪種語言搜尋？"
+
+msgid "{0} of {1} engines"
+msgstr "{1} 個引擎中的 {0} 個"

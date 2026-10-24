@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: da\n"
+"X-Name: Dansk\n"
+
+msgid "About"
+msgstr "Om"
+
+msgid "Allow"
+msgstr "Tillad"
+
+msgid "Also refers to"
+msgstr "Kan også henvise til"
+
+msgid "Anytime"
+msgstr "Når som helst"
+
+msgid "Author"
+msgstr "Forfatter"
+
+msgid "Auto"
+msgstr "Automatisk"
+
+msgid "Back"
+msgstr "Tilbage"
+
+msgid "Change the language of the layout"
+msgstr "Ændring af layout-sproget"
+
+msgid "Close"
+msgstr "Luk"
+
+msgid "Comments"
+msgstr "Kommentare"
+
+msgid "Default language"
+msgstr "Standardsprog"
+
+msgid "Engine name"
+msgstr "Søgemaskinenavn"
+
+msgid "Engines"
+msgstr "Søgemaskiner"
+
+msgid "Filter content"
+msgstr "Filtrér indhold"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "General"
+msgstr "Generelt"
+
+msgid "Image details"
+msgstr "Billeddetaljer"
+
+msgid "Images"
+msgstr "Billeder"
+
+msgid "Interface language"
+msgstr "Sprog i brugergrænsefladen"
+
+msgid "Journal"
+msgstr "Tidsskrift"
+
+msgid "Last day"
+msgstr "Det seneste døgn"
+
+msgid "Last month"
+msgstr "Den seneste måned"
+
+msgid "Last week"
+msgstr "Den seneste uge"
+
+msgid "Last year"
+msgstr "Det sidste år"
+
+msgid "Length"
+msgstr "Længde"
+
+msgid "Moderate"
+msgstr "Moderat"
+
+msgid "Music"
+msgstr "Musik"
+
+msgid "News"
+msgstr "Nyheder"
+
+msgid "Next image"
+msgstr "Næste billede"
+
+msgid "Next page"
+msgstr "Næste side"
+
+msgid "No more results for {0}"
+msgstr "Ikke flere resultater for {0}"
+
+msgid "No results for {0}"
+msgstr "Ingen resultater for {0}"
+
+msgid "None"
+msgstr "Ingen"
+
+msgid "Package"
+msgstr "Pakke"
+
+msgid "Page {0}"
+msgstr "Side {0}"
+
+msgid "Pages"
+msgstr "Sider"
+
+msgid "Preferences"
+msgstr "Indstillinger"
+
+msgid "Previous image"
+msgstr "Forrige billede"
+
+msgid "Previous page"
+msgstr "Forrige side"
+
+msgid "Research"
+msgstr "Forskning"
+
+msgid "Reset defaults"
+msgstr "Nustil til standard"
+
+msgid "Resolution"
+msgstr "Opløsning"
+
+msgid "Response time"
+msgstr "Svartid"
+
+msgid "SafeSearch"
+msgstr "Sikker Søgning"
+
+msgid "Save"
+msgstr "Gem"
+
+msgid "Search"
+msgstr "Søg"
+
+msgid "Search for..."
+msgstr "Søg efter..."
+
+msgid "Search language"
+msgstr "Søgesprog"
+
+msgid "Searching"
+msgstr "Søger"
+
+msgid "Strict"
+msgstr "Stringent"
+
+msgid "Tags"
+msgstr "Tags"
+
+msgid "Tech"
+msgstr "Teknologi"
+
+msgid "This site did not provide any description."
+msgstr "Denne side gav ikke nogen beskrivelse."
+
+msgid "Time range"
+msgstr "Tidsinterval"
+
+msgid "Try different words or another category."
+msgstr "Prøv andre ord eller en anden kategori."
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Videos"
+msgstr "Videoer"
+
+msgid "Views"
+msgstr "Visninger"
+
+msgid "What language do you prefer for search?"
+msgstr "Hvilket sprog foretrækker du til søgninger?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} af {1} søgemaskiner"

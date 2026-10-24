@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: si\n"
+"X-Name: සිංහල\n"
+
+msgid "About"
+msgstr "ගැන"
+
+msgid "Allow"
+msgstr "ඉඩ දෙන්න"
+
+msgid "Also refers to"
+msgstr "මෙයද අදහස් කළ හැක"
+
+msgid "Anytime"
+msgstr "ඕනෑම වේලාවක"
+
+msgid "Author"
+msgstr "කතුවරයා"
+
+msgid "Auto"
+msgstr "ස්වයංක්‍රීය"
+
+msgid "Back"
+msgstr "ආපසු"
+
+msgid "Change the language of the layout"
+msgstr "පිරිසැලසුම් භාෂාව වෙනස් කරන්න"
+
+msgid "Close"
+msgstr "වසන්න"
+
+msgid "Comments"
+msgstr "අදහස්"
+
+msgid "Default language"
+msgstr "මූලික භාෂාව"
+
+msgid "Engine name"
+msgstr "එන්ජිම"
+
+msgid "Engines"
+msgstr "එන්ජින්"
+
+msgid "Filter content"
+msgstr "අන්තර්ගතය පෙරීම"
+
+msgid "Format"
+msgstr "ආකෘතිය"
+
+msgid "General"
+msgstr "සාමාන්‍ය"
+
+msgid "Image details"
+msgstr "රූපයේ විස්තර"
+
+msgid "Images"
+msgstr "රූප"
+
+msgid "Interface language"
+msgstr "අතුරුමුහුණත් භාෂාව"
+
+msgid "Journal"
+msgstr "සඟරාව"
+
+msgid "Last day"
+msgstr "පසුගිය දිනය"
+
+msgid "Last month"
+msgstr "පසුගිය මාසය"
+
+msgid "Last week"
+msgstr "පසුගිය සතිය"
+
+msgid "Last year"
+msgstr "පසුගිය වසර"
+
+msgid "Length"
+msgstr "දිග"
+
+msgid "Moderate"
+msgstr "මධ්‍යස්ථ"
+
+msgid "Music"
+msgstr "සංගීත"
+
+msgid "News"
+msgstr "පුවත්"
+
+msgid "Next image"
+msgstr "ඊළඟ රූපය"
+
+msgid "Next page"
+msgstr "ඊළඟ පිටුව"
+
+msgid "No more results for {0}"
+msgstr "{0} සඳහා තවත් ප්‍රතිඵල නැත"
+
+msgid "No results for {0}"
+msgstr "{0} සඳහා ප්‍රතිඵල නැත"
+
+msgid "None"
+msgstr "කිසිවක් නැත"
+
+msgid "Package"
+msgstr "පැකේජය"
+
+msgid "Page {0}"
+msgstr "පිටුව {0}"
+
+msgid "Pages"
+msgstr "පිටු"
+
+msgid "Preferences"
+msgstr "මනාපයන්"
+
+msgid "Previous image"
+msgstr "පෙර රූපය"
+
+msgid "Previous page"
+msgstr "පෙර පිටුව"
+
+msgid "Research"
+msgstr "පර්යේෂණ"
+
+msgid "Reset defaults"
+msgstr "පෙරනිමි යළි සකසන්න"
+
+msgid "Resolution"
+msgstr "විභේදනය"
+
+msgid "Response time"
+msgstr "ප්‍රතිචාර කාලය"
+
+msgid "SafeSearch"
+msgstr "ආරක්ෂිත සෙවුම්"
+
+msgid "Save"
+msgstr "සුරකින්න"
+
+msgid "Search"
+msgstr "සොයන්න"
+
+msgid "Search for..."
+msgstr "සොයන්න..."
+
+msgid "Search language"
+msgstr "සෙවුම් භාෂාව"
+
+msgid "Searching"
+msgstr "සොයමින්"
+
+msgid "Strict"
+msgstr "තද"
+
+msgid "Tags"
+msgstr "ටැග්"
+
+msgid "Tech"
+msgstr "තාක්ෂණය"
+
+msgid "This site did not provide any description."
+msgstr "මෙම වෙබ් අඩවිය කිසිදු විස්තරයක් ලබා දුන්නේ නැත."
+
+msgid "Time range"
+msgstr "කාල පරාසය"
+
+msgid "Try different words or another category."
+msgstr "වෙනත් වචන හෝ වෙනත් ප්‍රවර්ගයක් උත්සාහ කරන්න."
+
+msgid "Type"
+msgstr "වර්ගය"
+
+msgid "Version"
+msgstr "අනුවාදය"
+
+msgid "Videos"
+msgstr "වීඩියෝ"
+
+msgid "Views"
+msgstr "නැරඹුම්"
+
+msgid "What language do you prefer for search?"
+msgstr "සෙවුම් සඳහා ඔබ කැමති භාෂාව කුමක්ද?"
+
+msgid "{0} of {1} engines"
+msgstr "එන්ජින් {1}න් {0}"

@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: bn\n"
+"X-Name: বাংলা\n"
+
+msgid "About"
+msgstr "সম্বন্ধে"
+
+msgid "Allow"
+msgstr "অনুমোদন"
+
+msgid "Also refers to"
+msgstr "আরও বোঝায়"
+
+msgid "Anytime"
+msgstr "যেকোনো সময়"
+
+msgid "Author"
+msgstr "লেখক"
+
+msgid "Auto"
+msgstr "স্বয়ংক্রিয়"
+
+msgid "Back"
+msgstr "পিছনে"
+
+msgid "Change the language of the layout"
+msgstr "লে আউটের ভাষা পরিবর্তন করুন"
+
+msgid "Close"
+msgstr "বন্ধ করুন"
+
+msgid "Comments"
+msgstr "কমেন্ট"
+
+msgid "Default language"
+msgstr "পূর্বনির্ধারিত ভাষা"
+
+msgid "Engine name"
+msgstr "ইঞ্জিনের নাম"
+
+msgid "Engines"
+msgstr "ইঞ্জিন"
+
+msgid "Filter content"
+msgstr "বাছাইকৃত উপাত্ত"
+
+msgid "Format"
+msgstr "ফরম্যাট"
+
+msgid "General"
+msgstr "সাধারণ"
+
+msgid "Image details"
+msgstr "ছবির বিবরণ"
+
+msgid "Images"
+msgstr "ছবি"
+
+msgid "Interface language"
+msgstr "ইন্টারফেসের ভাষা"
+
+msgid "Journal"
+msgstr "দৈনিক সংবাদপত্র"
+
+msgid "Last day"
+msgstr "শেষ দিন"
+
+msgid "Last month"
+msgstr "শেষ মাস"
+
+msgid "Last week"
+msgstr "শেষ সপ্তাহ"
+
+msgid "Last year"
+msgstr "শেষ বছর"
+
+msgid "Length"
+msgstr "দৈর্ঘ্য"
+
+msgid "Moderate"
+msgstr "মধ্যম"
+
+msgid "Music"
+msgstr "গান"
+
+msgid "News"
+msgstr "খবর"
+
+msgid "Next image"
+msgstr "পরের ছবি"
+
+msgid "Next page"
+msgstr "পরবর্তী পেইজ"
+
+msgid "No more results for {0}"
+msgstr "{0}-এর জন্য আর কোনো ফলাফল নেই"
+
+msgid "No results for {0}"
+msgstr "{0}-এর জন্য কোনো ফলাফল নেই"
+
+msgid "None"
+msgstr "নেই"
+
+msgid "Package"
+msgstr "প্যাকেজ"
+
+msgid "Page {0}"
+msgstr "পৃষ্ঠা {0}"
+
+msgid "Pages"
+msgstr "পৃষ্ঠা"
+
+msgid "Preferences"
+msgstr "পছন্দসমূহ"
+
+msgid "Previous image"
+msgstr "আগের ছবি"
+
+msgid "Previous page"
+msgstr "পূর্ববর্তী পেইজ"
+
+msgid "Research"
+msgstr "গবেষণা"
+
+msgid "Reset defaults"
+msgstr "ডিফল্টে রিসেট করুন"
+
+msgid "Resolution"
+msgstr "আকার"
+
+msgid "Response time"
+msgstr "প্রতিক্রিয়া সময়"
+
+msgid "SafeSearch"
+msgstr "নিরাপদ সার্চ"
+
+msgid "Save"
+msgstr "সংরক্ষণ"
+
+msgid "Search"
+msgstr "অনুসন্ধান"
+
+msgid "Search for..."
+msgstr "সার্চ করুন..।"
+
+msgid "Search language"
+msgstr "সার্চের ভাষা"
+
+msgid "Searching"
+msgstr "খোঁজা হচ্ছে"
+
+msgid "Strict"
+msgstr "কঠোর"
+
+msgid "Tags"
+msgstr "ট্যাগসমূহ"
+
+msgid "Tech"
+msgstr "প্রযুক্তি"
+
+msgid "This site did not provide any description."
+msgstr "এই সাইট কোন বিবরণ প্রদান করেনি।"
+
+msgid "Time range"
+msgstr "সময়সীমা"
+
+msgid "Try different words or another category."
+msgstr "অন্য শব্দ বা অন্য বিভাগ দিয়ে চেষ্টা করুন।"
+
+msgid "Type"
+msgstr "ধরন"
+
+msgid "Version"
+msgstr "সংস্করণ"
+
+msgid "Videos"
+msgstr "ভিডিও"
+
+msgid "Views"
+msgstr "ভিউ"
+
+msgid "What language do you prefer for search?"
+msgstr "আপনি অনুসন্ধানের জন্য কোন ভাষা পছন্দ করেন?"
+
+msgid "{0} of {1} engines"
+msgstr "{1}টির মধ্যে {0}টি ইঞ্জিন"

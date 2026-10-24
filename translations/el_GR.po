@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: el_GR\n"
+"X-Name: Ελληνικά (Ελλάδα)\n"
+
+msgid "About"
+msgstr "Σχετικά με το SearXNG"
+
+msgid "Allow"
+msgstr "Επέτρεψε"
+
+msgid "Also refers to"
+msgstr "Μπορεί επίσης να αναφέρεται σε"
+
+msgid "Anytime"
+msgstr "Οποιαδήποτε στιγμή"
+
+msgid "Author"
+msgstr "Συγγραφέας"
+
+msgid "Auto"
+msgstr "Αυτόματα"
+
+msgid "Back"
+msgstr "Πίσω"
+
+msgid "Change the language of the layout"
+msgstr "Αλλαγή γλώσσας της διάταξης"
+
+msgid "Close"
+msgstr "Κλείσιμο"
+
+msgid "Comments"
+msgstr "Σχόλια"
+
+msgid "Default language"
+msgstr "Προεπιλεγμένη γλώσσα"
+
+msgid "Engine name"
+msgstr "Όνομα μηχανής"
+
+msgid "Engines"
+msgstr "Μηχανές"
+
+msgid "Filter content"
+msgstr "Φιλτράρισμα περιεχομένου"
+
+msgid "Format"
+msgstr "Μορφή"
+
+msgid "General"
+msgstr "Γενικά"
+
+msgid "Image details"
+msgstr "Λεπτομέρειες εικόνας"
+
+msgid "Images"
+msgstr "Εικόνες"
+
+msgid "Interface language"
+msgstr "Γλώσσα διεπαφής"
+
+msgid "Journal"
+msgstr "Περιοδικό"
+
+msgid "Last day"
+msgstr "Τελευταία μέρα"
+
+msgid "Last month"
+msgstr "Τελευταίος μήνας"
+
+msgid "Last week"
+msgstr "Τελευταία βδομάδα"
+
+msgid "Last year"
+msgstr "Τελευταίο έτος"
+
+msgid "Length"
+msgstr "Μήκος"
+
+msgid "Moderate"
+msgstr "Μέτριο"
+
+msgid "Music"
+msgstr "Μουσική"
+
+msgid "News"
+msgstr "Νέα"
+
+msgid "Next image"
+msgstr "Επόμενη εικόνα"
+
+msgid "Next page"
+msgstr "Επόμενη σελίδα"
+
+msgid "No more results for {0}"
+msgstr "Δεν υπάρχουν άλλα αποτελέσματα για {0}"
+
+msgid "No results for {0}"
+msgstr "Δεν βρέθηκαν αποτελέσματα για {0}"
+
+msgid "None"
+msgstr "Κανένα"
+
+msgid "Package"
+msgstr "Πακέτο"
+
+msgid "Page {0}"
+msgstr "Σελίδα {0}"
+
+msgid "Pages"
+msgstr "Σελίδες"
+
+msgid "Preferences"
+msgstr "Προτιμήσεις"
+
+msgid "Previous image"
+msgstr "Προηγούμενη εικόνα"
+
+msgid "Previous page"
+msgstr "Προηγούμενη σελίδα"
+
+msgid "Research"
+msgstr "Έρευνα"
+
+msgid "Reset defaults"
+msgstr "Επαναφορά προεπιλογών"
+
+msgid "Resolution"
+msgstr "Ανάλυση"
+
+msgid "Response time"
+msgstr "Χρόνος απόκρισης"
+
+msgid "SafeSearch"
+msgstr "Ασφαλής Αναζήτηση"
+
+msgid "Save"
+msgstr "Αποθήκευση"
+
+msgid "Search"
+msgstr "Αναζήτηση"
+
+msgid "Search for..."
+msgstr "Αναζήτηση για..."
+
+msgid "Search language"
+msgstr "Γλώσσα αναζήτησης"
+
+msgid "Searching"
+msgstr "Αναζήτηση σε εξέλιξη"
+
+msgid "Strict"
+msgstr "Αυστηρό"
+
+msgid "Tags"
+msgstr "Σημάνσεις"
+
+msgid "Tech"
+msgstr "Τεχνολογία"
+
+msgid "This site did not provide any description."
+msgstr "Αυτός ο ιστότοπος δεν παρείχε καμία περιγραφή."
+
+msgid "Time range"
+msgstr "Εύρος χρόνου"
+
+msgid "Try different words or another category."
+msgstr "Δοκιμάστε διαφορετικές λέξεις ή άλλη κατηγορία."
+
+msgid "Type"
+msgstr "Τύπος"
+
+msgid "Version"
+msgstr "Έκδοση"
+
+msgid "Videos"
+msgstr "Βίντεο"
+
+msgid "Views"
+msgstr "Προβολές"
+
+msgid "What language do you prefer for search?"
+msgstr "Τι γλώσσα προτιμάτε για αναζήτηση;"
+
+msgid "{0} of {1} engines"
+msgstr "{0} από {1} μηχανές"

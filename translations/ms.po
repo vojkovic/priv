@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: ms\n"
+"X-Name: Melayu\n"
+
+msgid "About"
+msgstr "Tentang"
+
+msgid "Allow"
+msgstr "Benarkan"
+
+msgid "Also refers to"
+msgstr "Juga boleh merujuk kepada"
+
+msgid "Anytime"
+msgstr "Bila-bila masa"
+
+msgid "Author"
+msgstr "Penulis"
+
+msgid "Auto"
+msgstr "Automatik"
+
+msgid "Back"
+msgstr "Balik"
+
+msgid "Change the language of the layout"
+msgstr "Tukar bahasa susun atur"
+
+msgid "Close"
+msgstr "Tutup"
+
+msgid "Comments"
+msgstr "Komen"
+
+msgid "Default language"
+msgstr "Bahasa lalai"
+
+msgid "Engine name"
+msgstr "Nama enjin"
+
+msgid "Engines"
+msgstr "Enjin-enjin"
+
+msgid "Filter content"
+msgstr "Tapis kandungan"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "General"
+msgstr "Umum"
+
+msgid "Image details"
+msgstr "Butiran imej"
+
+msgid "Images"
+msgstr "Gambar-gambar"
+
+msgid "Interface language"
+msgstr "Bahasa antara muka"
+
+msgid "Journal"
+msgstr "Jurnal"
+
+msgid "Last day"
+msgstr "Dalam 24 jam"
+
+msgid "Last month"
+msgstr "Dalam 1 bulan"
+
+msgid "Last week"
+msgstr "Dalam 1 minggu"
+
+msgid "Last year"
+msgstr "Dalam 1 tahun"
+
+msgid "Length"
+msgstr "Panjang"
+
+msgid "Moderate"
+msgstr "Sederhana"
+
+msgid "Music"
+msgstr "Muzik"
+
+msgid "News"
+msgstr "Berita"
+
+msgid "Next image"
+msgstr "Imej seterusnya"
+
+msgid "Next page"
+msgstr "Halaman seterusnya"
+
+msgid "No more results for {0}"
+msgstr "Tiada lagi hasil untuk {0}"
+
+msgid "No results for {0}"
+msgstr "Tiada hasil untuk {0}"
+
+msgid "None"
+msgstr "Tanpa"
+
+msgid "Package"
+msgstr "Pakej"
+
+msgid "Page {0}"
+msgstr "Halaman {0}"
+
+msgid "Pages"
+msgstr "Halaman"
+
+msgid "Preferences"
+msgstr "Pilihan"
+
+msgid "Previous image"
+msgstr "Imej sebelumnya"
+
+msgid "Previous page"
+msgstr "Halaman sebelumnya"
+
+msgid "Research"
+msgstr "Penyelidikan"
+
+msgid "Reset defaults"
+msgstr "Set semula lalai"
+
+msgid "Resolution"
+msgstr "Resolusi"
+
+msgid "Response time"
+msgstr "Masa tindak balas"
+
+msgid "SafeSearch"
+msgstr "Carian Selamat"
+
+msgid "Save"
+msgstr "Simpan"
+
+msgid "Search"
+msgstr "Cari"
+
+msgid "Search for..."
+msgstr "Cari..."
+
+msgid "Search language"
+msgstr "Bahasa carian"
+
+msgid "Searching"
+msgstr "Mencari"
+
+msgid "Strict"
+msgstr "Ketat"
+
+msgid "Tags"
+msgstr "Tag"
+
+msgid "Tech"
+msgstr "Teknologi"
+
+msgid "This site did not provide any description."
+msgstr "Laman web ini tidak memberikan sebarang diskripsi."
+
+msgid "Time range"
+msgstr "Julat masa"
+
+msgid "Try different words or another category."
+msgstr "Cuba perkataan lain atau kategori lain."
+
+msgid "Type"
+msgstr "Jenis"
+
+msgid "Version"
+msgstr "Versi"
+
+msgid "Videos"
+msgstr "Video"
+
+msgid "Views"
+msgstr "Tontonan"
+
+msgid "What language do you prefer for search?"
+msgstr "Bahasa apa yang anda suka untuk membuat carian?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} daripada {1} enjin"

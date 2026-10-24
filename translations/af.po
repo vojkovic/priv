@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: af\n"
+"X-Name: Afrikaans\n"
+
+msgid "About"
+msgstr "Aangaande"
+
+msgid "Allow"
+msgstr "Laat toe"
+
+msgid "Also refers to"
+msgstr "Verwys ook na"
+
+msgid "Anytime"
+msgstr "Enige tyd"
+
+msgid "Author"
+msgstr "Outeur"
+
+msgid "Auto"
+msgstr "Outomaties"
+
+msgid "Back"
+msgstr "Terug"
+
+msgid "Change the language of the layout"
+msgstr "Verander die uitleg taal"
+
+msgid "Close"
+msgstr "Sluit"
+
+msgid "Comments"
+msgstr "Kommentaar"
+
+msgid "Default language"
+msgstr "Verstek taal"
+
+msgid "Engine name"
+msgstr "Enjin naam"
+
+msgid "Engines"
+msgstr "Enjins"
+
+msgid "Filter content"
+msgstr "Filter inhoud"
+
+msgid "Format"
+msgstr "Formaat"
+
+msgid "General"
+msgstr "Algemeen"
+
+msgid "Image details"
+msgstr "Prentbesonderhede"
+
+msgid "Images"
+msgstr "Prente"
+
+msgid "Interface language"
+msgstr "Koppelvlak taal"
+
+msgid "Journal"
+msgstr "Joernaal"
+
+msgid "Last day"
+msgstr "Laaste dag"
+
+msgid "Last month"
+msgstr "Laas maand"
+
+msgid "Last week"
+msgstr "Laas week"
+
+msgid "Last year"
+msgstr "Laas jaar"
+
+msgid "Length"
+msgstr "Lengte"
+
+msgid "Moderate"
+msgstr "Matig"
+
+msgid "Music"
+msgstr "Musiek"
+
+msgid "News"
+msgstr "Nuus"
+
+msgid "Next image"
+msgstr "Volgende prent"
+
+msgid "Next page"
+msgstr "Volgende bladsy"
+
+msgid "No more results for {0}"
+msgstr "Geen verdere resultate vir {0}"
+
+msgid "No results for {0}"
+msgstr "Geen resultate vir {0}"
+
+msgid "None"
+msgstr "Geen"
+
+msgid "Package"
+msgstr "Pakket"
+
+msgid "Page {0}"
+msgstr "Bladsy {0}"
+
+msgid "Pages"
+msgstr "Bladsye"
+
+msgid "Preferences"
+msgstr "Voorkeure"
+
+msgid "Previous image"
+msgstr "Vorige prent"
+
+msgid "Previous page"
+msgstr "Vorige bladsy"
+
+msgid "Research"
+msgstr "Navorsing"
+
+msgid "Reset defaults"
+msgstr "Stel verstekwaardes terug"
+
+msgid "Resolution"
+msgstr "Resolusie"
+
+msgid "Response time"
+msgstr "Reaksietyd"
+
+msgid "SafeSearch"
+msgstr "VeiligeSoek"
+
+msgid "Save"
+msgstr "Stoor"
+
+msgid "Search"
+msgstr "Soek"
+
+msgid "Search for..."
+msgstr "Soek vir..."
+
+msgid "Search language"
+msgstr "Soek taal"
+
+msgid "Searching"
+msgstr "Soek tans"
+
+msgid "Strict"
+msgstr "Streng"
+
+msgid "Tags"
+msgstr "Merkers"
+
+msgid "Tech"
+msgstr "Tegnologie"
+
+msgid "This site did not provide any description."
+msgstr "Hierdie webwerf het geen beskrywing verskaf nie."
+
+msgid "Time range"
+msgstr "Tydreeks"
+
+msgid "Try different words or another category."
+msgstr "Probeer ander woorde of 'n ander kategorie."
+
+msgid "Type"
+msgstr "Tik"
+
+msgid "Version"
+msgstr "Weergawe"
+
+msgid "Videos"
+msgstr "Videos"
+
+msgid "Views"
+msgstr "sienings"
+
+msgid "What language do you prefer for search?"
+msgstr "Watter taal verkies jy vir soek?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} van {1} enjins"

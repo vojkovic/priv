@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: eu\n"
+"X-Name: Euskara\n"
+
+msgid "About"
+msgstr "Honi buruz"
+
+msgid "Allow"
+msgstr "Baimendu"
+
+msgid "Also refers to"
+msgstr "Honi ere egin diezaioke erreferentzia"
+
+msgid "Anytime"
+msgstr "Edonoiz"
+
+msgid "Author"
+msgstr "Egilea"
+
+msgid "Auto"
+msgstr "Automatikoa"
+
+msgid "Back"
+msgstr "Atzera"
+
+msgid "Change the language of the layout"
+msgstr "Aldatu interfazearen hizkuntza"
+
+msgid "Close"
+msgstr "Itxi"
+
+msgid "Comments"
+msgstr "Iruzkinak"
+
+msgid "Default language"
+msgstr "Lehenetsitako hizkuntza"
+
+msgid "Engine name"
+msgstr "Bilatzailearen izena"
+
+msgid "Engines"
+msgstr "Bilatzaileak"
+
+msgid "Filter content"
+msgstr "Edukia iragazi"
+
+msgid "Format"
+msgstr "Formatua"
+
+msgid "General"
+msgstr "Orokorra"
+
+msgid "Image details"
+msgstr "Irudiaren xehetasunak"
+
+msgid "Images"
+msgstr "Irudiak"
+
+msgid "Interface language"
+msgstr "Interfazearen hizkuntza"
+
+msgid "Journal"
+msgstr "Egunkaria"
+
+msgid "Last day"
+msgstr "Azken eguna"
+
+msgid "Last month"
+msgstr "Azken hilabetea"
+
+msgid "Last week"
+msgstr "Azken astea"
+
+msgid "Last year"
+msgstr "Azken urtea"
+
+msgid "Length"
+msgstr "Luzera"
+
+msgid "Moderate"
+msgstr "Moderatua"
+
+msgid "Music"
+msgstr "Musika"
+
+msgid "News"
+msgstr "Berriak"
+
+msgid "Next image"
+msgstr "Hurrengo irudia"
+
+msgid "Next page"
+msgstr "Hurrengo orria"
+
+msgid "No more results for {0}"
+msgstr "Ez dago emaitza gehiagorik honentzat: {0}"
+
+msgid "No results for {0}"
+msgstr "Ez dago emaitzarik honentzat: {0}"
+
+msgid "None"
+msgstr "Bat ere ez"
+
+msgid "Package"
+msgstr "Paketea"
+
+msgid "Page {0}"
+msgstr "{0}. orria"
+
+msgid "Pages"
+msgstr "Orriak"
+
+msgid "Preferences"
+msgstr "Hobespenak"
+
+msgid "Previous image"
+msgstr "Aurreko irudia"
+
+msgid "Previous page"
+msgstr "Aurreko orria"
+
+msgid "Research"
+msgstr "Ikerketa"
+
+msgid "Reset defaults"
+msgstr "Berrezarri lehenetsiak"
+
+msgid "Resolution"
+msgstr "Ebazpena"
+
+msgid "Response time"
+msgstr "Erantzuteko denbora"
+
+msgid "SafeSearch"
+msgstr "Bilaketa segurua"
+
+msgid "Save"
+msgstr "Gorde"
+
+msgid "Search"
+msgstr "Bilatu"
+
+msgid "Search for..."
+msgstr "Bilatu..."
+
+msgid "Search language"
+msgstr "Bilaketaren hizkuntza"
+
+msgid "Searching"
+msgstr "Bilatzen"
+
+msgid "Strict"
+msgstr "Zorrotza"
+
+msgid "Tags"
+msgstr "Etiketak"
+
+msgid "Tech"
+msgstr "Teknologia"
+
+msgid "This site did not provide any description."
+msgstr "Gune honek ez du deskribapenik eman."
+
+msgid "Time range"
+msgstr "Denbora tartea"
+
+msgid "Try different words or another category."
+msgstr "Saiatu beste hitz batzuekin edo beste kategoria batekin."
+
+msgid "Type"
+msgstr "Mota"
+
+msgid "Version"
+msgstr "Bertsioa"
+
+msgid "Videos"
+msgstr "Bideoak"
+
+msgid "Views"
+msgstr "Ikuspegiak"
+
+msgid "What language do you prefer for search?"
+msgstr "Zein hizkuntzan egin nahi duzu bilaketa?"
+
+msgid "{0} of {1} engines"
+msgstr "{1} bilatzailetatik {0}"

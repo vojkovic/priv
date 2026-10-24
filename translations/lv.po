@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: lv\n"
+"X-Name: Latviešu\n"
+
+msgid "About"
+msgstr "Par"
+
+msgid "Allow"
+msgstr "Atļaut"
+
+msgid "Also refers to"
+msgstr "Var attiekties arī uz"
+
+msgid "Anytime"
+msgstr "Jebkurā laikā"
+
+msgid "Author"
+msgstr "Autors"
+
+msgid "Auto"
+msgstr "Automātiski"
+
+msgid "Back"
+msgstr "Atpakaļ"
+
+msgid "Change the language of the layout"
+msgstr "Izkārtojuma valodas maiņa"
+
+msgid "Close"
+msgstr "Aizvērt"
+
+msgid "Comments"
+msgstr "Komentāri"
+
+msgid "Default language"
+msgstr "Noklusējuma valoda"
+
+msgid "Engine name"
+msgstr "Meklētāja nosaukums"
+
+msgid "Engines"
+msgstr "Dzinēji"
+
+msgid "Filter content"
+msgstr "Filtrēt saturu"
+
+msgid "Format"
+msgstr "Formāts"
+
+msgid "General"
+msgstr "Viss"
+
+msgid "Image details"
+msgstr "Attēla informācija"
+
+msgid "Images"
+msgstr "Attēli"
+
+msgid "Interface language"
+msgstr "Saskarnes valoda"
+
+msgid "Journal"
+msgstr "Žurnāls"
+
+msgid "Last day"
+msgstr "Pēdējā diennakts"
+
+msgid "Last month"
+msgstr "Pēdējais mēnesis"
+
+msgid "Last week"
+msgstr "Pēdējā nedēļa"
+
+msgid "Last year"
+msgstr "Pēdējais gads"
+
+msgid "Length"
+msgstr "Garums"
+
+msgid "Moderate"
+msgstr "Mērena"
+
+msgid "Music"
+msgstr "Mūzika"
+
+msgid "News"
+msgstr "Ziņas"
+
+msgid "Next image"
+msgstr "Nākamais attēls"
+
+msgid "Next page"
+msgstr "Nākamā lapa"
+
+msgid "No more results for {0}"
+msgstr "Vairāk rezultātu vaicājumam {0} nav"
+
+msgid "No results for {0}"
+msgstr "Nav rezultātu vaicājumam {0}"
+
+msgid "None"
+msgstr "Neviens"
+
+msgid "Package"
+msgstr "Pakotne"
+
+msgid "Page {0}"
+msgstr "{0}. lapa"
+
+msgid "Pages"
+msgstr "Lapas"
+
+msgid "Preferences"
+msgstr "Opcijas"
+
+msgid "Previous image"
+msgstr "Iepriekšējais attēls"
+
+msgid "Previous page"
+msgstr "Iepriekšējā lapa"
+
+msgid "Research"
+msgstr "Pētniecība"
+
+msgid "Reset defaults"
+msgstr "Atiestatīt noklusējuma"
+
+msgid "Resolution"
+msgstr "Izšķirtspēja"
+
+msgid "Response time"
+msgstr "Atbildes laiks"
+
+msgid "SafeSearch"
+msgstr "Drošā meklēšana"
+
+msgid "Save"
+msgstr "Saglabāt"
+
+msgid "Search"
+msgstr "Meklēt"
+
+msgid "Search for..."
+msgstr "Meklēt..."
+
+msgid "Search language"
+msgstr "Meklēšanas valoda"
+
+msgid "Searching"
+msgstr "Meklē"
+
+msgid "Strict"
+msgstr "Stingrs"
+
+msgid "Tags"
+msgstr "Birkas"
+
+msgid "Tech"
+msgstr "Tehnoloģijas"
+
+msgid "This site did not provide any description."
+msgstr "Šī vietne nesniedza nekādu aprakstu."
+
+msgid "Time range"
+msgstr "Laika diapazons"
+
+msgid "Try different words or another category."
+msgstr "Mēģiniet citus vārdus vai citu kategoriju."
+
+msgid "Type"
+msgstr "Tips"
+
+msgid "Version"
+msgstr "Versija"
+
+msgid "Videos"
+msgstr "Video"
+
+msgid "Views"
+msgstr "Skatījumi"
+
+msgid "What language do you prefer for search?"
+msgstr "Kādai valodai dodat priekšroku priekš meklēšanas?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} no {1} meklētājiem"

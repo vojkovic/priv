@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: oc\n"
+"X-Name: Occitan\n"
+
+msgid "About"
+msgstr "A prepaus"
+
+msgid "Allow"
+msgstr "Autorizar"
+
+msgid "Also refers to"
+msgstr "Pòt tanben designar"
+
+msgid "Anytime"
+msgstr "Impòrta pas quand"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Auto"
+msgstr "Automatic"
+
+msgid "Back"
+msgstr "Tornar"
+
+msgid "Change the language of the layout"
+msgstr "Cambiar la lenga de l'interfàcia"
+
+msgid "Close"
+msgstr "Tampar"
+
+msgid "Comments"
+msgstr "Comentaris"
+
+msgid "Default language"
+msgstr "Lenga per defaut"
+
+msgid "Engine name"
+msgstr "Nom del motor de cerca"
+
+msgid "Engines"
+msgstr "Motors de cerca"
+
+msgid "Filter content"
+msgstr "Filtrar lo contengut"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "General"
+msgstr "General"
+
+msgid "Image details"
+msgstr "Detalhs de l'imatge"
+
+msgid "Images"
+msgstr "Imatges"
+
+msgid "Interface language"
+msgstr "Lenga de l'interfàcia"
+
+msgid "Journal"
+msgstr "Jornal"
+
+msgid "Last day"
+msgstr "Ièr"
+
+msgid "Last month"
+msgstr "Lo mes passat"
+
+msgid "Last week"
+msgstr "La setmana passada"
+
+msgid "Last year"
+msgstr "L'an passat"
+
+msgid "Length"
+msgstr "Longor"
+
+msgid "Moderate"
+msgstr "Moderat"
+
+msgid "Music"
+msgstr "Musica"
+
+msgid "News"
+msgstr "Actualitat"
+
+msgid "Next image"
+msgstr "Imatge seguenta"
+
+msgid "Next page"
+msgstr "Pagina seguenta"
+
+msgid "No more results for {0}"
+msgstr "Pas mai de resultats per {0}"
+
+msgid "No results for {0}"
+msgstr "Cap de resultat per {0}"
+
+msgid "None"
+msgstr "Cap"
+
+msgid "Package"
+msgstr "Paquet"
+
+msgid "Page {0}"
+msgstr "Pagina {0}"
+
+msgid "Pages"
+msgstr "Paginas"
+
+msgid "Preferences"
+msgstr "Preferéncias"
+
+msgid "Previous image"
+msgstr "Imatge precedenta"
+
+msgid "Previous page"
+msgstr "Pagina precedenta"
+
+msgid "Research"
+msgstr "Recèrca"
+
+msgid "Reset defaults"
+msgstr "Reïnicializar per defaut"
+
+msgid "Resolution"
+msgstr "Resolucion"
+
+msgid "Response time"
+msgstr "Temps de responsa"
+
+msgid "SafeSearch"
+msgstr "Recèrca segurizada"
+
+msgid "Save"
+msgstr "Enregistrar"
+
+msgid "Search"
+msgstr "Recercar"
+
+msgid "Search for..."
+msgstr "Cerca per..."
+
+msgid "Search language"
+msgstr "Lenga de recerca"
+
+msgid "Searching"
+msgstr "Recèrca en cors"
+
+msgid "Strict"
+msgstr "Estricte"
+
+msgid "Tags"
+msgstr "Etiquetas"
+
+msgid "Tech"
+msgstr "Tecnologia"
+
+msgid "This site did not provide any description."
+msgstr "Aqueste site a pas provesit cap de descripcion."
+
+msgid "Time range"
+msgstr "Espaci temporal"
+
+msgid "Try different words or another category."
+msgstr "Ensajatz d'autres mots o una autra categoria."
+
+msgid "Type"
+msgstr "Tipe"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Videos"
+msgstr "Vidèos"
+
+msgid "Views"
+msgstr "Vistas"
+
+msgid "What language do you prefer for search?"
+msgstr "Dins quina lenga vos agrada mai cercar ?"
+
+msgid "{0} of {1} engines"
+msgstr "{0} motors sus {1}"

@@ -1,0 +1,188 @@
+msgid ""
+msgstr ""
+"Language: ar\n"
+"X-Name: العربية\n"
+"X-Direction: rtl\n"
+
+msgid "About"
+msgstr "حول"
+
+msgid "Allow"
+msgstr "تمكين"
+
+msgid "Also refers to"
+msgstr "يشير أيضًا إلى"
+
+msgid "Anytime"
+msgstr "في أي وقت"
+
+msgid "Author"
+msgstr "الكاتب"
+
+msgid "Auto"
+msgstr "تلقائي"
+
+msgid "Back"
+msgstr "الخلف"
+
+msgid "Change the language of the layout"
+msgstr "تغيير لغة واجهة البحث"
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Comments"
+msgstr "التعليقات"
+
+msgid "Default language"
+msgstr "اللغة الإفتراضية"
+
+msgid "Engine name"
+msgstr "إسم المحرك"
+
+msgid "Engines"
+msgstr "المحركات"
+
+msgid "Filter content"
+msgstr "فلترة المحتوى"
+
+msgid "Format"
+msgstr "الصيغة"
+
+msgid "General"
+msgstr "عام"
+
+msgid "Image details"
+msgstr "تفاصيل الصورة"
+
+msgid "Images"
+msgstr "صور"
+
+msgid "Interface language"
+msgstr "لغة الواجهة"
+
+msgid "Journal"
+msgstr "السجل اليومي"
+
+msgid "Last day"
+msgstr "آخر يوم"
+
+msgid "Last month"
+msgstr "الشهر الماضي"
+
+msgid "Last week"
+msgstr "الأسبوع الماضي"
+
+msgid "Last year"
+msgstr "السنة الفارطة"
+
+msgid "Length"
+msgstr "الطول"
+
+msgid "Moderate"
+msgstr "معتدل"
+
+msgid "Music"
+msgstr "موسيقى"
+
+msgid "News"
+msgstr "أخبار"
+
+msgid "Next image"
+msgstr "الصورة التالية"
+
+msgid "Next page"
+msgstr "الصفحة التالية"
+
+msgid "No more results for {0}"
+msgstr "لا مزيد من النتائج لـ {0}"
+
+msgid "No results for {0}"
+msgstr "لا توجد نتائج لـ {0}"
+
+msgid "None"
+msgstr "لا شيء"
+
+msgid "Package"
+msgstr "حزمة"
+
+msgid "Page {0}"
+msgstr "الصفحة {0}"
+
+msgid "Pages"
+msgstr "الصفحات"
+
+msgid "Preferences"
+msgstr "التفضيلات"
+
+msgid "Previous image"
+msgstr "الصورة السابقة"
+
+msgid "Previous page"
+msgstr "الصفحة السابقة"
+
+msgid "Research"
+msgstr "أبحاث"
+
+msgid "Reset defaults"
+msgstr "إعاد التعيين إلى الإعدادات الإفتراضية"
+
+msgid "Resolution"
+msgstr "الدقة"
+
+msgid "Response time"
+msgstr "مدة الإستجابة"
+
+msgid "SafeSearch"
+msgstr "البحث المؤمَّن"
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "Search"
+msgstr "بحث"
+
+msgid "Search for..."
+msgstr "البحث عن ..."
+
+msgid "Search language"
+msgstr "لغة البحث"
+
+msgid "Searching"
+msgstr "جارٍ البحث"
+
+msgid "Strict"
+msgstr "صارم"
+
+msgid "Tags"
+msgstr "السمات"
+
+msgid "Tech"
+msgstr "تقنية"
+
+msgid "This site did not provide any description."
+msgstr "هذا الموقع لم يقدم أي وصف."
+
+msgid "Time range"
+msgstr "الفترة"
+
+msgid "Try different words or another category."
+msgstr "جرّب كلمات مختلفة أو فئة أخرى."
+
+msgid "Type"
+msgstr "نوع"
+
+msgid "Version"
+msgstr "الإصدار"
+
+msgid "Videos"
+msgstr "ڤيديوهات"
+
+msgid "Views"
+msgstr "المشاهدات"
+
+msgid "What language do you prefer for search?"
+msgstr "ما هي لغتك المفضلة للبحث ؟"
+
+msgid "{0} of {1} engines"
+msgstr "{0} من {1} محركات"
