@@ -17,6 +17,29 @@
 	"3.138 21.078\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"5\"/><rect width=\"18.846\" " \
 	"height=\"39.963\" x=\"3.706\" y=\"122.09\" transform=\"rotate(-46.235)\" fill=\"currentColor\"/></g></svg>"
 
+#define YES "<span class=\"yes\">" ICON_CHECK "</span>"
+#define NO "<span class=\"no\">" ICON_MINUS "</span>"
+
+/* images the proxy already prefetched go inline, the rest are fetched through it */
+#define INLINE_MAX (12 << 10)
+#define INFOBOX_INLINE_MAX (64 << 10)
+#define FAVICON_INLINE_MAX (3 << 10)
+#define FAVICON_INLINE_SITES 16
+
+static const char *safe_levels[] = {"None", "Moderate", "Strict"};
+static struct arena scratch;
+
+/* each site's favicon is inlined once, in a sprite at the end of the page, and referenced from there */
+struct favicon {
+	const char *authority, *data;
+	uint32_t id;
+};
+
+static struct favicon favicons[128];
+static size_t nfavicons, ninlined;
+
+/* helpers */
+
 static const char *
 html_str(struct arena *a, const char *s)
 {
@@ -47,6 +70,14 @@ put_tr(struct buf *b, const char *msgid, const char *arg0, const char *arg1)
 }
 
 static void
+option(struct buf *b, const char *value, const char *label, int selected)
+{
+	buf_html(b, "<option value=\"%s\"%r>%s</option>", value, selected ? " selected" : "", label);
+}
+
+/* page shell */
+
+static void
 doc_start(struct buf *b, const char *title, const char *body_class, const struct ui_lang *ui)
 {
 	i18n_use(ui);
@@ -65,21 +96,53 @@ doc_start(struct buf *b, const char *title, const char *body_class, const struct
 	    ui->tag, ui->rtl ? " dir=\"rtl\"" : "", title, instance_name);
 	if (limiter && limiter_link_token)
 		buf_html(b, "<link rel=\"stylesheet\" href=\"/client%s.css\">\n", botdetect_token());
-	buf_html(b, "</head>\n<body class=\"%s\">\n", body_class);
+	buf_html(b,
+	    "</head>\n"
+	    "<body class=\"%s\">\n",
+	    body_class);
 }
+
+static void
+nav_links(struct buf *b)
+{
+	buf_html(b,
+	    "<nav id=\"links\">"
+	    "<a href=\"/about\" aria-label=\"%s\" title=\"%s\">" ICON_INFO "</a>"
+	    "<a href=\"/preferences\" aria-label=\"%s\" title=\"%s\">" ICON_SETTINGS "</a>"
+	    "</nav>\n",
+	    tr("About"), tr("About"), tr("Preferences"), tr("Preferences"));
+}
+
+/* the shell of about and stats: nav icons, a back arrow and a heading */
+static void
+page_start(struct buf *b, const struct prefs *p, const char *title, const char *heading)
+{
+	i18n_use(p->ui);
+	doc_start(b, aprintf(&scratch, "%s - %s", tr(title), instance_name), "page_endpoint", p->ui);
+	nav_links(b);
+	buf_html(b,
+	    "<main class=\"page\">\n"
+	    "<h1><a href=\"/\" aria-label=\"%s\">" ICON_BACK "</a>%s</h1>\n",
+	    tr("Back"), heading);
+	arena_free(&scratch);
+}
+
+/* search header */
 
 static void
 search_box(struct buf *b, const char *query, const char *category, int autofocus)
 {
 	buf_html(b,
-	    "<div id=\"search_view\"><div class=\"search_box\">"
+	    "<div id=\"search_view\">"
+	    "<div class=\"search_box\">"
 	    "<button id=\"search_back\" type=\"button\" aria-label=\"%s\">" ICON_BACK "</button>"
 	    "<input id=\"q\" type=\"search\" name=\"q\" tabindex=\"1\" value=\"%s\" placeholder=\"%s\" aria-label=\"%s\" "
 	    "autocomplete=\"off\" autocapitalize=\"none\" spellcheck=\"false\" dir=\"auto\"%r>"
 	    "<button id=\"send_search\" type=\"submit\" name=\"categories\" value=\"%s\" aria-label=\"%s\">" ICON_SEARCH
 	    "</button>"
 	    "<div class=\"autocomplete\"><ul></ul></div>"
-	    "</div></div>\n",
+	    "</div>"
+	    "</div>\n",
 	    tr("Back"), query, tr("Search for..."), tr("Search"), autofocus ? " data-autofocus" : "", category,
 	    tr("Search"));
 }
@@ -92,21 +155,13 @@ category_tabs(struct buf *b, const char *current)
 	buf_puts(b, "<div id=\"categories\"><div id=\"categories_container\">");
 	for (i = 0; i < ncategories; i++)
 		buf_html(b,
-		    "<button type=\"submit\" name=\"categories\" value=\"%s\" class=\"category_button%r\" "
-		    "aria-label=\"%s\">%r<span class=\"category_name\">%s</span></button>",
+		    "<button type=\"submit\" name=\"categories\" value=\"%s\" class=\"category_button%r\" aria-label=\"%s\">"
+		    "%r<span class=\"category_name\">%s</span>"
+		    "</button>",
 		    categories[i].name, strcmp(categories[i].name, current) ? "" : " selected", tr(categories[i].label),
 		    categories[i].icon, tr(categories[i].label));
 	buf_puts(b, "</div></div>\n");
 }
-
-static void
-option(struct buf *b, const char *value, const char *label, int selected)
-{
-	buf_html(b, "<option value=\"%s\"%r>%s</option>", value, selected ? " selected" : "", label);
-}
-
-static const char *safe_levels[] = {"None", "Moderate", "Strict"};
-static struct arena scratch;
 
 static void
 language_options(struct buf *b, const char *selected, const char *detected)
@@ -133,20 +188,31 @@ search_filters(struct buf *b, const struct filters *f)
 	};
 	size_t i;
 
-	buf_html(b, "<div class=\"search_filters\">\n<select name=\"language\" form=\"search\" aria-label=\"%s\">",
+	buf_html(b,
+	    "<div class=\"search_filters\">\n"
+	    "<select name=\"language\" form=\"search\" aria-label=\"%s\">",
 	    tr("Search language"));
 	language_options(b, f->language, f->browser->label);
-	buf_html(b, "</select>\n<select name=\"time_range\" form=\"search\" aria-label=\"%s\">", tr("Time range"));
+	buf_html(b,
+	    "</select>\n"
+	    "<select name=\"time_range\" form=\"search\" aria-label=\"%s\">",
+	    tr("Time range"));
 	for (i = 0; i < LEN(ranges); i++)
 		option(b, ranges[i][0], tr(ranges[i][1]), f->time_range ? !strcmp(f->time_range, ranges[i][0]) : !i);
-	buf_html(b, "</select>\n<select name=\"safesearch\" form=\"search\" aria-label=\"%s\">", tr("SafeSearch"));
+	buf_html(b,
+	    "</select>\n"
+	    "<select name=\"safesearch\" form=\"search\" aria-label=\"%s\">",
+	    tr("SafeSearch"));
 	for (i = 3; i-- > 0;)
 		option(b, (const char *[]){"0", "1", "2"}[i],
 		    aprintf(&scratch, "%s: %s", tr("SafeSearch"), tr(safe_levels[i])), f->safesearch == (int)i);
-	buf_puts(b, "</select>\n</div>\n");
+	buf_puts(b,
+	    "</select>\n"
+	    "</div>\n");
 	arena_free(&scratch);
 }
 
+/* the filters a link has to carry, those that differ from the user's defaults */
 static void
 filter_params(struct buf *b, const struct filters *f)
 {
@@ -160,15 +226,6 @@ filter_params(struct buf *b, const struct filters *f)
 		buf_html(b, "&amp;safesearch=%d", f->safesearch);
 }
 
-static void
-nav_links(struct buf *b)
-{
-	buf_html(b, "<nav id=\"links\"><a href=\"/about\" aria-label=\"%s\" title=\"%s\">" ICON_INFO "</a>",
-	    tr("About"), tr("About"));
-	buf_html(b, "<a href=\"/preferences\" aria-label=\"%s\" title=\"%s\">" ICON_SETTINGS "</a></nav>\n",
-	    tr("Preferences"), tr("Preferences"));
-}
-
 void
 render_home(struct buf *b, const struct prefs *p)
 {
@@ -176,20 +233,28 @@ render_home(struct buf *b, const struct prefs *p)
 
 	doc_start(b, instance_name, "index_endpoint", p->ui);
 	nav_links(b);
-	buf_html(b, "<main id=\"main_index\">\n<h1 class=\"title\">%s</h1>\n", instance_name);
+	buf_html(b,
+	    "<main id=\"main_index\">\n"
+	    "<h1 class=\"title\">%s</h1>\n",
+	    instance_name);
 	while (motd && motd[n])
 		n++;
 	if (n)
 		buf_html(b, "<p class=\"motd\">%s</p>\n", motd[rnd((uint32_t)n)]);
 	buf_puts(b, "<form id=\"search\" action=\"/search\" method=\"get\" role=\"search\">\n");
 	search_box(b, "", "general", 1);
-	buf_puts(b, "</form>\n</main>\n</body>\n</html>\n");
+	buf_puts(b,
+	    "</form>\n"
+	    "</main>\n"
+	    "</body>\n"
+	    "</html>\n");
 }
 
 void
 render_head(struct buf *b, struct search *s)
 {
 	struct buf page = {0};
+	int seconds = (int)((s->filters.timeout > 0 ? s->filters.timeout : search_timeout) + 0.99);
 
 	i18n_use(s->filters.prefs.ui);
 	put_tr(&page, "Page {0}", aprintf(&s->a, "%d", s->pageno), "");
@@ -199,19 +264,23 @@ render_head(struct buf *b, struct search *s)
 	    "results_endpoint", s->filters.prefs.ui);
 	buf_free(&page);
 	buf_html(b,
-	    "<header id=\"search_header\">\n<a id=\"search_logo\" href=\"/\" aria-label=\"%s\">" LOGO "</a>\n"
+	    "<header id=\"search_header\">\n"
+	    "<a id=\"search_logo\" href=\"/\" aria-label=\"%s\">" LOGO "</a>\n"
 	    "<form id=\"search\" action=\"/search\" method=\"get\" role=\"search\">\n",
 	    instance_name);
 	search_box(b, s->raw, s->filters.category, 0);
 	category_tabs(b, s->filters.category);
 	buf_puts(b, "</form>\n");
 	nav_links(b);
-	buf_html(b, "</header>\n<div class=\"loading t%d\" role=\"progressbar\" aria-label=\"%s\"></div>\n",
-	    MIN(MAX((int)((s->filters.timeout > 0 ? s->filters.timeout : search_timeout) + 0.99), 1), 10),
-	    tr("Searching"));
+	buf_html(b,
+	    "</header>\n"
+	    "<div class=\"loading t%d\" role=\"progressbar\" aria-label=\"%s\"></div>\n",
+	    MIN(MAX(seconds, 1), 10), tr("Searching"));
 	search_filters(b, &s->filters);
 	buf_html(b, "<div id=\"results\" class=\"category-%s\">\n", s->filters.category);
 }
+
+/* results */
 
 static int
 word_start(const char *s, const char *p)
@@ -271,6 +340,7 @@ pretty_url(struct buf *b, struct main_result *m)
 	arena_free(&a);
 }
 
+/* the engines behind a result, as pills, or joined by sep when there is one */
 static void
 engine_names(struct buf *b, struct main_result *m, const char *sep)
 {
@@ -327,12 +397,6 @@ attributes(struct buf *b, struct main_result *m)
 	buf_puts(b, "</div>\n");
 }
 
-/* images the proxy already prefetched go inline, the rest are fetched through it */
-#define INLINE_MAX (12 << 10)
-#define INFOBOX_INLINE_MAX (64 << 10)
-#define FAVICON_INLINE_MAX (3 << 10)
-#define FAVICON_INLINE_SITES 16
-
 static const char *
 image_src(struct search *s, const char *url, const char *proxied, size_t max)
 {
@@ -340,15 +404,6 @@ image_src(struct search *s, const char *url, const char *proxied, size_t max)
 
 	return inlined ? inlined : proxied;
 }
-
-/* each site's favicon is inlined once, in a sprite at the end of the page, and referenced from there */
-struct favicon {
-	const char *authority, *data;
-	uint32_t id;
-};
-
-static struct favicon favicons[128];
-static size_t nfavicons, ninlined;
 
 static uint32_t
 favicon_id(const char *authority)
@@ -428,20 +483,28 @@ content(struct buf *b, struct search *s, struct main_result *m)
 static void
 main_result(struct buf *b, struct search *s, struct main_result *m)
 {
-	struct arena *a = &s->a;
-	char *thumb = image_url(a, m->thumbnail);
+	char *thumb = image_url(&s->a, m->thumbnail);
 	int video = !strcmp(m->template, "videos");
 
 	buf_html(b, "<article class=\"result result-%s\">\n", m->template);
 	if (thumb && !video)
 		thumbnail(b, s, m, thumb, 0);
-	buf_html(b, "<a class=\"url_header\" href=\"%s\" rel=\"noreferrer\">", m->url);
-	buf_puts(b, "<span class=\"favicon\">");
+
+	buf_html(b,
+	    "<a class=\"url_header\" href=\"%s\" rel=\"noreferrer\">"
+	    "<span class=\"favicon\">",
+	    m->url);
 	favicon(b, s, m->parsed.netloc);
-	buf_puts(b, "</span><span class=\"url_wrapper\">");
+	buf_puts(b,
+	    "</span>"
+	    "<span class=\"url_wrapper\">");
 	pretty_url(b, m);
-	buf_html(b, "</span></a>\n<h3><a href=\"%s\" rel=\"noreferrer\">%s</a></h3>\n", m->url,
-	    m->title[0] ? m->title : m->url);
+	buf_html(b,
+	    "</span>"
+	    "</a>\n"
+	    "<h3><a href=\"%s\" rel=\"noreferrer\">%s</a></h3>\n",
+	    m->url, m->title[0] ? m->title : m->url);
+
 	if (video) {
 		buf_puts(b, "<div class=\"video_body\">\n");
 		if (thumb)
@@ -451,12 +514,19 @@ main_result(struct buf *b, struct search *s, struct main_result *m)
 	sub_header(b, m);
 	content(b, s, m);
 	if (video)
-		buf_puts(b, "</div>\n</div>\n");
+		buf_puts(b,
+		    "</div>\n"
+		    "</div>\n");
+
 	attributes(b, m);
 	buf_puts(b, "<div class=\"engines\">");
 	engine_names(b, m, "");
-	buf_puts(b, "</div>\n</article>\n");
+	buf_puts(b,
+	    "</div>\n"
+	    "</article>\n");
 }
+
+/* images */
 
 static int
 resolution(const char *res, long *w, long *h)
@@ -484,7 +554,7 @@ static void
 image_result(struct buf *b, struct search *s, struct main_result *m)
 {
 	struct arena *a = &s->a;
-	const char *site, *res = "";
+	const char *site, *small, *res = "";
 	char *full, *thumb, *fav;
 	long w, h;
 
@@ -492,52 +562,72 @@ image_result(struct buf *b, struct search *s, struct main_result *m)
 	if (!m->img_src || !*m->img_src)
 		return;
 	site = m->source && *m->source ? m->source : m->parsed.netloc;
+	small = m->thumbnail_src && *m->thumbnail_src ? m->thumbnail_src : m->img_src;
 	full = image_url(a, m->img_src);
-	thumb = image_url(a, m->thumbnail_src && *m->thumbnail_src ? m->thumbnail_src : m->img_src);
+	thumb = image_url(a, small);
 	fav = favicon_url(a, m->parsed.netloc);
 	if (!full)
 		return;
 	if (m->resolution && resolution(m->resolution, &w, &h))
 		res = aprintf(a, "%ld \xc3\x97 %ld", w, h);
+
+	/* the data- attributes feed the detail panel privy.js opens */
 	buf_html(b,
-	    "<article class=\"result result-images s%d\" data-title=\"%s\" data-content=\"%s\" "
-	    "data-url=\"%s\" data-site=\"%s\" data-favicon=\"%s\" data-resolution=\"%s\" data-format=\"%s\" "
-	    "data-engines=\"",
+	    "<article class=\"result result-images s%d\" data-title=\"%s\" data-content=\"%s\" data-url=\"%s\" "
+	    "data-site=\"%s\" data-favicon=\"%s\" data-resolution=\"%s\" data-format=\"%s\" data-engines=\"",
 	    MIN(MAX((int)(aspect(m) * 8 / 3 + 0.5), 2), 6), m->title, m->content, m->url, site, fav ? fav : "", res,
 	    m->img_format);
 	engine_names(b, m, ", ");
-	buf_html(b, "\">\n<a class=\"image_thumb\" href=\"%s\" rel=\"noreferrer\">", full);
+	buf_html(b,
+	    "\">\n"
+	    "<a class=\"image_thumb\" href=\"%s\" rel=\"noreferrer\">",
+	    full);
 	if (thumb)
-		buf_html(b, "<img src=\"%s\" alt=\"\" loading=\"lazy\">",
-		    image_src(s, m->thumbnail_src && *m->thumbnail_src ? m->thumbnail_src : m->img_src, thumb,
-		        INLINE_MAX));
+		buf_html(b, "<img src=\"%s\" alt=\"\" loading=\"lazy\">", image_src(s, small, thumb, INLINE_MAX));
 	if (*res)
 		buf_html(b, "<span class=\"image_resolution\">%s</span>", res);
-	buf_html(b, "</a>\n<a class=\"image_source\" href=\"%s\" rel=\"noreferrer\"><span class=\"image_site\">",
+	buf_html(b,
+	    "</a>\n"
+	    "<a class=\"image_source\" href=\"%s\" rel=\"noreferrer\">"
+	    "<span class=\"image_site\">",
 	    m->url);
 	favicon(b, s, m->parsed.netloc);
-	buf_html(b, "<span>%s</span></span><span class=\"image_title\">%s</span></a>\n</article>\n", site,
-	    m->title[0] ? m->title : site);
+	buf_html(b,
+	    "<span>%s</span>"
+	    "</span>"
+	    "<span class=\"image_title\">%s</span>"
+	    "</a>\n"
+	    "</article>\n",
+	    site, m->title[0] ? m->title : site);
 }
 
 static void
 image_detail_template(struct buf *b)
 {
 	buf_html(b,
-	    "<template id=\"image_detail\"><aside class=\"image_detail\" aria-label=\"%s\">"
-	    "<div class=\"detail_header\"><a class=\"detail_site\" rel=\"noreferrer\"><img alt=\"\"><span></span></a>"
+	    "<template id=\"image_detail\">"
+	    "<aside class=\"image_detail\" aria-label=\"%s\">"
+	    "<div class=\"detail_header\">"
+	    "<a class=\"detail_site\" rel=\"noreferrer\"><img alt=\"\"><span></span></a>"
 	    "<div class=\"detail_buttons\">"
 	    "<button type=\"button\" class=\"detail_prev\" aria-label=\"%s\">" ICON_BACK "</button>"
 	    "<button type=\"button\" class=\"detail_next\" aria-label=\"%s\">" ICON_FORWARD "</button>"
 	    "<button type=\"button\" class=\"detail_close\" aria-label=\"%s\">" ICON_CLOSE "</button>"
-	    "</div></div>"
+	    "</div>"
+	    "</div>"
 	    "<a class=\"detail_image\" rel=\"noreferrer\"><img alt=\"\"></a>"
-	    "<div class=\"detail_body\"><h3><a class=\"detail_title\" rel=\"noreferrer\"></a></h3>"
-	    "<p class=\"detail_content\"></p><dl data-resolution=\"%s\" data-format=\"%s\" data-engines=\"%s\"></dl></div>"
-	    "</aside></template>\n",
+	    "<div class=\"detail_body\">"
+	    "<h3><a class=\"detail_title\" rel=\"noreferrer\"></a></h3>"
+	    "<p class=\"detail_content\"></p>"
+	    "<dl data-resolution=\"%s\" data-format=\"%s\" data-engines=\"%s\"></dl>"
+	    "</div>"
+	    "</aside>"
+	    "</template>\n",
 	    tr("Image details"), tr("Previous image"), tr("Next image"), tr("Close"), tr("Resolution"), tr("Format"),
 	    tr("Engines"));
 }
+
+/* infobox and answers */
 
 static const char *
 url_authority(struct arena *a, const char *url)
@@ -583,6 +673,7 @@ infobox(struct buf *b, struct search *s, struct infobox *ib)
 	for (u = ib->urls; u && !source; u = u->next)
 		if (u->title && !strcmp(u->title, "Wikipedia"))
 			source = u;
+
 	buf_puts(b, "<aside class=\"infobox\">\n");
 	if (img)
 		buf_html(b, "<img class=\"infobox_image\" src=\"%s\" alt=\"\">\n",
@@ -592,14 +683,20 @@ infobox(struct buf *b, struct search *s, struct infobox *ib)
 		buf_html(b, "<p class=\"description\">%s</p>\n", ib->description);
 	if (ib->content && *ib->content)
 		buf_html(b, "<p class=\"extract\">%s</p>\n", ib->content);
+
 	if (ib->attrs) {
 		buf_puts(b, "<dl class=\"attributes\">\n");
 		for (at = ib->attrs; at; at = at->next)
 			buf_html(b, "<dt>%s</dt><dd>%s</dd>\n", at->label ? at->label : "", at->value);
 		buf_puts(b, "</dl>\n");
 	}
+
 	if (ib->also) {
-		buf_html(b, "<div class=\"also\"><span class=\"also_label\">%s</span><ul>\n", tr("Also refers to"));
+		buf_html(b,
+		    "<div class=\"also\">"
+		    "<span class=\"also_label\">%s</span>"
+		    "<ul>\n",
+		    tr("Also refers to"));
 		for (u = ib->also; u; u = u->next) {
 			buf_html(b, "<li><a href=\"/search?q=%u", u->title);
 			filter_params(b, &s->filters);
@@ -608,8 +705,11 @@ infobox(struct buf *b, struct search *s, struct infobox *ib)
 				buf_html(b, "<span>%s</span>", u->entity);
 			buf_puts(b, "</li>\n");
 		}
-		buf_puts(b, "</ul></div>\n");
+		buf_puts(b,
+		    "</ul>"
+		    "</div>\n");
 	}
+
 	for (u = ib->urls; u; u = u->next) {
 		if (u == source)
 			continue;
@@ -621,11 +721,50 @@ infobox(struct buf *b, struct search *s, struct infobox *ib)
 	}
 	if (chips)
 		buf_puts(b, "</div>\n");
+
 	if (source)
 		buf_html(b, "<a class=\"source\" href=\"%s\" rel=\"noreferrer\">Wikipedia" ICON_ARROW_NE "</a>\n",
 		    source->url);
 	buf_puts(b, "</aside>\n");
 }
+
+/* answers that only repeat the infobox's links are dropped */
+static void
+answers(struct buf *b, struct search *s)
+{
+	struct results *r = &s->res;
+	size_t i, n;
+
+	for (i = n = 0; i < r->nanswers; i++)
+		if (!in_infobox(r, r->answers[i]->url))
+			r->answers[n++] = r->answers[i];
+	r->nanswers = n;
+	if (!r->nanswers)
+		return;
+	buf_puts(b, "<div id=\"answers\">\n");
+	for (i = 0; i < r->nanswers; i++) {
+		buf_html(b, "<div class=\"answer\"><p>%s</p>", r->answers[i]->answer);
+		if (r->answers[i]->url)
+			buf_html(b, "<a class=\"source\" href=\"%s\" rel=\"noreferrer\">%s" ICON_ARROW_NE "</a>",
+			    r->answers[i]->url, source_name(&s->a, r->answers[i]->url));
+		buf_puts(b, "</div>\n");
+	}
+	buf_puts(b, "</div>\n");
+}
+
+static void
+no_results(struct buf *b, struct search *s)
+{
+	buf_puts(b, "<div class=\"no-results\" role=\"alert\"><p>");
+	put_tr(b, s->pageno == 1 ? "No results for {0}" : "No more results for {0}",
+	    aprintf(&s->a, "<strong>%s</strong>", html_str(&s->a, s->query)), "");
+	buf_puts(b, "</p>");
+	if (s->pageno == 1)
+		buf_html(b, "<p>%s</p>", tr("Try different words or another category."));
+	buf_puts(b, "</div>\n");
+}
+
+/* engine timings */
 
 enum status { OK, TIMEOUT, ERROR, SUSPENDED };
 
@@ -654,22 +793,22 @@ str_cmp(const void *x, const void *y)
 	return strcmp(*(char *const *)x, *(char *const *)y);
 }
 
-static void
-engine_timing(struct buf *b, struct search *s)
+/* one row per engine that ran or was skipped, with its errors joined and its status, best first */
+static size_t
+timing_rows(struct search *s, struct row *rows, size_t *nok, double *max)
 {
-	static const char *cls[] = {"ok", "timeout", "error", "suspended"};
 	struct results *r = &s->res;
-	struct row *rows = amalloc(&s->a, (r->ntimings + r->nunresponsive + 1) * sizeof(*rows));
 	const char **errs = amalloc(&s->a, (r->nunresponsive + 1) * sizeof(*errs));
-	double max = 0, limit = s->filters.timeout > 0 ? s->filters.timeout : search_timeout;
-	size_t i, j, k, n = 0, nerr, nok = 0;
+	size_t i, j, k, n = 0, nerr;
 	int suspended;
 
+	*nok = 0;
+	*max = 0;
 	for (i = 0; i < r->ntimings; i++) {
 		rows[n].engine = r->timings[i].engine;
 		rows[n].seconds = r->timings[i].seconds;
 		rows[n++].status = OK;
-		max = MAX(max, r->timings[i].seconds);
+		*max = MAX(*max, r->timings[i].seconds);
 	}
 	for (i = 0; i < r->nunresponsive; i++) {
 		for (j = 0; j < n && rows[j].engine != r->unresponsive[i].engine; j++)
@@ -680,8 +819,6 @@ engine_timing(struct buf *b, struct search *s)
 			rows[n++].status = SUSPENDED;
 		}
 	}
-	if (!n)
-		return;
 	for (j = 0; j < n; j++) {
 		suspended = 0;
 		for (i = 0, nerr = 0; i < r->nunresponsive; i++) {
@@ -708,36 +845,65 @@ engine_timing(struct buf *b, struct search *s)
 		if (suspended)
 			rows[j].status = SUSPENDED;
 		if (rows[j].status == OK)
-			nok++;
+			(*nok)++;
 	}
 	qsort(rows, n, sizeof(*rows), row_cmp);
+	return n;
+}
+
+static void
+engine_timing(struct buf *b, struct search *s)
+{
+	static const char *cls[] = {"ok", "timeout", "error", "suspended"};
+	struct results *r = &s->res;
+	struct row *rows = amalloc(&s->a, (r->ntimings + r->nunresponsive + 1) * sizeof(*rows));
+	double max, limit = s->filters.timeout > 0 ? s->filters.timeout : search_timeout;
+	size_t i, n, nok;
+	int pct;
+
+	if (!(n = timing_rows(s, rows, &nok, &max)))
+		return;
 
 	buf_html(b,
 	    "<section id=\"engines_msg\" aria-label=\"%s\">\n"
 	    "<input type=\"checkbox\" id=\"timings_toggle\" hidden>"
-	    "<label for=\"timings_toggle\" class=\"timings_header\"><span class=\"count\">",
+	    "<label for=\"timings_toggle\" class=\"timings_header\">"
+	    "<span class=\"count\">",
 	    tr("Response time"));
 	put_tr(b, "{0} of {1} engines", aprintf(&s->a, "%zu", nok), aprintf(&s->a, "%zu", n));
 	buf_html(b,
-	    "</span><span class=\"total\">%r<span class=\"limit\"> / %rs</span></span>" ICON_EXPAND "</label>\n"
+	    "</span>"
+	    "<span class=\"total\">%r<span class=\"limit\"> / %rs</span></span>" ICON_EXPAND "</label>\n"
 	    "<ol class=\"timings\">\n",
 	    aprintf(&s->a, "%.2f", max), aprintf(&s->a, "%.2f", limit));
+
 	for (i = 0; i < n; i++) {
-		int pct = rows[i].status == SUSPENDED ? 0 : (int)(100 * rows[i].seconds / limit + 0.5);
-		buf_html(b, "<li class=\"%r\"><span class=\"label\">", cls[rows[i].status]);
+		pct = rows[i].status == SUSPENDED ? 0 : (int)(100 * rows[i].seconds / limit + 0.5);
+		if (rows[i].error)
+			buf_html(b, "<li class=\"%r\" title=\"%s\">", cls[rows[i].status], rows[i].error);
+		else
+			buf_html(b, "<li class=\"%r\">", cls[rows[i].status]);
+		buf_puts(b, "<span class=\"label\">");
 		favicon(b, s, rows[i].engine->website);
-		buf_html(b, "<span class=\"name\">%s</span>", rows[i].engine->name);
 		buf_html(b,
-		    "</span><svg class=\"track\" viewBox=\"0 0 100 2\" preserveAspectRatio=\"none\" aria-hidden=\"true\">"
-		    "<rect class=\"bg\" width=\"100\" height=\"2\"/><rect class=\"fill\" width=\"%d\" height=\"2\"/></svg>",
-		    MIN(MAX(pct, 0), 100));
+		    "<span class=\"name\">%s</span>"
+		    "</span>"
+		    "<svg class=\"track\" viewBox=\"0 0 100 2\" preserveAspectRatio=\"none\" aria-hidden=\"true\">"
+		    "<rect class=\"bg\" width=\"100\" height=\"2\"/>"
+		    "<rect class=\"fill\" width=\"%d\" height=\"2\"/>"
+		    "</svg>",
+		    rows[i].engine->name, MIN(MAX(pct, 0), 100));
 		if (rows[i].status == SUSPENDED)
 			buf_puts(b, "<span class=\"time\"></span></li>\n");
 		else
 			buf_html(b, "<span class=\"time\">%r</span></li>\n", aprintf(&s->a, "%.2f", rows[i].seconds));
 	}
-	buf_puts(b, "</ol>\n</section>\n");
+	buf_puts(b,
+	    "</ol>\n"
+	    "</section>\n");
 }
+
+/* pagination */
 
 static void
 page_link(struct buf *b, struct search *s, int page, const char *label, const char *cls)
@@ -759,46 +925,36 @@ pagination(struct buf *b, struct search *s)
 	if (s->res.nmain)
 		page_link(b, s, s->pageno + 1, aprintf(&s->a, "%s &rsaquo;", html_str(&s->a, tr("Next page"))),
 		    "next_page");
+
 	buf_puts(b, "<div class=\"numbered_pagination\">");
 	for (p = start; p < end; p++) {
 		if (p > s->pageno && !s->res.nmain)
 			break;
-		if (p == s->pageno)
+		if (p == s->pageno) {
 			buf_html(b, "<span class=\"page_number_current\">%d</span>", p);
-		else {
-			buf_html(b, "<a class=\"page_number\" href=\"/search?q=%u&amp;p=%d", s->raw, p);
-			filter_params(b, &s->filters);
-			buf_html(b, "\">%d</a>", p);
+			continue;
 		}
+		buf_html(b, "<a class=\"page_number\" href=\"/search?q=%u&amp;p=%d", s->raw, p);
+		filter_params(b, &s->filters);
+		buf_html(b, "\">%d</a>", p);
 	}
-	buf_puts(b, "</div>\n</nav>\n");
+	buf_puts(b,
+	    "</div>\n"
+	    "</nav>\n");
 }
 
+/* the rest of a results page, after render_head has been sent and the engines have answered */
 void
 render_results(struct buf *b, struct search *s)
 {
 	struct results *r = &s->res;
 	int images = !strcmp(s->filters.category, "images");
-	size_t i, n;
+	size_t i;
 
 	i18n_use(s->filters.prefs.ui);
-	for (i = n = 0; i < r->nanswers; i++)
-		if (!in_infobox(r, r->answers[i]->url))
-			r->answers[n++] = r->answers[i];
-	r->nanswers = n;
-	if (r->nanswers) {
-		buf_puts(b, "<div id=\"answers\">\n");
-		for (i = 0; i < r->nanswers; i++) {
-			buf_html(b, "<div class=\"answer\"><p>%s</p>", r->answers[i]->answer);
-			if (r->answers[i]->url)
-				buf_html(b,
-				    "<a class=\"source\" href=\"%s\" rel=\"noreferrer\">%s" ICON_ARROW_NE "</a>",
-				    r->answers[i]->url, source_name(&s->a, r->answers[i]->url));
-			buf_puts(b, "</div>\n");
-		}
-		buf_puts(b, "</div>\n");
-	}
+	answers(b, s);
 
+	/* images use the full width, so their timings take a grid slot instead of the sidebar */
 	if (!images) {
 		buf_puts(b, "<div id=\"sidebar\">\n");
 		if (r->ninfoboxes) {
@@ -819,48 +975,86 @@ render_results(struct buf *b, struct search *s)
 		else
 			main_result(b, s, r->main[i]);
 	}
-	if (!r->nmain && !r->nanswers) {
-		buf_puts(b, "<div class=\"no-results\" role=\"alert\"><p>");
-		put_tr(b, s->pageno == 1 ? "No results for {0}" : "No more results for {0}",
-		    aprintf(&s->a, "<strong>%s</strong>", html_str(&s->a, s->query)), "");
-		buf_puts(b, "</p>");
-		if (s->pageno == 1)
-			buf_html(b, "<p>%s</p>", tr("Try different words or another category."));
-		buf_puts(b, "</div>\n");
-	}
+	if (!r->nmain && !r->nanswers)
+		no_results(b, s);
 	buf_puts(b, "</div>\n");
+
 	if (r->paging)
 		pagination(b, s);
 	buf_puts(b, "</div>\n");
 	if (images)
 		image_detail_template(b);
 	favicon_sprite(b, &s->a);
-	buf_puts(b, "</body>\n</html>\n");
+	buf_puts(b,
+	    "</body>\n"
+	    "</html>\n");
 }
 
-#define YES "<span class=\"yes\">" ICON_CHECK "</span>"
-#define NO "<span class=\"no\">" ICON_MINUS "</span>"
+/* preferences */
+
 static void
 pref_select(struct buf *b, const char *name, const char *label, const char *help)
 {
 	buf_html(b,
-	    "<div class=\"pref\"><label for=\"%s\"><strong>%s</strong><span>%s</span></label>"
+	    "<div class=\"pref\">"
+	    "<label for=\"%s\"><strong>%s</strong><span>%s</span></label>"
 	    "<select id=\"%s\" name=\"%s\">",
 	    name, tr(label), tr(help), name, name);
+}
+
+static void
+engine_table(struct buf *b, const struct prefs *p, size_t cat)
+{
+	const char *name = categories[cat].name;
+	const struct engine *e;
+	size_t j, total = 0;
+
+	for (j = 0; j < nengines; j++)
+		total += engine_in(engines[j], name);
+	buf_html(b,
+	    "<details class=\"engine_group\"%r>"
+	    "<summary>%r<span>%s</span><span class=\"count\">%z</span>" ICON_EXPAND "</summary>"
+	    "<div class=\"table\">"
+	    "<table>\n"
+	    "<thead><tr><th>%s</th><th>%s</th><th>!bang</th><th>%s</th><th>%s</th><th>%s</th></tr></thead>"
+	    "<tbody>\n",
+	    cat ? "" : " open", categories[cat].icon, tr(categories[cat].label), total, tr("Allow"), tr("Engine name"),
+	    tr("Pages"), tr("SafeSearch"), tr("Time range"));
+	for (j = 0; j < nengines; j++) {
+		e = engines[j];
+		if (!engine_in(e, name))
+			continue;
+		buf_html(b,
+		    "<tr>"
+		    "<td><input type=\"checkbox\" class=\"switch\" id=\"%s.%s\" name=\"on\" value=\"%s.%s\"%r></td>"
+		    "<td><label for=\"%s.%s\">%s</label></td>"
+		    "<td><code>!%s</code></td>"
+		    "<td>%r</td><td>%r</td><td>%r</td>"
+		    "</tr>\n",
+		    name, e->shortcut, name, e->shortcut, p->off[cat] & ENGINE_BIT(e) ? "" : " checked", name,
+		    e->shortcut, e->name, e->shortcut, e->paging ? YES : NO, e->safesearch ? YES : NO,
+		    e->time_range ? YES : NO);
+	}
+	buf_puts(b,
+	    "</tbody>"
+	    "</table>"
+	    "</div>"
+	    "</details>\n");
 }
 
 void
 render_preferences(struct buf *b, const struct prefs *p, const struct locale *browser)
 {
-	struct arena a = {0};
-	size_t i, j, total;
+	size_t i;
 
-	doc_start(b, aprintf(&a, "%s - %s", tr("Preferences"), instance_name), "preferences_endpoint", p->ui);
+	doc_start(b, aprintf(&scratch, "%s - %s", tr("Preferences"), instance_name), "preferences_endpoint", p->ui);
 	nav_links(b);
-	buf_html(b, "<main id=\"preferences\">\n<h1><a href=\"/\" aria-label=\"%s\">" ICON_BACK "</a>%s</h1>\n",
+	buf_html(b,
+	    "<main id=\"preferences\">\n"
+	    "<h1><a href=\"/\" aria-label=\"%s\">" ICON_BACK "</a>%s</h1>\n"
+	    "<form action=\"/preferences\" method=\"get\">\n"
+	    "<input type=\"hidden\" name=\"save\" value=\"1\">\n",
 	    tr("Back"), tr("Preferences"));
-	buf_puts(b,
-	    "<form action=\"/preferences\" method=\"get\">\n<input type=\"hidden\" name=\"save\" value=\"1\">\n");
 
 	pref_select(b, "ui", "Interface language", "Change the language of the layout");
 	buf_html(b, "<option value=\"\"%r>%s (%s)</option>", *p->ui_code ? "" : " selected", tr("Auto"),
@@ -878,46 +1072,23 @@ render_preferences(struct buf *b, const struct prefs *p, const struct locale *br
 		option(b, (const char *[]){"0", "1", "2"}[i], tr(safe_levels[i]), MAX(p->safesearch, 0) == (int)i);
 	buf_puts(b, "</select></div>\n");
 
-	for (i = 0; i < ncategories && i < PREFS_CATEGORIES; i++) {
-		for (j = total = 0; j < nengines; j++)
-			total += engine_in(engines[j], categories[i].name);
-		buf_html(b,
-		    "<details class=\"engine_group\"%r><summary>%r<span>%s</span><span class=\"count\">%z</span>" ICON_EXPAND
-		    "</summary><div class=\"table\"><table>\n"
-		    "<thead><tr><th>%s</th><th>%s</th><th>!bang</th><th>%s</th><th>%s</th><th>%s</th></tr></thead>"
-		    "<tbody>\n",
-		    i ? "" : " open", categories[i].icon, tr(categories[i].label), total, tr("Allow"),
-		    tr("Engine name"), tr("Pages"), tr("SafeSearch"), tr("Time range"));
-		for (j = 0; j < nengines; j++) {
-			const struct engine *e = engines[j];
-			if (!engine_in(e, categories[i].name))
-				continue;
-			buf_html(b,
-			    "<tr><td><input type=\"checkbox\" class=\"switch\" id=\"%s.%s\" name=\"on\" value=\"%s.%s\"%r></td>"
-			    "<td><label for=\"%s.%s\">%s</label></td><td><code>!%s</code></td><td>%r</td><td>%r</td><td>%r</td></tr>\n",
-			    categories[i].name, e->shortcut, categories[i].name, e->shortcut,
-			    p->off[i] & ENGINE_BIT(e) ? "" : " checked", categories[i].name, e->shortcut, e->name,
-			    e->shortcut, e->paging ? YES : NO, e->safesearch ? YES : NO, e->time_range ? YES : NO);
-		}
-		buf_puts(b, "</tbody></table></div></details>\n");
-	}
-	buf_html(b,
-	    "<div class=\"buttons\"><a href=\"/preferences?reset=1\">%s</a><button type=\"submit\">%s</button></div>\n"
-	    "</form>\n</main>\n</body>\n</html>\n",
-	    tr("Reset defaults"), tr("Save"));
-	arena_free(&a);
-}
+	for (i = 0; i < ncategories && i < PREFS_CATEGORIES; i++)
+		engine_table(b, p, i);
 
-static void
-page_start(struct buf *b, const struct prefs *p, const char *title, const char *heading)
-{
-	i18n_use(p->ui);
-	doc_start(b, aprintf(&scratch, "%s - %s", tr(title), instance_name), "page_endpoint", p->ui);
-	nav_links(b);
-	buf_html(b, "<main class=\"page\">\n<h1><a href=\"/\" aria-label=\"%s\">" ICON_BACK "</a>%s</h1>\n", tr("Back"),
-	    heading);
+	buf_html(b,
+	    "<div class=\"buttons\">"
+	    "<a href=\"/preferences?reset=1\">%s</a>"
+	    "<button type=\"submit\">%s</button>"
+	    "</div>\n"
+	    "</form>\n"
+	    "</main>\n"
+	    "</body>\n"
+	    "</html>\n",
+	    tr("Reset defaults"), tr("Save"));
 	arena_free(&scratch);
 }
+
+/* simple pages */
 
 void
 render_not_found(struct buf *b, const struct prefs *p)
@@ -926,8 +1097,12 @@ render_not_found(struct buf *b, const struct prefs *p)
 	arena_free(&scratch);
 	nav_links(b);
 	buf_puts(b,
-	    "<main id=\"not_found\">\n<h1>Page not found</h1>\n"
-	    "<p>There's nothing here. <a href=\"/\">Go to the search page</a>.</p>\n</main>\n</body>\n</html>\n");
+	    "<main id=\"not_found\">\n"
+	    "<h1>Page not found</h1>\n"
+	    "<p>There's nothing here. <a href=\"/\">Go to the search page</a>.</p>\n"
+	    "</main>\n"
+	    "</body>\n"
+	    "</html>\n");
 }
 
 void
@@ -940,25 +1115,34 @@ render_about(struct buf *b, const struct prefs *p, const char *origin)
 	    "engines whilst not storing any information on users.</p>\n"
 	    "<p>It runs <a href=\"https://github.com/vojkovic/privy\">privy</a> which is open source software you can host "
 	    "yourself. If you find it useful, you can <a href=\"https://ko-fi.com/privau\">support its development</a>.</p>\n"
+
 	    "<h2>Add it to your browser</h2>\n"
-	    "<p>Firefox: right click the address bar while on %s and choose Add \"%s\". Then "
-	    "pick it under Settings &gt; Search &gt; Default Search Engine.</p>\n"
-	    "<p>Chrome: do a search and then open Settings &gt; Search engine &gt; Manage search engines "
-	    "and site search. Under Inactive shortcuts click Activate, then Make default from "
-	    "the \xe2\x8b\xae menu.</p>\n"
-	    "<p>If your browser doesn't support <a href=\"https://en.wikipedia.org/wiki/OpenSearch_(specification)\">OpenSearch</a> you "
-	    "can use these URLs to add it manually:</p>\n<dl class=\"stacked\">\n"
+	    "<p>Firefox: right click the address bar while on %s and choose Add \"%s\". Then pick it under Settings &gt; "
+	    "Search &gt; Default Search Engine.</p>\n"
+	    "<p>Chrome: do a search and then open Settings &gt; Search engine &gt; Manage search engines and site search. "
+	    "Under Inactive shortcuts click Activate, then Make default from the \xe2\x8b\xae menu.</p>\n"
+	    "<p>If your browser doesn't support <a href=\"https://en.wikipedia.org/wiki/OpenSearch_(specification)\">"
+	    "OpenSearch</a> you can use these URLs to add it manually:</p>\n"
+	    "<dl class=\"stacked\">\n"
 	    "<dt>Search</dt><dd><code>%s/search?q=%%s</code></dd>\n"
-	    "<dt>Suggestions</dt><dd><code>%s/autocompleter?q=%%s</code></dd>\n</dl>\n"
-	    "<h2>Search syntax</h2>\n<dl class=\"stacked\">\n"
+	    "<dt>Suggestions</dt><dd><code>%s/autocompleter?q=%%s</code></dd>\n"
+	    "</dl>\n"
+
+	    "<h2>Search syntax</h2>\n"
+	    "<dl class=\"stacked\">\n"
 	    "<dt><code>!g cats</code></dt><dd>Search using the Google engine.</dd>\n"
 	    "<dt><code>!!g cats</code></dt><dd>Redirect to Google's own results.</dd>\n"
 	    "<dt><code>:de cats</code></dt><dd>Search with German language.</dd>\n"
-	    "<dt><code>&lt;3 cats</code></dt><dd>Set timeout to 3 seconds.</dd>\n</dl>\n"
-	    "</main>\n</body>\n</html>\n",
+	    "<dt><code>&lt;3 cats</code></dt><dd>Set timeout to 3 seconds.</dd>\n"
+	    "</dl>\n"
+	    "</main>\n"
+	    "</body>\n"
+	    "</html>\n",
 	    instance_name, instance_name, instance_name, origin, origin);
 	arena_free(&scratch);
 }
+
+/* stats */
 
 struct stats_row {
 	const struct engine *e;
@@ -981,45 +1165,58 @@ stats_cmp(const void *x, const void *y)
 	return strcmp(((const struct stats_row *)x)->e->name, ((const struct stats_row *)y)->e->name);
 }
 
+/* reliability is the share of recent searches the engine answered, typical its median time for those */
+static void
+stats_row(struct stats_row *row, const struct engine *e)
+{
+	const struct engine_stats *st = stats_of(e);
+	float times[STATS_WINDOW] = {0};
+	size_t k, n = 0;
+
+	row->e = e;
+	row->suspended = e->suspend_end > now_ms();
+	row->reliability = -1;
+	row->typical = 0;
+	row->error = NULL;
+	if (!st)
+		return;
+	for (k = 0; k < st->nrecent; k++)
+		if (st->recent[k].outcome == OUTCOME_OK || st->recent[k].outcome == OUTCOME_EMPTY)
+			times[n++] = st->recent[k].seconds;
+	qsort(times, n, sizeof(*times), float_cmp);
+	if (st->nrecent)
+		row->reliability = (int)(n * 100 / st->nrecent);
+	row->typical = n ? times[n / 2] : 0;
+	row->error = *st->error ? st->error : NULL;
+}
+
 void
 render_stats(struct buf *b, const struct prefs *p)
 {
-	const struct engine_stats *st;
-	struct stats_row *rows;
-	float times[STATS_WINDOW] = {0};
-	size_t i, k, n, answered;
+	struct stats_row *rows, *r;
+	const char *cls;
+	size_t i;
 
 	page_start(b, p, "Engine stats", "Engine stats");
 	rows = amalloc(&scratch, (nengines + 1) * sizeof(*rows));
-	for (i = 0; i < nengines; i++) {
-		rows[i].e = engines[i];
-		rows[i].suspended = engines[i]->suspend_end > now_ms();
-		rows[i].reliability = -1;
-		rows[i].typical = 0;
-		rows[i].error = NULL;
-		if (!(st = stats_of(engines[i])))
-			continue;
-		for (k = n = answered = 0; k < st->nrecent; k++)
-			if (st->recent[k].outcome == OUTCOME_OK || st->recent[k].outcome == OUTCOME_EMPTY) {
-				answered++;
-				times[n++] = st->recent[k].seconds;
-			}
-		qsort(times, n, sizeof(*times), float_cmp);
-		if (st->nrecent)
-			rows[i].reliability = (int)(answered * 100 / st->nrecent);
-		rows[i].typical = n ? times[n / 2] : 0;
-		rows[i].error = *st->error ? st->error : NULL;
-	}
+	for (i = 0; i < nengines; i++)
+		stats_row(&rows[i], engines[i]);
 	qsort(rows, nengines, sizeof(*rows), stats_cmp);
+
 	buf_puts(b,
-	    "<div class=\"stats\"><table>\n<thead><tr><th>Engine</th><th>Reliability</th><th>Response time</th>"
-	    "<th>Last error</th></tr></thead><tbody>\n");
+	    "<div class=\"stats\">"
+	    "<table>\n"
+	    "<thead><tr><th>Engine</th><th>Reliability</th><th>Response time</th><th>Last error</th></tr></thead>"
+	    "<tbody>\n");
 	for (i = 0; i < nengines; i++) {
-		struct stats_row *r = &rows[i];
-		const char *cls = r->suspended || (r->reliability >= 0 && r->reliability < 50) ? "bad" :
-		    r->reliability >= 0 && r->reliability < 85                                 ? "warn" :
-		                                                                                 "";
-		buf_html(b, "<tr><td><img src=\"%s\" alt=\"\" loading=\"lazy\">%s</td><td class=\"%r\">",
+		r = &rows[i];
+		cls = r->suspended || (r->reliability >= 0 && r->reliability < 50) ? "bad" :
+		    r->reliability >= 0 && r->reliability < 85                     ? "warn" :
+		                                                                     "";
+		buf_html(b,
+		    "<tr>"
+		    "<td><img src=\"%s\" alt=\"\" loading=\"lazy\">%s</td>"
+		    "<td class=\"%r\">",
 		    favicon_url(&scratch, r->e->website), r->e->name, cls);
 		if (r->suspended)
 			buf_puts(b, "suspended");
@@ -1028,11 +1225,25 @@ render_stats(struct buf *b, const struct prefs *p)
 		buf_puts(b, "</td><td>");
 		if (r->typical > 0)
 			buf_printf(b, "%.2fs", r->typical);
-		buf_html(b, "</td><td>%s</td></tr>\n", r->suspended ? r->e->suspend_reason : r->error ? r->error : "");
+		buf_html(b,
+		    "</td>"
+		    "<td>%s</td>"
+		    "</tr>\n",
+		    r->suspended ? r->e->suspend_reason :
+		        r->error ? r->error :
+		                   "");
 	}
-	buf_puts(b, "</tbody></table></div>\n</main>\n</body>\n</html>\n");
+	buf_puts(b,
+	    "</tbody>"
+	    "</table>"
+	    "</div>\n"
+	    "</main>\n"
+	    "</body>\n"
+	    "</html>\n");
 	arena_free(&scratch);
 }
+
+/* opensearch */
 
 void
 render_opensearch(struct buf *b, const char *proto, const char *host)
