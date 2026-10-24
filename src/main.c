@@ -37,9 +37,16 @@ respond_buf(struct conn *c, int status, const char *headers, struct buf *b)
 }
 
 static void
-not_found(struct conn *c)
+not_found(struct conn *c, struct request *r)
 {
-	http_respond(c, 404, "Content-Type: text/plain\r\n", "Not Found", 9);
+	struct arena a = {0};
+	struct buf b = {0};
+	struct prefs p;
+
+	prefs_parse(&a, r, &p);
+	render_not_found(&b, &p);
+	respond_buf(c, 404, HTML_HEADERS, &b);
+	arena_free(&a);
 }
 
 static void
@@ -104,6 +111,11 @@ route(struct conn *c, struct request *r)
 	int pageno = 1;
 	size_t n;
 
+	/* before the limiter, which turns away the curl-like clients that check health */
+	if (!strcmp(r->path, "/healthz")) {
+		http_respond(c, 200, "Content-Type: text/plain\r\nCache-Control: no-store\r\n", "ok\n", 3);
+		return;
+	}
 	if (botdetect(c, r))
 		return;
 	n = strlen(r->path);
@@ -160,7 +172,7 @@ route(struct conn *c, struct request *r)
 		return;
 	}
 	if (strcmp(r->path, "/") && strcmp(r->path, "/search")) {
-		not_found(c);
+		not_found(c, r);
 		return;
 	}
 	q = query_param(&a, r->query, "q");

@@ -920,6 +920,17 @@ page_start(struct buf *b, const struct prefs *p, const char *title, const char *
 }
 
 void
+render_not_found(struct buf *b, const struct prefs *p)
+{
+	doc_start(b, aprintf(&scratch, "Page not found - %s", instance_name), "not_found_endpoint", p->ui);
+	arena_free(&scratch);
+	nav_links(b);
+	buf_puts(b,
+	    "<main id=\"not_found\">\n<h1>Page not found</h1>\n"
+	    "<p>There's nothing here. <a href=\"/\">Go to the search page</a>.</p>\n</main>\n</body>\n</html>\n");
+}
+
+void
 render_about(struct buf *b, const struct prefs *p, const char *origin)
 {
 	page_start(b, p, "About", aprintf(&scratch, "About %s", instance_name));

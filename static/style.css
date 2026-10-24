@@ -928,6 +928,22 @@ article.result.result-images {
 #preferences .buttons a { color: var(--subtext0); }
 #preferences .buttons a:hover { color: var(--text); }
 
+/* not found */
+
+#not_found {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	min-height: 100dvh;
+	padding: 0 1rem;
+	text-align: center;
+}
+#not_found h1 { margin: 0 0 0.75rem; font-size: 2rem; }
+#not_found p { margin: 0; color: var(--subtext1); }
+#not_found a { color: var(--accent); }
+
 /* stats */
 
 .stats { overflow-x: auto; background: var(--mantle); border-radius: 0.8rem; }
