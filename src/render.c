@@ -79,7 +79,7 @@ search_box(struct buf *b, const char *query, const char *category, int autofocus
 	    "</button>"
 	    "<div class=\"autocomplete\"><ul></ul></div>"
 	    "</div></div>\n",
-	    tr("Back"), query, tr("Search for..."), tr("Search"), autofocus ? " autofocus" : "", category,
+	    tr("Back"), query, tr("Search for..."), tr("Search"), autofocus ? " data-autofocus" : "", category,
 	    tr("Search"));
 }
 
@@ -160,10 +160,11 @@ filter_params(struct buf *b, const struct filters *f)
 }
 
 static void
-preferences_link(struct buf *b)
+nav_links(struct buf *b)
 {
-	buf_html(b,
-	    "<a id=\"preferences_link\" href=\"/preferences\" aria-label=\"%s\" title=\"%s\">" ICON_SETTINGS "</a>\n",
+	buf_html(b, "<nav id=\"links\"><a href=\"/about\" aria-label=\"%s\" title=\"%s\">" ICON_INFO "</a>",
+	    tr("About"), tr("About"));
+	buf_html(b, "<a href=\"/preferences\" aria-label=\"%s\" title=\"%s\">" ICON_SETTINGS "</a></nav>\n",
 	    tr("Preferences"), tr("Preferences"));
 }
 
@@ -173,7 +174,7 @@ render_home(struct buf *b, const struct prefs *p)
 	size_t n = 0;
 
 	doc_start(b, instance_name, "index_endpoint", p->ui);
-	preferences_link(b);
+	nav_links(b);
 	buf_html(b, "<main id=\"main_index\">\n<h1 class=\"title\">%s</h1>\n", instance_name);
 	while (motd && motd[n])
 		n++;
@@ -203,7 +204,7 @@ render_head(struct buf *b, struct search *s)
 	search_box(b, s->raw, s->filters.category, 0);
 	category_tabs(b, s->filters.category);
 	buf_puts(b, "</form>\n");
-	preferences_link(b);
+	nav_links(b);
 	buf_html(b, "</header>\n<div class=\"loading t%d\" role=\"progressbar\" aria-label=\"%s\"></div>\n",
 	    MIN(MAX((int)((s->filters.timeout > 0 ? s->filters.timeout : search_timeout) + 0.99), 1), 10),
 	    tr("Searching"));
@@ -831,17 +832,6 @@ render_results(struct buf *b, struct search *s)
 
 #define YES "<span class=\"yes\">" ICON_CHECK "</span>"
 #define NO "<span class=\"no\">" ICON_MINUS "</span>"
-#define OTHER "<span class=\"other\">" ICON_CHECK "</span>"
-
-/* the engine narrows results by language: green for the chosen one, amber if only for others */
-static const char *
-language_mark(const struct engine *e, const struct locale *l)
-{
-	if (!e->language)
-		return NO;
-	return !l || !strcmp(l->tag, "all") || starts_with(l->tag, "en") || e->language(l) ? YES : OTHER;
-}
-
 static void
 pref_select(struct buf *b, const char *name, const char *label, const char *help)
 {
@@ -856,10 +846,10 @@ render_preferences(struct buf *b, const struct prefs *p, const struct locale *br
     const char *error)
 {
 	struct arena a = {0};
-	const struct locale *search_locale;
 	size_t i, j, on, total;
 
 	doc_start(b, aprintf(&a, "%s - %s", tr("Preferences"), instance_name), "preferences_endpoint", p->ui);
+	nav_links(b);
 	buf_html(b, "<main id=\"preferences\">\n<h1><a href=\"/\" aria-label=\"%s\">" ICON_BACK "</a>%s</h1>\n",
 	    tr("Back"), tr("Preferences"));
 	if (notice)
@@ -889,7 +879,6 @@ render_preferences(struct buf *b, const struct prefs *p, const struct locale *br
 	buf_puts(b, "</select></div>\n");
 
 	buf_html(b, "<h2>%s</h2>\n<p class=\"hint\">%s</p>\n", tr("Engines"), tr("Up to 10 engines per category."));
-	search_locale = !p->language || !strcmp(p->language, "auto") ? browser : locale_find(p->language);
 	for (i = 0; i < ncategories && i < PREFS_CATEGORIES; i++) {
 		for (j = on = total = 0; j < nengines; j++)
 			if (engine_in(engines[j], categories[i].name)) {
@@ -899,20 +888,20 @@ render_preferences(struct buf *b, const struct prefs *p, const struct locale *br
 		buf_html(b,
 		    "<details class=\"engine_group\"%r><summary>%r<span>%s</span><span class=\"count\">%z / %z</span>" ICON_EXPAND
 		    "</summary><div class=\"table\"><table>\n"
-		    "<thead><tr><th>%s</th><th>%s</th><th>!bang</th><th>%s</th><th>%s</th><th>%s</th><th>%s</th></tr></thead>"
+		    "<thead><tr><th>%s</th><th>%s</th><th>!bang</th><th>%s</th><th>%s</th><th>%s</th></tr></thead>"
 		    "<tbody>\n",
 		    i ? "" : " open", categories[i].icon, tr(categories[i].label), on, total, tr("Allow"),
-		    tr("Engine name"), tr("Language"), tr("Pages"), tr("SafeSearch"), tr("Time range"));
+		    tr("Engine name"), tr("Pages"), tr("SafeSearch"), tr("Time range"));
 		for (j = 0; j < nengines; j++) {
 			const struct engine *e = engines[j];
 			if (!engine_in(e, categories[i].name))
 				continue;
 			buf_html(b,
-			    "<tr><td><input type=\"checkbox\" class=\"switch\" name=\"on\" value=\"%s.%s\" aria-label=\"%s\"%r></td>"
-			    "<td>%s</td><td><code>!%s</code></td><td>%r</td><td>%r</td><td>%r</td><td>%r</td></tr>\n",
-			    categories[i].name, e->shortcut, e->name, p->off[i] & ENGINE_BIT(e) ? "" : " checked",
-			    e->name, e->shortcut, language_mark(e, search_locale), e->paging ? YES : NO,
-			    e->safesearch ? YES : NO, e->time_range ? YES : NO);
+			    "<tr><td><input type=\"checkbox\" class=\"switch\" id=\"%s.%s\" name=\"on\" value=\"%s.%s\"%r></td>"
+			    "<td><label for=\"%s.%s\">%s</label></td><td><code>!%s</code></td><td>%r</td><td>%r</td><td>%r</td></tr>\n",
+			    categories[i].name, e->shortcut, categories[i].name, e->shortcut,
+			    p->off[i] & ENGINE_BIT(e) ? "" : " checked", categories[i].name, e->shortcut, e->name,
+			    e->shortcut, e->paging ? YES : NO, e->safesearch ? YES : NO, e->time_range ? YES : NO);
 		}
 		buf_puts(b, "</tbody></table></div></details>\n");
 	}
@@ -921,6 +910,47 @@ render_preferences(struct buf *b, const struct prefs *p, const struct locale *br
 	    "<a href=\"/preferences?reset=1\">%s</a></div>\n</form>\n</main>\n</body>\n</html>\n",
 	    tr("Save"), tr("Reset defaults"));
 	arena_free(&a);
+}
+
+static void
+page_start(struct buf *b, const struct prefs *p, const char *title, const char *heading)
+{
+	i18n_use(p->ui);
+	doc_start(b, aprintf(&scratch, "%s - %s", tr(title), instance_name), "page_endpoint", p->ui);
+	nav_links(b);
+	buf_html(b, "<main class=\"page\">\n<h1><a href=\"/\" aria-label=\"%s\">" ICON_BACK "</a>%s</h1>\n", tr("Back"),
+	    heading);
+	arena_free(&scratch);
+}
+
+void
+render_about(struct buf *b, const struct prefs *p, const char *origin)
+{
+	page_start(b, p, "About", aprintf(&scratch, "About %s", instance_name));
+	buf_html(b,
+	    "<p>%s is a <a href=\"https://en.wikipedia.org/wiki/Metasearch_engine\">metasearch engine</a> inspired by "
+	    "<a href=\"https://github.com/searxng/searxng\">SearXNG</a> which aggregates the results from other search "
+	    "engines whilst not storing any information on users.</p>\n"
+	    "<p>It runs <a href=\"https://github.com/vojkovic/privy\">privy</a> which is open source software you can host "
+	    "yourself. If you find it useful, you can <a href=\"https://ko-fi.com/privau\">support its development</a>.</p>\n"
+	    "<h2>Add it to your browser</h2>\n"
+	    "<p>Firefox: right click the address bar while on %s and choose Add \"%s\". Then "
+	    "pick it under Settings &gt; Search &gt; Default Search Engine.</p>\n"
+	    "<p>Chrome: do a search and then open Settings &gt; Search engine &gt; Manage search engines "
+	    "and site search. Under Inactive shortcuts click Activate, then Make default from "
+	    "the \xe2\x8b\xae menu.</p>\n"
+	    "<p>If your browser doesn't support <a href=\"https://en.wikipedia.org/wiki/OpenSearch_(specification)\">OpenSearch</a> you "
+	    "can use these URLs to add it manually:</p>\n<dl class=\"stacked\">\n"
+	    "<dt>Search</dt><dd><code>%s/search?q=%%s</code></dd>\n"
+	    "<dt>Suggestions</dt><dd><code>%s/autocompleter?q=%%s</code></dd>\n</dl>\n"
+	    "<h2>Search syntax</h2>\n<dl class=\"stacked\">\n"
+	    "<dt><code>!g cats</code></dt><dd>Search using the Google engine.</dd>\n"
+	    "<dt><code>!!g cats</code></dt><dd>Redirect to Google's own results.</dd>\n"
+	    "<dt><code>:de cats</code></dt><dd>Search with German language.</dd>\n"
+	    "<dt><code>&lt;3 cats</code></dt><dd>Set timeout to 3 seconds.</dd>\n</dl>\n"
+	    "</main>\n</body>\n</html>\n",
+	    instance_name, instance_name, instance_name, origin, origin);
+	arena_free(&scratch);
 }
 
 void

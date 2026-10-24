@@ -5,6 +5,7 @@
 #include "i18n.h"
 
 const char *const msgids[] = {
+	"About",
 	"Allow",
 	"Also refers to",
 	"Anytime",
@@ -24,7 +25,6 @@ const char *const msgids[] = {
 	"Images",
 	"Interface language",
 	"Journal",
-	"Language",
 	"Last day",
 	"Last month",
 	"Last week",
@@ -74,6 +74,7 @@ const char *const msgids[] = {
 const size_t nmsgids = sizeof(msgids) / sizeof(msgids[0]);
 
 static const char *const t_af[] = {
+	"Aangaande",
 	"Laat toe",
 	"Verwys ook na",
 	"Enige tyd",
@@ -93,7 +94,6 @@ static const char *const t_af[] = {
 	"Prente",
 	"Koppelvlak taal",
 	"Joernaal",
-	"Taal",
 	"Laaste dag",
 	"Laas maand",
 	"Laas week",
@@ -141,6 +141,7 @@ static const char *const t_af[] = {
 };
 
 static const char *const t_ar[] = {
+	"حول",
 	"تمكين",
 	"يشير أيضًا إلى",
 	"في أي وقت",
@@ -160,7 +161,6 @@ static const char *const t_ar[] = {
 	"صور",
 	"لغة الواجهة",
 	"السجل اليومي",
-	"اللغة",
 	"آخر يوم",
 	"الشهر الماضي",
 	"الأسبوع الماضي",
@@ -208,6 +208,7 @@ static const char *const t_ar[] = {
 };
 
 static const char *const t_bg[] = {
+	"Относно",
 	"Позволи",
 	"Може да се отнася и за",
 	"По всяко време",
@@ -227,7 +228,6 @@ static const char *const t_bg[] = {
 	"Изображения",
 	"Език на интерфейса",
 	"Дневник",
-	"Език",
 	"Последен ден",
 	"Миналия месец",
 	"Миналата седмица",
@@ -275,6 +275,7 @@ static const char *const t_bg[] = {
 };
 
 static const char *const t_bn[] = {
+	"সম্বন্ধে",
 	"অনুমোদন",
 	"আরও বোঝায়",
 	"যেকোনো সময়",
@@ -294,7 +295,6 @@ static const char *const t_bn[] = {
 	"ছবি",
 	"ইন্টারফেসের ভাষা",
 	"দৈনিক সংবাদপত্র",
-	"ভাষা",
 	"শেষ দিন",
 	"শেষ মাস",
 	"শেষ সপ্তাহ",
@@ -342,6 +342,7 @@ static const char *const t_bn[] = {
 };
 
 static const char *const t_bo[] = {
+	"སྐོར།",
 	"ཆོག་མཆན།",
 	"དེ་མིན་གྱི་དོན།",
 	"དུས་ངེས་མེད།",
@@ -361,7 +362,6 @@ static const char *const t_bo[] = {
 	"པར་རིས།",
 	"དྲ་ངོས་སྐད་རིགས།",
 	"དུས་དེབ།",
-	"སྐད་ཡིག",
 	"ཉིན་སྔོན་མ།",
 	"ཟླ་བ་སྔོན་མ།",
 	"གཟའ་སྔོན་མ།",
@@ -409,6 +409,7 @@ static const char *const t_bo[] = {
 };
 
 static const char *const t_ca[] = {
+	"Quant a",
 	"Permetre",
 	"També es refereix a",
 	"Qualsevol moment",
@@ -428,7 +429,6 @@ static const char *const t_ca[] = {
 	"Imatges",
 	"Idioma de la interfície",
 	"Diari",
-	"Llengua",
 	"Les 24 darreres hores",
 	"El darrer mes",
 	"La setmana passada",
@@ -476,6 +476,7 @@ static const char *const t_ca[] = {
 };
 
 static const char *const t_cs[] = {
+	"O SearXNG",
 	"Povolit",
 	"Může také označovat",
 	"Kdykoli",
@@ -495,7 +496,6 @@ static const char *const t_cs[] = {
 	"Obrázky",
 	"Jazyk rozhraní",
 	"Časopis",
-	"Jazyk",
 	"Dnes",
 	"Měsíc",
 	"Tento týden",
@@ -543,6 +543,7 @@ static const char *const t_cs[] = {
 };
 
 static const char *const t_cy[] = {
+	"Ynghylch",
 	"Caniatáu",
 	"Gall hefyd gyfeirio at",
 	"Unrhyw bryd",
@@ -562,7 +563,6 @@ static const char *const t_cy[] = {
 	"Delweddau",
 	"Iaith y rhyngwyneb",
 	"Cylchgrawn",
-	"Iaith",
 	"Y diwrnod diwethaf",
 	"Y mis diwethaf",
 	"Yr wythnos diwethaf",
@@ -610,6 +610,7 @@ static const char *const t_cy[] = {
 };
 
 static const char *const t_da[] = {
+	"Om",
 	"Tillad",
 	"Kan også henvise til",
 	"Når som helst",
@@ -629,7 +630,6 @@ static const char *const t_da[] = {
 	"Billeder",
 	"Sprog i brugergrænsefladen",
 	"Tidsskrift",
-	"Sprog",
 	"Det seneste døgn",
 	"Den seneste måned",
 	"Den seneste uge",
@@ -677,6 +677,7 @@ static const char *const t_da[] = {
 };
 
 static const char *const t_de[] = {
+	"Über",
 	"Erlauben",
 	"Kann sich auch beziehen auf",
 	"beliebiger Zeitpunkt",
@@ -696,7 +697,6 @@ static const char *const t_de[] = {
 	"Bilder",
 	"Oberflächensprache",
 	"Fachzeitschrift",
-	"Sprache",
 	"Letzter Tag",
 	"Letzter Monat",
 	"Letzte Woche",
@@ -744,6 +744,7 @@ static const char *const t_de[] = {
 };
 
 static const char *const t_dv[] = {
+	"ތަޢާރަފް",
 	"ހުއްދަ",
 	"މީގެ އިތުރު މާނަތައް",
 	"ކޮންމެ ވަގުތެއް",
@@ -763,7 +764,6 @@ static const char *const t_dv[] = {
 	"ފޮޓޯ",
 	"އިންޓަފޭސްގެ ބަސް",
 	"ޖާނަލް",
-	"ބަސް",
 	"ފާއިތުވި ދުވަސް",
 	"ފާއިތުވި މަސް",
 	"ފާއިތުވި ހަފްތާ",
@@ -811,6 +811,7 @@ static const char *const t_dv[] = {
 };
 
 static const char *const t_el_GR[] = {
+	"Σχετικά με το SearXNG",
 	"Επέτρεψε",
 	"Μπορεί επίσης να αναφέρεται σε",
 	"Οποιαδήποτε στιγμή",
@@ -830,7 +831,6 @@ static const char *const t_el_GR[] = {
 	"Εικόνες",
 	"Γλώσσα διεπαφής",
 	"Περιοδικό",
-	"Γλώσσα",
 	"Τελευταία μέρα",
 	"Τελευταίος μήνας",
 	"Τελευταία βδομάδα",
@@ -878,6 +878,7 @@ static const char *const t_el_GR[] = {
 };
 
 static const char *const t_en[] = {
+	NULL,
 	"On",
 	NULL,
 	"Any time",
@@ -891,7 +892,6 @@ static const char *const t_en[] = {
 	"Engine",
 	NULL,
 	"Hide explicit results",
-	NULL,
 	NULL,
 	NULL,
 	NULL,
@@ -945,6 +945,7 @@ static const char *const t_en[] = {
 };
 
 static const char *const t_eo[] = {
+	"Pri",
 	"Permesi",
 	"Povas ankaŭ signifi",
 	"Iam ajn",
@@ -964,7 +965,6 @@ static const char *const t_eo[] = {
 	"Bildoj",
 	"Fasada lingvo",
 	"Revuo",
-	"Lingvo",
 	"Pasinta tago",
 	"Pasinta monato",
 	"Pasinta semajno",
@@ -1012,6 +1012,7 @@ static const char *const t_eo[] = {
 };
 
 static const char *const t_es[] = {
+	"Acerca de",
 	"Permitir",
 	"También puede referirse a",
 	"En cualquier momento",
@@ -1031,7 +1032,6 @@ static const char *const t_es[] = {
 	"Imágenes",
 	"Idioma de la interfaz",
 	"Periódicos",
-	"Idioma",
 	"Último día",
 	"Último mes",
 	"Última semana",
@@ -1079,6 +1079,7 @@ static const char *const t_es[] = {
 };
 
 static const char *const t_et[] = {
+	"SearXNG teave",
 	"Luba",
 	"Võib viidata ka",
 	"Millal iganes",
@@ -1098,7 +1099,6 @@ static const char *const t_et[] = {
 	"Pildid",
 	"Kasutajaliidese keel",
 	"Ajakiri",
-	"Keel",
 	"Viimase päeva jooksul",
 	"Eelmisel kuul",
 	"Eelmisel nädalal",
@@ -1146,6 +1146,7 @@ static const char *const t_et[] = {
 };
 
 static const char *const t_eu[] = {
+	"Honi buruz",
 	"Baimendu",
 	"Honi ere egin diezaioke erreferentzia",
 	"Edonoiz",
@@ -1165,7 +1166,6 @@ static const char *const t_eu[] = {
 	"Irudiak",
 	"Interfazearen hizkuntza",
 	"Egunkaria",
-	"Hizkuntza",
 	"Azken eguna",
 	"Azken hilabetea",
 	"Azken astea",
@@ -1213,6 +1213,7 @@ static const char *const t_eu[] = {
 };
 
 static const char *const t_fa_IR[] = {
+	"درباره",
 	"اجازه",
 	"همچنین اشاره دارد به",
 	"هر زمان",
@@ -1232,7 +1233,6 @@ static const char *const t_fa_IR[] = {
 	"تصاویر",
 	"زبان رابط کاربری",
 	"مجله",
-	"زبان",
 	"روز گذشته",
 	"ماه گذشته",
 	"هفتهٔ گذشته",
@@ -1280,6 +1280,7 @@ static const char *const t_fa_IR[] = {
 };
 
 static const char *const t_fi[] = {
+	"Tietoa SearXNG:stä",
 	"Salli",
 	"Voi tarkoittaa myös",
 	"Milloin tahansa",
@@ -1299,7 +1300,6 @@ static const char *const t_fi[] = {
 	"Kuvat",
 	"Käyttöliittymän kieli",
 	"Journaali",
-	"Kieli",
 	"Viimeinen päivä",
 	"Viimeinen kuukausi",
 	"Viimeinen viikko",
@@ -1347,6 +1347,7 @@ static const char *const t_fi[] = {
 };
 
 static const char *const t_fil[] = {
+	"Tungkol",
 	"Payagan",
 	"Maaari ring tumukoy sa",
 	"Kahit anong oras",
@@ -1366,7 +1367,6 @@ static const char *const t_fil[] = {
 	"Mga larawan",
 	"Ang wika ng Interface",
 	"Talaan",
-	"Wika",
 	"Nakaraang araw",
 	"Nakaraang buwan",
 	"Nakaraang linggo",
@@ -1414,6 +1414,7 @@ static const char *const t_fil[] = {
 };
 
 static const char *const t_fr[] = {
+	"À propos",
 	"Autoriser",
 	"Peut aussi désigner",
 	"À tout moment",
@@ -1433,7 +1434,6 @@ static const char *const t_fr[] = {
 	"Images",
 	"Langue de l'interface",
 	"Journal",
-	"Langue",
 	"Dernières 24h",
 	"Mois précédent",
 	"Semaine précédente",
@@ -1481,6 +1481,7 @@ static const char *const t_fr[] = {
 };
 
 static const char *const t_ga[] = {
+	"Maidir",
 	"Ceadaigh",
 	"D'fhéadfadh sé tagairt freisin do",
 	"Am ar bith",
@@ -1500,7 +1501,6 @@ static const char *const t_ga[] = {
 	"Íomhánna",
 	"Teanga comhéadain",
 	"Dialann",
-	"Teanga",
 	"An lá deireanach",
 	"An mhí seo caite",
 	"An tseachtain seo caite",
@@ -1548,6 +1548,7 @@ static const char *const t_ga[] = {
 };
 
 static const char *const t_gl[] = {
+	"Sobre",
 	"Permitir",
 	"Tamén pode referirse a",
 	"Calquera momento",
@@ -1567,7 +1568,6 @@ static const char *const t_gl[] = {
 	"Imaxes",
 	"Idioma da interface",
 	"Xornal",
-	"Idioma",
 	"Último día",
 	"Último mes",
 	"Última semana",
@@ -1615,6 +1615,7 @@ static const char *const t_gl[] = {
 };
 
 static const char *const t_he[] = {
+	"על אודות",
 	"הפעל",
 	"עשוי להתייחס גם ל",
 	"כל זמן",
@@ -1634,7 +1635,6 @@ static const char *const t_he[] = {
 	"תמונות",
 	"שפת ממשק",
 	"יומן",
-	"שפה",
 	"מהיום האחרון",
 	"מהחודש האחרון",
 	"מהשבוע האחרון",
@@ -1682,6 +1682,7 @@ static const char *const t_he[] = {
 };
 
 static const char *const t_hr[] = {
+	"O nama",
 	"Dozvoli",
 	"Može se odnositi i na",
 	"Bilokad",
@@ -1701,7 +1702,6 @@ static const char *const t_hr[] = {
 	"Slike",
 	"Jezik sučelja",
 	"Časopis",
-	"Jezik",
 	"Posljednji dan",
 	"Prošli mjesec",
 	"Prošli tjedan",
@@ -1749,6 +1749,7 @@ static const char *const t_hr[] = {
 };
 
 static const char *const t_hu[] = {
+	"Névjegy",
 	"Engedélyezés",
 	"További jelentések",
 	"Bármikor",
@@ -1768,7 +1769,6 @@ static const char *const t_hu[] = {
 	"Képek",
 	"Felület nyelve",
 	"Folyóirat",
-	"Nyelv",
 	"Legutóbbi nap",
 	"Legutóbbi hónap",
 	"Legutóbbi hét",
@@ -1816,6 +1816,7 @@ static const char *const t_hu[] = {
 };
 
 static const char *const t_ia[] = {
+	"A proposito",
 	"Permitter",
 	"Pote etiam referer se a",
 	"Aliquando",
@@ -1835,7 +1836,6 @@ static const char *const t_ia[] = {
 	"Imagines",
 	"Lingua del interfacie",
 	"Jornal",
-	"Lingua",
 	"Le die passate",
 	"Le mense passate",
 	"Le septimana passate",
@@ -1883,6 +1883,7 @@ static const char *const t_ia[] = {
 };
 
 static const char *const t_id[] = {
+	"Tentang",
 	"Izinkan",
 	"Juga dapat merujuk ke",
 	"Kapan saja",
@@ -1902,7 +1903,6 @@ static const char *const t_id[] = {
 	"Gambar",
 	"Bahasa antarmuka",
 	"Jurnal",
-	"Bahasa",
 	"Kemarin",
 	"Bulan kemarin",
 	"Minggu kemarin",
@@ -1950,6 +1950,7 @@ static const char *const t_id[] = {
 };
 
 static const char *const t_it[] = {
+	"Al riguardo",
 	"Autorizza",
 	"Può riferirsi anche a",
 	"Qualsiasi data",
@@ -1969,7 +1970,6 @@ static const char *const t_it[] = {
 	"Immagini",
 	"Lingua dell'interfaccia",
 	"Giornale",
-	"Lingua",
 	"Ultimo giorno",
 	"Ultimo mese",
 	"Ultima settimana",
@@ -2017,6 +2017,7 @@ static const char *const t_it[] = {
 };
 
 static const char *const t_ja[] = {
+	"関連情報",
 	"許可する",
 	"他の意味",
 	"期間指定なし",
@@ -2036,7 +2037,6 @@ static const char *const t_ja[] = {
 	"画像",
 	"インターフェースの言語",
 	"刊行物",
-	"言語",
 	"24 時間以内",
 	"1 か月以内",
 	"1 週間以内",
@@ -2084,6 +2084,7 @@ static const char *const t_ja[] = {
 };
 
 static const char *const t_ko[] = {
+	"정보",
 	"허용",
 	"다른 뜻",
 	"모든 날짜",
@@ -2103,7 +2104,6 @@ static const char *const t_ko[] = {
 	"이미지",
 	"인터페이스 언어",
 	"발행처",
-	"언어",
 	"지난 1일",
 	"지난 1개월",
 	"지난 1주",
@@ -2151,6 +2151,7 @@ static const char *const t_ko[] = {
 };
 
 static const char *const t_lt[] = {
+	"Apie",
 	"Leisti",
 	"Taip pat gali reikšti",
 	"Bet kada",
@@ -2170,7 +2171,6 @@ static const char *const t_lt[] = {
 	"Nuotraukos",
 	"Sąsajos kalba",
 	"Žurnalas",
-	"Kalba",
 	"Praeitą dieną",
 	"Praeitą mėnesį",
 	"Praeitą savaitę",
@@ -2218,6 +2218,7 @@ static const char *const t_lt[] = {
 };
 
 static const char *const t_lv[] = {
+	"Par",
 	"Atļaut",
 	"Var attiekties arī uz",
 	"Jebkurā laikā",
@@ -2237,7 +2238,6 @@ static const char *const t_lv[] = {
 	"Attēli",
 	"Saskarnes valoda",
 	"Žurnāls",
-	"Valoda",
 	"Pēdējā diennakts",
 	"Pēdējais mēnesis",
 	"Pēdējā nedēļa",
@@ -2285,6 +2285,7 @@ static const char *const t_lv[] = {
 };
 
 static const char *const t_ml[] = {
+	"കുറിച്ച്",
 	"അനുവദിക്കുക",
 	"ഇതും സൂചിപ്പിക്കാം",
 	"ഏതു സമയത്തും",
@@ -2304,7 +2305,6 @@ static const char *const t_ml[] = {
 	"ചിത്രങ്ങൾ",
 	"ഇന്റർഫേസ് ഭാഷ",
 	"ജേണൽ",
-	"ഭാഷ",
 	"കഴിഞ്ഞ ദിവസം",
 	"കഴിഞ്ഞ മാസം",
 	"കഴിഞ്ഞ ആഴ്ച",
@@ -2352,6 +2352,7 @@ static const char *const t_ml[] = {
 };
 
 static const char *const t_ms[] = {
+	"Tentang",
 	"Benarkan",
 	"Juga boleh merujuk kepada",
 	"Bila-bila masa",
@@ -2371,7 +2372,6 @@ static const char *const t_ms[] = {
 	"Gambar-gambar",
 	"Bahasa antara muka",
 	"Jurnal",
-	"Bahasa",
 	"Dalam 24 jam",
 	"Dalam 1 bulan",
 	"Dalam 1 minggu",
@@ -2419,6 +2419,7 @@ static const char *const t_ms[] = {
 };
 
 static const char *const t_nb_NO[] = {
+	"Om",
 	"Tillat",
 	"Kan også vise til",
 	"Når som helst",
@@ -2438,7 +2439,6 @@ static const char *const t_nb_NO[] = {
 	"Bilder",
 	"Grensesnitts-språk",
 	"Tidsskrift",
-	"Språk",
 	"Siste dag",
 	"Siste måned",
 	"Siste uke",
@@ -2486,6 +2486,7 @@ static const char *const t_nb_NO[] = {
 };
 
 static const char *const t_nl[] = {
+	"Over",
 	"Toestaan",
 	"Kan ook verwijzen naar",
 	"Enig moment",
@@ -2505,7 +2506,6 @@ static const char *const t_nl[] = {
 	"Afbeeldingen",
 	"Interfacetaal",
 	"Dagboek",
-	"Taal",
 	"Gisteren",
 	"Afgelopen maand",
 	"Afgelopen week",
@@ -2553,6 +2553,7 @@ static const char *const t_nl[] = {
 };
 
 static const char *const t_oc[] = {
+	"A prepaus",
 	"Autorizar",
 	"Pòt tanben designar",
 	"Impòrta pas quand",
@@ -2572,7 +2573,6 @@ static const char *const t_oc[] = {
 	"Imatges",
 	"Lenga de l'interfàcia",
 	"Jornal",
-	"Lenga",
 	"Ièr",
 	"Lo mes passat",
 	"La setmana passada",
@@ -2620,6 +2620,7 @@ static const char *const t_oc[] = {
 };
 
 static const char *const t_pa[] = {
+	"ਬਾਰੇ",
 	"ਇਜਾਜ਼ਤ",
 	"ਇਹ ਵੀ ਦਰਸਾਉਂਦਾ ਹੈ",
 	"ਕਦੇ ਵੀ",
@@ -2639,7 +2640,6 @@ static const char *const t_pa[] = {
 	"ਤਸਵੀਰਾਂ",
 	"ਇੰਟਰਫੇਸ ਭਾਸ਼ਾ",
 	"ਰਸਾਲਾ",
-	"ਭਾਸ਼ਾ",
 	"ਪਿਛਲਾ ਦਿਨ",
 	"ਪਿਛਲਾ ਮਹੀਨਾ",
 	"ਪਿਛਲਾ ਹਫ਼ਤਾ",
@@ -2687,6 +2687,7 @@ static const char *const t_pa[] = {
 };
 
 static const char *const t_pap[] = {
+	"Tokante",
 	"Pèrmití",
 	"Por referí tambe na",
 	"Kualke ora",
@@ -2706,7 +2707,6 @@ static const char *const t_pap[] = {
 	"Imagenan",
 	"Idioma di interfas",
 	"Revista",
-	"Idioma",
 	"Último dia",
 	"Último luna",
 	"Último siman",
@@ -2754,6 +2754,7 @@ static const char *const t_pap[] = {
 };
 
 static const char *const t_pl[] = {
+	"Informacje o",
 	"Pozwól",
 	"Może też oznaczać",
 	"W każdej chwili",
@@ -2773,7 +2774,6 @@ static const char *const t_pl[] = {
 	"Obrazy",
 	"Język interfejsu",
 	"Gazeta",
-	"Język",
 	"W ostatnim dniu",
 	"W ostatnim miesiącu",
 	"W ostatnim tygodniu",
@@ -2821,6 +2821,7 @@ static const char *const t_pl[] = {
 };
 
 static const char *const t_pt[] = {
+	"Acerca",
 	"Permitir",
 	"Também se pode referir a",
 	"Qualquer altura",
@@ -2840,7 +2841,6 @@ static const char *const t_pt[] = {
 	"Imagens",
 	"Idioma de interface",
 	"Jornal",
-	"Idioma",
 	"Ontem",
 	"Mês passado",
 	"Semana passada",
@@ -2888,6 +2888,7 @@ static const char *const t_pt[] = {
 };
 
 static const char *const t_pt_BR[] = {
+	"Sobre",
 	"Permitir",
 	"Também pode se referir a",
 	"De qualquer dia",
@@ -2907,7 +2908,6 @@ static const char *const t_pt_BR[] = {
 	"Imagens",
 	"Idioma da interface",
 	"Jornal",
-	"Idioma",
 	"Ontem",
 	"Mês passado",
 	"Semana passada",
@@ -2955,6 +2955,7 @@ static const char *const t_pt_BR[] = {
 };
 
 static const char *const t_ro[] = {
+	"Despre",
 	"Permite",
 	"Se mai poate referi la",
 	"Oricând",
@@ -2974,7 +2975,6 @@ static const char *const t_ro[] = {
 	"Imagini",
 	"Limba interfeței",
 	"Jurnal",
-	"Limba",
 	"Ultima zi",
 	"Ultima lună",
 	"Ultima săptămână",
@@ -3022,6 +3022,7 @@ static const char *const t_ro[] = {
 };
 
 static const char *const t_ru[] = {
+	"О программе",
 	"Использовать",
 	"Может также означать",
 	"Любой период",
@@ -3041,7 +3042,6 @@ static const char *const t_ru[] = {
 	"Изображения",
 	"Язык интерфейса",
 	"Журнал",
-	"Язык",
 	"Последние сутки",
 	"Последний месяц",
 	"Последняя неделя",
@@ -3089,6 +3089,7 @@ static const char *const t_ru[] = {
 };
 
 static const char *const t_si[] = {
+	"ගැන",
 	"ඉඩ දෙන්න",
 	"මෙයද අදහස් කළ හැක",
 	"ඕනෑම වේලාවක",
@@ -3108,7 +3109,6 @@ static const char *const t_si[] = {
 	"රූප",
 	"අතුරුමුහුණත් භාෂාව",
 	"සඟරාව",
-	"භාෂාව",
 	"පසුගිය දිනය",
 	"පසුගිය මාසය",
 	"පසුගිය සතිය",
@@ -3156,6 +3156,7 @@ static const char *const t_si[] = {
 };
 
 static const char *const t_sk[] = {
+	"O nás",
 	"Povoliť",
 	"Môže tiež označovať",
 	"Kedykoľvek",
@@ -3175,7 +3176,6 @@ static const char *const t_sk[] = {
 	"Obrázky",
 	"Jazyk rozhrania",
 	"Žurnál",
-	"Jazyk",
 	"Posledný deň",
 	"Posledný mesiac",
 	"Posledný týždeň",
@@ -3223,6 +3223,7 @@ static const char *const t_sk[] = {
 };
 
 static const char *const t_sl[] = {
+	"O nas",
 	"Dovoli",
 	"Lahko se nanaša tudi na",
 	"Kadarkoli",
@@ -3242,7 +3243,6 @@ static const char *const t_sl[] = {
 	"Slike",
 	"Jezik vmesnika",
 	"Revija",
-	"Jezik",
 	"V zadnjem dnevu",
 	"V zadnjem mesecu",
 	"V zadnjem tednu",
@@ -3290,6 +3290,7 @@ static const char *const t_sl[] = {
 };
 
 static const char *const t_sr[] = {
+	"О нама",
 	"Допусти",
 	"Може се односити и на",
 	"Било када",
@@ -3309,7 +3310,6 @@ static const char *const t_sr[] = {
 	"Слике",
 	"Језик интерфејса",
 	"Дневник",
-	"Језик",
 	"Последњи дан",
 	"Последњи месец",
 	"Последња недеља",
@@ -3357,6 +3357,7 @@ static const char *const t_sr[] = {
 };
 
 static const char *const t_sv[] = {
+	"Om",
 	"Tillåt",
 	"Kan också syfta på",
 	"Närsom",
@@ -3376,7 +3377,6 @@ static const char *const t_sv[] = {
 	"Bilder",
 	"Gränssnittspråk",
 	"Journal",
-	"Språk",
 	"Igår",
 	"Förra månaden",
 	"Förra veckan",
@@ -3424,6 +3424,7 @@ static const char *const t_sv[] = {
 };
 
 static const char *const t_szl[] = {
+	"Informacyje",
 	"Zwōl",
 	"Może tyż ôznaczać",
 	"Z leda kedy",
@@ -3443,7 +3444,6 @@ static const char *const t_szl[] = {
 	"Ôbrazy",
 	"Jynzyk interfejsu",
 	"Cajtōng",
-	"Jynzyk",
 	"Z ôstatnigo dnia",
 	"Z ôstatnigo miesiōnca",
 	"Z ôstatnigo tydnia",
@@ -3491,6 +3491,7 @@ static const char *const t_szl[] = {
 };
 
 static const char *const t_ta[] = {
+	"பற்றி",
 	"அனுமதி",
 	"இதையும் குறிக்கலாம்",
 	"எந்நேரமும்",
@@ -3510,7 +3511,6 @@ static const char *const t_ta[] = {
 	"படங்கள்",
 	"முகப்பின் மொழி",
 	"பத்திரிகை",
-	"மொழி",
 	"நேற்று",
 	"கடந்த மாதம்",
 	"கடந்த வாரம்",
@@ -3558,6 +3558,7 @@ static const char *const t_ta[] = {
 };
 
 static const char *const t_te[] = {
+	"గురించి",
 	"అనుమతించు",
 	"దీనిని కూడా సూచించవచ్చు",
 	"ఎప్పుడైనా",
@@ -3577,7 +3578,6 @@ static const char *const t_te[] = {
 	"చిత్రాలు",
 	"వినిమయసీమ భాష",
 	"జర్నల్",
-	"భాష",
 	"క్రిందటి రోజు",
 	"క్రిందటి నెల",
 	"క్రిందటి వారం",
@@ -3625,6 +3625,7 @@ static const char *const t_te[] = {
 };
 
 static const char *const t_th[] = {
+	"เกี่ยวกับ",
 	"อนุญาต",
 	"อาจหมายถึง",
 	"ทุกเวลา",
@@ -3644,7 +3645,6 @@ static const char *const t_th[] = {
 	"รูปภาพ",
 	"ภาษาส่วนต่อประสาน",
 	"วารสาร",
-	"ภาษา",
 	"วันล่าสุด",
 	"เดือนล่าสุด",
 	"สัปดาห์ล่าสุด",
@@ -3692,6 +3692,7 @@ static const char *const t_th[] = {
 };
 
 static const char *const t_tr[] = {
+	"Hakkında",
 	"İzin ver",
 	"Şunlara da atıfta bulunabilir",
 	"Herhangi bir zaman",
@@ -3711,7 +3712,6 @@ static const char *const t_tr[] = {
 	"Görseller",
 	"Arayüz dili",
 	"Günlük",
-	"Dil",
 	"Geçen gün",
 	"Geçen ay",
 	"Geçen hafta",
@@ -3759,6 +3759,7 @@ static const char *const t_tr[] = {
 };
 
 static const char *const t_tt[] = {
+	"Програм турында",
 	"Рөхсәт бирү",
 	"Шулай ук аңлатырга мөмкин",
 	"Теләсә вакыт",
@@ -3778,7 +3779,6 @@ static const char *const t_tt[] = {
 	"Сурәтләр",
 	"Интерфәйс теле",
 	"Журнал",
-	"Тел",
 	"Соңгы көн",
 	"Соңгы ай",
 	"Соңгы атна",
@@ -3826,6 +3826,7 @@ static const char *const t_tt[] = {
 };
 
 static const char *const t_uk[] = {
+	"Про",
 	"Дозволити",
 	"Може також означати",
 	"За весь час",
@@ -3845,7 +3846,6 @@ static const char *const t_uk[] = {
 	"Зображення",
 	"Мова інтерфейсу",
 	"Журнал",
-	"Мова",
 	"За останній день",
 	"За останній місяць",
 	"За останній тиждень",
@@ -3893,6 +3893,7 @@ static const char *const t_uk[] = {
 };
 
 static const char *const t_vi[] = {
+	"Thông tin",
 	"Cho phép",
 	"Cũng có thể là",
 	"Bất kỳ lúc nào",
@@ -3912,7 +3913,6 @@ static const char *const t_vi[] = {
 	"Ảnh",
 	"Ngôn ngữ giao diện",
 	"Tạp chí",
-	"Ngôn ngữ",
 	"Hôm trước",
 	"Tháng trước",
 	"Tuần trước",
@@ -3960,6 +3960,7 @@ static const char *const t_vi[] = {
 };
 
 static const char *const t_zh_Hans_CN[] = {
+	"关于",
 	"允许",
 	"也可指",
 	"不限时间",
@@ -3979,7 +3980,6 @@ static const char *const t_zh_Hans_CN[] = {
 	"图片",
 	"界面语言",
 	"杂志",
-	"语言",
 	"过去一天内",
 	"过去一个月内",
 	"过去一周内",
@@ -4027,6 +4027,7 @@ static const char *const t_zh_Hans_CN[] = {
 };
 
 static const char *const t_zh_Hant_TW[] = {
+	"關於",
 	"允許",
 	"也可指",
 	"不限時間",
@@ -4046,7 +4047,6 @@ static const char *const t_zh_Hant_TW[] = {
 	"圖片",
 	"介面語言",
 	"期刊",
-	"語言",
 	"一天內",
 	"一個月內",
 	"一週內",

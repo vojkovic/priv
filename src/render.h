@@ -11,6 +11,7 @@
 	"Referrer-Policy: no-referrer\r\n"
 
 void render_home(struct buf *b, const struct prefs *p);
+void render_about(struct buf *b, const struct prefs *p, const char *origin);
 void render_preferences(struct buf *b, const struct prefs *p, const struct locale *browser, const char *notice,
     const char *error);
 void render_head(struct buf *b, struct search *s);

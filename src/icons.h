@@ -44,6 +44,9 @@
 #define ICON_CHECK ICON("<path d=\"M5 12l5 5l10 -10\"/>")
 #define ICON_MINUS ICON("<path d=\"M5 12l14 0\"/>")
 
+#define ICON_INFO \
+	ICON("<path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0\"/><path d=\"M12 9h.01\"/><path d=\"M11 12h1v4h1\"/>")
+
 #define ICON_CLOSE ICON("<path d=\"M18 6l-12 12\"/><path d=\"M6 6l12 12\"/>")
 
 #define ICON_BACK ICON("<path d=\"M15 6l-6 6l6 6\"/>")

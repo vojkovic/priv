@@ -765,19 +765,34 @@ article.result.result-images {
 /* preferences */
 
 #search_header { position: relative; }
-#preferences_link {
-	position: absolute;
-	top: 1.5rem;
-	right: 1.5rem;
-	display: flex;
-	padding: 0.5rem;
-	color: var(--subtext0);
-	border-radius: 0.5rem;
-}
-.index_endpoint #preferences_link { position: fixed; top: 1rem; right: 1rem; }
-[dir="rtl"] #preferences_link { right: auto; left: 1.5rem; }
-#preferences_link:hover { color: var(--text); background: var(--surface0); }
-#preferences_link svg { width: 1.5rem; height: 1.5rem; }
+/* same spot on every page, centred on the results page search bar */
+#links { position: absolute; top: 2.35rem; right: 1.5rem; display: flex; gap: 0.25rem; }
+:is(.page, #preferences) h1 { padding-inline-end: 5.5rem; }
+[dir="rtl"] #links { right: auto; left: 1.5rem; }
+/* on results they would run into the search bar, so they go once it gets close */
+@media (max-width: 57.5em) { #search_header #links { display: none; } }
+#links a { display: flex; padding: 0.5rem; color: var(--subtext0); border-radius: 0.5rem; }
+#links a:hover { color: var(--text); background: var(--surface0); }
+#links svg { width: 1.4rem; height: 1.4rem; }
+
+.page { max-width: 46rem; margin: 2rem auto 4rem; padding: 0 1rem; line-height: 1.6; }
+.page h1 { display: flex; align-items: center; gap: 0.5rem; margin: 0 0 1rem; font-size: 1.6rem; line-height: 1.2; }
+.page h1 a { display: flex; padding: 0.3rem; color: var(--subtext0); border-radius: 0.5rem; }
+.page h1 a:hover { color: var(--text); background: var(--surface0); }
+.page h1 svg { width: 1.4rem; height: 1.4rem; }
+[dir="rtl"] .page h1 svg { transform: scaleX(-1); }
+.page h2 { margin: 1.5rem 0 0.4rem; font-size: 1.2rem; }
+.page p { margin: 0.5rem 0; }
+.page p, .page li { color: var(--subtext1); }
+.page ul { padding-inline-start: 1.25rem; }
+.page li { margin: 0.35rem 0; }
+.page code { padding: 0.1rem 0.4rem; color: var(--text); font-size: 0.9em; background: var(--surface0); border-radius: 0.3rem; }
+.page a:not(h1 a) { color: var(--accent); }
+.page dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.5rem 1rem; margin: 0.75rem 0; }
+.page dt { color: var(--text); }
+.page dd { margin: 0; color: var(--subtext1); }
+.page dl.stacked { display: block; }
+.page dl.stacked dd { margin: 0.1rem 0 0.5rem; }
 
 #preferences { max-width: 46rem; margin: 2rem auto 0; padding: 0 1rem; }
 #preferences h1 { display: flex; align-items: center; gap: 0.5rem; margin: 0 0 1.5rem; font-size: 1.6rem; }
@@ -805,9 +820,14 @@ article.result.result-images {
 .pref label span { color: var(--subtext0); font-size: 0.875rem; }
 .pref select {
 	appearance: none;
-	min-width: 12rem;
-	max-width: 100%;
+	flex: none;
+	width: 20rem;
+	min-width: 0;
+	max-width: 20rem;
 	padding: 0.55rem 2.2rem 0.55rem 0.8rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 	color: var(--text);
 	font-size: 0.95rem;
 	background: var(--surface0) url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpolygon fill='%23cad3f5' points='128,192 256,320 384,192'/%3E%3C/svg%3E") no-repeat right 0.5rem center / 1.2rem;
@@ -833,7 +853,7 @@ article.result.result-images {
 .engine_group summary svg:last-child { color: var(--subtext0); transition: transform 0.15s; }
 .engine_group[open] summary svg:last-child { transform: rotate(180deg); }
 .engine_group .table { overflow-x: auto; }
-.engine_group table { width: 100%; min-width: 36rem; border-collapse: collapse; table-layout: fixed; font-size: 0.925rem; }
+.engine_group table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 0.925rem; }
 .engine_group th {
 	padding: 0.4rem 0.5rem;
 	color: var(--subtext0);
@@ -843,10 +863,11 @@ article.result.result-images {
 }
 .engine_group td { padding: 0.5rem; border-top: 1px solid var(--surface0); }
 .engine_group :is(th, td) { text-align: center; }
-.engine_group :is(th, td):nth-child(2) { width: auto; text-align: start; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.engine_group :is(th, td):nth-child(2) { width: auto; text-align: start; overflow-wrap: anywhere; }
+.engine_group td label { display: block; cursor: pointer; }
 .engine_group :is(th, td):first-child { width: 4rem; padding-inline-start: 1rem; }
 .engine_group :is(th, td):nth-child(3) { width: 6.5rem; }
-.engine_group :is(th, td):nth-child(n + 4) { width: 6rem; }
+.engine_group :is(th, td):nth-child(n + 4) { width: 6.5rem; }
 .engine_group tbody tr:hover { background: color-mix(in srgb, var(--surface0) 45%, transparent); }
 .engine_group td svg { display: block; width: 1.1rem; height: 1.1rem; margin: auto; }
 .engine_group .yes { color: var(--accent); }
@@ -912,13 +933,13 @@ article.result.result-images {
 
 @media (max-width: 41.25em) {
 	#search_header {
-		grid-template-columns: 3rem minmax(0, 1fr) auto;
-		grid-template-areas: "logo search prefs" "categories categories categories";
+		grid-template-columns: 3rem minmax(0, 1fr);
+		grid-template-areas: "logo search" "categories categories";
 		gap: 0.4rem 0;
 		padding: 0.6rem 0.6rem 0 0;
 	}
 	#search_logo { padding: 0; }
-	#search_header #preferences_link { position: static; grid-area: prefs; align-self: center; margin-left: 0.3rem; }
+	#links { top: 1rem; right: 1rem; }
 	#search_logo svg { flex: none; width: 1.4rem; height: 1.4rem; margin: 0; }
 	#search_view { padding-top: 0; }
 	.search_focus body { overflow: hidden; }
@@ -962,8 +983,18 @@ article.result.result-images {
 	.search_filters { flex-wrap: nowrap; gap: 0; width: auto; margin: 0 10px; padding: 0.5rem 0; }
 	.search_filters select { flex: 1 1 0; max-width: none; margin-right: 0.5rem; padding-top: 0.6rem; padding-bottom: 0.6rem; font-size: 0.85rem; }
 	.search_filters select:last-of-type { margin-right: 0; }
+	.engine_group summary { padding: 0.8rem 0.9rem; }
+	.engine_group table { font-size: 0.875rem; }
+	.engine_group th { font-size: 0.68rem; white-space: normal; line-height: 1.2; vertical-align: bottom; }
+	.engine_group :is(th, td) { padding: 0.45rem 0.25rem; }
+	.engine_group :is(th, td):first-child { width: 2.9rem; padding-inline-start: 0.7rem; }
+	.engine_group :is(th, td):nth-child(3) { width: 3.2rem; }
+	.engine_group :is(th, td):nth-child(n + 4) { width: 3.6rem; padding-inline: 0.15rem; }
+	.engine_group td:nth-child(2) { padding-inline-start: 0.5rem; }
+	.engine_group :is(th, td):last-child { padding-inline-end: 0.6rem; }
+	.engine_group code { padding: 0.05rem 0.25rem; font-size: 0.75rem; }
 	#preferences { margin-top: 1rem; }
-	.pref select { width: 100%; }
+	.pref select { width: 100%; max-width: none; }
 	#results { margin: 0.25rem 0 2rem; padding: 0; }
 	article.result, #answers { margin: 0.5em; }
 	.infobox .infobox_image { max-height: 9rem; }

@@ -484,8 +484,8 @@
 	const phone = window.matchMedia("(max-width: 41.25em)");
 	const back = document.getElementById("search_back");
 
-	if (phone.matches && document.activeElement === q)
-		q.blur();
+	if ("autofocus" in q.dataset && window.matchMedia("(pointer: fine)").matches)
+		q.focus();
 
 	q.addEventListener("blur", () => {
 		hide();

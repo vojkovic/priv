@@ -44,18 +44,10 @@ search(struct job *j)
 	job_send(j, f, response);
 }
 
-/* whether this engine narrows results to the locale's language, for the preferences page */
-static int
-language(const struct locale *l)
-{
-	return *l->privacywall_cc && strcmp(l->privacywall_cc, "US") != 0;
-}
-
 struct engine engine_privacywall = {
     .name = "privacywall",
     .shortcut = "pw",
     .website = "www.privacywall.org",
-    .language = language,
     .safesearch = 1,
     .bang = "https://www.privacywall.org/search/secure?q=%s",
     .categories = {"general"},

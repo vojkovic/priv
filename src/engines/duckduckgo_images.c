@@ -128,18 +128,10 @@ search(struct job *j)
 	job_send(j, f, vqd_response);
 }
 
-/* whether this engine narrows results to the locale's language, for the preferences page */
-static int
-language(const struct locale *l)
-{
-	return strcmp(l->ddg_region, "wt-wt") != 0;
-}
-
 struct engine engine_duckduckgo_images = {
     .name = "duckduckgo images",
     .shortcut = "ddi",
     .website = "duckduckgo.com",
-    .language = language,
     .safesearch = 1,
     .bang = "https://duckduckgo.com/?q=%s&iax=images&ia=images",
     .categories = {"images"},

@@ -78,18 +78,10 @@ search(struct job *j)
 	job_send(j, f, response);
 }
 
-/* whether this engine narrows results to the locale's language, for the preferences page */
-static int
-language(const struct locale *l)
-{
-	return strcmp(l->brave_country, "all") != 0;
-}
-
 struct engine engine_brave_images = {
     .name = "brave.images",
     .shortcut = "brimg",
     .website = "search.brave.com",
-    .language = language,
     .safesearch = 1,
     .bang = "https://search.brave.com/images?q=%s",
     .categories = {"images"},

@@ -145,6 +145,13 @@ route(struct conn *c, struct request *r)
 		respond_buf(c, 200, "Content-Type: application/opensearchdescription+xml\r\n", &b);
 		return;
 	}
+	if (!strcmp(r->path, "/about")) {
+		prefs_parse(&a, r, &prefs);
+		render_about(&b, &prefs, aprintf(&a, "%s://%s", r->proto, *r->host ? r->host : "localhost"));
+		respond_buf(c, 200, HTML_HEADERS, &b);
+		arena_free(&a);
+		return;
+	}
 	if (!strcmp(r->path, "/preferences")) {
 		preferences(c, r);
 		return;

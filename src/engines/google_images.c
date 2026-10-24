@@ -82,18 +82,10 @@ search(struct job *j)
 	job_send(j, f, response);
 }
 
-/* whether this engine narrows results to the locale's language, for the preferences page */
-static int
-language(const struct locale *l)
-{
-	return *l->google_lr;
-}
-
 struct engine engine_google_images = {
     .name = "google images",
     .shortcut = "goi",
     .website = "images.google.com",
-    .language = language,
     .safesearch = 1,
     .bang = "https://www.google.com/search?tbm=isch&q=%s",
     .categories = {"images"},
