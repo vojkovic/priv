@@ -24,7 +24,7 @@ struct engine {
 	const char *website;
 	const char *bang;
 	const char *categories[MAX_CATEGORIES];
-	int paging, max_page, time_range, safesearch;
+	int paging, max_page, time_range, safesearch, starts_off;
 	int no_accept_language;
 	void (*init)(void);
 	void (*search)(struct job *j);

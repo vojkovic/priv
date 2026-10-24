@@ -16,7 +16,7 @@ struct engine;
 struct prefs {
 	const struct ui_lang *ui, *ui_auto;
 	const char *ui_code, *language;
-	int safesearch;
+	int safesearch, saved;
 	uint64_t off[PREFS_CATEGORIES];
 };
 

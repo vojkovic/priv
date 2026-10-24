@@ -3,12 +3,13 @@
 #include "engine.h"
 
 extern struct engine engine_google, engine_google_cse, engine_brave, engine_duckduckgo, engine_duckduckgo_web,
-    engine_dogpile, engine_privacywall, engine_wikipedia, engine_duckduckgo_definitions, engine_google_images,
-    engine_google_cse_images, engine_brave_images, engine_duckduckgo_images, engine_dogpile_images,
-    engine_google_videos, engine_duckduckgo_videos, engine_youtube, engine_brave_videos, engine_google_news,
-    engine_duckduckgo_news, engine_reuters, engine_brave_news, engine_soundcloud, engine_wikicommons_audio,
-    engine_archlinux, engine_mdn, engine_mankier, engine_pypi, engine_stackoverflow, engine_askubuntu, engine_superuser,
-    engine_arxiv, engine_europepmc, engine_pdbe, engine_pubmed;
+    engine_dogpile, engine_privacywall, engine_tonline, engine_oceanhero, engine_swisscows, engine_iseek,
+    engine_s1search, engine_wikipedia, engine_duckduckgo_definitions, engine_google_images, engine_google_cse_images,
+    engine_brave_images, engine_duckduckgo_images, engine_dogpile_images, engine_google_videos,
+    engine_duckduckgo_videos, engine_youtube, engine_brave_videos, engine_google_news, engine_duckduckgo_news,
+    engine_reuters, engine_brave_news, engine_soundcloud, engine_wikicommons_audio, engine_archlinux, engine_mdn,
+    engine_mankier, engine_pypi, engine_stackoverflow, engine_askubuntu, engine_superuser, engine_arxiv,
+    engine_europepmc, engine_pdbe, engine_pubmed;
 
 static struct engine *available[] = {
     &engine_google,
@@ -18,6 +19,11 @@ static struct engine *available[] = {
     &engine_duckduckgo_web,
     &engine_dogpile,
     &engine_privacywall,
+    &engine_tonline,
+    &engine_oceanhero,
+    &engine_swisscows,
+    &engine_iseek,
+    &engine_s1search,
     &engine_wikipedia,
     &engine_duckduckgo_definitions,
     &engine_google_images,
@@ -101,11 +107,14 @@ engines_init(void)
 		e = available[i];
 		if (e->weight <= 0)
 			e->weight = 1.0;
-		for (k = 0; k < nengine_toggles; k++)
-			if (config_name(e, engine_toggles[k].name))
-				e->weight = engine_toggles[k].weight;
-		if (e->weight <= 0)
-			continue;
+		for (k = 0; k < nengine_toggles && !config_name(e, engine_toggles[k].name); k++)
+			;
+		if (k < nengine_toggles) {
+			if (engine_toggles[k].inactive)
+				continue;
+			e->weight = engine_toggles[k].weight;
+			e->starts_off = !engine_toggles[k].on;
+		}
 		e->index = (int)nengines;
 		e->enabled = 1;
 		engines[nengines++] = e;

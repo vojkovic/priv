@@ -79,11 +79,8 @@ preferences(struct conn *c, struct request *r)
 
 	prefs_parse(&a, r, &p);
 	if (query_param(&a, r->query, "reset")) {
-		memset(p.off, 0, sizeof(p.off));
-		p.ui_code = "";
-		p.language = NULL;
-		p.safesearch = -1;
-		http_respond(c, 302, aprintf(&a, "Location: /preferences\r\n%s", prefs_cookie(&a, &p, secure)), "", 0);
+		http_respond(c, 302, aprintf(&a, "Location: /preferences\r\n%s", prefs_cookie(&a, NULL, secure)), "",
+		    0);
 	} else if (query_param(&a, r->query, "save") && !(error = prefs_from_form(&a, r, &p))) {
 		http_respond(c, 302, aprintf(&a, "Location: /preferences?saved=1\r\n%s", prefs_cookie(&a, &p, secure)),
 		    "", 0);

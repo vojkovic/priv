@@ -16,6 +16,7 @@
 struct engine_toggle {
 	const char *name;
 	double weight;
+	int on, inactive;
 };
 
 extern const char *instance_name;
@@ -98,6 +99,16 @@ char *text_split_join(struct arena *a, const char *s);
 char *text_normalize(struct arena *a, const char *s, size_t max);
 char *html_to_text(struct arena *a, const char *s);
 char *base64(struct arena *a, const unsigned char *p, size_t n);
+
+struct sha256 {
+	uint32_t h[8];
+	uint64_t len;
+	unsigned char buf[64];
+	size_t n;
+};
+void sha256_init(struct sha256 *s);
+void sha256_update(struct sha256 *s, const void *data, size_t len);
+void sha256_final(struct sha256 *s, unsigned char out[32]);
 size_t utf8_len(const char *s);
 int utf8_decode(const char *s, uint32_t *cp);
 int utf8_encode(char *out, uint32_t cp);

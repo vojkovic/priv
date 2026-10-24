@@ -11,52 +11,59 @@ link_token = false
 trusted_proxies = ["127.0.0.0/8", "::1"]
 
 [engines]
+# weight: how strongly its results rank, default: whether it starts on for users,
+# inactive: disable the engine entirely
 
 # general
-google = 1
-google_cse = 1
-brave = 1
-duckduckgo = 1
-duckduckgo_web = 1
-dogpile = 1
-privacywall = 1
-wikipedia = 2
-ddg_definitions = 2
+google            = { weight = 1, default = true, inactive = false }
+google_cse        = { weight = 1, default = true, inactive = false }
+brave             = { weight = 1, default = true, inactive = false }
+duckduckgo        = { weight = 1, default = true, inactive = false }
+duckduckgo_web    = { weight = 1, default = false, inactive = false }
+dogpile           = { weight = 1, default = true, inactive = false }
+privacywall       = { weight = 1, default = true, inactive = false }
+t_online          = { weight = 1, default = false, inactive = false }
+oceanhero         = { weight = 1, default = true, inactive = false }
+swisscows         = { weight = 1, default = true, inactive = false }
+iseek             = { weight = 1, default = false, inactive = false }
+s1search          = { weight = 1, default = false, inactive = false }
+wikipedia         = { weight = 2, default = true, inactive = false }
+ddg_definitions   = { weight = 2, default = true, inactive = false }
 
 # images
-google_images = 1
-google_cse_images = 1
-brave_images = 1
-duckduckgo_images = 1
-dogpile_images = 1
+google_images     = { weight = 1, default = true, inactive = false }
+google_cse_images = { weight = 1, default = true, inactive = false }
+brave_images      = { weight = 1, default = true, inactive = false }
+duckduckgo_images = { weight = 1, default = true, inactive = false }
+dogpile_images    = { weight = 1, default = true, inactive = false }
 
 # videos
-google_videos = 1
-duckduckgo_videos = 1
-youtube = 1
-brave_videos = 1
+google_videos     = { weight = 1, default = true, inactive = false }
+duckduckgo_videos = { weight = 1, default = true, inactive = false }
+youtube           = { weight = 1, default = true, inactive = false }
+brave_videos      = { weight = 1, default = true, inactive = false }
 
 # news
-google_news = 1
-duckduckgo_news = 1
-reuters = 1
-brave_news = 1
+google_news       = { weight = 1, default = true, inactive = false }
+duckduckgo_news   = { weight = 1, default = true, inactive = false }
+reuters           = { weight = 1, default = true, inactive = false }
+brave_news        = { weight = 1, default = true, inactive = false }
 
 # music
-soundcloud = 1
-wikicommons_audio = 1
+soundcloud        = { weight = 1, default = true, inactive = false }
+wikicommons_audio = { weight = 1, default = true, inactive = false }
 
 # tech
-arch_linux_wiki = 1
-mdn = 1
-mankier = 1
-pypi = 1
-stackoverflow = 1
-askubuntu = 1
-superuser = 1
+arch_linux_wiki   = { weight = 1, default = true, inactive = false }
+mdn               = { weight = 1, default = true, inactive = false }
+mankier           = { weight = 1, default = true, inactive = false }
+pypi              = { weight = 1, default = true, inactive = false }
+stackoverflow     = { weight = 1, default = true, inactive = false }
+askubuntu         = { weight = 1, default = true, inactive = false }
+superuser         = { weight = 1, default = true, inactive = false }
 
 # research
-arxiv = 1
-europepmc = 1
-pdbe = 1
-pubmed = 1
+arxiv             = { weight = 1, default = true, inactive = false }
+europepmc         = { weight = 1, default = true, inactive = false }
+pdbe              = { weight = 1, default = true, inactive = false }
+pubmed            = { weight = 1, default = true, inactive = false }

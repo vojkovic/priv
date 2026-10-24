@@ -663,7 +663,7 @@ bang(struct arena *a, const char *value, struct filters *f)
 	size_t i;
 
 	for (p = v; *p; p++)
-		if (*p == '-' || *p == '_')
+		if (*p == '_')
 			*p = ' ';
 	for (i = 0; i < nengines; i++) {
 		e = engines[i];

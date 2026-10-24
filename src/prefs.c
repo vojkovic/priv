@@ -166,7 +166,7 @@ prefs_parse(struct arena *a, struct request *r, struct prefs *p)
 	const char *c = cookie_value(a, r->cookie, COOKIE), *v;
 	const struct engine *e;
 	char *list, *item, *save;
-	size_t cat;
+	size_t cat, i;
 
 	memset(p, 0, sizeof(*p));
 	p->ui_code = "";
@@ -179,12 +179,18 @@ prefs_parse(struct arena *a, struct request *r, struct prefs *p)
 		if ((v = query_param(a, c, "safesearch")) && v[0] >= '0' && v[0] <= '2' && !v[1])
 			p->safesearch = v[0] - '0';
 		if ((v = query_param(a, c, "off"))) {
+			p->saved = 1;
 			list = astrdup(a, v);
 			for (item = strtok_r(list, "~", &save); item; item = strtok_r(NULL, "~", &save))
 				if (pair(a, item, &cat, &e))
 					p->off[cat] |= ENGINE_BIT(e);
 		}
 	}
+	/* until engines are saved once, the ones marked starts_off stay off */
+	for (cat = 0; !p->saved && cat < ncategories && cat < PREFS_CATEGORIES; cat++)
+		for (i = 0; i < nengines; i++)
+			if (engines[i]->starts_off && engine_in(engines[i], categories[cat].name))
+				p->off[cat] |= ENGINE_BIT(engines[i]);
 	p->ui_auto = ui_accept(a, r->accept_language);
 	if (!p->ui)
 		p->ui = p->ui_auto;
@@ -239,6 +245,9 @@ prefs_cookie(struct arena *a, const struct prefs *p, int secure)
 	char *r;
 	size_t i, j;
 
+	if (!p)
+		return aprintf(a, "Set-Cookie: " COOKIE "=; Path=/; Max-Age=0; SameSite=Lax; HttpOnly%s\r\n",
+		    secure ? "; Secure" : "");
 	if (*p->ui_code)
 		buf_printf(&b, "&ui=%s", p->ui_code);
 	if (p->language)
@@ -250,10 +259,9 @@ prefs_cookie(struct arena *a, const struct prefs *p, int secure)
 			if (p->off[i] & ENGINE_BIT(engines[j]))
 				buf_printf(&off, "%s%s.%s", off.len ? "~" : "", categories[i].name,
 				    engines[j]->shortcut);
-	if (off.len)
-		buf_printf(&b, "&off=%s", buf_str(&off));
-	r = aprintf(a, "Set-Cookie: " COOKIE "=%s; Path=/; Max-Age=%d; SameSite=Lax; HttpOnly%s\r\n",
-	    b.len ? buf_str(&b) + 1 : "", b.len ? COOKIE_AGE : 0, secure ? "; Secure" : "");
+	buf_printf(&b, "&off=%s", buf_str(&off));
+	r = aprintf(a, "Set-Cookie: " COOKIE "=%s; Path=/; Max-Age=%d; SameSite=Lax; HttpOnly%s\r\n", buf_str(&b) + 1,
+	    COOKIE_AGE, secure ? "; Secure" : "");
 	buf_free(&b);
 	buf_free(&off);
 	return r;

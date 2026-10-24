@@ -324,9 +324,6 @@ complete_bang(struct pending *p, struct suggestion *v, const char *before, const
 	struct engine *e;
 	size_t i, n = 0, len;
 
-	for (c = value; *c; c++)
-		if (*c == '-')
-			*c = ' ';
 	len = strlen(value);
 	for (i = 0; i < ncategories; i++)
 		if (!strncmp(categories[i].name, value, len))

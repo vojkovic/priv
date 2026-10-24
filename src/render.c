@@ -476,21 +476,27 @@ aspect(struct main_result *m)
 {
 	long w, h;
 
-	return resolution(m->resolution, &w, &h) ? MIN(MAX((double)w / h, 0.6), 2.2) : 4.0 / 3;
+	return m->resolution && resolution(m->resolution, &w, &h) ? MIN(MAX((double)w / h, 0.6), 2.2) : 4.0 / 3;
 }
 
 static void
 image_result(struct buf *b, struct search *s, struct main_result *m)
 {
 	struct arena *a = &s->a;
-	const char *site = *m->source ? m->source : m->parsed.netloc, *res = "";
-	char *full = image_url(a, m->img_src), *thumb = image_url(a, *m->thumbnail_src ? m->thumbnail_src : m->img_src);
-	char *fav = favicon_url(a, m->parsed.netloc);
+	const char *site, *res = "";
+	char *full, *thumb, *fav;
 	long w, h;
 
+	/* a bang like "!goi !g" mixes in web results, which have nothing to show in the image grid */
+	if (!m->img_src || !*m->img_src)
+		return;
+	site = m->source && *m->source ? m->source : m->parsed.netloc;
+	full = image_url(a, m->img_src);
+	thumb = image_url(a, m->thumbnail_src && *m->thumbnail_src ? m->thumbnail_src : m->img_src);
+	fav = favicon_url(a, m->parsed.netloc);
 	if (!full)
 		return;
-	if (resolution(m->resolution, &w, &h))
+	if (m->resolution && resolution(m->resolution, &w, &h))
 		res = aprintf(a, "%ld \xc3\x97 %ld", w, h);
 	buf_html(b,
 	    "<article class=\"result result-images s%d\" data-title=\"%s\" data-content=\"%s\" "
@@ -502,7 +508,8 @@ image_result(struct buf *b, struct search *s, struct main_result *m)
 	buf_html(b, "\">\n<a class=\"image_thumb\" href=\"%s\" rel=\"noreferrer\">", full);
 	if (thumb)
 		buf_html(b, "<img src=\"%s\" alt=\"\" loading=\"lazy\">",
-		    image_src(s, *m->thumbnail_src ? m->thumbnail_src : m->img_src, thumb, INLINE_MAX));
+		    image_src(s, m->thumbnail_src && *m->thumbnail_src ? m->thumbnail_src : m->img_src, thumb,
+		        INLINE_MAX));
 	if (*res)
 		buf_html(b, "<span class=\"image_resolution\">%s</span>", res);
 	buf_html(b, "</a>\n<a class=\"image_source\" href=\"%s\" rel=\"noreferrer\"><span class=\"image_site\">",
