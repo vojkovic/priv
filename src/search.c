@@ -93,7 +93,8 @@ server_timing(struct search *s, double render_ms)
 	const char *out;
 	size_t i;
 
-	qsort(r->timings, r->ntimings, sizeof(*r->timings), by_total);
+	if (r->ntimings)
+		qsort(r->timings, r->ntimings, sizeof(*r->timings), by_total);
 	buf_printf(&b, "Server-Timing: total;dur=%.3f, render;dur=%.3f", now_ms() - s->start, render_ms);
 	for (i = 0; i < r->ntimings; i++)
 		buf_printf(&b, ", total_%zu_%s;dur=%.3f", i, token(&s->a, r->timings[i].engine->name),
@@ -475,9 +476,15 @@ add_answer(struct job *j, const char *answer, const char *url)
 void
 job_on_cleanup(struct job *j, void (*fn)(void *), void *p)
 {
-	if (j->ncleanup == (int)LEN(j->cleanup)) {
-		fn(p);
-		return;
+	struct cleanup *grown;
+
+	/* grows in the search's arena, so an engine can parse as many documents as it needs */
+	if (j->ncleanup == j->capcleanup) {
+		j->capcleanup = j->capcleanup ? j->capcleanup * 2 : 8;
+		grown = amalloc(j->a, (size_t)j->capcleanup * sizeof(*grown));
+		if (j->ncleanup)
+			memcpy(grown, j->cleanup, (size_t)j->ncleanup * sizeof(*grown));
+		j->cleanup = grown;
 	}
 	j->cleanup[j->ncleanup].fn = fn;
 	j->cleanup[j->ncleanup++].p = p;
@@ -665,7 +672,9 @@ bang(struct arena *a, const char *value, struct filters *f)
 		if ((e->shortcut && !strcmp(e->shortcut, v)) || !strcmp(e->name, v)) {
 			if (!f->engines)
 				f->category = e->categories[0];
-			f->engines |= ENGINE_BIT(e);
+			/* the first bang picks the category, later ones only add engines that belong to it */
+			if (engine_in(e, f->category))
+				f->engines |= ENGINE_BIT(e);
 			return 1;
 		}
 	}
@@ -674,7 +683,7 @@ bang(struct arena *a, const char *value, struct filters *f)
 	if (!f->engines)
 		f->category = cat;
 	for (i = 0; i < nengines; i++)
-		if (engine_in(engines[i], cat))
+		if (engine_in(engines[i], cat) && engine_in(engines[i], f->category))
 			f->engines |= ENGINE_BIT(engines[i]);
 	return 1;
 }

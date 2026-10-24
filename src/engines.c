@@ -9,7 +9,9 @@ extern struct engine engine_google, engine_google_docs, engine_bing, engine_goog
     engine_duckduckgo_videos, engine_youtube, engine_brave_videos, engine_google_news, engine_duckduckgo_news,
     engine_reuters, engine_brave_news, engine_soundcloud, engine_wikicommons_audio, engine_archlinux, engine_mdn,
     engine_mankier, engine_pypi, engine_stackoverflow, engine_askubuntu, engine_superuser, engine_arxiv,
-    engine_europepmc, engine_pdbe, engine_pubmed;
+    engine_europepmc, engine_pdbe, engine_pubmed, engine_bing_videos, engine_dailymotion, engine_bing_news,
+    engine_wikinews, engine_genius, engine_mixcloud, engine_radio_browser, engine_openalex, engine_crossref,
+    engine_google_scholar;
 
 static struct engine *available[] = {
     &engine_google,
@@ -53,6 +55,16 @@ static struct engine *available[] = {
     &engine_europepmc,
     &engine_pdbe,
     &engine_pubmed,
+    &engine_bing_videos,
+    &engine_dailymotion,
+    &engine_bing_news,
+    &engine_wikinews,
+    &engine_genius,
+    &engine_mixcloud,
+    &engine_radio_browser,
+    &engine_openalex,
+    &engine_crossref,
+    &engine_google_scholar,
 };
 
 struct engine *engines[64];

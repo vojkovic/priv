@@ -41,18 +41,25 @@ dogpile_images = 2
 
 # videos
 google_videos = 2
+bing_videos = 2
+dailymotion = 2
 duckduckgo_videos = 2
 youtube = 2
 brave_videos = 2
 
 # news
 google_news = 2
+bing_news = 2
+wikinews = 2
 duckduckgo_news = 2
 reuters = 2
 brave_news = 2
 
 # music
 soundcloud = 2
+genius = 2
+mixcloud = 2
+radio_browser = 2
 wikicommons_audio = 2
 
 # tech
@@ -66,6 +73,9 @@ superuser = 2
 
 # research
 arxiv = 2
+openalex = 2
+crossref = 2
+google_scholar = 1
 europepmc = 2
 pdbe = 2
 pubmed = 2

@@ -50,11 +50,11 @@ struct job {
 	double start, load;
 	int done;
 	const char *detail;
-	struct {
+	struct cleanup {
 		void (*fn)(void *);
 		void *p;
-	} cleanup[8];
-	int ncleanup;
+	} *cleanup;
+	int ncleanup, capcleanup;
 };
 
 extern struct engine *engines[];
