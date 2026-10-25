@@ -27,6 +27,9 @@ msgstr "Atgal"
 msgid "Change the language of the layout"
 msgstr "Keisti išdėstymo kalbą"
 
+msgid "Change the look of the layout"
+msgstr "Keisti išdėstymo išvaizdą"
+
 msgid "Close"
 msgstr "Uždaryti"
 
@@ -158,6 +161,9 @@ msgstr "Žymės"
 
 msgid "Tech"
 msgstr "Technologijos"
+
+msgid "Theme"
+msgstr "Tema"
 
 msgid "This site did not provide any description."
 msgstr "Šis tiklalapis nepridėjo jokio aprašymo."

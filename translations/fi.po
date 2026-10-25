@@ -27,6 +27,9 @@ msgstr "Takaisin"
 msgid "Change the language of the layout"
 msgstr "Vaihda asettelun kieltä"
 
+msgid "Change the look of the layout"
+msgstr "Vaihda asettelun ulkoasua"
+
 msgid "Close"
 msgstr "Sulje"
 
@@ -158,6 +161,9 @@ msgstr "Tägit"
 
 msgid "Tech"
 msgstr "Tekniikka"
+
+msgid "Theme"
+msgstr "Teema"
 
 msgid "This site did not provide any description."
 msgstr "Tämä sivu ei antanut mitään kuvausta."

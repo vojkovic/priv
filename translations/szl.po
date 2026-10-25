@@ -27,6 +27,9 @@ msgstr "Nazod"
 msgid "Change the language of the layout"
 msgstr "Zmiyń jynzyk układu"
 
+msgid "Change the look of the layout"
+msgstr ""
+
 msgid "Close"
 msgstr "Zawrzij"
 
@@ -158,6 +161,9 @@ msgstr "Etykety"
 
 msgid "Tech"
 msgstr "Technologijo"
+
+msgid "Theme"
+msgstr "Motyw"
 
 msgid "This site did not provide any description."
 msgstr "Ta strōna niy podała żodnego ôpisu."

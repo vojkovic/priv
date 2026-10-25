@@ -27,6 +27,9 @@ msgstr "Vissza"
 msgid "Change the language of the layout"
 msgstr "A felület nyelvének megváltoztatása"
 
+msgid "Change the look of the layout"
+msgstr "A felület megjelenésének megváltoztatása"
+
 msgid "Close"
 msgstr "Bezárás"
 
@@ -158,6 +161,9 @@ msgstr "Címkék"
 
 msgid "Tech"
 msgstr "Technológia"
+
+msgid "Theme"
+msgstr "Téma"
 
 msgid "This site did not provide any description."
 msgstr "Ennek a weblapnak nincsen leírása."

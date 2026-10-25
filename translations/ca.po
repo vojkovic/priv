@@ -27,6 +27,9 @@ msgstr "Enrere"
 msgid "Change the language of the layout"
 msgstr "Canvia la llengua de la disposició"
 
+msgid "Change the look of the layout"
+msgstr "Canvia l'aspecte de la disposició"
+
 msgid "Close"
 msgstr "Tanca"
 
@@ -158,6 +161,9 @@ msgstr "Etiquetes"
 
 msgid "Tech"
 msgstr "Tecnologia"
+
+msgid "Theme"
+msgstr "Tema"
 
 msgid "This site did not provide any description."
 msgstr "Aquest lloc no proporciona cap descripció."

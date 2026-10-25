@@ -25,6 +25,337 @@
 	color-scheme: dark;
 }
 
+/* the themes of privau/searxng, mapped onto the palette above; macchiato is the default */
+:root[data-theme="brave"] {
+	--red: #e11f3d;
+	--yellow: #f1d561;
+	--text: #a1b2ba;
+	--subtext1: #a1b2ba;
+	--subtext0: #becad0;
+	--overlay1: #667077;
+	--surface2: #62757e;
+	--surface1: #62757e;
+	--surface0: #242731;
+	--base: #17191e;
+	--mantle: #17191e;
+	--crust: #101215;
+	--link: #7c91ff;
+	--link-visited: #7166a9;
+	--accent: #7c91ff;
+	--favicon-bg: #ddd;
+	--favicon-border: #ccc;
+
+	color-scheme: dark;
+}
+
+:root[data-theme="dracula"] {
+	--red: #f55b5b;
+	--yellow: #f1d561;
+	--text: #f8f8f2;
+	--subtext1: #f8f8f2;
+	--subtext0: lightgray;
+	--overlay1: #9f9fa1;
+	--surface2: #44475a;
+	--surface1: #44475a;
+	--surface0: #44475a;
+	--base: #282a36;
+	--mantle: #282a36;
+	--crust: #1c1d26;
+	--link: #f8f8f2;
+	--link-visited: #bd93f9;
+	--accent: hsl(250, 92%, 66%);
+	--favicon-bg: #ddd;
+	--favicon-border: #ccc;
+
+	color-scheme: dark;
+}
+
+:root[data-theme="everforest"] {
+	--red: #e67e80;
+	--yellow: #dbbc7f;
+	--text: #d3c6aa;
+	--subtext1: #859289;
+	--subtext0: #859289;
+	--overlay1: #8c887a;
+	--surface2: #475258;
+	--surface1: #475258;
+	--surface0: #3d484d;
+	--base: #2d353b;
+	--mantle: #343f44;
+	--crust: #232a2e;
+	--link: #7fbbb3;
+	--link-visited: #d699b6;
+	--accent: #7fbbb3;
+	--favicon-bg: #ddd;
+	--favicon-border: #ccc;
+
+	color-scheme: dark;
+}
+
+:root[data-theme="evergarden"] {
+	--red: #f57f82;
+	--yellow: #f5d098;
+	--text: #f8f9e8;
+	--subtext1: #b2caed;
+	--subtext0: #acc2d2;
+	--overlay1: #a0a49c;
+	--surface2: #4a585c;
+	--surface1: #4a585c;
+	--surface0: #374145;
+	--base: #2b3337;
+	--mantle: #232a2e;
+	--crust: #1e2426;
+	--link: #f8f9e8;
+	--link-visited: #d2bdf3;
+	--accent: #b2caed;
+	--favicon-bg: #4a585c;
+	--favicon-border: #58686d;
+
+	color-scheme: dark;
+}
+
+:root[data-theme="frappe"] {
+	--red: #e78284;
+	--yellow: #e5c890;
+	--text: #c6d0f5;
+	--subtext1: #b5bfe2;
+	--subtext0: #a5adce;
+	--overlay1: #868daa;
+	--surface2: #626880;
+	--surface1: #51576d;
+	--surface0: #414559;
+	--base: #303446;
+	--mantle: #292c3c;
+	--crust: #232634;
+	--link: #8af;
+	--link-visited: #c09cd9;
+	--accent: #58f;
+	--favicon-bg: #ddd;
+	--favicon-border: #ccc;
+
+	color-scheme: dark;
+}
+
+:root[data-theme="gruvbox"] {
+	--red: #fb4934;
+	--yellow: #fe8019;
+	--text: #d5c4a1;
+	--subtext1: #d5c4a1;
+	--subtext0: #d5c4a1;
+	--overlay1: #8b816d;
+	--surface2: #504945;
+	--surface1: #3c3836;
+	--surface0: #1d2021;
+	--base: #282828;
+	--mantle: #32302f;
+	--crust: #1c1c1c;
+	--link: #b8bb26;
+	--link-visited: #d3869b;
+	--accent: #fabd2f;
+	--favicon-bg: #ddd;
+	--favicon-border: #ccc;
+
+	color-scheme: dark;
+}
+
+:root[data-theme="gruvboxmat"] {
+	--red: #cc241d;
+	--yellow: #d8a657;
+	--text: #d4be98;
+	--subtext1: #d4be98;
+	--subtext0: #d4be98;
+	--overlay1: #8a7e68;
+	--surface2: #504945;
+	--surface1: #3c3836;
+	--surface0: #1d2021;
+	--base: #292828;
+	--mantle: #32302f;
+	--crust: #1d1c1c;
+	--link: #89b482;
+	--link-visited: #d3869b;
+	--accent: #89b482;
+	--favicon-bg: #ddd;
+	--favicon-border: #ccc;
+
+	color-scheme: dark;
+}
+
+:root[data-theme="kagi"] {
+	--red: #f55b5b;
+	--yellow: #f1d561;
+	--text: #acacaf;
+	--subtext1: #cfcfd1;
+	--subtext0: lightgray;
+	--overlay1: #717174;
+	--surface2: #44475a;
+	--surface1: #44475a;
+	--surface0: #454549;
+	--base: #232325;
+	--mantle: #232325;
+	--crust: #18181a;
+	--link: #bfbbd8;
+	--link-visited: #9185e0;
+	--accent: #fff;
+	--favicon-bg: #ddd;
+	--favicon-border: #ccc;
+
+	color-scheme: dark;
+}
+
+:root[data-theme="latte"] {
+	--red: #d20f39;
+	--yellow: #df8e1d;
+	--text: #4c4f69;
+	--subtext1: #5c5f77;
+	--subtext0: #6c6f85;
+	--overlay1: #9295a5;
+	--surface2: #acb0be;
+	--surface1: #bcc0cc;
+	--surface0: #ccd0da;
+	--base: #eff1f5;
+	--mantle: #e6e9ef;
+	--crust: #dce0e8;
+	--link: #000bbb;
+	--link-visited: #9822c3;
+	--accent: #3050ff;
+	--favicon-bg: #ddd;
+	--favicon-border: #ccc;
+
+	color-scheme: light;
+}
+
+:root[data-theme="matcha"] {
+	--red: #fc4138;
+	--yellow: #f27835;
+	--text: #ccd7d4;
+	--subtext1: #abb9b6;
+	--subtext0: #c7d0ce;
+	--overlay1: #808988;
+	--surface2: #222b2e;
+	--surface1: #222b2e;
+	--surface0: #222b2e;
+	--base: #1b2224;
+	--mantle: #171d1f;
+	--crust: #1b2224;
+	--link: #ccd7d4;
+	--link-visited: #2eb398;
+	--accent: #2eb398;
+	--favicon-bg: #ddd;
+	--favicon-border: #ccc;
+
+	color-scheme: dark;
+}
+
+:root[data-theme="moa"] {
+	--red: #f55b5b;
+	--yellow: #f1d561;
+	--text: #bbb;
+	--subtext1: #fff;
+	--subtext0: lightgray;
+	--overlay1: #797a7c;
+	--surface2: #555;
+	--surface1: #373b49;
+	--surface0: #2b2e36;
+	--base: #222428;
+	--mantle: #212127;
+	--crust: #18191c;
+	--link: #8af;
+	--link-visited: #c09cd9;
+	--accent: #b984ff;
+	--favicon-bg: #ddd;
+	--favicon-border: #ccc;
+
+	color-scheme: dark;
+}
+
+:root[data-theme="mocha"] {
+	--red: #f38ba8;
+	--yellow: #f9e2af;
+	--text: #cdd6f4;
+	--subtext1: #bac2de;
+	--subtext0: #a6adc8;
+	--overlay1: #82879f;
+	--surface2: #585b70;
+	--surface1: #45475a;
+	--surface0: #313244;
+	--base: #1e1e2e;
+	--mantle: #181825;
+	--crust: #11111b;
+	--link: #8af;
+	--link-visited: #c09cd9;
+	--accent: #58f;
+	--favicon-bg: #ddd;
+	--favicon-border: #ccc;
+
+	color-scheme: dark;
+}
+
+:root[data-theme="night"] {
+	--red: #f55b5b;
+	--yellow: #f1d561;
+	--text: #eaecf0;
+	--subtext1: #eaecf0;
+	--subtext0: lightgray;
+	--overlay1: #8c8f93;
+	--surface2: #44475a;
+	--surface1: #44475a;
+	--surface0: #111213;
+	--base: #101418;
+	--mantle: #101418;
+	--crust: #0b0e11;
+	--link: #6d8af2;
+	--link-visited: #977dbd;
+	--accent: #447ff5;
+	--favicon-bg: #ddd;
+	--favicon-border: #ccc;
+
+	color-scheme: dark;
+}
+
+:root[data-theme="nord"] {
+	--red: #bf616a;
+	--yellow: #ebcb8b;
+	--text: #d8dee9;
+	--subtext1: #e5e9f0;
+	--subtext0: #eceff4;
+	--overlay1: #8f95a0;
+	--surface2: #434c5e;
+	--surface1: #434c5e;
+	--surface0: #4c566a;
+	--base: #2e3440;
+	--mantle: #3b4252;
+	--crust: #2e3440;
+	--link: #88c0d0;
+	--link-visited: #b48ead;
+	--accent: #88c0d0;
+	--favicon-bg: #ddd;
+	--favicon-border: #ccc;
+
+	color-scheme: dark;
+}
+
+:root[data-theme="paulgo"] {
+	--red: #f55b5b;
+	--yellow: #f1d561;
+	--text: #bdc1c6;
+	--subtext1: #bdc1c6;
+	--subtext0: lightgray;
+	--overlay1: #797c80;
+	--surface2: #44475a;
+	--surface1: #44475a;
+	--surface0: #303134;
+	--base: #202124;
+	--mantle: #202124;
+	--crust: #161719;
+	--link: #8ab4f8;
+	--link-visited: #c58af9;
+	--accent: #8ab4f8;
+	--favicon-bg: #ddd;
+	--favicon-border: #ccc;
+
+	color-scheme: dark;
+}
+
 html {
 	font-family: sans-serif;
 	font-size: 0.9em;

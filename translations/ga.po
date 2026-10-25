@@ -27,6 +27,9 @@ msgstr "Ar ais"
 msgid "Change the language of the layout"
 msgstr "Athraigh teanga an leagan amach"
 
+msgid "Change the look of the layout"
+msgstr "Athraigh cuma an leagain amach"
+
 msgid "Close"
 msgstr "Dún"
 
@@ -158,6 +161,9 @@ msgstr "Clibeanna"
 
 msgid "Tech"
 msgstr "Teicneolaíocht"
+
+msgid "Theme"
+msgstr "Téama"
 
 msgid "This site did not provide any description."
 msgstr "Níor thug an suíomh seo aon tuairisc ar fáil."

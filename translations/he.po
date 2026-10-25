@@ -28,6 +28,9 @@ msgstr "חזור"
 msgid "Change the language of the layout"
 msgstr "שנה את שפת הממשק"
 
+msgid "Change the look of the layout"
+msgstr "שנה את מראה הממשק"
+
 msgid "Close"
 msgstr "סגירה"
 
@@ -159,6 +162,9 @@ msgstr "תגים"
 
 msgid "Tech"
 msgstr "טכנולוגיה"
+
+msgid "Theme"
+msgstr "ערכת נושא"
 
 msgid "This site did not provide any description."
 msgstr "אתר זה לא סיפק תיאור."

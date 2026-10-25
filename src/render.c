@@ -78,12 +78,14 @@ option(struct buf *b, const char *value, const char *label, int selected)
 /* page shell */
 
 static void
-doc_start(struct buf *b, const char *title, const char *body_class, const struct ui_lang *ui)
+doc_start(struct buf *b, const char *title, const char *body_class, const struct prefs *p)
 {
+	const struct ui_lang *ui = p->ui;
+
 	i18n_use(ui);
 	buf_html(b,
 	    "<!doctype html>\n"
-	    "<html lang=\"%s\"%r>\n"
+	    "<html lang=\"%s\" data-theme=\"%s\"%r>\n"
 	    "<head>\n"
 	    "<meta charset=\"utf-8\">\n"
 	    "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
@@ -93,7 +95,7 @@ doc_start(struct buf *b, const char *title, const char *body_class, const struct
 	    "<link rel=\"stylesheet\" href=\"/style.css\">\n"
 	    "<link rel=\"search\" type=\"application/opensearchdescription+xml\" title=\"%s\" href=\"/opensearch.xml\">\n"
 	    "<script src=\"/privy.js\" defer></script>\n",
-	    ui->tag, ui->rtl ? " dir=\"rtl\"" : "", title, instance_name);
+	    ui->tag, p->theme, ui->rtl ? " dir=\"rtl\"" : "", title, instance_name);
 	if (limiter && limiter_link_token)
 		buf_html(b, "<link rel=\"stylesheet\" href=\"/client%s.css\">\n", botdetect_token());
 	buf_html(b,
@@ -118,7 +120,7 @@ static void
 page_start(struct buf *b, const struct prefs *p, const char *title, const char *heading)
 {
 	i18n_use(p->ui);
-	doc_start(b, aprintf(&scratch, "%s - %s", tr(title), instance_name), "page_endpoint", p->ui);
+	doc_start(b, aprintf(&scratch, "%s - %s", tr(title), instance_name), "page_endpoint", p);
 	nav_links(b);
 	buf_html(b,
 	    "<main class=\"page\">\n"
@@ -231,7 +233,7 @@ render_home(struct buf *b, const struct prefs *p)
 {
 	size_t n = 0;
 
-	doc_start(b, instance_name, "index_endpoint", p->ui);
+	doc_start(b, instance_name, "index_endpoint", p);
 	nav_links(b);
 	buf_html(b,
 	    "<main id=\"main_index\">\n"
@@ -261,7 +263,7 @@ render_head(struct buf *b, struct search *s)
 	doc_start(b,
 	    s->pageno > 1 ? aprintf(&s->a, "%s - %s - %s", s->raw, buf_str(&page), instance_name) :
 	                    aprintf(&s->a, "%s - %s", s->raw, instance_name),
-	    "results_endpoint", s->filters.prefs.ui);
+	    "results_endpoint", &s->filters.prefs);
 	buf_free(&page);
 	buf_html(b,
 	    "<header id=\"search_header\">\n"
@@ -1047,7 +1049,7 @@ render_preferences(struct buf *b, const struct prefs *p, const struct locale *br
 {
 	size_t i;
 
-	doc_start(b, aprintf(&scratch, "%s - %s", tr("Preferences"), instance_name), "preferences_endpoint", p->ui);
+	doc_start(b, aprintf(&scratch, "%s - %s", tr("Preferences"), instance_name), "preferences_endpoint", p);
 	nav_links(b);
 	buf_html(b,
 	    "<main id=\"preferences\">\n"
@@ -1061,6 +1063,11 @@ render_preferences(struct buf *b, const struct prefs *p, const struct locale *br
 	    p->ui_auto->name);
 	for (i = 0; i < nui_langs; i++)
 		option(b, ui_langs[i].code, ui_langs[i].name, !strcmp(p->ui_code, ui_langs[i].code));
+	buf_puts(b, "</select></div>\n");
+
+	pref_select(b, "theme", "Theme", "Change the look of the layout");
+	for (i = 0; i < nthemes; i++)
+		option(b, themes[i].name, themes[i].label, !strcmp(p->theme, themes[i].name));
 	buf_puts(b, "</select></div>\n");
 
 	pref_select(b, "language", "Search language", "What language do you prefer for search?");
@@ -1093,7 +1100,7 @@ render_preferences(struct buf *b, const struct prefs *p, const struct locale *br
 void
 render_not_found(struct buf *b, const struct prefs *p)
 {
-	doc_start(b, aprintf(&scratch, "Page not found - %s", instance_name), "not_found_endpoint", p->ui);
+	doc_start(b, aprintf(&scratch, "Page not found - %s", instance_name), "not_found_endpoint", p);
 	arena_free(&scratch);
 	nav_links(b);
 	buf_puts(b,

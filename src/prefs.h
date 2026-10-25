@@ -9,13 +9,22 @@
 
 #define PREFS_CATEGORIES 16
 #define SAFESEARCH_DEFAULT 1
+#define THEME_DEFAULT "macchiato"
 
 struct engine;
+
+/* the colour themes in static/style.css, by the name its data-theme selectors use */
+struct theme {
+	const char *name, *label;
+};
+
+extern const struct theme themes[];
+extern const size_t nthemes;
 
 /* what a user chose on /preferences, kept only in their own cookie */
 struct prefs {
 	const struct ui_lang *ui, *ui_auto;
-	const char *ui_code, *language;
+	const char *ui_code, *language, *theme;
 	int safesearch, saved;
 	uint64_t off[PREFS_CATEGORIES];
 };

@@ -27,6 +27,9 @@ msgstr "Geri"
 msgid "Change the language of the layout"
 msgstr "Düzen dilini değiştirin"
 
+msgid "Change the look of the layout"
+msgstr "Düzenin görünümünü değiştirin"
+
 msgid "Close"
 msgstr "Kapat"
 
@@ -158,6 +161,9 @@ msgstr "Etiketler"
 
 msgid "Tech"
 msgstr "Teknoloji"
+
+msgid "Theme"
+msgstr "Tema"
 
 msgid "This site did not provide any description."
 msgstr "Bu site herhangi bir açıklama sağlamadı."

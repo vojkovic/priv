@@ -27,6 +27,9 @@ msgstr "వెనుకకు"
 msgid "Change the language of the layout"
 msgstr "వినిమయసీమ యొక్క భాషను మార్చు"
 
+msgid "Change the look of the layout"
+msgstr "వినిమయసీమ రూపాన్ని మార్చండి"
+
 msgid "Close"
 msgstr "మూసివేయండి"
 
@@ -158,6 +161,9 @@ msgstr "ట్యాగ్‌లు"
 
 msgid "Tech"
 msgstr "సాంకేతికత"
+
+msgid "Theme"
+msgstr "థీమ్"
 
 msgid "This site did not provide any description."
 msgstr "ఈ సైట్ ఎలాంటి వివరణను అందించలేదు."

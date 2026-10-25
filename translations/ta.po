@@ -27,6 +27,9 @@ msgstr "பின்"
 msgid "Change the language of the layout"
 msgstr "வடிவமைப்பின் மொழியை மாற்று"
 
+msgid "Change the look of the layout"
+msgstr "வடிவமைப்பின் தோற்றத்தை மாற்று"
+
 msgid "Close"
 msgstr "மூடு"
 
@@ -158,6 +161,9 @@ msgstr "குறிச்சொற்கள்"
 
 msgid "Tech"
 msgstr "தொழில்நுட்பம்"
+
+msgid "Theme"
+msgstr "தீம்"
 
 msgid "This site did not provide any description."
 msgstr "இந்த தளம் எந்த விளக்கத்தையும் வழங்கவில்லை."

@@ -27,6 +27,9 @@ msgstr "Tilbake"
 msgid "Change the language of the layout"
 msgstr "Endre språket for oppsettet"
 
+msgid "Change the look of the layout"
+msgstr "Endre utseendet på oppsettet"
+
 msgid "Close"
 msgstr "Lukk"
 
@@ -158,6 +161,9 @@ msgstr "Tagger"
 
 msgid "Tech"
 msgstr "Teknologi"
+
+msgid "Theme"
+msgstr "Tema"
 
 msgid "This site did not provide any description."
 msgstr "Siden angav ingen beskrivelse."

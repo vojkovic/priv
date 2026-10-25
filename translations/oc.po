@@ -27,6 +27,9 @@ msgstr "Tornar"
 msgid "Change the language of the layout"
 msgstr "Cambiar la lenga de l'interfàcia"
 
+msgid "Change the look of the layout"
+msgstr "Cambiar l'aparéncia de l'interfàcia"
+
 msgid "Close"
 msgstr "Tampar"
 
@@ -158,6 +161,9 @@ msgstr "Etiquetas"
 
 msgid "Tech"
 msgstr "Tecnologia"
+
+msgid "Theme"
+msgstr "Tèma"
 
 msgid "This site did not provide any description."
 msgstr "Aqueste site a pas provesit cap de descripcion."

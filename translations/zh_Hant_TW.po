@@ -27,6 +27,9 @@ msgstr "返回"
 msgid "Change the language of the layout"
 msgstr "變更版面配置的語言"
 
+msgid "Change the look of the layout"
+msgstr "變更版面配置的外觀"
+
 msgid "Close"
 msgstr "關閉"
 
@@ -158,6 +161,9 @@ msgstr "標籤"
 
 msgid "Tech"
 msgstr "科技"
+
+msgid "Theme"
+msgstr "主題"
 
 msgid "This site did not provide any description."
 msgstr "此網站未提供任何描述。"

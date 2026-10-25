@@ -28,6 +28,9 @@ msgstr "الخلف"
 msgid "Change the language of the layout"
 msgstr "تغيير لغة واجهة البحث"
 
+msgid "Change the look of the layout"
+msgstr "تغيير مظهر الواجهة"
+
 msgid "Close"
 msgstr "إغلاق"
 
@@ -159,6 +162,9 @@ msgstr "السمات"
 
 msgid "Tech"
 msgstr "تقنية"
+
+msgid "Theme"
+msgstr "السمة"
 
 msgid "This site did not provide any description."
 msgstr "هذا الموقع لم يقدم أي وصف."

@@ -27,6 +27,9 @@ msgstr "ਵਾਪਸ"
 msgid "Change the language of the layout"
 msgstr "ਖਾਕੇ ਦੀ ਭਾਸ਼ਾ ਬਦਲੋ"
 
+msgid "Change the look of the layout"
+msgstr "ਖਾਕੇ ਦੀ ਦਿੱਖ ਬਦਲੋ"
+
 msgid "Close"
 msgstr "ਬੰਦ ਕਰੋ"
 
@@ -158,6 +161,9 @@ msgstr "ਟੈਗ"
 
 msgid "Tech"
 msgstr "ਤਕਨੀਕ"
+
+msgid "Theme"
+msgstr "ਥੀਮ"
 
 msgid "This site did not provide any description."
 msgstr "ਇਸ ਸਾਈਟ ਨੇ ਕੋਈ ਵੇਰਵਾ ਨਹੀਂ ਦਿੱਤਾ।"

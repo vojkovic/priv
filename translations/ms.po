@@ -27,6 +27,9 @@ msgstr "Balik"
 msgid "Change the language of the layout"
 msgstr "Tukar bahasa susun atur"
 
+msgid "Change the look of the layout"
+msgstr "Tukar rupa susun atur"
+
 msgid "Close"
 msgstr "Tutup"
 
@@ -158,6 +161,9 @@ msgstr "Tag"
 
 msgid "Tech"
 msgstr "Teknologi"
+
+msgid "Theme"
+msgstr "Tema"
 
 msgid "This site did not provide any description."
 msgstr "Laman web ini tidak memberikan sebarang diskripsi."

@@ -27,6 +27,9 @@ msgstr "Înapoi"
 msgid "Change the language of the layout"
 msgstr "Schimbă limba aspectului"
 
+msgid "Change the look of the layout"
+msgstr "Schimbă aspectul interfeței"
+
 msgid "Close"
 msgstr "Închide"
 
@@ -158,6 +161,9 @@ msgstr "Etichete"
 
 msgid "Tech"
 msgstr "Tehnologie"
+
+msgid "Theme"
+msgstr "Temă"
 
 msgid "This site did not provide any description."
 msgstr "Acest site nu a oferit nici o descriere."

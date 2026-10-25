@@ -27,6 +27,9 @@ msgstr "തിരികെ"
 msgid "Change the language of the layout"
 msgstr "ലേഔട്ടിന്റെ ഭാഷ മാറ്റുക"
 
+msgid "Change the look of the layout"
+msgstr "ലേഔട്ടിന്റെ രൂപം മാറ്റുക"
+
 msgid "Close"
 msgstr "അടയ്ക്കുക"
 
@@ -158,6 +161,9 @@ msgstr "ടാഗുകൾ"
 
 msgid "Tech"
 msgstr "സാങ്കേതികവിദ്യ"
+
+msgid "Theme"
+msgstr "തീം"
 
 msgid "This site did not provide any description."
 msgstr "ഈ സൈറ്റ് വിവരണമൊന്നും നൽകിയില്ല."

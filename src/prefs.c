@@ -29,6 +29,26 @@ static const struct {
     {"tl", "fil"},
 };
 
+const struct theme themes[] = {
+    {"brave", "Brave"},
+    {"dracula", "Dracula"},
+    {"everforest", "Everforest"},
+    {"evergarden", "Evergarden"},
+    {"frappe", "Frappé"},
+    {"gruvbox", "Gruvbox"},
+    {"gruvboxmat", "Gruvbox Material"},
+    {"kagi", "Kagi"},
+    {"latte", "Latte"},
+    {"macchiato", "Macchiato"},
+    {"matcha", "Matcha"},
+    {"moa", "Moa"},
+    {"mocha", "Mocha"},
+    {"night", "Night"},
+    {"nord", "Nord"},
+    {"paulgo", "PaulGo"},
+};
+const size_t nthemes = LEN(themes);
+
 static const struct ui_lang *current;
 
 static int
@@ -160,6 +180,17 @@ pair(struct arena *a, const char *s, size_t *cat, const struct engine **e)
 	return *cat < PREFS_CATEGORIES && *e && engine_in(*e, categories[*cat].name);
 }
 
+static const char *
+theme_find(const char *name)
+{
+	size_t i;
+
+	for (i = 0; name && i < nthemes; i++)
+		if (!strcmp(themes[i].name, name))
+			return themes[i].name;
+	return NULL;
+}
+
 void
 prefs_parse(struct arena *a, struct request *r, struct prefs *p)
 {
@@ -171,6 +202,7 @@ prefs_parse(struct arena *a, struct request *r, struct prefs *p)
 	memset(p, 0, sizeof(*p));
 	p->ui_code = "";
 	p->safesearch = SAFESEARCH_DEFAULT;
+	p->theme = THEME_DEFAULT;
 	if (c) {
 		if ((p->ui = ui_find(query_param(a, c, "ui"))))
 			p->ui_code = p->ui->code;
@@ -178,6 +210,8 @@ prefs_parse(struct arena *a, struct request *r, struct prefs *p)
 			p->language = v;
 		if ((v = query_param(a, c, "safesearch")) && v[0] >= '0' && v[0] <= '2' && !v[1])
 			p->safesearch = v[0] - '0';
+		if ((v = theme_find(query_param(a, c, "theme"))))
+			p->theme = v;
 		if ((v = query_param(a, c, "off"))) {
 			p->saved = 1;
 			list = astrdup(a, v);
@@ -215,6 +249,7 @@ prefs_from_form(struct arena *a, struct request *r, struct prefs *p)
 	p->language = v && valid_language(v) ? v : NULL;
 	v = query_param(a, qs, "safesearch");
 	p->safesearch = v && v[0] >= '0' && v[0] <= '2' && !v[1] ? v[0] - '0' : SAFESEARCH_DEFAULT;
+	p->theme = (v = theme_find(query_param(a, qs, "theme"))) ? v : THEME_DEFAULT;
 	for (; *qs; qs = *end ? end + 1 : end) {
 		end = qs + strcspn(qs, "&");
 		eq = memchr(qs, '=', end - qs);
@@ -246,6 +281,8 @@ prefs_cookie(struct arena *a, const struct prefs *p, int secure)
 		buf_printf(&b, "&language=%s", p->language);
 	if (p->safesearch != SAFESEARCH_DEFAULT)
 		buf_printf(&b, "&safesearch=%d", p->safesearch);
+	if (strcmp(p->theme, THEME_DEFAULT))
+		buf_printf(&b, "&theme=%s", p->theme);
 	for (i = 0; i < ncategories && i < PREFS_CATEGORIES; i++)
 		for (j = 0; j < nengines; j++)
 			if (p->off[i] & ENGINE_BIT(engines[j]))

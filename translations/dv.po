@@ -28,6 +28,9 @@ msgstr "ފަހަތަށް"
 msgid "Change the language of the layout"
 msgstr "ލޭއައުޓްގެ ބަސް ބަދަލުކުރޭ"
 
+msgid "Change the look of the layout"
+msgstr ""
+
 msgid "Close"
 msgstr "ބަންދުކުރޭ"
 
@@ -159,6 +162,9 @@ msgstr "ޓެގުތައް"
 
 msgid "Tech"
 msgstr "ޓެކްނޮލޮޖީ"
+
+msgid "Theme"
+msgstr ""
 
 msgid "This site did not provide any description."
 msgstr "މި ސައިޓުން އެއްވެސް ތަފްޞީލެއް ނުދެއެވެ."

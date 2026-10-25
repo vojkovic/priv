@@ -27,6 +27,9 @@ msgstr "Назад"
 msgid "Change the language of the layout"
 msgstr "Изменить язык интерфейса"
 
+msgid "Change the look of the layout"
+msgstr "Изменить внешний вид интерфейса"
+
 msgid "Close"
 msgstr "Закрыть"
 
@@ -158,6 +161,9 @@ msgstr "Теги"
 
 msgid "Tech"
 msgstr "Технологии"
+
+msgid "Theme"
+msgstr "Тема"
 
 msgid "This site did not provide any description."
 msgstr "Этот сайт не предоставил описания."

@@ -27,6 +27,9 @@ msgstr "Tillbaka"
 msgid "Change the language of the layout"
 msgstr "Ändra språk för layouten"
 
+msgid "Change the look of the layout"
+msgstr "Ändra layoutens utseende"
+
 msgid "Close"
 msgstr "Stäng"
 
@@ -158,6 +161,9 @@ msgstr "Taggar"
 
 msgid "Tech"
 msgstr "Teknik"
+
+msgid "Theme"
+msgstr "Tema"
 
 msgid "This site did not provide any description."
 msgstr "Denna sida gav ingen beskrivning."

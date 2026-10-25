@@ -27,6 +27,9 @@ msgstr "返回"
 msgid "Change the language of the layout"
 msgstr "更改界面语言"
 
+msgid "Change the look of the layout"
+msgstr "更改界面外观"
+
 msgid "Close"
 msgstr "关闭"
 
@@ -158,6 +161,9 @@ msgstr "标签"
 
 msgid "Tech"
 msgstr "科技"
+
+msgid "Theme"
+msgstr "主题"
 
 msgid "This site did not provide any description."
 msgstr "此站点未提供任何描述。"

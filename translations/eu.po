@@ -27,6 +27,9 @@ msgstr "Atzera"
 msgid "Change the language of the layout"
 msgstr "Aldatu interfazearen hizkuntza"
 
+msgid "Change the look of the layout"
+msgstr "Aldatu interfazearen itxura"
+
 msgid "Close"
 msgstr "Itxi"
 
@@ -158,6 +161,9 @@ msgstr "Etiketak"
 
 msgid "Tech"
 msgstr "Teknologia"
+
+msgid "Theme"
+msgstr "Gaia"
 
 msgid "This site did not provide any description."
 msgstr "Gune honek ez du deskribapenik eman."

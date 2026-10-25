@@ -27,6 +27,9 @@ msgstr "Reen"
 msgid "Change the language of the layout"
 msgstr "Ŝanĝi lingvon de la fasono"
 
+msgid "Change the look of the layout"
+msgstr "Ŝanĝi la aspekton de la fasono"
+
 msgid "Close"
 msgstr "Fermi"
 
@@ -158,6 +161,9 @@ msgstr "Etikedoj"
 
 msgid "Tech"
 msgstr "Teknologio"
+
+msgid "Theme"
+msgstr "Etoso"
 
 msgid "This site did not provide any description."
 msgstr "Ĉi tiu retejo ne disponigis ajnan priskribon."

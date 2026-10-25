@@ -27,6 +27,9 @@ msgstr "Назад"
 msgid "Change the language of the layout"
 msgstr "Промените језик сајта"
 
+msgid "Change the look of the layout"
+msgstr "Промените изглед сајта"
+
 msgid "Close"
 msgstr "Затвори"
 
@@ -158,6 +161,9 @@ msgstr "Tagovi"
 
 msgid "Tech"
 msgstr "Технологија"
+
+msgid "Theme"
+msgstr "Тема"
 
 msgid "This site did not provide any description."
 msgstr "Овај сајт није дао никакав опис."

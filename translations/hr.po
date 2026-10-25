@@ -27,6 +27,9 @@ msgstr "Natrag"
 msgid "Change the language of the layout"
 msgstr "Promijenite jezik prikaza"
 
+msgid "Change the look of the layout"
+msgstr "Promijenite izgled prikaza"
+
 msgid "Close"
 msgstr "Zatvori"
 
@@ -158,6 +161,9 @@ msgstr "Oznake"
 
 msgid "Tech"
 msgstr "Tehnologija"
+
+msgid "Theme"
+msgstr "Tema"
 
 msgid "This site did not provide any description."
 msgstr "Ova stranica nije dala nikakav opis."

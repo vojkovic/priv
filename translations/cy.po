@@ -27,6 +27,9 @@ msgstr "Yn ôl"
 msgid "Change the language of the layout"
 msgstr "Newid iaith y rhyngwyneb"
 
+msgid "Change the look of the layout"
+msgstr "Newid golwg y rhyngwyneb"
+
 msgid "Close"
 msgstr "Cau"
 
@@ -158,6 +161,9 @@ msgstr "Tagiau"
 
 msgid "Tech"
 msgstr "Technoleg"
+
+msgid "Theme"
+msgstr "Thema"
 
 msgid "This site did not provide any description."
 msgstr "Ni wnaeth y wefan ddarparu disgrifiad."

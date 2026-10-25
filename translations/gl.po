@@ -27,6 +27,9 @@ msgstr "Volver"
 msgid "Change the language of the layout"
 msgstr "Cambiar o idioma da interface"
 
+msgid "Change the look of the layout"
+msgstr "Cambiar o aspecto da interface"
+
 msgid "Close"
 msgstr "Pechar"
 
@@ -158,6 +161,9 @@ msgstr "Etiquetas"
 
 msgid "Tech"
 msgstr "Tecnoloxía"
+
+msgid "Theme"
+msgstr "Tema"
 
 msgid "This site did not provide any description."
 msgstr "A web non proporcionou unha descrición."

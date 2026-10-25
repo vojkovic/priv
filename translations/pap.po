@@ -27,6 +27,9 @@ msgstr "Bèk"
 msgid "Change the language of the layout"
 msgstr "Kambia e idioma di e diseño"
 
+msgid "Change the look of the layout"
+msgstr "Kambia e aparensia di e diseño"
+
 msgid "Close"
 msgstr "Sera"
 
@@ -158,6 +161,9 @@ msgstr "Etiketa"
 
 msgid "Tech"
 msgstr "Teknologia"
+
+msgid "Theme"
+msgstr "Tema"
 
 msgid "This site did not provide any description."
 msgstr "E sitio aki no a duna ningun deskripshon."

@@ -27,6 +27,9 @@ msgstr "Nazaj"
 msgid "Change the language of the layout"
 msgstr "Spremeni jezik vmesnika"
 
+msgid "Change the look of the layout"
+msgstr "Spremeni videz vmesnika"
+
 msgid "Close"
 msgstr "Zapri"
 
@@ -158,6 +161,9 @@ msgstr "Oznake"
 
 msgid "Tech"
 msgstr "Tehnologija"
+
+msgid "Theme"
+msgstr "Tema"
 
 msgid "This site did not provide any description."
 msgstr "Ta stran ni posredovala nobenega opisa."

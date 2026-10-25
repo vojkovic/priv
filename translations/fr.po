@@ -27,6 +27,9 @@ msgstr "Retour"
 msgid "Change the language of the layout"
 msgstr "Changer la langue d'affichage"
 
+msgid "Change the look of the layout"
+msgstr "Changer l'apparence de l'interface"
+
 msgid "Close"
 msgstr "Fermer"
 
@@ -158,6 +161,9 @@ msgstr "Tags"
 
 msgid "Tech"
 msgstr "Technologie"
+
+msgid "Theme"
+msgstr "Thème"
 
 msgid "This site did not provide any description."
 msgstr "Ce site n'a pas fourni de description."

@@ -27,6 +27,9 @@ msgstr "戻る"
 msgid "Change the language of the layout"
 msgstr "表示する言語を変更"
 
+msgid "Change the look of the layout"
+msgstr "表示のデザインを変更"
+
 msgid "Close"
 msgstr "閉じる"
 
@@ -158,6 +161,9 @@ msgstr "タグ"
 
 msgid "Tech"
 msgstr "テクノロジー"
+
+msgid "Theme"
+msgstr "テーマ"
 
 msgid "This site did not provide any description."
 msgstr "このサイトは説明を提供しませんでした。"

@@ -28,6 +28,9 @@ msgstr "بازگشت"
 msgid "Change the language of the layout"
 msgstr "تغییر زبان رابط کاربری"
 
+msgid "Change the look of the layout"
+msgstr "تغییر ظاهر رابط کاربری"
+
 msgid "Close"
 msgstr "بستن"
 
@@ -159,6 +162,9 @@ msgstr "تگ ها"
 
 msgid "Tech"
 msgstr "فناوری"
+
+msgid "Theme"
+msgstr "پوسته"
 
 msgid "This site did not provide any description."
 msgstr "این سایت هیچ توصیفی ندارد."

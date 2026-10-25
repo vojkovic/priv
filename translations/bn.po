@@ -27,6 +27,9 @@ msgstr "পিছনে"
 msgid "Change the language of the layout"
 msgstr "লে আউটের ভাষা পরিবর্তন করুন"
 
+msgid "Change the look of the layout"
+msgstr "লেআউটের চেহারা পরিবর্তন করুন"
+
 msgid "Close"
 msgstr "বন্ধ করুন"
 
@@ -158,6 +161,9 @@ msgstr "ট্যাগসমূহ"
 
 msgid "Tech"
 msgstr "প্রযুক্তি"
+
+msgid "Theme"
+msgstr "থিম"
 
 msgid "This site did not provide any description."
 msgstr "এই সাইট কোন বিবরণ প্রদান করেনি।"

@@ -27,6 +27,9 @@ msgstr "Terug"
 msgid "Change the language of the layout"
 msgstr "Verander die uitleg taal"
 
+msgid "Change the look of the layout"
+msgstr "Verander die voorkoms van die uitleg"
+
 msgid "Close"
 msgstr "Sluit"
 
@@ -158,6 +161,9 @@ msgstr "Merkers"
 
 msgid "Tech"
 msgstr "Tegnologie"
+
+msgid "Theme"
+msgstr "Tema"
 
 msgid "This site did not provide any description."
 msgstr "Hierdie webwerf het geen beskrywing verskaf nie."

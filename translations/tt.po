@@ -27,6 +27,9 @@ msgstr "Артка"
 msgid "Change the language of the layout"
 msgstr "Интерфәйс телен үзгәртү"
 
+msgid "Change the look of the layout"
+msgstr ""
+
 msgid "Close"
 msgstr "Ябу"
 
@@ -158,6 +161,9 @@ msgstr "Тәгләр"
 
 msgid "Tech"
 msgstr "Технологияләр"
+
+msgid "Theme"
+msgstr "Тема"
 
 msgid "This site did not provide any description."
 msgstr "Бу сайт тасвирламаны бирмәде."

@@ -27,6 +27,9 @@ msgstr "뒤로"
 msgid "Change the language of the layout"
 msgstr "레이아웃 언어 변경"
 
+msgid "Change the look of the layout"
+msgstr "레이아웃 모양 변경"
+
 msgid "Close"
 msgstr "닫기"
 
@@ -158,6 +161,9 @@ msgstr "태그"
 
 msgid "Tech"
 msgstr "기술"
+
+msgid "Theme"
+msgstr "테마"
 
 msgid "This site did not provide any description."
 msgstr "사이트에서 소개를 제공하지 않았습니다."

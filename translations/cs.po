@@ -27,6 +27,9 @@ msgstr "Zpět"
 msgid "Change the language of the layout"
 msgstr "Nastavit jazyk rozhraní"
 
+msgid "Change the look of the layout"
+msgstr "Změnit vzhled rozhraní"
+
 msgid "Close"
 msgstr "Zavřít"
 
@@ -158,6 +161,9 @@ msgstr "Značky"
 
 msgid "Tech"
 msgstr "Technologie"
+
+msgid "Theme"
+msgstr "Motiv"
 
 msgid "This site did not provide any description."
 msgstr "Tato stránka nemá žádný popis."

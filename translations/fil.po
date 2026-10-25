@@ -27,6 +27,9 @@ msgstr "Bumalik"
 msgid "Change the language of the layout"
 msgstr "Ibahin ang layout pangwika"
 
+msgid "Change the look of the layout"
+msgstr "Ibahin ang hitsura ng layout"
+
 msgid "Close"
 msgstr "Isara"
 
@@ -158,6 +161,9 @@ msgstr "Mga Tag/Tatak"
 
 msgid "Tech"
 msgstr "Teknolohiya"
+
+msgid "Theme"
+msgstr "Tema"
 
 msgid "This site did not provide any description."
 msgstr "Ang site na ito ay hindi nagbigay ng deskripsyon."

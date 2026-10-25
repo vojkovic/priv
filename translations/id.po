@@ -27,6 +27,9 @@ msgstr "Kembali"
 msgid "Change the language of the layout"
 msgstr "Ubah bahasa tata letak"
 
+msgid "Change the look of the layout"
+msgstr "Ubah tampilan tata letak"
+
 msgid "Close"
 msgstr "Tutup"
 
@@ -158,6 +161,9 @@ msgstr "Penanda"
 
 msgid "Tech"
 msgstr "Teknologi"
+
+msgid "Theme"
+msgstr "Tema"
 
 msgid "This site did not provide any description."
 msgstr "Situs ini tidak memberikan deskripsi apa pun."

@@ -27,6 +27,9 @@ msgstr "Voltar"
 msgid "Change the language of the layout"
 msgstr "Alterar o idioma do esquema"
 
+msgid "Change the look of the layout"
+msgstr "Alterar o aspeto do esquema"
+
 msgid "Close"
 msgstr "Fechar"
 
@@ -158,6 +161,9 @@ msgstr "Etiquetas"
 
 msgid "Tech"
 msgstr "Tecnologia"
+
+msgid "Theme"
+msgstr "Tema"
 
 msgid "This site did not provide any description."
 msgstr "Este site não forneceu qualquer descrição."

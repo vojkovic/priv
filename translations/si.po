@@ -27,6 +27,9 @@ msgstr "ආපසු"
 msgid "Change the language of the layout"
 msgstr "පිරිසැලසුම් භාෂාව වෙනස් කරන්න"
 
+msgid "Change the look of the layout"
+msgstr "පිරිසැලසුමේ පෙනුම වෙනස් කරන්න"
+
 msgid "Close"
 msgstr "වසන්න"
 
@@ -158,6 +161,9 @@ msgstr "ටැග්"
 
 msgid "Tech"
 msgstr "තාක්ෂණය"
+
+msgid "Theme"
+msgstr "තේමාව"
 
 msgid "This site did not provide any description."
 msgstr "මෙම වෙබ් අඩවිය කිසිදු විස්තරයක් ලබා දුන්නේ නැත."

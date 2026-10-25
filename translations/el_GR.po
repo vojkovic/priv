@@ -27,6 +27,9 @@ msgstr "Πίσω"
 msgid "Change the language of the layout"
 msgstr "Αλλαγή γλώσσας της διάταξης"
 
+msgid "Change the look of the layout"
+msgstr "Αλλαγή εμφάνισης της διάταξης"
+
 msgid "Close"
 msgstr "Κλείσιμο"
 
@@ -158,6 +161,9 @@ msgstr "Σημάνσεις"
 
 msgid "Tech"
 msgstr "Τεχνολογία"
+
+msgid "Theme"
+msgstr "Θέμα"
 
 msgid "This site did not provide any description."
 msgstr "Αυτός ο ιστότοπος δεν παρείχε καμία περιγραφή."

@@ -27,6 +27,9 @@ msgstr "Quay lại"
 msgid "Change the language of the layout"
 msgstr "Thay đổi ngôn ngữ giao diện"
 
+msgid "Change the look of the layout"
+msgstr "Thay đổi giao diện hiển thị"
+
 msgid "Close"
 msgstr "Đóng"
 
@@ -158,6 +161,9 @@ msgstr "Thẻ"
 
 msgid "Tech"
 msgstr "Công nghệ"
+
+msgid "Theme"
+msgstr "Chủ đề"
 
 msgid "This site did not provide any description."
 msgstr "Trang web này không cung cấp bất kỳ mô tả nào."

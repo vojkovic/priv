@@ -27,6 +27,9 @@ msgstr "Atpakaļ"
 msgid "Change the language of the layout"
 msgstr "Izkārtojuma valodas maiņa"
 
+msgid "Change the look of the layout"
+msgstr "Izkārtojuma izskata maiņa"
+
 msgid "Close"
 msgstr "Aizvērt"
 
@@ -158,6 +161,9 @@ msgstr "Birkas"
 
 msgid "Tech"
 msgstr "Tehnoloģijas"
+
+msgid "Theme"
+msgstr "Motīvs"
 
 msgid "This site did not provide any description."
 msgstr "Šī vietne nesniedza nekādu aprakstu."

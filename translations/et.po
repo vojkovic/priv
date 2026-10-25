@@ -27,6 +27,9 @@ msgstr "Tagasi"
 msgid "Change the language of the layout"
 msgstr "Muuda paigutuse keelt"
 
+msgid "Change the look of the layout"
+msgstr "Muuda paigutuse välimust"
+
 msgid "Close"
 msgstr "Sulge"
 
@@ -158,6 +161,9 @@ msgstr "Sildid"
 
 msgid "Tech"
 msgstr "Tehnoloogia"
+
+msgid "Theme"
+msgstr "Teema"
 
 msgid "This site did not provide any description."
 msgstr "See sait ei andnud mingit kirjeldust."

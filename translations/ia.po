@@ -27,6 +27,9 @@ msgstr "Retro"
 msgid "Change the language of the layout"
 msgstr "Cambia le lingua del interfacie"
 
+msgid "Change the look of the layout"
+msgstr "Cambia le aspecto del interfacie"
+
 msgid "Close"
 msgstr "Clauder"
 
@@ -158,6 +161,9 @@ msgstr "Etiquettas"
 
 msgid "Tech"
 msgstr "Technologia"
+
+msgid "Theme"
+msgstr "Thema"
 
 msgid "This site did not provide any description."
 msgstr "Iste sito non forniva alcun description."

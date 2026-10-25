@@ -27,6 +27,9 @@ msgstr ""
 msgid "Change the language of the layout"
 msgstr "The language of menus and buttons"
 
+msgid "Change the look of the layout"
+msgstr "The colours of every page"
+
 msgid "Close"
 msgstr ""
 
@@ -157,6 +160,9 @@ msgid "Tags"
 msgstr ""
 
 msgid "Tech"
+msgstr ""
+
+msgid "Theme"
 msgstr ""
 
 msgid "This site did not provide any description."

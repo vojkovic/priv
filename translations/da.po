@@ -27,6 +27,9 @@ msgstr "Tilbage"
 msgid "Change the language of the layout"
 msgstr "Ændring af layout-sproget"
 
+msgid "Change the look of the layout"
+msgstr "Skift layoutets udseende"
+
 msgid "Close"
 msgstr "Luk"
 
@@ -158,6 +161,9 @@ msgstr "Tags"
 
 msgid "Tech"
 msgstr "Teknologi"
+
+msgid "Theme"
+msgstr "Tema"
 
 msgid "This site did not provide any description."
 msgstr "Denne side gav ikke nogen beskrivelse."

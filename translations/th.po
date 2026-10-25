@@ -27,6 +27,9 @@ msgstr "กลับ"
 msgid "Change the language of the layout"
 msgstr "เปลี่ยนภาษาของเค้าโครง"
 
+msgid "Change the look of the layout"
+msgstr "เปลี่ยนรูปลักษณ์ของเค้าโครง"
+
 msgid "Close"
 msgstr "ปิด"
 
@@ -158,6 +161,9 @@ msgstr "แท็ก"
 
 msgid "Tech"
 msgstr "เทคโนโลยี"
+
+msgid "Theme"
+msgstr "ธีม"
 
 msgid "This site did not provide any description."
 msgstr "ไซต์นี้ไม่ได้ให้คำอธิบายใดๆไว้"
