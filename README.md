@@ -49,10 +49,10 @@ Most of the bangs are supported:
 
 | category | engines |
 | --- | --- |
-| general | google, google cse, brave, duckduckgo, duckduckgo web, dogpile, privacywall, wikipedia, ddg definitions |
-| images | google images, google cse images, brave.images, duckduckgo images, dogpile images |
-| videos | google videos, duckduckgo videos, youtube, brave.videos |
-| news | google news, duckduckgo news, reuters, brave.news |
-| music | soundcloud, youtube, wikicommons.audio |
+| general | google, google docs, bing, google cse, brave, duckduckgo, duckduckgo web, dogpile, privacywall, oceanhero, swisscows, iseek, s1search, wikipedia |
+| images | google images, google cse images, brave images, duckduckgo images, dogpile images |
+| videos | google videos, duckduckgo videos, youtube, brave videos, bing videos, dailymotion |
+| news | google news, duckduckgo news, reuters, brave news, bing news, wikinews |
+| music | soundcloud, wikicommons audio, genius, mixcloud, radio browser |
 | tech | arch linux wiki, mdn, mankier, pypi, stackoverflow, askubuntu, superuser |
-| research | arxiv, europepmc, pdbe, pubmed |
+| research | arxiv, europepmc, pdbe, pubmed, openalex, crossref, google scholar |

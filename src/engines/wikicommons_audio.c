@@ -55,7 +55,7 @@ search(struct job *j)
 }
 
 struct engine engine_wikicommons_audio = {
-    .name = "wikicommons.audio",
+    .name = "wikicommons audio",
     .shortcut = "wca",
     .website = "commons.wikimedia.org",
     .bang = "https://commons.wikimedia.org/w/index.php?search=%s&fulltext=1",

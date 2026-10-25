@@ -79,7 +79,7 @@ search(struct job *j)
 }
 
 struct engine engine_brave_images = {
-    .name = "brave.images",
+    .name = "brave images",
     .shortcut = "brimg",
     .website = "search.brave.com",
     .safesearch = 1,

@@ -4,14 +4,13 @@
 
 extern struct engine engine_google, engine_google_docs, engine_bing, engine_google_cse, engine_brave, engine_duckduckgo,
     engine_duckduckgo_web, engine_dogpile, engine_privacywall, engine_oceanhero, engine_swisscows, engine_iseek,
-    engine_s1search, engine_wikipedia, engine_duckduckgo_definitions, engine_google_images, engine_google_cse_images,
-    engine_brave_images, engine_duckduckgo_images, engine_dogpile_images, engine_google_videos,
-    engine_duckduckgo_videos, engine_youtube, engine_brave_videos, engine_google_news, engine_duckduckgo_news,
-    engine_reuters, engine_brave_news, engine_soundcloud, engine_wikicommons_audio, engine_archlinux, engine_mdn,
-    engine_mankier, engine_pypi, engine_stackoverflow, engine_askubuntu, engine_superuser, engine_arxiv,
-    engine_europepmc, engine_pdbe, engine_pubmed, engine_bing_videos, engine_dailymotion, engine_bing_news,
-    engine_wikinews, engine_genius, engine_mixcloud, engine_radio_browser, engine_openalex, engine_crossref,
-    engine_google_scholar;
+    engine_s1search, engine_wikipedia, engine_google_images, engine_google_cse_images, engine_brave_images,
+    engine_duckduckgo_images, engine_dogpile_images, engine_google_videos, engine_duckduckgo_videos, engine_youtube,
+    engine_brave_videos, engine_google_news, engine_duckduckgo_news, engine_reuters, engine_brave_news,
+    engine_soundcloud, engine_wikicommons_audio, engine_archlinux, engine_mdn, engine_mankier, engine_pypi,
+    engine_stackoverflow, engine_askubuntu, engine_superuser, engine_arxiv, engine_europepmc, engine_pdbe,
+    engine_pubmed, engine_bing_videos, engine_dailymotion, engine_bing_news, engine_wikinews, engine_genius,
+    engine_mixcloud, engine_radio_browser, engine_openalex, engine_crossref, engine_google_scholar;
 
 static struct engine *available[] = {
     &engine_google,
@@ -28,7 +27,6 @@ static struct engine *available[] = {
     &engine_iseek,
     &engine_s1search,
     &engine_wikipedia,
-    &engine_duckduckgo_definitions,
     &engine_google_images,
     &engine_google_cse_images,
     &engine_brave_images,
@@ -87,14 +85,14 @@ engine_in(const struct engine *e, const char *category)
 	return !strcmp(e->category, category);
 }
 
-/* the name as written in config.toml: "google cse" is google_cse, "brave.images" is brave_images */
+/* the name as written in config.toml, with underscores for its spaces: "google cse" is google_cse */
 static int
 config_name(const struct engine *e, const char *key)
 {
 	const char *n = e->name;
 
 	for (; *n && *key; n++, key++)
-		if (*key != (*n == ' ' || *n == '.' ? '_' : *n))
+		if (*key != (*n == ' ' ? '_' : *n))
 			return 0;
 	return !*n && !*key;
 }
