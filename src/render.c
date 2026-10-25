@@ -911,11 +911,28 @@ engine_timing(struct buf *b, struct search *s)
 
 /* pagination */
 
+/* paging tokens of the engines that answered, signed so they can be handed back by the next page's link */
+static void
+token_params(struct buf *b, struct search *s)
+{
+	struct buf t = {0};
+	size_t i;
+
+	for (i = 0; i < s->njobs; i++)
+		if (s->jobs[i].next_token)
+			form_add(&t, s->jobs[i].e->name, s->jobs[i].next_token);
+	if (t.len)
+		buf_html(b, "&amp;pt=%u&amp;ph=%s", buf_str(&t), proxy_hmac(&s->a, buf_str(&t)));
+	buf_free(&t);
+}
+
 static void
 page_link(struct buf *b, struct search *s, int page, const char *label, const char *cls)
 {
 	buf_html(b, "<a class=\"%r\" href=\"/search?q=%u&amp;p=%d", cls, s->raw, page);
 	filter_params(b, &s->filters);
+	if (page == s->pageno + 1)
+		token_params(b, s);
 	buf_html(b, "\">%r</a>", label);
 }
 
@@ -942,6 +959,8 @@ pagination(struct buf *b, struct search *s)
 		}
 		buf_html(b, "<a class=\"page_number\" href=\"/search?q=%u&amp;p=%d", s->raw, p);
 		filter_params(b, &s->filters);
+		if (p == s->pageno + 1)
+			token_params(b, s);
 		buf_html(b, "\">%d</a>", p);
 	}
 	buf_puts(b,

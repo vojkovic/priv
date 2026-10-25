@@ -3,12 +3,6 @@
 #include "../engine.h"
 
 static const char *
-cursor_key(struct job *j, int pageno)
-{
-	return aprintf(j->a, "europepmc cursor|%s|%d", j->query, pageno);
-}
-
-static const char *
 authors(struct job *j, const char *list)
 {
 	char *s = astrdup(j->a, list), *a, *save, *end;
@@ -46,7 +40,7 @@ response(struct job *j, struct fetch *f)
 	}
 	root = yyjson_doc_get_root(doc);
 	if (*(next = json_str(root, "nextCursorMark")))
-		cache_set(cursor_key(j, j->pageno + 1), next, 3600);
+		j->next_token = astrdup(j->a, next);
 	list = yyjson_ptr_get(root, "/resultList/result");
 	yyjson_arr_foreach (list, i, n, item) {
 		source = json_str(item, "source");
@@ -81,11 +75,11 @@ response(struct job *j, struct fetch *f)
 static void
 search(struct job *j)
 {
-	const char *cursor = NULL;
+	const char *cursor = j->token;
 	struct buf q = {0};
 	struct fetch *f;
 
-	if (j->pageno > 1 && !(cursor = cache_get(cursor_key(j, j->pageno)))) {
+	if (j->pageno > 1 && !cursor) {
 		job_done(j);
 		return;
 	}

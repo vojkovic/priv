@@ -34,6 +34,7 @@ struct search {
 	struct arena a;
 	const char *raw, *query;
 	int pageno;
+	const char *tokens;
 	struct filters filters;
 	struct results res;
 	struct job *jobs;
@@ -43,7 +44,7 @@ struct search {
 	double start, elapsed;
 };
 
-void search_start(struct conn *c, const char *raw, int pageno, const struct filters *f);
+void search_start(struct conn *c, const char *raw, int pageno, const char *tokens, const struct filters *f);
 void filters_parse(struct arena *a, struct request *r, struct filters *f);
 const struct locale *client_locale(struct arena *a, const char *header);
 const char *query_parse(struct arena *a, const char *raw, struct filters *f);

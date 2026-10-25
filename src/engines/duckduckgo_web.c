@@ -6,12 +6,6 @@
 
 #define BASE_URL "https://duckduckgo.com"
 
-static const char *
-page_key(struct job *j, int pageno)
-{
-	return aprintf(j->a, "duckduckgo web nextpage_url|%s|%d", j->query, pageno);
-}
-
 static void
 api_headers(struct fetch *f)
 {
@@ -42,7 +36,7 @@ parse_results(struct job *j, struct fetch *f)
 		add_main(j, url, html_to_text(j->a, json_str(r, "t")), html_to_text(j->a, json_str(r, "a")));
 	}
 	if (last && *(next = json_str(last, "n")))
-		cache_set(page_key(j, j->pageno + 1), aprintf(j->a, BASE_URL "%s", next), 3600);
+		j->next_token = aprintf(j->a, BASE_URL "%s", next);
 	return 0;
 }
 
@@ -187,7 +181,6 @@ first_page(struct job *j, struct fetch *f)
 		job_done(j);
 		return;
 	}
-	cache_set(page_key(j, 1), link, 7200);
 	request(j, link);
 }
 
@@ -196,14 +189,13 @@ search(struct job *j)
 {
 	struct buf q = {0};
 	struct fetch *f;
-	const char *api;
 
 	if (strlen(j->query) >= 500) {
 		job_done(j);
 		return;
 	}
-	if ((api = cache_get(page_key(j, j->pageno)))) {
-		request(j, astrdup(j->a, api));
+	if (j->token) {
+		request(j, j->token);
 		return;
 	}
 	if (j->pageno > 1) {

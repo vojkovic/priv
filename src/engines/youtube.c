@@ -6,12 +6,6 @@
 #define NEXT_PAGE_URL "https://www.youtube.com/youtubei/v1/search?key=AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8"
 
 static const char *
-token_key(struct job *j, int pageno)
-{
-	return aprintf(j->a, "youtube next_page_token|%s|%d", j->query, pageno);
-}
-
-static const char *
 text(struct job *j, yyjson_val *v)
 {
 	yyjson_val *runs = yyjson_obj_get(v, "runs"), *r;
@@ -68,7 +62,7 @@ next_token(struct job *j, yyjson_val *item)
 	    "continuationCommand/token"));
 
 	if (tok && *tok)
-		cache_set(token_key(j, j->pageno + 1), tok, 3600);
+		j->next_token = astrdup(j->a, tok);
 }
 
 static void
@@ -120,7 +114,7 @@ next_response(struct job *j, struct fetch *f)
 static void
 search(struct job *j)
 {
-	const char *token = j->pageno > 1 ? cache_get(token_key(j, j->pageno)) : NULL, *t;
+	const char *token = j->pageno > 1 ? j->token : NULL, *t;
 	yyjson_mut_doc *d;
 	yyjson_mut_val *root, *client;
 	struct buf q = {0};

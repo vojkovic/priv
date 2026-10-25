@@ -800,7 +800,7 @@ filters_parse(struct arena *a, struct request *r, struct filters *f)
 }
 
 void
-search_start(struct conn *c, const char *raw, int pageno, const struct filters *f)
+search_start(struct conn *c, const char *raw, int pageno, const char *tokens, const struct filters *f)
 {
 	struct search *s = xcalloc(1, sizeof(*s));
 	struct buf b = {0};
@@ -814,6 +814,7 @@ search_start(struct conn *c, const char *raw, int pageno, const struct filters *
 	s->filters = *f;
 	s->query = query_parse(&s->a, raw, &s->filters);
 	s->pageno = pageno;
+	s->tokens = tokens ? astrdup(&s->a, tokens) : NULL;
 	s->filters.language = astrdup(&s->a, s->filters.language);
 	if (s->filters.prefs.language)
 		s->filters.prefs.language = astrdup(&s->a, s->filters.prefs.language);
@@ -855,6 +856,7 @@ search_start(struct conn *c, const char *raw, int pageno, const struct filters *
 		j->a = &s->a;
 		j->query = s->query;
 		j->pageno = pageno;
+		j->token = s->tokens ? query_param(&s->a, s->tokens, e->name) : NULL;
 		j->filters = &s->filters;
 		j->tail = &j->head;
 		j->start = now_ms();

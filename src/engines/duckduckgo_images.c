@@ -6,12 +6,6 @@
 
 static char *useragent;
 
-static const char *
-vqd_key(struct job *j)
-{
-	return aprintf(j->a, "duckduckgo images vqd|%s//%s", j->query, useragent);
-}
-
 static void
 response(struct job *j, struct fetch *f)
 {
@@ -60,6 +54,8 @@ request(struct job *j, const char *vqd)
 	struct fetch *f;
 	char page[16];
 
+	if (*vqd)
+		j->next_token = vqd;
 	form_add(&q, "o", "json");
 	form_add(&q, "q", j->query);
 	form_add(&q, "u", "bing");
@@ -97,9 +93,7 @@ vqd_response(struct job *j, struct fetch *f)
 
 	if (!job_ok(j, f))
 		return;
-	if (f->status == 200 && (v = find_between(fetch_body(f), "vqd=\"", "\"", &n)) && n)
-		cache_set(vqd_key(j), astrndup(j->a, v, n), 3600);
-	else
+	if (!(f->status == 200 && (v = find_between(fetch_body(f), "vqd=\"", "\"", &n)) && n))
 		j->detail = aprintf(j->a, "no vqd (HTTP %ld)", f->status);
 	request(j, v && n ? astrndup(j->a, v, n) : "");
 }
@@ -109,7 +103,6 @@ search(struct job *j)
 {
 	struct buf q = {0};
 	struct fetch *f;
-	const char *vqd;
 
 	if (strlen(j->query) >= 500) {
 		job_done(j);
@@ -117,8 +110,8 @@ search(struct job *j)
 	}
 	if (!useragent)
 		useragent = gen_useragent();
-	if ((vqd = cache_get(vqd_key(j)))) {
-		request(j, astrdup(j->a, vqd));
+	if (j->token) {
+		request(j, j->token);
 		return;
 	}
 	url_quote(&q, j->query, "", 1);

@@ -48,6 +48,7 @@ struct job {
 	double start, load;
 	int done;
 	const char *detail;
+	const char *token, *next_token;
 	struct cleanup {
 		void (*fn)(void *);
 		void *p;

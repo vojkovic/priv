@@ -11,12 +11,6 @@
 static char *useragent;
 
 static const char *
-vqd_key(struct job *j, const char *query)
-{
-	return aprintf(j->a, "duckduckgo vqd|%s//%s", query, useragent);
-}
-
-static const char *
 quote_bangs(struct job *j, const char *query)
 {
 	struct buf b = {0};
@@ -66,9 +60,10 @@ response(struct job *j, struct fetch *f)
 		job_fail(j, "CAPTCHA", 0);
 		return;
 	}
+	j->next_token = j->token;
 	if ((form = xpath_first((xmlNodePtr)doc, "//input[@name=\"vqd\"]/..")) &&
 	    (vqd = xpath_first_text(j->a, form, "//input[@name=\"vqd\"]/@value")))
-		cache_set(vqd_key(j, quote_bangs(j, j->query)), vqd, 3600);
+		j->next_token = vqd;
 
 	links = xpath((xmlNodePtr)doc, "//div[@id=\"links\"]/div[contains(@class, \"web-result\")]");
 	for (i = 0; i < links.n; i++) {
@@ -93,7 +88,7 @@ search(struct job *j)
 {
 	struct buf data = {0};
 	struct fetch *f;
-	const char *q, *vqd, *t, *kl = j->filters->locale->ddg_region;
+	const char *q, *t, *kl = j->filters->locale->ddg_region;
 	char num[16];
 	int offset;
 
@@ -108,17 +103,12 @@ search(struct job *j)
 	if (j->pageno == 1) {
 		form_add(&data, "b", "");
 	} else {
-		if (!(vqd = cache_get(vqd_key(j, q)))) {
-			buf_free(&data);
-			job_fail(j, "CAPTCHA", 0);
-			return;
-		}
-		if (starts_with(j->filters->locale->tag, "zh")) {
+		if (!j->token || starts_with(j->filters->locale->tag, "zh")) {
 			buf_free(&data);
 			job_done(j);
 			return;
 		}
-		form_add(&data, "vqd", vqd);
+		form_add(&data, "vqd", j->token);
 		form_add(&data, "nextParams", "");
 		form_add(&data, "api", "d.js");
 		form_add(&data, "o", "json");

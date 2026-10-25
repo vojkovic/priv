@@ -43,6 +43,15 @@ hmac(const char *msg, char hex[65])
 		snprintf(hex + 2 * i, 3, "%02x", out[i]);
 }
 
+char *
+proxy_hmac(struct arena *a, const char *msg)
+{
+	char h[65];
+
+	hmac(msg, h);
+	return astrdup(a, h);
+}
+
 int
 proxy_hmac_ok(const char *msg, const char *h)
 {

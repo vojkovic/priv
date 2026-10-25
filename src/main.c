@@ -107,7 +107,7 @@ route(struct conn *c, struct request *r)
 	struct buf b = {0};
 	struct filters f, scratch;
 	struct prefs prefs;
-	const char *q, *p;
+	const char *q, *p, *tokens;
 	int pageno = 1;
 	size_t n;
 
@@ -195,6 +195,8 @@ route(struct conn *c, struct request *r)
 	if ((p = query_param(&a, r->query, "p")))
 		pageno = (int)parse_long(p, 1);
 	pageno = pageno < 1 ? 1 : pageno > 50 ? 50 : pageno;
+	p = query_param(&a, r->query, "pt");
+	tokens = p && proxy_hmac_ok(p, query_param(&a, r->query, "ph")) ? p : NULL;
 	filters_parse(&a, r, &f);
 	scratch = f;
 	if (!*query_parse(&a, q, &scratch)) {
@@ -202,7 +204,7 @@ route(struct conn *c, struct request *r)
 		arena_free(&a);
 		return;
 	}
-	search_start(c, q, pageno, &f);
+	search_start(c, q, pageno, tokens, &f);
 	arena_free(&a);
 }
 
