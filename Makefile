@@ -1,5 +1,7 @@
 CURL_IMPERSONATE_VERSION = v2.3.0
 CURL_IMPERSONATE = deps/curl-impersonate
+GIT_HEAD := $(shell git rev-parse HEAD 2>/dev/null)
+VERSION ?= $(if $(GIT_HEAD),$(shell git log -1 --format=%cd+%h --date=format:%Y.%m.%d --abbrev=9)$(shell git diff-index --quiet HEAD -- || echo -dirty))
 
 LIBC := $(shell ldd --version 2>&1 | grep -qi musl && echo musl || echo gnu)
 TRIPLE = $(shell uname -m)-linux-$(LIBC)
@@ -44,7 +46,13 @@ obj/script.h: static/priv.js obj/tools/embed
 obj/favicon_svg.h: static/favicon.svg obj/tools/embed
 	obj/tools/embed favicon_svg static/favicon.svg > $@
 
+obj/version.h: FORCE
+	@mkdir -p $(@D)
+	@printf '#define VERSION "%s"\n' '$(VERSION)' > $@.tmp
+	@cmp -s $@.tmp $@ && rm $@.tmp || mv $@.tmp $@
+
 obj/src/main.o: obj/style.h obj/script.h obj/favicon_svg.h
+obj/src/render.o: obj/version.h
 
 obj/tools/po2c: tools/po2c.c
 	@mkdir -p $(@D)
@@ -84,7 +92,7 @@ lint:
 
 lint-files: $(LINT_SRC:%.c=obj/lint/%.ok)
 
-obj/lint/%.ok: %.c $(wildcard src/*.h) .clang-tidy | obj/style.h obj/script.h obj/favicon_svg.h $(CURL_IMPERSONATE)/libcurl-impersonate.a
+obj/lint/%.ok: %.c $(wildcard src/*.h) .clang-tidy | obj/style.h obj/script.h obj/favicon_svg.h obj/version.h $(CURL_IMPERSONATE)/libcurl-impersonate.a
 	@mkdir -p $(@D)
 	@out=$$(clang-tidy --quiet $< -- $(CPPFLAGS) $(CFLAGS) -DCURL_DISABLE_TYPECHECK 2>&1) || \
 		{ echo "$$out" | grep -v 'warnings* generated\.$$'; exit 1; }
@@ -94,7 +102,7 @@ obj/lint/%.ok: %.c $(wildcard src/*.h) .clang-tidy | obj/style.h obj/script.h ob
 	@touch $@
 
 docker:
-	docker build -t priv .
+	docker build --build-arg VERSION=$(VERSION) -t priv .
 
 docker-check:
 	docker build --target check .
@@ -102,4 +110,6 @@ docker-check:
 clean:
 	rm -rf obj priv
 
-.PHONY: all clean format format-check lint lint-files docker docker-check
+FORCE:
+
+.PHONY: all clean FORCE format format-check lint lint-files docker docker-check

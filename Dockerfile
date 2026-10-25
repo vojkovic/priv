@@ -1,8 +1,9 @@
 FROM alpine:3.22 AS build
 RUN apk add --no-cache build-base curl pkgconf libxml2-dev libxml2-static zlib-static xz-static ca-certificates
 WORKDIR /src
+ARG VERSION=
 COPY . .
-RUN make STATIC=1 -j"$(nproc)" && strip priv && mkdir -p /cache && \
+RUN make STATIC=1 VERSION="$VERSION" -j"$(nproc)" && strip priv && mkdir -p /cache && \
     sed 's/^listen = .*/listen = "0.0.0.0"/' config.toml > /tmp/config.toml
 
 FROM build AS tools

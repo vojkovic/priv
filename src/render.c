@@ -10,6 +10,7 @@
 #include "proxy.h"
 #include "render.h"
 #include "stats.h"
+#include "version.h"
 
 #define LOGO \
 	"<svg class=\"logo\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 92 92\" aria-hidden=\"true\"><g " \
@@ -229,6 +230,26 @@ filter_params(struct buf *b, const struct filters *f)
 		buf_html(b, "&amp;safesearch=%d", f->safesearch);
 }
 
+static void
+footer(struct buf *b)
+{
+	const char *plus = strchr(VERSION, '+');
+
+	buf_puts(b, "<footer id=\"footer\">");
+	if (plus && !strstr(VERSION, "-dirty"))
+		buf_html(b, "<a href=\"https://github.com/vojkovic/priv/commit/%s\">%s</a>", plus + 1, VERSION);
+	else if (*VERSION)
+		buf_html(b, "<span>%s</span>", VERSION);
+	buf_html(b,
+	    "<nav>"
+	    "<a href=\"https://github.com/vojkovic/priv\">%s</a>"
+	    "<a href=\"https://github.com/vojkovic/priv/issues\">%s</a>"
+	    "<a href=\"/stats\">%s</a>"
+	    "</nav>"
+	    "</footer>\n",
+	    tr("Source code"), tr("Issue tracker"), tr("Engine stats"));
+}
+
 void
 render_home(struct buf *b, const struct prefs *p)
 {
@@ -246,8 +267,9 @@ render_home(struct buf *b, const struct prefs *p)
 		buf_html(b, "<p class=\"motd\">%s</p>\n", motd[rnd((uint32_t)n)]);
 	buf_puts(b, "<form id=\"search\" action=\"/search\" method=\"get\" role=\"search\">\n");
 	search_box(b, "", "general", 1);
+	buf_puts(b, "</form>\n");
+	footer(b);
 	buf_puts(b,
-	    "</form>\n"
 	    "</main>\n"
 	    "</body>\n"
 	    "</html>\n");
