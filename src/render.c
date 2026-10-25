@@ -357,6 +357,59 @@ math_query(const char *q)
 	return operators && operands && !(dashed && hyphens >= 2);
 }
 
+/* whether a query could be a unit conversion such as "5 km to miles"; calc.js checks the units */
+static int
+unit_query(const char *q)
+{
+	static const char *const connectors[] = {"to", "in", "into", "as", "equals", "->", "=>", "="};
+	size_t n = strlen(q), i = 0, len, k, words = 0, joint = 0;
+	int digits = 0, found = 0, asking;
+	char word[8];
+
+	if (!n || n > 120)
+		return 0;
+	asking = !strncasecmp(q, "convert ", 8) || !strncasecmp(q, "how many ", 9) || !strncasecmp(q, "how much ", 9) ||
+	    !strncasecmp(q, "what is ", 8);
+	while (i < n) {
+		while (q[i] == ' ' || q[i] == '\t')
+			i++;
+		if (i >= n)
+			break;
+		len = strcspn(q + i, " \t");
+		for (k = 0; k < len; k++)
+			digits |= IS_DIGIT(q[i + k]);
+		if (len < sizeof(word) && !found && words) {
+			memcpy(word, q + i, len);
+			word[len] = 0;
+			for (k = 0; k < LEN(connectors); k++)
+				if (!strcasecmp(word, connectors[k])) {
+					found = 1;
+					joint = words;
+				}
+		}
+		words++;
+		i += len;
+	}
+	return found && joint < words - 1 && words >= 3 && words <= 10 && (digits || asking || words <= 4);
+}
+
+/* whether a query is a number and a unit, such as "38 oz"; calc.js checks the unit */
+static int
+quantity_query(const char *q)
+{
+	size_t n = strlen(q), i, words = 1;
+
+	if (!n || n > 40)
+		return 0;
+	for (i = 0; i < n && (IS_DIGIT(q[i]) || strchr(".,/-", q[i])); i++)
+		;
+	if (i == n || !IS_DIGIT(q[0]) || (q[i] != ' ' && !IS_ALPHA(q[i]) && (unsigned char)q[i] < 0x80))
+		return 0;
+	for (; i < n; i++)
+		words += q[i] == ' ';
+	return words <= 3 && (IS_ALPHA(q[n - 1]) || (unsigned char)q[n - 1] >= 0x80);
+}
+
 void
 render_head(struct buf *b, struct search *s)
 {
@@ -385,7 +438,8 @@ render_head(struct buf *b, struct search *s)
 	    MIN(MAX(seconds, 1), 10), tr("Searching"));
 	search_filters(b, &s->filters);
 	buf_html(b, "<div id=\"results\" class=\"category-%s\">\n", s->filters.category);
-	if (s->pageno == 1 && !strcmp(s->filters.category, "general") && math_query(s->raw))
+	if (s->pageno == 1 && !strcmp(s->filters.category, "general") &&
+	    (math_query(s->raw) || unit_query(s->raw) || quantity_query(s->raw)))
 		buf_puts(b, "<script src=\"/calc.js\"></script>\n");
 }
 
