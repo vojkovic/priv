@@ -112,12 +112,9 @@ obj/lint/%.ok: %.c $(wildcard src/*.h) .clang-tidy | obj/style.h obj/script.h ob
 docker:
 	docker build -t priv .
 
-docker-check:
-	docker build --target check .
-
 clean:
 	rm -rf obj priv
 
 FORCE:
 
-.PHONY: all clean FORCE format format-check lint lint-files docker docker-check
+.PHONY: all clean FORCE format format-check lint lint-files docker

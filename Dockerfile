@@ -6,12 +6,6 @@ COPY . .
 RUN make STATIC=1 ${VERSION:+VERSION=$VERSION} -j"$(nproc)" && strip priv && mkdir -p /cache && \
     sed 's/^listen = .*/listen = "0.0.0.0"/' config.toml > /tmp/config.toml
 
-FROM build AS tools
-RUN apk add --no-cache clang20-extra-tools cppcheck
-
-FROM tools AS check
-RUN make format-check lint
-
 FROM scratch
 COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=build --chown=65534:65534 /cache /cache
