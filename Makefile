@@ -1,7 +1,9 @@
 CURL_IMPERSONATE_VERSION = v2.3.0
 CURL_IMPERSONATE = deps/curl-impersonate
 GIT_HEAD := $(shell git rev-parse HEAD 2>/dev/null)
-VERSION ?= $(if $(GIT_HEAD),$(shell git log -1 --format=%cd+%h --date=format:%Y.%m.%d --abbrev=9)$(shell git diff-index --quiet HEAD -- || echo -dirty))
+ifeq ($(VERSION),)
+VERSION := $(if $(GIT_HEAD),$(shell git log -1 --format=%cd+%h --date=format:%Y.%m.%d --abbrev=9)$(shell git diff --quiet HEAD -- || echo -dirty))
+endif
 
 LIBC := $(shell ldd --version 2>&1 | grep -qi musl && echo musl || echo gnu)
 TRIPLE = $(shell uname -m)-linux-$(LIBC)
@@ -102,7 +104,7 @@ obj/lint/%.ok: %.c $(wildcard src/*.h) .clang-tidy | obj/style.h obj/script.h ob
 	@touch $@
 
 docker:
-	docker build --build-arg VERSION=$(VERSION) -t priv .
+	docker build -t priv .
 
 docker-check:
 	docker build --target check .
