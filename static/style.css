@@ -577,7 +577,7 @@ body:has(#urls) .search_filters { visibility: visible; }
 	gap: 4px;
 	margin: 0;
 	padding: 8px;
-	color: var(--text);
+	color: var(--subtext0);
 	font-size: 0.9rem;
 	line-height: 1;
 	background: transparent;
@@ -586,6 +586,7 @@ body:has(#urls) .search_filters { visibility: visible; }
 	cursor: pointer;
 }
 .category_button svg { width: 1.5rem; height: 1.5rem; }
+.category_button:hover { color: var(--text); background: var(--surface0); }
 .category_button.selected { color: var(--accent); background: var(--surface0); }
 
 /* layout */

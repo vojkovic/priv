@@ -21,6 +21,9 @@ msgstr "ਲੇਖਕ"
 msgid "Auto"
 msgstr "ਆਟੋ"
 
+msgid "Autocomplete"
+msgstr "ਸਵੈ-ਪੂਰਨ"
+
 msgid "Back"
 msgstr "ਵਾਪਸ"
 
@@ -39,11 +42,17 @@ msgstr "ਟਿੱਪਣੀਆਂ"
 msgid "Default language"
 msgstr "ਮੂਲ ਭਾਸ਼ਾ"
 
+msgid "Display favicons near search results"
+msgstr "ਖੋਜ ਨਤੀਜਿਆਂ ਦੇ ਨੇੜੇ ਫੈਵੀਕਾਨ ਦਿਖਾਓ"
+
 msgid "Engine name"
 msgstr "ਇੰਜਣ"
 
 msgid "Engines"
 msgstr "ਇੰਜਣ"
+
+msgid "Favicon Resolver"
+msgstr "ਫੈਵੀਕਾਨ ਸਰੋਤ"
 
 msgid "Filter content"
 msgstr "ਸਮੱਗਰੀ ਫਿਲਟਰ ਕਰੋ"
@@ -105,6 +114,9 @@ msgstr "{0} ਲਈ ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ"
 msgid "None"
 msgstr "ਕੋਈ ਨਹੀਂ"
 
+msgid "Off"
+msgstr "ਬੰਦ"
+
 msgid "Package"
 msgstr "ਪੈਕੇਜ"
 
@@ -152,6 +164,9 @@ msgstr "ਖੋਜ ਭਾਸ਼ਾ"
 
 msgid "Searching"
 msgstr "ਖੋਜਿਆ ਜਾ ਰਿਹਾ ਹੈ"
+
+msgid "Show possible queries as you type"
+msgstr "ਟਾਈਪ ਕਰਦੇ ਸਮੇਂ ਸੰਭਾਵੀ ਖੋਜਾਂ ਦਿਖਾਓ"
 
 msgid "Strict"
 msgstr "ਸਖ਼ਤ"

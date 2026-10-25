@@ -21,6 +21,9 @@ msgstr "লেখক"
 msgid "Auto"
 msgstr "স্বয়ংক্রিয়"
 
+msgid "Autocomplete"
+msgstr "স্বয়ংক্রিয়ভাবে পূরণ"
+
 msgid "Back"
 msgstr "পিছনে"
 
@@ -39,11 +42,17 @@ msgstr "কমেন্ট"
 msgid "Default language"
 msgstr "পূর্বনির্ধারিত ভাষা"
 
+msgid "Display favicons near search results"
+msgstr "অনুসন্ধানকৃত ফলাফলের কাছে ফ্যাভিকন দেখাও"
+
 msgid "Engine name"
 msgstr "ইঞ্জিনের নাম"
 
 msgid "Engines"
 msgstr "ইঞ্জিন"
+
+msgid "Favicon Resolver"
+msgstr "ফ্যাভিকন আমদানিকারক"
 
 msgid "Filter content"
 msgstr "বাছাইকৃত উপাত্ত"
@@ -105,6 +114,9 @@ msgstr "{0}-এর জন্য কোনো ফলাফল নেই"
 msgid "None"
 msgstr "নেই"
 
+msgid "Off"
+msgstr "বন্ধ"
+
 msgid "Package"
 msgstr "প্যাকেজ"
 
@@ -152,6 +164,9 @@ msgstr "সার্চের ভাষা"
 
 msgid "Searching"
 msgstr "খোঁজা হচ্ছে"
+
+msgid "Show possible queries as you type"
+msgstr "টাইপ করার সময় সম্ভাব্য অনুসন্ধান দেখান"
 
 msgid "Strict"
 msgstr "কঠোর"

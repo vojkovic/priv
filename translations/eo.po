@@ -21,6 +21,9 @@ msgstr "Verkisto"
 msgid "Auto"
 msgstr "Aŭtomate"
 
+msgid "Autocomplete"
+msgstr "Aŭtomate kompletigi"
+
 msgid "Back"
 msgstr "Reen"
 
@@ -39,11 +42,17 @@ msgstr "Komentoj"
 msgid "Default language"
 msgstr "Defaŭlta lingvo"
 
+msgid "Display favicons near search results"
+msgstr "Montri favikonojn apud serĉrezultoj"
+
 msgid "Engine name"
 msgstr "Nomo de serĉilo"
 
 msgid "Engines"
 msgstr "Serĉiloj"
+
+msgid "Favicon Resolver"
+msgstr "Favikona provizanto"
 
 msgid "Filter content"
 msgstr "Filtri enhavon"
@@ -105,6 +114,9 @@ msgstr "Neniuj rezultoj por {0}"
 msgid "None"
 msgstr "Neniu"
 
+msgid "Off"
+msgstr "Malŝaltita"
+
 msgid "Package"
 msgstr "Pakaĵo"
 
@@ -152,6 +164,9 @@ msgstr "Serĉolingvo"
 
 msgid "Searching"
 msgstr "Serĉante"
+
+msgid "Show possible queries as you type"
+msgstr "Montri eblajn serĉojn dum vi tajpas"
 
 msgid "Strict"
 msgstr "Strikta"

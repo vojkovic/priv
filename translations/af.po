@@ -21,6 +21,9 @@ msgstr "Outeur"
 msgid "Auto"
 msgstr "Outomaties"
 
+msgid "Autocomplete"
+msgstr "Outovoltooi"
+
 msgid "Back"
 msgstr "Terug"
 
@@ -39,11 +42,17 @@ msgstr "Kommentaar"
 msgid "Default language"
 msgstr "Verstek taal"
 
+msgid "Display favicons near search results"
+msgstr "Wys favicons naby soek aantwoorde"
+
 msgid "Engine name"
 msgstr "Enjin naam"
 
 msgid "Engines"
 msgstr "Enjins"
+
+msgid "Favicon Resolver"
+msgstr "Favicon finder"
 
 msgid "Filter content"
 msgstr "Filter inhoud"
@@ -105,6 +114,9 @@ msgstr "Geen resultate vir {0}"
 msgid "None"
 msgstr "Geen"
 
+msgid "Off"
+msgstr "Af"
+
 msgid "Package"
 msgstr "Pakket"
 
@@ -152,6 +164,9 @@ msgstr "Soek taal"
 
 msgid "Searching"
 msgstr "Soek tans"
+
+msgid "Show possible queries as you type"
+msgstr "Wys moontlike navrae terwyl jy tik"
 
 msgid "Strict"
 msgstr "Streng"

@@ -21,6 +21,9 @@ msgstr "Penulis"
 msgid "Auto"
 msgstr "Otomatis"
 
+msgid "Autocomplete"
+msgstr "Lengkapi entri pencarian secara otomatis"
+
 msgid "Back"
 msgstr "Kembali"
 
@@ -39,11 +42,17 @@ msgstr "Komentar"
 msgid "Default language"
 msgstr "Bahasa bawaan"
 
+msgid "Display favicons near search results"
+msgstr "Tampilkan favikon"
+
 msgid "Engine name"
 msgstr "Nama mesin"
 
 msgid "Engines"
 msgstr "Mesin"
+
+msgid "Favicon Resolver"
+msgstr "Penyelesai Favikon"
 
 msgid "Filter content"
 msgstr "Tapis konten"
@@ -105,6 +114,9 @@ msgstr "Tidak ada hasil untuk {0}"
 msgid "None"
 msgstr "Mati"
 
+msgid "Off"
+msgstr "Nonaktif"
+
 msgid "Package"
 msgstr "Paket"
 
@@ -152,6 +164,9 @@ msgstr "Bahasa pencarian"
 
 msgid "Searching"
 msgstr "Mencari"
+
+msgid "Show possible queries as you type"
+msgstr "Tampilkan kueri yang memungkinkan selagi Anda mengetik"
 
 msgid "Strict"
 msgstr "Ketat"

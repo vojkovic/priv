@@ -21,6 +21,9 @@ msgstr "Egilea"
 msgid "Auto"
 msgstr "Automatikoa"
 
+msgid "Autocomplete"
+msgstr "Osatze automatikoa"
+
 msgid "Back"
 msgstr "Atzera"
 
@@ -39,11 +42,17 @@ msgstr "Iruzkinak"
 msgid "Default language"
 msgstr "Lehenetsitako hizkuntza"
 
+msgid "Display favicons near search results"
+msgstr "Erakutsi fabikonoak bilaketa-emaitzetatik gertu"
+
 msgid "Engine name"
 msgstr "Bilatzailearen izena"
 
 msgid "Engines"
 msgstr "Bilatzaileak"
+
+msgid "Favicon Resolver"
+msgstr "Favicon erabakitzailea"
 
 msgid "Filter content"
 msgstr "Edukia iragazi"
@@ -105,6 +114,9 @@ msgstr "Ez dago emaitzarik honentzat: {0}"
 msgid "None"
 msgstr "Bat ere ez"
 
+msgid "Off"
+msgstr "Itzalita"
+
 msgid "Package"
 msgstr "Paketea"
 
@@ -152,6 +164,9 @@ msgstr "Bilaketaren hizkuntza"
 
 msgid "Searching"
 msgstr "Bilatzen"
+
+msgid "Show possible queries as you type"
+msgstr "Erakutsi kontsulta posibleak idatzi ahala"
 
 msgid "Strict"
 msgstr "Zorrotza"

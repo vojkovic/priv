@@ -22,6 +22,9 @@ msgstr "الكاتب"
 msgid "Auto"
 msgstr "تلقائي"
 
+msgid "Autocomplete"
+msgstr "تكملة تلقائية"
+
 msgid "Back"
 msgstr "الخلف"
 
@@ -40,11 +43,17 @@ msgstr "التعليقات"
 msgid "Default language"
 msgstr "اللغة الإفتراضية"
 
+msgid "Display favicons near search results"
+msgstr "عرض المفضلات قرب نتائج البحث"
+
 msgid "Engine name"
 msgstr "إسم المحرك"
 
 msgid "Engines"
 msgstr "المحركات"
+
+msgid "Favicon Resolver"
+msgstr "محلل أيقونة المفضلة"
 
 msgid "Filter content"
 msgstr "فلترة المحتوى"
@@ -106,6 +115,9 @@ msgstr "لا توجد نتائج لـ {0}"
 msgid "None"
 msgstr "لا شيء"
 
+msgid "Off"
+msgstr "مُعطَّل"
+
 msgid "Package"
 msgstr "حزمة"
 
@@ -153,6 +165,9 @@ msgstr "لغة البحث"
 
 msgid "Searching"
 msgstr "جارٍ البحث"
+
+msgid "Show possible queries as you type"
+msgstr "اظهر الإستعلامات الممكنة و انت تكتب"
 
 msgid "Strict"
 msgstr "صارم"

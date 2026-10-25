@@ -21,6 +21,9 @@ msgstr "ผู้เขียน"
 msgid "Auto"
 msgstr "อัตโนมัติ"
 
+msgid "Autocomplete"
+msgstr "เติมข้อความอัตโนมัติ"
+
 msgid "Back"
 msgstr "กลับ"
 
@@ -39,11 +42,17 @@ msgstr "คอมเมนต์"
 msgid "Default language"
 msgstr "ภาษาเริ่มต้น"
 
+msgid "Display favicons near search results"
+msgstr "แสดงไอคอน Fav ใกล้ผลการค้นหา"
+
 msgid "Engine name"
 msgstr "ชื่อเครื่องมือ"
 
 msgid "Engines"
 msgstr "เครื่องมือ"
+
+msgid "Favicon Resolver"
+msgstr "แก้ไข Favicon"
 
 msgid "Filter content"
 msgstr "ตัวกรอกเนื้อหา"
@@ -105,6 +114,9 @@ msgstr "ไม่พบผลลัพธ์สำหรับ {0}"
 msgid "None"
 msgstr "ไม่มี"
 
+msgid "Off"
+msgstr "ปิด"
+
 msgid "Package"
 msgstr "แพ็กเกจ"
 
@@ -152,6 +164,9 @@ msgstr "ค้นหาภาษา"
 
 msgid "Searching"
 msgstr "กำลังค้นหา"
+
+msgid "Show possible queries as you type"
+msgstr "แสดงคำค้นหาที่เป็นไปได้ขณะที่คุณพิมพ์"
 
 msgid "Strict"
 msgstr "เข้มงวด"

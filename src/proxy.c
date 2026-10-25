@@ -4,6 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
+#include "favicon.h"
 #include "fetch.h"
 #include "proxy.h"
 
@@ -109,7 +110,7 @@ image_url(struct arena *a, const char *url)
 }
 
 char *
-favicon_url(struct arena *a, const char *authority)
+favicon_url(struct arena *a, const char *authority, const char *resolver)
 {
 	struct buf b = {0};
 	char h[65], *r;
@@ -119,6 +120,8 @@ favicon_url(struct arena *a, const char *authority)
 	hmac(authority, h);
 	form_add(&b, "authority", authority);
 	form_add(&b, "h", h);
+	if (resolver && strcmp(resolver, FAVICON_DEFAULT))
+		form_add(&b, "resolver", resolver);
 	r = aprintf(a, "/favicon?%s", buf_str(&b));
 	buf_free(&b);
 	return r;

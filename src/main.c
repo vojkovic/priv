@@ -230,7 +230,7 @@ main(void)
 	favicon_init();
 	engines_init();
 	for (i = 0; i < nengines; i++)
-		favicon_prefetch(engines[i]->website);
+		favicon_prefetch(FAVICON_DEFAULT, engines[i]->website);
 	http_listen(listen_addr, listen_port, route);
 	if (strchr(listen_addr, ':'))
 		fprintf(stderr, "%s listening on http://[%s]:%d", instance_name, listen_addr, listen_port);

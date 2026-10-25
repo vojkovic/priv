@@ -21,6 +21,9 @@ msgstr "Hazırlayan"
 msgid "Auto"
 msgstr "Otomatik"
 
+msgid "Autocomplete"
+msgstr "Otomatik tamamlama"
+
 msgid "Back"
 msgstr "Geri"
 
@@ -39,11 +42,17 @@ msgstr "Yorumlar"
 msgid "Default language"
 msgstr "Varsayılan dil"
 
+msgid "Display favicons near search results"
+msgstr "Arama sonuçlarının yanında favsimgelerini göster"
+
 msgid "Engine name"
 msgstr "Motor adı"
 
 msgid "Engines"
 msgstr "Motorlar"
+
+msgid "Favicon Resolver"
+msgstr "Favicon Çözümleyicisi"
 
 msgid "Filter content"
 msgstr "İçeriği süzün"
@@ -105,6 +114,9 @@ msgstr "{0} için sonuç yok"
 msgid "None"
 msgstr "Yok"
 
+msgid "Off"
+msgstr "Kapalı"
+
 msgid "Package"
 msgstr "Paket"
 
@@ -152,6 +164,9 @@ msgstr "Arama dili"
 
 msgid "Searching"
 msgstr "Aranıyor"
+
+msgid "Show possible queries as you type"
+msgstr "Yazarken olası sorguları göster"
 
 msgid "Strict"
 msgstr "Sıkı"

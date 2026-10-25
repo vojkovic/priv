@@ -270,6 +270,7 @@
 	let suppress = false;
 	let counter = 0;
 	let displayed = 0;
+	let shown = null;
 
 	const text = (item) => (typeof item === "string" ? item : item.text || "");
 	const rich = (item) => (typeof item === "string" ? {} : item);
@@ -395,10 +396,18 @@
 	const fit = () => box.style.setProperty("--room", Math.max(160, window.innerHeight - box.parentElement.getBoundingClientRect().bottom - 16) + "px");
 	window.addEventListener("resize", fit);
 
-	const display = (items, id) => {
-		if (suppress || id <= displayed || !items.length)
+	const display = (items, id, query) => {
+		if (suppress || id <= displayed)
 			return;
 		displayed = id;
+		/* nothing for this query, so the last list would be stale */
+		if (!items.length) {
+			box.classList.remove("open");
+			list.replaceChildren();
+			shown = null;
+			return;
+		}
+		shown = query;
 		fit();
 		box.classList.add("open");
 		const fragment = new DocumentFragment();
@@ -434,7 +443,7 @@
 
 	const fetchResults = (query, id) => {
 		load(query)
-			.then((items) => display(items, id))
+			.then((items) => display(items, id, query))
 			.catch(() => {});
 	};
 
@@ -502,7 +511,7 @@
 		if (phone.matches)
 			document.documentElement.classList.add("search_focus");
 		suppress = false;
-		if (list.children.length) {
+		if (list.children.length && shown === q.value) {
 			fit();
 			box.classList.add("open");
 			return;

@@ -21,6 +21,9 @@ msgstr "කතුවරයා"
 msgid "Auto"
 msgstr "ස්වයංක්‍රීය"
 
+msgid "Autocomplete"
+msgstr "ස්වයං සම්පූර්ණ කිරීම"
+
 msgid "Back"
 msgstr "ආපසු"
 
@@ -39,11 +42,17 @@ msgstr "අදහස්"
 msgid "Default language"
 msgstr "මූලික භාෂාව"
 
+msgid "Display favicons near search results"
+msgstr "සෙවුම් ප්‍රතිඵල අසල ෆැවිකන් පෙන්වන්න"
+
 msgid "Engine name"
 msgstr "එන්ජිම"
 
 msgid "Engines"
 msgstr "එන්ජින්"
+
+msgid "Favicon Resolver"
+msgstr "ෆැවිකන් මූලාශ්‍රය"
 
 msgid "Filter content"
 msgstr "අන්තර්ගතය පෙරීම"
@@ -105,6 +114,9 @@ msgstr "{0} සඳහා ප්‍රතිඵල නැත"
 msgid "None"
 msgstr "කිසිවක් නැත"
 
+msgid "Off"
+msgstr "අක්‍රීය"
+
 msgid "Package"
 msgstr "පැකේජය"
 
@@ -152,6 +164,9 @@ msgstr "සෙවුම් භාෂාව"
 
 msgid "Searching"
 msgstr "සොයමින්"
+
+msgid "Show possible queries as you type"
+msgstr "ටයිප් කරන විට විය හැකි සෙවුම් පෙන්වන්න"
 
 msgid "Strict"
 msgstr "තද"

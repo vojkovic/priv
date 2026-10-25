@@ -21,6 +21,9 @@ msgstr "Autōr"
 msgid "Auto"
 msgstr "Autōmatycznie"
 
+msgid "Autocomplete"
+msgstr "Autodopołnianie"
+
 msgid "Back"
 msgstr "Nazod"
 
@@ -39,11 +42,17 @@ msgstr "Kōmyntorze"
 msgid "Default language"
 msgstr "Wychodny jynzyk"
 
+msgid "Display favicons near search results"
+msgstr ""
+
 msgid "Engine name"
 msgstr "Miano ôd wyszukowarki"
 
 msgid "Engines"
 msgstr "Wyszukowarki"
+
+msgid "Favicon Resolver"
+msgstr ""
 
 msgid "Filter content"
 msgstr "Filtruj treści"
@@ -105,6 +114,9 @@ msgstr "Brak wynikōw do {0}"
 msgid "None"
 msgstr "Brak"
 
+msgid "Off"
+msgstr "Zastawiōne"
+
 msgid "Package"
 msgstr "Paket"
 
@@ -152,6 +164,9 @@ msgstr "Jynzyk wyszukowanio"
 
 msgid "Searching"
 msgstr "Szukanie"
+
+msgid "Show possible queries as you type"
+msgstr ""
 
 msgid "Strict"
 msgstr "Ścisłe"

@@ -21,6 +21,9 @@ msgstr "Forfatter"
 msgid "Auto"
 msgstr "Automatisk"
 
+msgid "Autocomplete"
+msgstr "Auto-fullføring"
+
 msgid "Back"
 msgstr "Tilbake"
 
@@ -39,11 +42,17 @@ msgstr "Kommentarer"
 msgid "Default language"
 msgstr "Forvalgt språk"
 
+msgid "Display favicons near search results"
+msgstr "Vis favikoner nær søkeresultatene"
+
 msgid "Engine name"
 msgstr "Søkemotornavn"
 
 msgid "Engines"
 msgstr "Søkemotorer"
+
+msgid "Favicon Resolver"
+msgstr "Favicon-løser"
 
 msgid "Filter content"
 msgstr "Filtrer innhold"
@@ -105,6 +114,9 @@ msgstr "Ingen resultater for {0}"
 msgid "None"
 msgstr "Ingen"
 
+msgid "Off"
+msgstr "Av"
+
 msgid "Package"
 msgstr "Pakke"
 
@@ -152,6 +164,9 @@ msgstr "Søkespråk"
 
 msgid "Searching"
 msgstr "Søker"
+
+msgid "Show possible queries as you type"
+msgstr "Vis mulige søk mens du skriver"
 
 msgid "Strict"
 msgstr "Strengt"

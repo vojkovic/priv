@@ -21,6 +21,9 @@ msgstr "Autor"
 msgid "Auto"
 msgstr "Automaatne"
 
+msgid "Autocomplete"
+msgstr "Automaattäide"
+
 msgid "Back"
 msgstr "Tagasi"
 
@@ -39,11 +42,17 @@ msgstr "Kommentaare"
 msgid "Default language"
 msgstr "Vaikimisi keel"
 
+msgid "Display favicons near search results"
+msgstr "Kuva otsingutulemuste kõrval saidiikoone"
+
 msgid "Engine name"
 msgstr "Otsingumootori nimi"
 
 msgid "Engines"
 msgstr "Otsingumootorid"
+
+msgid "Favicon Resolver"
+msgstr "Saidiikoonide kuvamine"
 
 msgid "Filter content"
 msgstr "Filtreeri sisu"
@@ -105,6 +114,9 @@ msgstr "Päringule {0} tulemusi pole"
 msgid "None"
 msgstr "Puudub"
 
+msgid "Off"
+msgstr "Väljas"
+
 msgid "Package"
 msgstr "Pakett"
 
@@ -152,6 +164,9 @@ msgstr "Otsingukeel"
 
 msgid "Searching"
 msgstr "Otsimine"
+
+msgid "Show possible queries as you type"
+msgstr "Sisestamise ajal näita võimalikke päringuid"
 
 msgid "Strict"
 msgstr "Range"

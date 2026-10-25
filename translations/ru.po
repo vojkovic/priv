@@ -21,6 +21,9 @@ msgstr "Автор"
 msgid "Auto"
 msgstr "Автоматически"
 
+msgid "Autocomplete"
+msgstr "Автодополнение"
+
 msgid "Back"
 msgstr "Назад"
 
@@ -39,11 +42,17 @@ msgstr "Комментарии"
 msgid "Default language"
 msgstr "Язык по умолчанию"
 
+msgid "Display favicons near search results"
+msgstr "Показывать значки сайтов около результатов поиска"
+
 msgid "Engine name"
 msgstr "Поисковая система"
 
 msgid "Engines"
 msgstr "Поисковые системы"
+
+msgid "Favicon Resolver"
+msgstr "Получение значков сайтов"
 
 msgid "Filter content"
 msgstr "Отбирает только пристойные результаты"
@@ -105,6 +114,9 @@ msgstr "Нет результатов по запросу {0}"
 msgid "None"
 msgstr "Отключен"
 
+msgid "Off"
+msgstr "Выключено"
+
 msgid "Package"
 msgstr "Пакет"
 
@@ -152,6 +164,9 @@ msgstr "Язык поиска"
 
 msgid "Searching"
 msgstr "Идёт поиск"
+
+msgid "Show possible queries as you type"
+msgstr "Показать возможные запросы при введении"
 
 msgid "Strict"
 msgstr "Строгий"

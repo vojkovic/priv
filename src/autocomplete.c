@@ -1,4 +1,5 @@
 #include <ctype.h>
+#include <iconv.h>
 #include <stdlib.h>
 #include <string.h>
 #include <strings.h>
@@ -8,6 +9,7 @@
 #include "engine.h"
 #include "fetch.h"
 #include "js.h"
+#include "locales.h"
 #include "proxy.h"
 #include "search.h"
 
@@ -21,10 +23,20 @@ struct pending {
 	struct fetch *f;
 	struct arena a;
 	char *query, *origin, *prefix;
+	const struct backend *backend;
 	int json, firefox, chromium;
 };
 
+/* a suggestion service: the url to ask, with the query in its %s, and how to read the answer */
+struct backend {
+	const char *name, *url;
+	const char *(*params)(struct pending *p, const char *query, const struct locale *l);
+	size_t (*parse)(struct pending *p, yyjson_val *root, struct suggestion *v);
+	int gbk;
+};
+
 #define MAX_LOCAL 12
+#define MAX_REMOTE 15
 
 static void
 pending_free(struct pending *p)
@@ -77,43 +89,271 @@ normalize_icon(struct arena *a, const char *url)
 	return r;
 }
 
+/* adds one remote suggestion, copying it out of the parsed document */
 static size_t
-parse(struct pending *p, const char *body, struct suggestion **out)
+suggest(struct pending *p, struct suggestion *v, size_t n, const char *text, const char *icon, const char *description)
 {
-	const char *start = strchr(body, '[');
-	struct suggestion *v;
-	yyjson_doc *d;
-	yyjson_val *list, *item, *meta, *zp;
-	size_t end, i, n, count = 0;
+	if (n == MAX_REMOTE || !text || !*(text = html_to_text(&p->a, text)))
+		return n;
+	memset(&v[n], 0, sizeof(*v));
+	v[n].text = (char *)text;
+	v[n].icon = icon && *icon ? normalize_icon(&p->a, icon) : NULL;
+	v[n].description = description && *description ? html_to_text(&p->a, description) : NULL;
+	return n + 1;
+}
+
+static const char *
+str(yyjson_val *v)
+{
+	return yyjson_get_str(v);
+}
+
+static const char *
+key(yyjson_val *o, const char *k)
+{
+	return yyjson_get_str(yyjson_obj_get(o, k));
+}
+
+/* google: [[[text, 0, [], {zs: image, zi: description, zp: {gs_ss: trending}}], ...]] */
+static size_t
+parse_google(struct pending *p, yyjson_val *root, struct suggestion *v)
+{
+	yyjson_val *item, *meta, *zp;
+	size_t i, max, n = 0;
 	const char *s;
 
+	yyjson_arr_foreach (yyjson_arr_get(root, 0), i, max, item) {
+		meta = yyjson_arr_get(item, 3);
+		if (!yyjson_is_obj(meta)) {
+			n = suggest(p, v, n, str(yyjson_arr_get(item, 0)), NULL, NULL);
+			continue;
+		}
+		n = suggest(p, v, n, str(yyjson_arr_get(item, 0)), key(meta, "zs"), key(meta, "zi"));
+		zp = yyjson_obj_get(meta, "zp");
+		if (n && yyjson_is_obj(zp) && (s = key(zp, "gs_ss")) && !strcmp(s, "1"))
+			v[n - 1].trending = 1;
+	}
+	return n;
+}
+
+/* the opensearch format: [query, [text, ...]] */
+static size_t
+parse_opensearch(struct pending *p, yyjson_val *root, struct suggestion *v)
+{
+	yyjson_val *item;
+	size_t i, max, n = 0;
+	const char *s;
+
+	yyjson_arr_foreach (yyjson_arr_get(root, 1), i, max, item)
+		if ((s = str(item)) && !starts_with(s, "go: ") && !starts_with(s, "search: "))
+			n = suggest(p, v, n, s, NULL, NULL);
+	return n;
+}
+
+/* a plain [text, ...] */
+static size_t
+parse_list(struct pending *p, yyjson_val *root, struct suggestion *v)
+{
+	yyjson_val *item;
+	size_t i, max, n = 0;
+
+	yyjson_arr_foreach (root, i, max, item)
+		n = suggest(p, v, n, str(item), NULL, NULL);
+	return n;
+}
+
+/* [{field: text}, ...] somewhere in the answer, found by the path before it */
+static size_t
+parse_field(struct pending *p, yyjson_val *list, const char *field, struct suggestion *v)
+{
+	yyjson_val *item;
+	size_t i, max, n = 0;
+
+	yyjson_arr_foreach (list, i, max, item)
+		n = suggest(p, v, n, key(item, field), NULL, NULL);
+	return n;
+}
+
+static size_t
+parse_duckduckgo(struct pending *p, yyjson_val *root, struct suggestion *v)
+{
+	return parse_field(p, root, "phrase", v);
+}
+
+static size_t
+parse_baidu(struct pending *p, yyjson_val *root, struct suggestion *v)
+{
+	return parse_field(p, yyjson_obj_get(root, "g"), "q", v);
+}
+
+static size_t
+parse_360(struct pending *p, yyjson_val *root, struct suggestion *v)
+{
+	return parse_field(p, yyjson_obj_get(root, "result"), "word", v);
+}
+
+static size_t
+parse_quark(struct pending *p, yyjson_val *root, struct suggestion *v)
+{
+	return parse_field(p, yyjson_obj_get(root, "r"), "w", v);
+}
+
+static size_t
+parse_qwant(struct pending *p, yyjson_val *root, struct suggestion *v)
+{
+	return parse_field(p, yyjson_obj_get(yyjson_obj_get(root, "data"), "items"), "value", v);
+}
+
+/* naver: {items: [[[text], ...]]} */
+static size_t
+parse_naver(struct pending *p, yyjson_val *root, struct suggestion *v)
+{
+	yyjson_val *item;
+	size_t i, max, n = 0;
+
+	yyjson_arr_foreach (yyjson_arr_get(yyjson_obj_get(root, "items"), 0), i, max, item)
+		n = suggest(p, v, n, str(yyjson_arr_get(item, 0)), NULL, NULL);
+	return n;
+}
+
+/* brave with rich=true: [query, [{q, is_entity, desc, img}, ...]] */
+static size_t
+parse_brave(struct pending *p, yyjson_val *root, struct suggestion *v)
+{
+	yyjson_val *item;
+	size_t i, max, n = 0;
+	int entity;
+
+	yyjson_arr_foreach (yyjson_arr_get(root, 1), i, max, item) {
+		entity = yyjson_get_bool(yyjson_obj_get(item, "is_entity"));
+		n = suggest(p, v, n, key(item, "q"), entity ? key(item, "img") : NULL,
+		    entity ? key(item, "desc") : NULL);
+	}
+	return n;
+}
+
+/* bing: {s: [{q, ext: {des, im}}]}, with U+E000 and U+E001 around the typed part */
+static size_t
+parse_bing(struct pending *p, yyjson_val *root, struct suggestion *v)
+{
+	yyjson_val *item, *ext;
+	size_t i, max, n = 0;
+	const char *q, *im;
+	char *t, *w, *r;
+
+	yyjson_arr_foreach (yyjson_obj_get(root, "s"), i, max, item) {
+		if (!(q = key(item, "q")))
+			continue;
+		t = astrdup(&p->a, q);
+		for (r = w = t; *r;)
+			if (!strncmp(r, "\xee\x80\x80", 3) || !strncmp(r, "\xee\x80\x81", 3))
+				r += 3;
+			else
+				*w++ = *r++;
+		*w = 0;
+		ext = yyjson_obj_get(item, "ext");
+		im = key(ext, "im");
+		if (im && *im == '/' && im[1] != '/')
+			im = aprintf(&p->a, "https://www.bing.com%s", im);
+		n = suggest(p, v, n, t, im, key(ext, "des"));
+	}
+	return n;
+}
+
+/* wikipedia's title search: {pages: [{title, description, thumbnail: {url}}]} */
+static size_t
+parse_wikipedia(struct pending *p, yyjson_val *root, struct suggestion *v)
+{
+	yyjson_val *item;
+	size_t i, max, n = 0;
+
+	yyjson_arr_foreach (yyjson_obj_get(root, "pages"), i, max, item)
+		n = suggest(p, v, n, key(item, "title"), key(yyjson_obj_get(item, "thumbnail"), "url"),
+		    key(item, "description"));
+	return n;
+}
+
+/* seznam: {result: [{itemType, text: [{text}], leadingMetaData: {type, value}, bottomMetaData: {type, value}}]} */
+static size_t
+parse_seznam(struct pending *p, yyjson_val *root, struct suggestion *v)
+{
+	yyjson_val *item, *part, *lead, *bottom;
+	size_t i, max, k, kmax, n = 0;
+	struct buf t = {0};
+	const char *s, *icon, *description;
+
+	yyjson_arr_foreach (yyjson_obj_get(root, "result"), i, max, item) {
+		if (!(s = key(item, "itemType")) || strcmp(s, "ItemType.TEXT"))
+			continue;
+		t.len = 0;
+		yyjson_arr_foreach (yyjson_obj_get(item, "text"), k, kmax, part)
+			if ((s = key(part, "text")))
+				buf_puts(&t, s);
+		lead = yyjson_obj_get(item, "leadingMetaData");
+		bottom = yyjson_obj_get(item, "bottomMetaData");
+		icon = (s = key(lead, "type")) && !strcmp(s, "MetaDataType.GRAPHICS") ? key(lead, "value") : NULL;
+		description =
+		    (s = key(bottom, "type")) && !strcmp(s, "MetaDataType.TEXT") ? key(bottom, "value") : NULL;
+		n = suggest(p, v, n, buf_str(&t), icon, description);
+	}
+	buf_free(&t);
+	return n;
+}
+
+/* dbpedia lookup: {docs: [{label: [name], typeName: [kind]}]}, names highlighted with <B> */
+static size_t
+parse_dbpedia(struct pending *p, yyjson_val *root, struct suggestion *v)
+{
+	yyjson_val *item;
+	size_t i, max, n = 0;
+
+	yyjson_arr_foreach (yyjson_obj_get(root, "docs"), i, max, item)
+		n = suggest(p, v, n, str(yyjson_arr_get(yyjson_obj_get(item, "label"), 0)), NULL,
+		    str(yyjson_arr_get(yyjson_obj_get(item, "typeName"), 0)));
+	return n;
+}
+
+/* sogou answers in gbk */
+static char *
+from_gbk(struct arena *a, const char *s, size_t len)
+{
+	iconv_t cd = iconv_open("UTF-8", "GBK");
+	size_t left = len, room = len * 2 + 1;
+	char *out, *in = (char *)s, *w;
+
+	if (cd == (iconv_t)-1) // NOLINT(performance-no-int-to-ptr)
+		return NULL;
+	out = w = amalloc(a, room);
+	while (left && iconv(cd, &in, &left, &w, &room) == (size_t)-1 && left) {
+		in++;
+		left--;
+	}
+	*w = 0;
+	iconv_close(cd);
+	return out;
+}
+
+/* finds the json in an answer, which some services wrap in a callback or prefix with junk */
+static size_t
+parse(struct pending *p, struct fetch *f, struct suggestion **out)
+{
+	const char *body = fetch_body(f), *start;
+	size_t end, len = f->body.len;
+	yyjson_doc *d;
+	size_t n;
+
 	*out = NULL;
-	if (!start || (end = js_match(start, strlen(start), 0, '[', ']')) == JS_NOMATCH)
+	if (p->backend->gbk && !(body = from_gbk(&p->a, body, len)))
+		return 0;
+	start = body + strcspn(body, "[{");
+	if (!*start || (end = js_match(start, strlen(start), 0, *start, *start == '[' ? ']' : '}')) == JS_NOMATCH)
 		return 0;
 	if (!(d = yyjson_read(start, end + 1, YYJSON_READ_ALLOW_INVALID_UNICODE)))
 		return 0;
-	list = yyjson_arr_get(yyjson_doc_get_root(d), 0);
-	v = amalloc(&p->a, (yyjson_arr_size(list) + 1) * sizeof(*v));
-	yyjson_arr_foreach (list, i, n, item) {
-		if (!(s = yyjson_get_str(yyjson_arr_get(item, 0))) || !*(s = html_to_text(&p->a, s)))
-			continue;
-		memset(&v[count], 0, sizeof(*v));
-		v[count].text = (char *)s;
-		meta = yyjson_arr_get(item, 3);
-		if (yyjson_is_obj(meta)) {
-			if ((s = yyjson_get_str(yyjson_obj_get(meta, "zs"))))
-				v[count].icon = normalize_icon(&p->a, s);
-			if ((s = yyjson_get_str(yyjson_obj_get(meta, "zi"))) && *s)
-				v[count].description = html_to_text(&p->a, s);
-			zp = yyjson_obj_get(meta, "zp");
-			v[count].trending =
-			    yyjson_is_obj(zp) && (s = yyjson_get_str(yyjson_obj_get(zp, "gs_ss"))) && !strcmp(s, "1");
-		}
-		count++;
-	}
+	*out = amalloc(&p->a, MAX_REMOTE * sizeof(**out));
+	n = p->backend->parse(p, yyjson_doc_get_root(d), *out);
 	yyjson_doc_free(d);
-	*out = v;
-	return count;
+	return n;
 }
 
 static void
@@ -261,9 +501,9 @@ respond(struct pending *p, struct suggestion *v, size_t n)
 
 	http_respond(p->c, 200,
 	    p->json ?
-	        "Content-Type: application/json\r\nCache-Control: no-store\r\nVary: Accept, User-Agent\r\n" :
+	        "Content-Type: application/json\r\nCache-Control: no-store\r\nVary: Accept, User-Agent, Cookie\r\n" :
 	        "Content-Type: application/x-suggestions+json\r\n"
-	        "Cache-Control: private, max-age=3600, stale-while-revalidate=300\r\nVary: Accept, User-Agent\r\n",
+	        "Cache-Control: private, max-age=3600, stale-while-revalidate=300\r\nVary: Accept, User-Agent, Cookie\r\n",
 	    body, strlen(body));
 	free(body);
 	pending_free(p);
@@ -278,7 +518,7 @@ done(struct fetch *f, void *arg)
 
 	http_on_close(p->c, NULL, NULL);
 	if (f->code == CURLE_OK && f->status == 200)
-		n = parse(p, fetch_body(f), &v);
+		n = parse(p, f, &v);
 	for (i = 0; *p->prefix && i < n; i++)
 		v[i].text = aprintf(&p->a, "%s %s", p->prefix, v[i].text);
 	respond(p, v, n);
@@ -320,7 +560,7 @@ add(struct pending *p, struct suggestion *v, size_t n, const char *before, const
 static size_t
 complete_bang(struct pending *p, struct suggestion *v, const char *before, const char *word)
 {
-	char *value = lower(&p->a, word, '_', ' '), *c;
+	char *value = lower(&p->a, word, '_', ' ');
 	struct engine *e;
 	size_t i, n = 0, len;
 
@@ -439,6 +679,148 @@ complete_local(struct pending *p)
 }
 
 static const char *
+region(const struct locale *l)
+{
+	const char *dash = strchr(l->tag, '-');
+
+	return dash ? dash + 1 : NULL;
+}
+
+static const char *
+params_google(struct pending *p, const char *query, const struct locale *l)
+{
+	return aprintf(&p->a, "&hl=%s", hl(&p->a, l->tag));
+}
+
+static const char *
+params_bing(struct pending *p, const char *query, const struct locale *l)
+{
+	static const char chars[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	char cvid[33];
+	size_t i;
+
+	for (i = 0; i < 32; i++)
+		cvid[i] = chars[rnd(sizeof(chars) - 1)];
+	cvid[32] = 0;
+	return aprintf(&p->a, "&cvid=%s", cvid);
+}
+
+static const char *
+params_duckduckgo(struct pending *p, const char *query, const struct locale *l)
+{
+	return *l->ddg_region ? aprintf(&p->a, "&kl=%s", l->ddg_region) : "";
+}
+
+static const char *
+params_kagi(struct pending *p, const char *query, const struct locale *l)
+{
+	return region(l) ? lower(&p->a, aprintf(&p->a, "&r=%s", region(l)), 0, 0) : "";
+}
+
+static const char *
+params_privacywall(struct pending *p, const char *query, const struct locale *l)
+{
+	return *l->privacywall_cc ? aprintf(&p->a, "&cc=%s", l->privacywall_cc) : "";
+}
+
+static const char *
+params_qwant(struct pending *p, const char *query, const struct locale *l)
+{
+	const char *r = region(l);
+
+	return r ? aprintf(&p->a, "&locale=%.*s_%s", (int)(r - 1 - l->tag), l->tag, r) : "&locale=en_US";
+}
+
+static const char *
+params_seznam(struct pending *p, const char *query, const struct locale *l)
+{
+	return aprintf(&p->a, "&cursorPosition=%zu", strlen(query));
+}
+
+static const char *
+params_wikipedia(struct pending *p, const char *query, const struct locale *l)
+{
+	return *l->wiki_netloc ? l->wiki_netloc : "en.wikipedia.org";
+}
+
+static const struct backend backends[] = {
+    {"google", "https://www.google.com/complete/search?client=gws-wiz&q=%s", params_google, parse_google, 0},
+    {"360search", "https://sug.so.360.cn/suggest?format=json&word=%s", NULL, parse_360, 0},
+    {"baidu", "https://www.baidu.com/sugrec?ie=utf-8&json=1&prod=pc&wd=%s", NULL, parse_baidu, 0},
+    {"bing", "https://www.bing.com/AS/Suggestions?csr=1&qry=%s", params_bing, parse_bing, 0},
+    {"brave", "https://search.brave.com/api/suggest?rich=true&source=web&q=%s", NULL, parse_brave, 0},
+    {"dbpedia", "https://lookup.dbpedia.org/api/search?format=json&maxResults=10&query=%s", NULL, parse_dbpedia, 0},
+    {"duckduckgo", "https://duckduckgo.com/ac/?q=%s", params_duckduckgo, parse_duckduckgo, 0},
+    {"kagi", "https://kagisuggest.com/api/autosuggest?q=%s", params_kagi, parse_opensearch, 0},
+    {"mwmbl", "https://api.mwmbl.org/search/complete?q=%s", NULL, parse_opensearch, 0},
+    {"naver", "https://ac.search.naver.com/nx/ac?r_format=json&st=0&q=%s", NULL, parse_naver, 0},
+    {"privacywall", "https://www.privacywall.org/search/secure/suggestions.php?q=%s", params_privacywall,
+        parse_opensearch, 0},
+    {"quark", "https://sugs.m.sm.cn/web?q=%s", NULL, parse_quark, 0},
+    {"qwant", "https://api.qwant.com/v3/suggest?version=2&q=%s", params_qwant, parse_qwant, 0},
+    {"seznam", "https://suggest.seznam.cz/fulltext/cs?format=json-2&highlight=1&count=6&phrase=%s", params_seznam,
+        parse_seznam, 0},
+    {"sogou", "https://sor.html5.qq.com/api/getsug?m=privy&key=%s", NULL, parse_opensearch, 1},
+    {"startpage", "https://www.startpage.com/osuggestions?q=%s", NULL, parse_opensearch, 0},
+    {"swisscows", "https://api.swisscows.com/suggest?itemsCount=5&query=%s", NULL, parse_list, 0},
+    {"wikipedia", "https://%s/w/rest.php/v1/search/title?limit=10&q=%s", params_wikipedia, parse_wikipedia, 0},
+    {"yandex", "https://suggest.yandex.com/suggest-ff.cgi?part=%s", NULL, parse_opensearch, 0},
+};
+
+const struct autocompleter autocompleters[] = {
+    {"google", "Google"},
+    {"360search", "360search"},
+    {"baidu", "Baidu"},
+    {"bing", "Bing"},
+    {"brave", "Brave"},
+    {"dbpedia", "DBpedia"},
+    {"duckduckgo", "DuckDuckGo"},
+    {"kagi", "Kagi"},
+    {"mwmbl", "Mwmbl"},
+    {"naver", "Naver"},
+    {"privacywall", "PrivacyWall"},
+    {"quark", "Quark"},
+    {"qwant", "Qwant"},
+    {"seznam", "Seznam"},
+    {"sogou", "Sogou"},
+    {"startpage", "Startpage"},
+    {"swisscows", "Swisscows"},
+    {"wikipedia", "Wikipedia"},
+    {"yandex", "Yandex"},
+    {"off", "Off"},
+};
+const size_t nautocompleters = LEN(autocompleters);
+
+static const struct backend *
+backend_find(const char *name)
+{
+	size_t i;
+
+	for (i = 0; i < LEN(backends); i++)
+		if (!strcmp(backends[i].name, name))
+			return &backends[i];
+	return NULL;
+}
+
+static const char *
+request_url(struct pending *p, const char *query, const struct locale *l)
+{
+	const struct backend *b = p->backend;
+	const char *extra = b->params ? b->params(p, query, l) : "";
+	struct buf q = {0};
+	char *r;
+
+	url_quote(&q, query, "", 1);
+	/* wikipedia's host is its parameter */
+	if (b->parse == parse_wikipedia)
+		r = aprintf(&p->a, b->url, extra, buf_str(&q));
+	else
+		r = aprintf(&p->a, "%s%s", aprintf(&p->a, b->url, buf_str(&q)), extra);
+	buf_free(&q);
+	return r;
+}
+
+static const char *
 split_query(struct pending *p)
 {
 	char *words = astrdup(&p->a, p->query), *w, *save;
@@ -462,7 +844,6 @@ void
 autocomplete(struct conn *c, struct request *r)
 {
 	struct pending *p = xcalloc(1, sizeof(*p));
-	struct buf q = {0};
 	struct filters f;
 	const char *query;
 
@@ -482,12 +863,17 @@ autocomplete(struct conn *c, struct request *r)
 		return;
 	}
 
-	form_add(&q, "q", query);
-	form_add(&q, "client", "gws-wiz");
 	filters_parse(&p->a, r, &f);
-	form_add(&q, "hl", hl(&p->a, f.locale->tag));
-	p->f = fetch_new(aprintf(&p->a, "https://www.google.com/complete/search?%s", buf_str(&q)));
-	buf_free(&q);
+	if (!(p->backend = backend_find(f.prefs.autocomplete))) {
+		respond(p, NULL, 0);
+		return;
+	}
+	/* an empty box shows what is trending, which only google has */
+	if (!*query && p->backend->parse != parse_google) {
+		respond(p, NULL, 0);
+		return;
+	}
+	p->f = fetch_new(request_url(p, query, f.locale));
 	curl_easy_setopt(p->f->h, CURLOPT_FOLLOWLOCATION, 1L);
 	fetch_timeout(p->f, (long)(search_timeout * 1e3));
 	http_on_close(c, on_close, p);

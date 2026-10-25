@@ -21,6 +21,9 @@ msgstr "Автор"
 msgid "Auto"
 msgstr "Автоматично"
 
+msgid "Autocomplete"
+msgstr "Автоматично допълване"
+
 msgid "Back"
 msgstr "Назад"
 
@@ -39,11 +42,17 @@ msgstr "Коментари"
 msgid "Default language"
 msgstr "Основен език"
 
+msgid "Display favicons near search results"
+msgstr "Показване на фавиконки до резултатите"
+
 msgid "Engine name"
 msgstr "Име на търсачка"
 
 msgid "Engines"
 msgstr "Търсачки"
+
+msgid "Favicon Resolver"
+msgstr "Източник на фавиконки"
 
 msgid "Filter content"
 msgstr "Филтрирай съдържание"
@@ -105,6 +114,9 @@ msgstr "Няма резултати за {0}"
 msgid "None"
 msgstr "Нищо"
 
+msgid "Off"
+msgstr "Изключено"
+
 msgid "Package"
 msgstr "Пакет"
 
@@ -152,6 +164,9 @@ msgstr "Език на търсене"
 
 msgid "Searching"
 msgstr "Търсене"
+
+msgid "Show possible queries as you type"
+msgstr "Показване на възможните търсения докато пишете"
 
 msgid "Strict"
 msgstr "Стриктно"

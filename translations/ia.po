@@ -21,6 +21,9 @@ msgstr "Autor"
 msgid "Auto"
 msgstr "Automatic"
 
+msgid "Autocomplete"
+msgstr "Autocompletar"
+
 msgid "Back"
 msgstr "Retro"
 
@@ -39,11 +42,17 @@ msgstr "Commentos"
 msgid "Default language"
 msgstr "Lingua predefinite"
 
+msgid "Display favicons near search results"
+msgstr "Monstrar favicons apud le resultatos"
+
 msgid "Engine name"
 msgstr "Nomine del motor"
 
 msgid "Engines"
 msgstr "Motores"
+
+msgid "Favicon Resolver"
+msgstr "Resolvitor de favicon"
 
 msgid "Filter content"
 msgstr "Filtrar contento"
@@ -105,6 +114,9 @@ msgstr "Nulle resultatos pro {0}"
 msgid "None"
 msgstr "Nulle"
 
+msgid "Off"
+msgstr "Disactivate"
+
 msgid "Package"
 msgstr "Pacchetto"
 
@@ -152,6 +164,9 @@ msgstr "Lingua pro le recerca"
 
 msgid "Searching"
 msgstr "Cercante"
+
+msgid "Show possible queries as you type"
+msgstr "Monstrar consultas possibile durante que tu scribe"
 
 msgid "Strict"
 msgstr "Rigorose"

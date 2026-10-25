@@ -21,6 +21,9 @@ msgstr "Awdur"
 msgid "Auto"
 msgstr "Awtomatig"
 
+msgid "Autocomplete"
+msgstr "Cwblhau'n awtomatig"
+
 msgid "Back"
 msgstr "Yn ôl"
 
@@ -39,11 +42,17 @@ msgstr "Sylwadau"
 msgid "Default language"
 msgstr "Iaith ragosodedig"
 
+msgid "Display favicons near search results"
+msgstr "Dangos ffaviconau wrth ymyl canlyniadau chwilio"
+
 msgid "Engine name"
 msgstr "Enw'r peiriant"
 
 msgid "Engines"
 msgstr "Peiriannau"
+
+msgid "Favicon Resolver"
+msgstr "Datryswr ffaviconau"
 
 msgid "Filter content"
 msgstr "Hidlo cynnwys"
@@ -105,6 +114,9 @@ msgstr "Dim canlyniadau ar gyfer {0}"
 msgid "None"
 msgstr "Dim"
 
+msgid "Off"
+msgstr "I ffwrdd"
+
 msgid "Package"
 msgstr "Pecyn"
 
@@ -152,6 +164,9 @@ msgstr "Iaith chwilio"
 
 msgid "Searching"
 msgstr "Yn chwilio"
+
+msgid "Show possible queries as you type"
+msgstr "Dangos ymholiadau posibl wrth i chi deipio"
 
 msgid "Strict"
 msgstr "Llym"

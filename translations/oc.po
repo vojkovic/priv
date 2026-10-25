@@ -21,6 +21,9 @@ msgstr "Autor"
 msgid "Auto"
 msgstr "Automatic"
 
+msgid "Autocomplete"
+msgstr "Autocompletar"
+
 msgid "Back"
 msgstr "Tornar"
 
@@ -39,11 +42,17 @@ msgstr "Comentaris"
 msgid "Default language"
 msgstr "Lenga per defaut"
 
+msgid "Display favicons near search results"
+msgstr "Afichar los favicons prèp dels resultats"
+
 msgid "Engine name"
 msgstr "Nom del motor de cerca"
 
 msgid "Engines"
 msgstr "Motors de cerca"
+
+msgid "Favicon Resolver"
+msgstr "Font dels favicons"
 
 msgid "Filter content"
 msgstr "Filtrar lo contengut"
@@ -105,6 +114,9 @@ msgstr "Cap de resultat per {0}"
 msgid "None"
 msgstr "Cap"
 
+msgid "Off"
+msgstr "Non"
+
 msgid "Package"
 msgstr "Paquet"
 
@@ -152,6 +164,9 @@ msgstr "Lenga de recerca"
 
 msgid "Searching"
 msgstr "Recèrca en cors"
+
+msgid "Show possible queries as you type"
+msgstr "Mostrar de requèstas possiblas pendent la picada"
 
 msgid "Strict"
 msgstr "Estricte"

@@ -21,6 +21,9 @@ msgstr "Συγγραφέας"
 msgid "Auto"
 msgstr "Αυτόματα"
 
+msgid "Autocomplete"
+msgstr "Αυτόματη συμπλήρωση"
+
 msgid "Back"
 msgstr "Πίσω"
 
@@ -39,11 +42,17 @@ msgstr "Σχόλια"
 msgid "Default language"
 msgstr "Προεπιλεγμένη γλώσσα"
 
+msgid "Display favicons near search results"
+msgstr "Εμφάνιση εικονιδίων σελιδών δίπλα από τα αποτελέσματα αναζήτησης"
+
 msgid "Engine name"
 msgstr "Όνομα μηχανής"
 
 msgid "Engines"
 msgstr "Μηχανές"
+
+msgid "Favicon Resolver"
+msgstr "Ευρετής Εικόνων Σελιδών"
 
 msgid "Filter content"
 msgstr "Φιλτράρισμα περιεχομένου"
@@ -105,6 +114,9 @@ msgstr "Δεν βρέθηκαν αποτελέσματα για {0}"
 msgid "None"
 msgstr "Κανένα"
 
+msgid "Off"
+msgstr "Ανενεργό"
+
 msgid "Package"
 msgstr "Πακέτο"
 
@@ -152,6 +164,9 @@ msgstr "Γλώσσα αναζήτησης"
 
 msgid "Searching"
 msgstr "Αναζήτηση σε εξέλιξη"
+
+msgid "Show possible queries as you type"
+msgstr "Εμφάνιση πιθανών ερωτημάτων καθώς πληκτρολογείτε"
 
 msgid "Strict"
 msgstr "Αυστηρό"

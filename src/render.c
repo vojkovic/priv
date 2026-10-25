@@ -2,6 +2,7 @@
 #include <string.h>
 #include <strings.h>
 
+#include "autocomplete.h"
 #include "botdetect.h"
 #include "engine.h"
 #include "favicon.h"
@@ -431,7 +432,9 @@ favicon(struct buf *b, struct search *s, const char *authority)
 	if (!f && nfavicons < LEN(favicons)) {
 		f = &favicons[nfavicons++];
 		f->authority = authority;
-		f->data = ninlined < FAVICON_INLINE_SITES ? favicon_inline(&s->a, authority, FAVICON_INLINE_MAX) : NULL;
+		f->data = ninlined < FAVICON_INLINE_SITES ?
+		    favicon_inline(&s->a, s->filters.prefs.favicon, authority, FAVICON_INLINE_MAX) :
+		    NULL;
 		ninlined += f->data != NULL;
 		f->id = favicon_id(authority);
 	}
@@ -440,7 +443,8 @@ favicon(struct buf *b, struct search *s, const char *authority)
 		    "<svg class=\"fav\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><use href=\"#fav%08x\"/></svg>",
 		    f->id);
 	else
-		buf_html(b, "<img src=\"%s\" alt=\"\" loading=\"lazy\">", favicon_url(&s->a, authority));
+		buf_html(b, "<img src=\"%s\" alt=\"\" loading=\"lazy\">",
+		    favicon_url(&s->a, authority, s->filters.prefs.favicon));
 }
 
 static void
@@ -567,7 +571,7 @@ image_result(struct buf *b, struct search *s, struct main_result *m)
 	small = m->thumbnail_src && *m->thumbnail_src ? m->thumbnail_src : m->img_src;
 	full = image_url(a, m->img_src);
 	thumb = image_url(a, small);
-	fav = favicon_url(a, m->parsed.netloc);
+	fav = favicon_url(a, m->parsed.netloc, s->filters.prefs.favicon);
 	if (!full)
 		return;
 	if (m->resolution && resolution(m->resolution, &w, &h))
@@ -1070,6 +1074,12 @@ render_preferences(struct buf *b, const struct prefs *p, const struct locale *br
 		option(b, themes[i].name, themes[i].label, !strcmp(p->theme, themes[i].name));
 	buf_puts(b, "</select></div>\n");
 
+	pref_select(b, "favicon", "Favicon Resolver", "Display favicons near search results");
+	for (i = 0; i < nfavicon_resolvers; i++)
+		option(b, favicon_resolvers[i].name, favicon_resolvers[i].label,
+		    !strcmp(p->favicon, favicon_resolvers[i].name));
+	buf_puts(b, "</select></div>\n");
+
 	pref_select(b, "language", "Search language", "What language do you prefer for search?");
 	language_options(b, p->language ? p->language : "auto", browser->label);
 	buf_puts(b, "</select></div>\n");
@@ -1077,6 +1087,12 @@ render_preferences(struct buf *b, const struct prefs *p, const struct locale *br
 	pref_select(b, "safesearch", "SafeSearch", "Filter content");
 	for (i = 0; i < 3; i++)
 		option(b, (const char *[]){"0", "1", "2"}[i], tr(safe_levels[i]), p->safesearch == (int)i);
+	buf_puts(b, "</select></div>\n");
+
+	pref_select(b, "autocomplete", "Autocomplete", "Show possible queries as you type");
+	for (i = 0; i < nautocompleters; i++)
+		option(b, autocompleters[i].name, tr(autocompleters[i].label),
+		    !strcmp(p->autocomplete, autocompleters[i].name));
 	buf_puts(b, "</select></div>\n");
 
 	for (i = 0; i < ncategories && i < PREFS_CATEGORIES; i++)
@@ -1224,7 +1240,7 @@ render_stats(struct buf *b, const struct prefs *p)
 		    "<tr>"
 		    "<td><img src=\"%s\" alt=\"\" loading=\"lazy\">%s</td>"
 		    "<td class=\"%r\">",
-		    favicon_url(&scratch, r->e->website), r->e->name, cls);
+		    favicon_url(&scratch, r->e->website, p->favicon), r->e->name, cls);
 		if (r->suspended)
 			buf_puts(b, "suspended");
 		else if (r->reliability >= 0)

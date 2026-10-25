@@ -21,6 +21,9 @@ msgstr "Autorius"
 msgid "Auto"
 msgstr "Automatiškai"
 
+msgid "Autocomplete"
+msgstr "Automatinis užbaigimas"
+
 msgid "Back"
 msgstr "Atgal"
 
@@ -39,11 +42,17 @@ msgstr "Komentarai"
 msgid "Default language"
 msgstr "Numatytoji kalba"
 
+msgid "Display favicons near search results"
+msgstr "Rodyti svetainių piktogramas šalia paieškos rezultatų"
+
 msgid "Engine name"
 msgstr "Sistemos pavadinimas"
 
 msgid "Engines"
 msgstr "Sistemos"
+
+msgid "Favicon Resolver"
+msgstr "Svetainių piktogramų šaltinis"
 
 msgid "Filter content"
 msgstr "Filtruoti turinį"
@@ -105,6 +114,9 @@ msgstr "Nėra rezultatų užklausai {0}"
 msgid "None"
 msgstr "Nėra"
 
+msgid "Off"
+msgstr "Išjungta"
+
 msgid "Package"
 msgstr "Paketas"
 
@@ -152,6 +164,9 @@ msgstr "Paieškos kalba"
 
 msgid "Searching"
 msgstr "Ieškoma"
+
+msgid "Show possible queries as you type"
+msgstr "Rodyti galimas užklausas rašant"
 
 msgid "Strict"
 msgstr "Griežta"

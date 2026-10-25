@@ -21,6 +21,9 @@ msgstr "రచయిత"
 msgid "Auto"
 msgstr "ఆటోమేటిక్"
 
+msgid "Autocomplete"
+msgstr "ఆటోకంప్లేటే"
+
 msgid "Back"
 msgstr "వెనుకకు"
 
@@ -39,11 +42,17 @@ msgstr "కామెంట్ లు"
 msgid "Default language"
 msgstr "నిష్క్రియ భాష"
 
+msgid "Display favicons near search results"
+msgstr "శోధన ఫలితాల దగ్గర ఫేవికాన్‌లను ప్రదర్శించు"
+
 msgid "Engine name"
 msgstr "యంత్రం పేరు"
 
 msgid "Engines"
 msgstr "యంత్రాలు"
+
+msgid "Favicon Resolver"
+msgstr "ఫేవికాన్ రిసాల్వర్"
 
 msgid "Filter content"
 msgstr "విషయాలను వడకట్టు"
@@ -105,6 +114,9 @@ msgstr "{0} కోసం ఫలితాలు లేవు"
 msgid "None"
 msgstr "ఏమీ లేదు"
 
+msgid "Off"
+msgstr "ఆఫ్"
+
 msgid "Package"
 msgstr "ప్యాకేజీ"
 
@@ -152,6 +164,9 @@ msgstr "శోధన భాష"
 
 msgid "Searching"
 msgstr "వెతుకుతోంది"
+
+msgid "Show possible queries as you type"
+msgstr "టైప్ చేస్తున్నప్పుడు సాధ్యమైన శోధనలను చూపించు"
 
 msgid "Strict"
 msgstr "కఠినమైన"

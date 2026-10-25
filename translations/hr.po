@@ -21,6 +21,9 @@ msgstr "Autor"
 msgid "Auto"
 msgstr "Automatski"
 
+msgid "Autocomplete"
+msgstr "Automatsko dovršavanje"
+
 msgid "Back"
 msgstr "Natrag"
 
@@ -39,11 +42,17 @@ msgstr "Komentari"
 msgid "Default language"
 msgstr "Zadani jezik"
 
+msgid "Display favicons near search results"
+msgstr "Prikažite favikone pored rezultata pretraživanja"
+
 msgid "Engine name"
 msgstr "Naziv tražilice"
 
 msgid "Engines"
 msgstr "Tražilice"
+
+msgid "Favicon Resolver"
+msgstr "Razrješivač favikona"
 
 msgid "Filter content"
 msgstr "Filtriranje sadržaja"
@@ -105,6 +114,9 @@ msgstr "Nema rezultata za {0}"
 msgid "None"
 msgstr "Ništa"
 
+msgid "Off"
+msgstr "Isključeno"
+
 msgid "Package"
 msgstr "Paket"
 
@@ -152,6 +164,9 @@ msgstr "Jezik pretraživanja"
 
 msgid "Searching"
 msgstr "Pretraživanje"
+
+msgid "Show possible queries as you type"
+msgstr "Prikažite moguće upite dok tipkate"
 
 msgid "Strict"
 msgstr "Strogo"

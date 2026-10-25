@@ -21,6 +21,9 @@ msgstr "Автор"
 msgid "Auto"
 msgstr "Автоматично"
 
+msgid "Autocomplete"
+msgstr "Автозаповнення"
+
 msgid "Back"
 msgstr "Назад"
 
@@ -39,11 +42,17 @@ msgstr "Коментарів"
 msgid "Default language"
 msgstr "Стандартна мова"
 
+msgid "Display favicons near search results"
+msgstr "Показувати значки біля результатів пошуку"
+
 msgid "Engine name"
 msgstr "Назва пошукової системи"
 
 msgid "Engines"
 msgstr "Пошукові системи"
+
+msgid "Favicon Resolver"
+msgstr "Обробник значків"
 
 msgid "Filter content"
 msgstr "Фільтр контенту"
@@ -105,6 +114,9 @@ msgstr "Немає результатів для {0}"
 msgid "None"
 msgstr "Вимкнений"
 
+msgid "Off"
+msgstr "Вимк."
+
 msgid "Package"
 msgstr "Пакет"
 
@@ -152,6 +164,9 @@ msgstr "Мова пошуку"
 
 msgid "Searching"
 msgstr "Триває пошук"
+
+msgid "Show possible queries as you type"
+msgstr "Показувати можливі запити під час введення"
 
 msgid "Strict"
 msgstr "Строгий"

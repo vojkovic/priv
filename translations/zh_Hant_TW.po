@@ -21,6 +21,9 @@ msgstr "作者"
 msgid "Auto"
 msgstr "自動"
 
+msgid "Autocomplete"
+msgstr "自動完成"
+
 msgid "Back"
 msgstr "返回"
 
@@ -39,11 +42,17 @@ msgstr "留言"
 msgid "Default language"
 msgstr "預設語言"
 
+msgid "Display favicons near search results"
+msgstr "在搜尋結果旁顯示網站圖標"
+
 msgid "Engine name"
 msgstr "引擎名稱"
 
 msgid "Engines"
 msgstr "搜尋引擎"
+
+msgid "Favicon Resolver"
+msgstr "網站圖標解析器"
 
 msgid "Filter content"
 msgstr "過濾內容"
@@ -105,6 +114,9 @@ msgstr "找不到與 {0} 相關的結果"
 msgid "None"
 msgstr "無"
 
+msgid "Off"
+msgstr "關閉"
+
 msgid "Package"
 msgstr "套件"
 
@@ -152,6 +164,9 @@ msgstr "搜尋語言"
 
 msgid "Searching"
 msgstr "搜尋中"
+
+msgid "Show possible queries as you type"
+msgstr "輸入時顯示可能的查詢項目"
 
 msgid "Strict"
 msgstr "嚴格"

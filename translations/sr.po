@@ -21,6 +21,9 @@ msgstr "Аутор"
 msgid "Auto"
 msgstr "Аутоматски"
 
+msgid "Autocomplete"
+msgstr "Ауто попуњавање"
+
 msgid "Back"
 msgstr "Назад"
 
@@ -39,11 +42,17 @@ msgstr "Коментари"
 msgid "Default language"
 msgstr "Подразумевани језик"
 
+msgid "Display favicons near search results"
+msgstr "Прикажи иконице поред резултата претраге"
+
 msgid "Engine name"
 msgstr "Име претраживача"
 
 msgid "Engines"
 msgstr "Претраживачи"
+
+msgid "Favicon Resolver"
+msgstr "Резолвер иконица сајтова"
 
 msgid "Filter content"
 msgstr "Филтрирајте садржај"
@@ -105,6 +114,9 @@ msgstr "Нема резултата за {0}"
 msgid "None"
 msgstr "Ништа"
 
+msgid "Off"
+msgstr "Искључено"
+
 msgid "Package"
 msgstr "Пакет"
 
@@ -152,6 +164,9 @@ msgstr "Језик претраге"
 
 msgid "Searching"
 msgstr "Претрага у току"
+
+msgid "Show possible queries as you type"
+msgstr "Прикажите могуће упите док куцате"
 
 msgid "Strict"
 msgstr "Стриктно"

@@ -21,6 +21,9 @@ msgstr "Upphovsman"
 msgid "Auto"
 msgstr "Automatiskt"
 
+msgid "Autocomplete"
+msgstr "Slutför automatiskt"
+
 msgid "Back"
 msgstr "Tillbaka"
 
@@ -39,11 +42,17 @@ msgstr "Kommentarer"
 msgid "Default language"
 msgstr "Standardspråk"
 
+msgid "Display favicons near search results"
+msgstr "Visa faviconer intill sökresultat"
+
 msgid "Engine name"
 msgstr "Sökmotorns namn"
 
 msgid "Engines"
 msgstr "Sökmotorer"
+
+msgid "Favicon Resolver"
+msgstr "Favicon resolver"
 
 msgid "Filter content"
 msgstr "Filtrera innehåll"
@@ -105,6 +114,9 @@ msgstr "Inga resultat för {0}"
 msgid "None"
 msgstr "Inga"
 
+msgid "Off"
+msgstr "Av"
+
 msgid "Package"
 msgstr "Paket"
 
@@ -152,6 +164,9 @@ msgstr "Sökspråk"
 
 msgid "Searching"
 msgstr "Söker"
+
+msgid "Show possible queries as you type"
+msgstr "Visa sökförslag medan du skriver"
 
 msgid "Strict"
 msgstr "Strikt"

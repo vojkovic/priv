@@ -21,6 +21,9 @@ msgstr "Outor"
 msgid "Auto"
 msgstr "Outomátiko"
 
+msgid "Autocomplete"
+msgstr ""
+
 msgid "Back"
 msgstr "Bèk"
 
@@ -39,11 +42,17 @@ msgstr "Komentario"
 msgid "Default language"
 msgstr "Idioma predeterminá"
 
+msgid "Display favicons near search results"
+msgstr ""
+
 msgid "Engine name"
 msgstr "Motor"
 
 msgid "Engines"
 msgstr "Motor"
+
+msgid "Favicon Resolver"
+msgstr ""
 
 msgid "Filter content"
 msgstr "Filtrá kontenido"
@@ -105,6 +114,9 @@ msgstr "No tin resultado pa {0}"
 msgid "None"
 msgstr "Ningun"
 
+msgid "Off"
+msgstr ""
+
 msgid "Package"
 msgstr "Pakete"
 
@@ -152,6 +164,9 @@ msgstr "Idioma di búsketa"
 
 msgid "Searching"
 msgstr "Ta buska"
+
+msgid "Show possible queries as you type"
+msgstr ""
 
 msgid "Strict"
 msgstr "Struktu"

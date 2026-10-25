@@ -21,6 +21,9 @@ msgstr "저자"
 msgid "Auto"
 msgstr "자동"
 
+msgid "Autocomplete"
+msgstr "자동 완성"
+
 msgid "Back"
 msgstr "뒤로"
 
@@ -39,11 +42,17 @@ msgstr "댓글"
 msgid "Default language"
 msgstr "기본 언어"
 
+msgid "Display favicons near search results"
+msgstr "검색 결과 옆에 파비콘 표시하기"
+
 msgid "Engine name"
 msgstr "검색엔진 이름"
 
 msgid "Engines"
 msgstr "검색엔진"
+
+msgid "Favicon Resolver"
+msgstr "파비콘 리졸버"
 
 msgid "Filter content"
 msgstr "콘텐츠 필터링"
@@ -105,6 +114,9 @@ msgstr "{0}에 대한 결과가 없습니다"
 msgid "None"
 msgstr "없음"
 
+msgid "Off"
+msgstr "사용안함"
+
 msgid "Package"
 msgstr "패키지"
 
@@ -152,6 +164,9 @@ msgstr "검색 언어"
 
 msgid "Searching"
 msgstr "검색 중"
+
+msgid "Show possible queries as you type"
+msgstr "입력하는 동안 검색어 예측"
 
 msgid "Strict"
 msgstr "엄격"

@@ -21,6 +21,9 @@ msgstr "རྩོམ་པ་པོ།"
 msgid "Auto"
 msgstr "རང་འགུལ།"
 
+msgid "Autocomplete"
+msgstr "རང་ཤུགས་ཀྱིས་སྒྲུབ།"
+
 msgid "Back"
 msgstr "ཕྱིར་ལོག"
 
@@ -39,11 +42,17 @@ msgstr "མཆན་འགྲེལ།"
 msgid "Default language"
 msgstr "གཞི་བཞག་སྐད་རིགས།"
 
+msgid "Display favicons near search results"
+msgstr ""
+
 msgid "Engine name"
 msgstr "སྒུལ་བྱེད་ཀྱི་མིང་།"
 
 msgid "Engines"
 msgstr "སྒུལ་བྱེད།"
+
+msgid "Favicon Resolver"
+msgstr ""
 
 msgid "Filter content"
 msgstr "ནང་དོན་བཙག་བྱེད།"
@@ -105,6 +114,9 @@ msgstr "{0}ཡི་འབྲས་བུ་མི་འདུག"
 msgid "None"
 msgstr "གང་ཡང་མེད།"
 
+msgid "Off"
+msgstr "ཁ་རྒྱབ།"
+
 msgid "Package"
 msgstr "ཐུམ་སྒྲིལ།"
 
@@ -152,6 +164,9 @@ msgstr "འཚོལ་བཤེར་ནང་དོན་མཚོན་བྱ
 
 msgid "Searching"
 msgstr "འཚོལ་བཞིན་པ།"
+
+msgid "Show possible queries as you type"
+msgstr ""
 
 msgid "Strict"
 msgstr "ནན་ཏན།"

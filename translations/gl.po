@@ -21,6 +21,9 @@ msgstr "Autoría"
 msgid "Auto"
 msgstr "Automático"
 
+msgid "Autocomplete"
+msgstr "Autocompletar"
+
 msgid "Back"
 msgstr "Volver"
 
@@ -39,11 +42,17 @@ msgstr "Comentarios"
 msgid "Default language"
 msgstr "Idioma por defecto"
 
+msgid "Display favicons near search results"
+msgstr "Mostrar icona da web preto do resultado da busca"
+
 msgid "Engine name"
 msgstr "Nome do motor"
 
 msgid "Engines"
 msgstr "Motores"
+
+msgid "Favicon Resolver"
+msgstr "Orixe da icona da web"
 
 msgid "Filter content"
 msgstr "Filtro de contido"
@@ -105,6 +114,9 @@ msgstr "Non hai resultados para {0}"
 msgid "None"
 msgstr "Ningunha"
 
+msgid "Off"
+msgstr "Off"
+
 msgid "Package"
 msgstr "Paquete"
 
@@ -152,6 +164,9 @@ msgstr "Idioma de busca"
 
 msgid "Searching"
 msgstr "Buscando"
+
+msgid "Show possible queries as you type"
+msgstr "Mostra posibles consultas ao ir escribindo"
 
 msgid "Strict"
 msgstr "Estrita"

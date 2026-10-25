@@ -21,6 +21,9 @@ msgstr "Awtor"
 msgid "Auto"
 msgstr "Awtomatiko"
 
+msgid "Autocomplete"
+msgstr "Kusang tinatapos"
+
 msgid "Back"
 msgstr "Bumalik"
 
@@ -39,11 +42,17 @@ msgstr "Mga komento"
 msgid "Default language"
 msgstr "Default na wika"
 
+msgid "Display favicons near search results"
+msgstr "Ipakita ang mga favicon malapit sa mga resulta ng paghahanap"
+
 msgid "Engine name"
 msgstr "Pangalan ng engine"
 
 msgid "Engines"
 msgstr "Engines"
+
+msgid "Favicon Resolver"
+msgstr "favicon solver"
 
 msgid "Filter content"
 msgstr "Salain ang mga nilalaman"
@@ -105,6 +114,9 @@ msgstr "Walang resulta para sa {0}"
 msgid "None"
 msgstr "Wala"
 
+msgid "Off"
+msgstr "Sara"
+
 msgid "Package"
 msgstr "Package"
 
@@ -152,6 +164,9 @@ msgstr "Ang wika ng paghahanap"
 
 msgid "Searching"
 msgstr "Naghahanap"
+
+msgid "Show possible queries as you type"
+msgstr "Ipakita ang mga posible na query habang nagta-type"
 
 msgid "Strict"
 msgstr "Mahigpit"

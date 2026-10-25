@@ -21,6 +21,9 @@ msgstr "Údar"
 msgid "Auto"
 msgstr "Uathoibríoch"
 
+msgid "Autocomplete"
+msgstr "Uathchomhlánú"
+
 msgid "Back"
 msgstr "Ar ais"
 
@@ -39,11 +42,17 @@ msgstr "Tráchtanna"
 msgid "Default language"
 msgstr "Teanga réamhshocraithe"
 
+msgid "Display favicons near search results"
+msgstr "Taispeáin favicons in aice le torthaí cuardaigh"
+
 msgid "Engine name"
 msgstr "Ainm an innill"
 
 msgid "Engines"
 msgstr "Innill"
+
+msgid "Favicon Resolver"
+msgstr "Réiteach Favicon"
 
 msgid "Filter content"
 msgstr "Ábhar scagaire"
@@ -105,6 +114,9 @@ msgstr "Níl aon torthaí do {0}"
 msgid "None"
 msgstr "Níl aon"
 
+msgid "Off"
+msgstr "As"
+
 msgid "Package"
 msgstr "Pacáiste"
 
@@ -152,6 +164,9 @@ msgstr "Teanga cuardaigh"
 
 msgid "Searching"
 msgstr "Ag cuardach"
+
+msgid "Show possible queries as you type"
+msgstr "Taispeáin ceisteanna féideartha agus tú ag clóscríobh"
 
 msgid "Strict"
 msgstr "Docht"

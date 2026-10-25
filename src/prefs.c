@@ -2,7 +2,9 @@
 #include <string.h>
 #include <strings.h>
 
+#include "autocomplete.h"
 #include "engine.h"
+#include "favicon.h"
 #include "locales.h"
 #include "prefs.h"
 #include "result.h"
@@ -180,16 +182,24 @@ pair(struct arena *a, const char *s, size_t *cat, const struct engine **e)
 	return *cat < PREFS_CATEGORIES && *e && engine_in(*e, categories[*cat].name);
 }
 
+/* a name from one of the lists of choices, each of which starts its entries with the name */
 static const char *
-theme_find(const char *name)
+pick(const char *name, const void *list, size_t n, size_t size)
 {
+	const char *const *e;
 	size_t i;
 
-	for (i = 0; name && i < nthemes; i++)
-		if (!strcmp(themes[i].name, name))
-			return themes[i].name;
+	for (i = 0; name && i < n; i++) {
+		e = (const char *const *)((const char *)list + i * size);
+		if (!strcmp(*e, name))
+			return *e;
+	}
 	return NULL;
 }
+
+#define THEME(s) pick(s, themes, nthemes, sizeof(*themes))
+#define FAVICON(s) pick(s, favicon_resolvers, nfavicon_resolvers, sizeof(*favicon_resolvers))
+#define AUTOCOMPLETE(s) pick(s, autocompleters, nautocompleters, sizeof(*autocompleters))
 
 void
 prefs_parse(struct arena *a, struct request *r, struct prefs *p)
@@ -203,6 +213,8 @@ prefs_parse(struct arena *a, struct request *r, struct prefs *p)
 	p->ui_code = "";
 	p->safesearch = SAFESEARCH_DEFAULT;
 	p->theme = THEME_DEFAULT;
+	p->favicon = FAVICON_DEFAULT;
+	p->autocomplete = AUTOCOMPLETE_DEFAULT;
 	if (c) {
 		if ((p->ui = ui_find(query_param(a, c, "ui"))))
 			p->ui_code = p->ui->code;
@@ -210,8 +222,12 @@ prefs_parse(struct arena *a, struct request *r, struct prefs *p)
 			p->language = v;
 		if ((v = query_param(a, c, "safesearch")) && v[0] >= '0' && v[0] <= '2' && !v[1])
 			p->safesearch = v[0] - '0';
-		if ((v = theme_find(query_param(a, c, "theme"))))
+		if ((v = THEME(query_param(a, c, "theme"))))
 			p->theme = v;
+		if ((v = FAVICON(query_param(a, c, "favicon"))))
+			p->favicon = v;
+		if ((v = AUTOCOMPLETE(query_param(a, c, "autocomplete"))))
+			p->autocomplete = v;
 		if ((v = query_param(a, c, "off"))) {
 			p->saved = 1;
 			list = astrdup(a, v);
@@ -249,7 +265,9 @@ prefs_from_form(struct arena *a, struct request *r, struct prefs *p)
 	p->language = v && valid_language(v) ? v : NULL;
 	v = query_param(a, qs, "safesearch");
 	p->safesearch = v && v[0] >= '0' && v[0] <= '2' && !v[1] ? v[0] - '0' : SAFESEARCH_DEFAULT;
-	p->theme = (v = theme_find(query_param(a, qs, "theme"))) ? v : THEME_DEFAULT;
+	p->theme = (v = THEME(query_param(a, qs, "theme"))) ? v : THEME_DEFAULT;
+	p->favicon = (v = FAVICON(query_param(a, qs, "favicon"))) ? v : FAVICON_DEFAULT;
+	p->autocomplete = (v = AUTOCOMPLETE(query_param(a, qs, "autocomplete"))) ? v : AUTOCOMPLETE_DEFAULT;
 	for (; *qs; qs = *end ? end + 1 : end) {
 		end = qs + strcspn(qs, "&");
 		eq = memchr(qs, '=', end - qs);
@@ -283,6 +301,10 @@ prefs_cookie(struct arena *a, const struct prefs *p, int secure)
 		buf_printf(&b, "&safesearch=%d", p->safesearch);
 	if (strcmp(p->theme, THEME_DEFAULT))
 		buf_printf(&b, "&theme=%s", p->theme);
+	if (strcmp(p->favicon, FAVICON_DEFAULT))
+		buf_printf(&b, "&favicon=%s", p->favicon);
+	if (strcmp(p->autocomplete, AUTOCOMPLETE_DEFAULT))
+		buf_printf(&b, "&autocomplete=%s", p->autocomplete);
 	for (i = 0; i < ncategories && i < PREFS_CATEGORIES; i++)
 		for (j = 0; j < nengines; j++)
 			if (p->off[i] & ENGINE_BIT(engines[j]))

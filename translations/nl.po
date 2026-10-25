@@ -21,6 +21,9 @@ msgstr "Auteur"
 msgid "Auto"
 msgstr "Automatisch"
 
+msgid "Autocomplete"
+msgstr "Auto-aanvullen"
+
 msgid "Back"
 msgstr "Terug"
 
@@ -39,11 +42,17 @@ msgstr "Reacties"
 msgid "Default language"
 msgstr "Standaardtaal"
 
+msgid "Display favicons near search results"
+msgstr "Toon favicons naast zoekresultaten"
+
 msgid "Engine name"
 msgstr "Naam zoekmachine"
 
 msgid "Engines"
 msgstr "Zoekmachines"
+
+msgid "Favicon Resolver"
+msgstr "Favicon bronzoeker"
 
 msgid "Filter content"
 msgstr "Filteren op inhoud"
@@ -105,6 +114,9 @@ msgstr "Geen resultaten voor {0}"
 msgid "None"
 msgstr "Geen"
 
+msgid "Off"
+msgstr "Uit"
+
 msgid "Package"
 msgstr "Pakket"
 
@@ -152,6 +164,9 @@ msgstr "Zoektaal"
 
 msgid "Searching"
 msgstr "Bezig met zoeken"
+
+msgid "Show possible queries as you type"
+msgstr "Toon mogelijke zoekopdrachten tijdens het intypen"
 
 msgid "Strict"
 msgstr "Strikt"

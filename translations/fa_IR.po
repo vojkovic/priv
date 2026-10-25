@@ -22,6 +22,9 @@ msgstr "نویسنده"
 msgid "Auto"
 msgstr "خودکار"
 
+msgid "Autocomplete"
+msgstr "تکمیل خودکار"
+
 msgid "Back"
 msgstr "بازگشت"
 
@@ -40,11 +43,17 @@ msgstr "نظر ها"
 msgid "Default language"
 msgstr "زبان پیش‌گزیده"
 
+msgid "Display favicons near search results"
+msgstr "نمایش فاوآیکون‌ها کنار نتایج جستجو"
+
 msgid "Engine name"
 msgstr "نام موتور"
 
 msgid "Engines"
 msgstr "موتورها"
+
+msgid "Favicon Resolver"
+msgstr "حل کننده فاویکون"
 
 msgid "Filter content"
 msgstr "فیلتر کردن محتوا"
@@ -106,6 +115,9 @@ msgstr "نتیجه‌ای برای {0} یافت نشد"
 msgid "None"
 msgstr "هیچ"
 
+msgid "Off"
+msgstr "خاموش"
+
 msgid "Package"
 msgstr "بسته"
 
@@ -153,6 +165,9 @@ msgstr "زبان جست‌وجو"
 
 msgid "Searching"
 msgstr "در حال جستجو"
+
+msgid "Show possible queries as you type"
+msgstr "نمایش جستجوهای احتمالی هنگام تایپ"
 
 msgid "Strict"
 msgstr "سخت‌گیر"

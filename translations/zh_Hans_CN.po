@@ -21,6 +21,9 @@ msgstr "作者"
 msgid "Auto"
 msgstr "自动"
 
+msgid "Autocomplete"
+msgstr "自动补全"
+
 msgid "Back"
 msgstr "返回"
 
@@ -39,11 +42,17 @@ msgstr "评论"
 msgid "Default language"
 msgstr "默认语言"
 
+msgid "Display favicons near search results"
+msgstr "在搜索结果附近显示网站图标"
+
 msgid "Engine name"
 msgstr "引擎名称"
 
 msgid "Engines"
 msgstr "搜索引擎"
+
+msgid "Favicon Resolver"
+msgstr "网站图标"
 
 msgid "Filter content"
 msgstr "内容过滤"
@@ -105,6 +114,9 @@ msgstr "没有与 {0} 相关的结果"
 msgid "None"
 msgstr "无"
 
+msgid "Off"
+msgstr "禁用"
+
 msgid "Package"
 msgstr "软件包"
 
@@ -152,6 +164,9 @@ msgstr "搜索语言"
 
 msgid "Searching"
 msgstr "正在搜索"
+
+msgid "Show possible queries as you type"
+msgstr "输入时显示可能的查询"
 
 msgid "Strict"
 msgstr "严格"

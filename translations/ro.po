@@ -21,6 +21,9 @@ msgstr "Autor"
 msgid "Auto"
 msgstr "Automat"
 
+msgid "Autocomplete"
+msgstr "Completare automată"
+
 msgid "Back"
 msgstr "Înapoi"
 
@@ -39,11 +42,17 @@ msgstr "Comentarii"
 msgid "Default language"
 msgstr "Limbă implicită"
 
+msgid "Display favicons near search results"
+msgstr "Afișați favicons lângă rezultatele căutării"
+
 msgid "Engine name"
 msgstr "Numele motorului"
 
 msgid "Engines"
 msgstr "Motoare de căutare"
+
+msgid "Favicon Resolver"
+msgstr "Rezolvator Favicon"
 
 msgid "Filter content"
 msgstr "Filtrează conținutul"
@@ -105,6 +114,9 @@ msgstr "Niciun rezultat pentru {0}"
 msgid "None"
 msgstr "Nimic"
 
+msgid "Off"
+msgstr "Oprit"
+
 msgid "Package"
 msgstr "Pachet"
 
@@ -152,6 +164,9 @@ msgstr "Limba de căutare"
 
 msgid "Searching"
 msgstr "Se caută"
+
+msgid "Show possible queries as you type"
+msgstr "Afișează sugestii de căutare pe măsură ce tastezi"
 
 msgid "Strict"
 msgstr "strictă"

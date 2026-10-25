@@ -21,6 +21,9 @@ msgstr "Tác giả"
 msgid "Auto"
 msgstr "Tự động"
 
+msgid "Autocomplete"
+msgstr "Gợi ý tự động"
+
 msgid "Back"
 msgstr "Quay lại"
 
@@ -39,11 +42,17 @@ msgstr "Bình luận"
 msgid "Default language"
 msgstr "Ngôn ngữ mặc định"
 
+msgid "Display favicons near search results"
+msgstr "Hiển thị biểu tượng web gần kết quả tìm kiếm"
+
 msgid "Engine name"
 msgstr "Tên trình tìm kiếm"
 
 msgid "Engines"
 msgstr "Các trình tìm kiếm"
+
+msgid "Favicon Resolver"
+msgstr "Bộ phân giải biểu tượng web"
 
 msgid "Filter content"
 msgstr "Lọc nội dung"
@@ -105,6 +114,9 @@ msgstr "Không có kết quả cho {0}"
 msgid "None"
 msgstr "Không"
 
+msgid "Off"
+msgstr "Tắt"
+
 msgid "Package"
 msgstr "Gói"
 
@@ -152,6 +164,9 @@ msgstr "Ngôn ngữ tìm kiếm"
 
 msgid "Searching"
 msgstr "Đang tìm kiếm"
+
+msgid "Show possible queries as you type"
+msgstr "Gợi ý truy vấn khi đang nhập"
 
 msgid "Strict"
 msgstr "Nghiêm ngặt"

@@ -21,6 +21,9 @@ msgstr "作者"
 msgid "Auto"
 msgstr "自動"
 
+msgid "Autocomplete"
+msgstr "自動補完"
+
 msgid "Back"
 msgstr "戻る"
 
@@ -39,11 +42,17 @@ msgstr "コメント"
 msgid "Default language"
 msgstr "デフォルトの言語"
 
+msgid "Display favicons near search results"
+msgstr "検索結果でfaviconに合いそうなものを表示する"
+
 msgid "Engine name"
 msgstr "検索エンジン名"
 
 msgid "Engines"
 msgstr "検索エンジン"
+
+msgid "Favicon Resolver"
+msgstr "ファビコンリゾルバー"
 
 msgid "Filter content"
 msgstr "コンテンツをフィルタリングする"
@@ -105,6 +114,9 @@ msgstr "{0} の検索結果はありません"
 msgid "None"
 msgstr "オフ"
 
+msgid "Off"
+msgstr "無効"
+
 msgid "Package"
 msgstr "パッケージ"
 
@@ -152,6 +164,9 @@ msgstr "検索の言語"
 
 msgid "Searching"
 msgstr "検索中"
+
+msgid "Show possible queries as you type"
+msgstr "入力中に可能な検索候補を表示する"
 
 msgid "Strict"
 msgstr "厳重"

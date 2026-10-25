@@ -21,6 +21,9 @@ msgstr "Autor"
 msgid "Auto"
 msgstr "Automaticky"
 
+msgid "Autocomplete"
+msgstr "Automatické dokončovanie"
+
 msgid "Back"
 msgstr "Späť"
 
@@ -39,11 +42,17 @@ msgstr "Komentáre"
 msgid "Default language"
 msgstr "Predvolený jazyk"
 
+msgid "Display favicons near search results"
+msgstr "Zobraziť favikóny pri výsledkoch vyhľadávania"
+
 msgid "Engine name"
 msgstr "Názov vyhľadávača"
 
 msgid "Engines"
 msgstr "Vyhľadávače"
+
+msgid "Favicon Resolver"
+msgstr "Riešiteľ favikón"
 
 msgid "Filter content"
 msgstr "Filtrovanie obsahu"
@@ -105,6 +114,9 @@ msgstr "Žiadne výsledky pre {0}"
 msgid "None"
 msgstr "Žiadne"
 
+msgid "Off"
+msgstr "Vypnuté"
+
 msgid "Package"
 msgstr "Balík"
 
@@ -152,6 +164,9 @@ msgstr "Jazyk vyhľadávania"
 
 msgid "Searching"
 msgstr "Hľadá sa"
+
+msgid "Show possible queries as you type"
+msgstr "Zobrazovať možné dopyty počas písania"
 
 msgid "Strict"
 msgstr "Striktné"

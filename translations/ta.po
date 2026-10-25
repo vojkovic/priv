@@ -21,6 +21,9 @@ msgstr "நூலாசிரியர்"
 msgid "Auto"
 msgstr "தானியங்கு"
 
+msgid "Autocomplete"
+msgstr "நிறைவுத் தானியக்கம்"
+
 msgid "Back"
 msgstr "பின்"
 
@@ -39,11 +42,17 @@ msgstr "கருத்துக்கள்"
 msgid "Default language"
 msgstr "இயல்புநிலை மொழி"
 
+msgid "Display favicons near search results"
+msgstr "தேடல் முடிவுகளுக்கு அருகில் ஃபேவிகான்களைக் காண்பி"
+
 msgid "Engine name"
 msgstr "எந்திரத்தின் பெயர்"
 
 msgid "Engines"
 msgstr "எந்திரங்கள்"
+
+msgid "Favicon Resolver"
+msgstr "ஃபேவிகான் தீர்வு"
 
 msgid "Filter content"
 msgstr "வடிகட்டி உள்ளடக்கம்"
@@ -105,6 +114,9 @@ msgstr "{0}க்கு முடிவுகள் இல்லை"
 msgid "None"
 msgstr "எதுவுமில்லை"
 
+msgid "Off"
+msgstr "அமர்த்து"
+
 msgid "Package"
 msgstr "தொகுப்பு"
 
@@ -152,6 +164,9 @@ msgstr "தேடல் மொழி"
 
 msgid "Searching"
 msgstr "தேடுகிறது"
+
+msgid "Show possible queries as you type"
+msgstr "நீங்கள் தட்டச்சு செய்யும் போது சாத்தியமான வினவல்களைக் காட்டு"
 
 msgid "Strict"
 msgstr "கண்டிப்பான"

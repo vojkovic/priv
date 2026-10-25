@@ -22,6 +22,9 @@ msgstr "ލިޔުންތެރިޔާ"
 msgid "Auto"
 msgstr "އޮޓޯ"
 
+msgid "Autocomplete"
+msgstr ""
+
 msgid "Back"
 msgstr "ފަހަތަށް"
 
@@ -40,11 +43,17 @@ msgstr "ކޮމެންޓުތައް"
 msgid "Default language"
 msgstr "ޑިފޯލްޓް ބަސް"
 
+msgid "Display favicons near search results"
+msgstr ""
+
 msgid "Engine name"
 msgstr "އިންޖީނު"
 
 msgid "Engines"
 msgstr "އިންޖީނުތައް"
+
+msgid "Favicon Resolver"
+msgstr ""
 
 msgid "Filter content"
 msgstr "ކޮންޓެންޓް ފިލްޓަރުކުރޭ"
@@ -106,6 +115,9 @@ msgstr "{0} އަށް ނަތީޖާއެއް ނެތް"
 msgid "None"
 msgstr "ނެތް"
 
+msgid "Off"
+msgstr ""
+
 msgid "Package"
 msgstr "ޕެކޭޖް"
 
@@ -153,6 +165,9 @@ msgstr "ހޯދާ ބަސް"
 
 msgid "Searching"
 msgstr "ހޯދަނީ"
+
+msgid "Show possible queries as you type"
+msgstr ""
 
 msgid "Strict"
 msgstr "ހަރުކަށި"

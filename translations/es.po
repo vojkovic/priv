@@ -21,6 +21,9 @@ msgstr "Autor"
 msgid "Auto"
 msgstr "Automático"
 
+msgid "Autocomplete"
+msgstr "Autocompletar"
+
 msgid "Back"
 msgstr "Atrás"
 
@@ -39,11 +42,17 @@ msgstr "Comentarios"
 msgid "Default language"
 msgstr "Idioma por defecto"
 
+msgid "Display favicons near search results"
+msgstr "Mostrar los favicons al lado de los resultados de búsqueda"
+
 msgid "Engine name"
 msgstr "Nombre del motor de búsqueda"
 
 msgid "Engines"
 msgstr "Motores"
+
+msgid "Favicon Resolver"
+msgstr "Buscador de favicon"
 
 msgid "Filter content"
 msgstr "Filtro de contenido"
@@ -105,6 +114,9 @@ msgstr "No hay resultados para {0}"
 msgid "None"
 msgstr "Ninguno"
 
+msgid "Off"
+msgstr "Desactivado"
+
 msgid "Package"
 msgstr "Paquete"
 
@@ -152,6 +164,9 @@ msgstr "Idioma de búsqueda"
 
 msgid "Searching"
 msgstr "Buscando"
+
+msgid "Show possible queries as you type"
+msgstr "Buscar mientras escribes"
 
 msgid "Strict"
 msgstr "Estricto"

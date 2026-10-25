@@ -21,6 +21,9 @@ msgstr "Tekijä"
 msgid "Auto"
 msgstr "Automaattinen"
 
+msgid "Autocomplete"
+msgstr "Automaattinen täydentäminen"
+
 msgid "Back"
 msgstr "Takaisin"
 
@@ -39,11 +42,17 @@ msgstr "Kommentit"
 msgid "Default language"
 msgstr "Oletuskieli"
 
+msgid "Display favicons near search results"
+msgstr "Näytä Faviconit hakutulosten lähellä"
+
 msgid "Engine name"
 msgstr "Hakukoneen nimi"
 
 msgid "Engines"
 msgstr "Hakukoneet"
+
+msgid "Favicon Resolver"
+msgstr "Favicon-ratkaisija"
 
 msgid "Filter content"
 msgstr "Suodata hakutulosten sisältöä"
@@ -105,6 +114,9 @@ msgstr "Ei tuloksia haulle {0}"
 msgid "None"
 msgstr "Ei mitään"
 
+msgid "Off"
+msgstr "Pois"
+
 msgid "Package"
 msgstr "Paketti"
 
@@ -152,6 +164,9 @@ msgstr "Haun kieli"
 
 msgid "Searching"
 msgstr "Haetaan"
+
+msgid "Show possible queries as you type"
+msgstr "Näytä mahdolliset kyselyt kirjoittaessasi"
 
 msgid "Strict"
 msgstr "Tiukka"

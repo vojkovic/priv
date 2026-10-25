@@ -21,6 +21,9 @@ msgstr "Szerző"
 msgid "Auto"
 msgstr "Automatikus"
 
+msgid "Autocomplete"
+msgstr "Automatikus kiegészítés"
+
 msgid "Back"
 msgstr "Vissza"
 
@@ -39,11 +42,17 @@ msgstr "Kommentek"
 msgid "Default language"
 msgstr "Alapértelmezett nyelv"
 
+msgid "Display favicons near search results"
+msgstr "Weblapikonok megjelenítése a keresési eredmények mellett"
+
 msgid "Engine name"
 msgstr "Keresőmotor neve"
 
 msgid "Engines"
 msgstr "Keresőmotorok"
+
+msgid "Favicon Resolver"
+msgstr "Weblapikon-feloldó"
 
 msgid "Filter content"
 msgstr "Tartalomszűrés"
@@ -105,6 +114,9 @@ msgstr "Nincs találat erre: {0}"
 msgid "None"
 msgstr "Nincs"
 
+msgid "Off"
+msgstr "Ki"
+
 msgid "Package"
 msgstr "Csomag"
 
@@ -152,6 +164,9 @@ msgstr "Keresés nyelve"
 
 msgid "Searching"
 msgstr "Keresés folyamatban"
+
+msgid "Show possible queries as you type"
+msgstr "Lehetséges lekérdezések megjelenítése gépelés közben"
 
 msgid "Strict"
 msgstr "Erős"

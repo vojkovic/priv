@@ -21,10 +21,23 @@
 	"stroke-width=\"1.5\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M2 12h20M12 2a15 15 0 0 1 0 20" \
 	"M12 2a15 15 0 0 0 0 20\"/></svg>"
 
+/* where icons come from, each with its own cache; a fetched icon that matches the miss check is no icon */
+const struct favicon_resolver favicon_resolvers[] = {
+    {"allesedv", "allesedv", "https://f1.allesedv.com/32/%s", "image/gif", 0},
+    {"duckduckgo", "DuckDuckGo", "https://icons.duckduckgo.com/ip2/%s.ico", NULL, 0},
+    {"google", "Google",
+        "https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://%s&size=32",
+        NULL, 0},
+    {"kagi", "Kagi", "https://news.kagi.com/api/favicon-proxy?domain=%s&quality=fast", NULL, 0},
+    {"yandex", "Yandex", "https://favicon.yandex.net/favicon/%s", NULL, 70},
+};
+const size_t nfavicon_resolvers = LEN(favicon_resolvers);
+
 struct waiter;
 
 struct fav {
 	struct fav *next;
+	size_t resolver;
 	char *authority;
 	char mime[64];
 	size_t size;
@@ -40,7 +53,7 @@ struct waiter {
 };
 
 static struct fav *table[4096];
-static char *dir;
+static char *dir, *dirs[LEN(favicon_resolvers)];
 static size_t total;
 static int inflight;
 
@@ -54,26 +67,38 @@ hash64(const char *s)
 	return h;
 }
 
+static size_t
+resolver_index(const char *name)
+{
+	size_t i;
+
+	for (i = 0; name && i < LEN(favicon_resolvers); i++)
+		if (!strcmp(favicon_resolvers[i].name, name))
+			return i;
+	return resolver_index(FAVICON_DEFAULT);
+}
+
 static char *
-path(const char *authority)
+path(size_t resolver, const char *authority)
 {
 	static char p[4096];
 
-	snprintf(p, sizeof(p), "%s/%016llx", dir, (unsigned long long)hash64(authority));
+	snprintf(p, sizeof(p), "%s/%016llx", dirs[resolver], (unsigned long long)hash64(authority));
 	return p;
 }
 
 static struct fav *
-find(const char *authority, int create)
+find(size_t resolver, const char *authority, int create)
 {
-	struct fav **head = &table[hash64(authority) % LEN(table)], *f;
+	struct fav **head = &table[(hash64(authority) + resolver) % LEN(table)], *f;
 
 	for (f = *head; f; f = f->next)
-		if (!strcmp(f->authority, authority))
+		if (f->resolver == resolver && !strcmp(f->authority, authority))
 			return f;
 	if (!create)
 		return NULL;
 	f = xcalloc(1, sizeof(*f));
+	f->resolver = resolver;
 	f->authority = xstrdup(authority);
 	f->next = *head;
 	*head = f;
@@ -91,7 +116,7 @@ drop(struct fav *f)
 {
 	if (!f->cached)
 		return;
-	unlink(path(f->authority));
+	unlink(path(f->resolver, f->authority));
 	total -= f->size;
 	f->cached = 0;
 }
@@ -115,7 +140,7 @@ evict(void)
 }
 
 static void
-load(const char *name)
+load(size_t resolver, const char *name)
 {
 	char p[4096], authority[512], mime[64];
 	struct stat st;
@@ -123,7 +148,7 @@ load(const char *name)
 	FILE *fp;
 	size_t n;
 
-	snprintf(p, sizeof(p), "%s/%s", dir, name);
+	snprintf(p, sizeof(p), "%s/%s", dirs[resolver], name);
 	if (!(fp = fopen(p, "rb")))
 		return;
 	if (!fgets(authority, sizeof(authority), fp) || strcmp(authority, MAGIC) ||
@@ -135,11 +160,11 @@ load(const char *name)
 	fclose(fp);
 	authority[strcspn(authority, "\n")] = 0;
 	mime[strcspn(mime, "\n")] = 0;
-	if (strcmp(path(authority), p)) {
+	if (strcmp(path(resolver, authority), p)) {
 		unlink(p);
 		return;
 	}
-	f = find(authority, 1);
+	f = find(resolver, authority, 1);
 	snprintf(f->mime, sizeof(f->mime), "%s", mime);
 	n = st.st_size;
 	f->size = n;
@@ -154,19 +179,38 @@ void
 favicon_init(void)
 {
 	const char *base = cache_base();
+	char from[4096], to[4096];
 	struct dirent *de;
+	size_t i, n;
 	DIR *d;
 
 	dir = xmalloc(strlen(base) + 10);
 	snprintf(dir, strlen(base) + 10, "%s/favicons", base);
-	if (mkdirs(dir) < 0)
-		die("favicon cache %s: %s", dir, strerror(errno));
-	if (!(d = opendir(dir)))
-		die("favicon cache %s: %s", dir, strerror(errno));
-	while ((de = readdir(d)))
-		if (strlen(de->d_name) == 16)
-			load(de->d_name);
-	closedir(d);
+	for (i = 0; i < LEN(favicon_resolvers); i++) {
+		n = strlen(dir) + strlen(favicon_resolvers[i].name) + 2;
+		dirs[i] = xmalloc(n);
+		snprintf(dirs[i], n, "%s/%s", dir, favicon_resolvers[i].name);
+		if (mkdirs(dirs[i]) < 0)
+			die("favicon cache %s: %s", dirs[i], strerror(errno));
+	}
+	/* icons cached before there was a choice came from kagi */
+	if ((d = opendir(dir))) {
+		while ((de = readdir(d)))
+			if (strlen(de->d_name) == 16) {
+				snprintf(from, sizeof(from), "%s/%s", dir, de->d_name);
+				snprintf(to, sizeof(to), "%s/%s", dirs[resolver_index("kagi")], de->d_name);
+				rename(from, to);
+			}
+		closedir(d);
+	}
+	for (i = 0; i < LEN(favicon_resolvers); i++) {
+		if (!(d = opendir(dirs[i])))
+			die("favicon cache %s: %s", dirs[i], strerror(errno));
+		while ((de = readdir(d)))
+			if (strlen(de->d_name) == 16)
+				load(i, de->d_name);
+		closedir(d);
+	}
 	evict();
 }
 
@@ -205,7 +249,7 @@ read_blob(struct fav *f, size_t *len)
 	FILE *fp;
 	long off;
 
-	if (!(fp = fopen(path(f->authority), "rb")))
+	if (!(fp = fopen(path(f->resolver, f->authority), "rb")))
 		return NULL;
 	if (skip_lines(fp, 3) < 0 || (off = ftell(fp)) < 0 || (size_t)off > f->size) {
 		fclose(fp);
@@ -239,9 +283,9 @@ respond_disk(struct conn *c, struct fav *f)
 }
 
 char *
-favicon_inline(struct arena *a, const char *authority, size_t max)
+favicon_inline(struct arena *a, const char *resolver, const char *authority, size_t max)
 {
-	struct fav *f = authority ? find(authority, 0) : NULL;
+	struct fav *f = authority ? find(resolver_index(resolver), authority, 0) : NULL;
 	char *data, *r;
 	size_t n;
 
@@ -265,13 +309,13 @@ store(struct fav *f, const char *mime, const char *data, size_t len)
 	size_t n;
 
 	drop(f);
-	snprintf(tmp, sizeof(tmp), "%s.tmp", path(f->authority));
+	snprintf(tmp, sizeof(tmp), "%s.tmp", path(f->resolver, f->authority));
 	if (!(fp = fopen(tmp, "wb")))
 		return;
 	n = fprintf(fp, MAGIC "%s\n%s\n", f->authority, mime);
 	if (len)
 		n += fwrite(data, 1, len, fp);
-	if (fclose(fp) != 0 || rename(tmp, path(f->authority)) < 0) {
+	if (fclose(fp) != 0 || rename(tmp, path(f->resolver, f->authority)) < 0) {
 		unlink(tmp);
 		return;
 	}
@@ -300,10 +344,12 @@ static void
 fetched(struct fetch *ft, void *arg)
 {
 	struct fav *f = arg;
+	const struct favicon_resolver *r = &favicon_resolvers[f->resolver];
 	struct waiter *w, *next;
 	const char *ct = fetch_content_type(ft);
 	char mime[64];
-	int ok = ft->code == CURLE_OK && ft->status == 200 && ft->body.len && *ct;
+	int ok = ft->code == CURLE_OK && ft->status == 200 && ft->body.len > r->min_size && *ct &&
+	    !(r->miss_mime && starts_with(ct, r->miss_mime));
 
 	inflight--;
 	f->fetching = 0;
@@ -329,16 +375,16 @@ fetched(struct fetch *ft, void *arg)
 static void
 start(struct fav *f)
 {
+	struct arena a = {0};
 	struct buf url = {0};
 	struct fetch *ft;
 
 	f->fetching = 1;
 	inflight++;
-	buf_puts(&url, "https://news.kagi.com/api/favicon-proxy?domain=");
 	url_quote(&url, f->authority, ".:", 0);
-	buf_puts(&url, "&quality=fast");
-	ft = fetch_new(buf_str(&url));
+	ft = fetch_new(aprintf(&a, favicon_resolvers[f->resolver].url, buf_str(&url)));
 	buf_free(&url);
+	arena_free(&a);
 	curl_easy_setopt(ft->h, CURLOPT_FOLLOWLOCATION, 1L);
 	ft->max_body = 1 << 20;
 	fetch_timeout(ft, 3000);
@@ -346,13 +392,13 @@ start(struct fav *f)
 }
 
 void
-favicon_prefetch(const char *authority)
+favicon_prefetch(const char *resolver, const char *authority)
 {
 	struct fav *f;
 
 	if (!authority || !*authority || strchr(authority, '/') || inflight >= MAX_INFLIGHT)
 		return;
-	f = find(authority, 1);
+	f = find(resolver_index(resolver), authority, 1);
 	if (!f->fetching && !fresh(f))
 		start(f);
 }
@@ -371,7 +417,7 @@ favicon_serve(struct conn *c, struct request *r)
 		http_respond(c, 400, "Content-Type: text/plain\r\n", "", 0);
 		return;
 	}
-	f = find(authority, 1);
+	f = find(resolver_index(query_param(&a, r->query, "resolver")), authority, 1);
 	arena_free(&a);
 	if (fresh(f) && respond_disk(c, f) == 0)
 		return;

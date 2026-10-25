@@ -24,7 +24,7 @@ extern const size_t nthemes;
 /* what a user chose on /preferences, kept only in their own cookie */
 struct prefs {
 	const struct ui_lang *ui, *ui_auto;
-	const char *ui_code, *language, *theme;
+	const char *ui_code, *language, *theme, *favicon, *autocomplete;
 	int safesearch, saved;
 	uint64_t off[PREFS_CATEGORIES];
 };

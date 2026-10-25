@@ -21,6 +21,9 @@ msgstr "Autors"
 msgid "Auto"
 msgstr "Automātiski"
 
+msgid "Autocomplete"
+msgstr "Automātiskā pabeigšana"
+
 msgid "Back"
 msgstr "Atpakaļ"
 
@@ -39,11 +42,17 @@ msgstr "Komentāri"
 msgid "Default language"
 msgstr "Noklusējuma valoda"
 
+msgid "Display favicons near search results"
+msgstr "Rādīt favikonus blakus meklēšanas rezultātiem"
+
 msgid "Engine name"
 msgstr "Meklētāja nosaukums"
 
 msgid "Engines"
 msgstr "Dzinēji"
+
+msgid "Favicon Resolver"
+msgstr "Favikonu avots"
 
 msgid "Filter content"
 msgstr "Filtrēt saturu"
@@ -105,6 +114,9 @@ msgstr "Nav rezultātu vaicājumam {0}"
 msgid "None"
 msgstr "Neviens"
 
+msgid "Off"
+msgstr "Izslēgts"
+
 msgid "Package"
 msgstr "Pakotne"
 
@@ -152,6 +164,9 @@ msgstr "Meklēšanas valoda"
 
 msgid "Searching"
 msgstr "Meklē"
+
+msgid "Show possible queries as you type"
+msgstr "Rādīt iespējamos vaicājumus rakstīšanas laikā"
 
 msgid "Strict"
 msgstr "Stingrs"

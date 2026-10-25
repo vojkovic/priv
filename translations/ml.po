@@ -21,6 +21,9 @@ msgstr "രചയിതാവ്"
 msgid "Auto"
 msgstr "സ്വയമേവ"
 
+msgid "Autocomplete"
+msgstr "സ്വയം പൂർത്തീകരണം"
+
 msgid "Back"
 msgstr "തിരികെ"
 
@@ -39,11 +42,17 @@ msgstr "അഭിപ്രായങ്ങൾ"
 msgid "Default language"
 msgstr "സ്ഥിര ഭാഷ"
 
+msgid "Display favicons near search results"
+msgstr "തിരയൽ ഫലങ്ങൾക്ക് സമീപം ഫാവിക്കോണുകൾ കാണിക്കുക"
+
 msgid "Engine name"
 msgstr "എഞ്ചിൻ"
 
 msgid "Engines"
 msgstr "എഞ്ചിനുകൾ"
+
+msgid "Favicon Resolver"
+msgstr "ഫാവിക്കോൺ ഉറവിടം"
 
 msgid "Filter content"
 msgstr "ഉള്ളടക്കം ഫിൽട്ടർ ചെയ്യുക"
@@ -105,6 +114,9 @@ msgstr "{0} എന്നതിന് ഫലങ്ങളൊന്നുമില�
 msgid "None"
 msgstr "ഒന്നുമില്ല"
 
+msgid "Off"
+msgstr "ഓഫ്"
+
 msgid "Package"
 msgstr "പാക്കേജ്"
 
@@ -152,6 +164,9 @@ msgstr "തിരയൽ ഭാഷ"
 
 msgid "Searching"
 msgstr "തിരയുന്നു"
+
+msgid "Show possible queries as you type"
+msgstr "ടൈപ്പ് ചെയ്യുമ്പോൾ സാധ്യമായ തിരയലുകൾ കാണിക്കുക"
 
 msgid "Strict"
 msgstr "കർശനം"

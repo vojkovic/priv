@@ -172,7 +172,8 @@ prefetch(struct job *j)
 			continue;
 		m = (struct main_result *)r;
 		url_parse(j->a, m->url, &u);
-		favicon_prefetch(starts_with(u.netloc, "xn--") ? idna_decode(j->a, u.netloc) : u.netloc);
+		favicon_prefetch(j->filters->prefs.favicon,
+		    starts_with(u.netloc, "xn--") ? idna_decode(j->a, u.netloc) : u.netloc);
 		if (m->template && !strcmp(m->template, "images")) {
 			if (images++ < PREFETCH_IMAGES)
 				image_prefetch(*m->thumbnail_src ? m->thumbnail_src : m->img_src);
