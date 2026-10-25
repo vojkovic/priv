@@ -534,7 +534,7 @@ puny_decode(const char *in, size_t len, struct buf *out)
 		for (k = 36;; k += 36) {
 			if (pos >= len)
 				return -1;
-			digit = in[pos++];
+			digit = (unsigned char)in[pos++];
 			if (digit >= '0' && digit <= '9')
 				digit = digit - '0' + 26;
 			else if (digit >= 'a' && digit <= 'z')
