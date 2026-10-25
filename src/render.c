@@ -22,6 +22,8 @@
 	"<path d=\"M17.2 17.2L21.8 21.8\" stroke=\"url(#logo-rainbow)\" stroke-width=\"3.6\" stroke-linecap=\"round\" " \
 	"fill=\"none\"/></svg>"
 
+#define SOURCE_URL "https://github.com/vojkovic/priv"
+
 #define YES "<span class=\"yes\">" ICON_CHECK "</span>"
 #define NO "<span class=\"no\">" ICON_MINUS "</span>"
 
@@ -240,13 +242,13 @@ footer(struct buf *b)
 
 	buf_puts(b, "<footer id=\"footer\">");
 	if (plus && !strstr(VERSION, "-dirty"))
-		buf_html(b, "<a href=\"https://github.com/vojkovic/priv/commit/%s\">%s</a>", plus + 1, VERSION);
+		buf_html(b, "<a href=\"" SOURCE_URL "/commit/%s\">%s</a>", plus + 1, VERSION);
 	else if (*VERSION)
 		buf_html(b, "<span>%s</span>", VERSION);
 	buf_html(b,
 	    "<nav>"
-	    "<a href=\"https://github.com/vojkovic/priv\">%s</a>"
-	    "<a href=\"https://github.com/vojkovic/priv/issues\">%s</a>"
+	    "<a href=\"" SOURCE_URL "\">%s</a>"
+	    "<a href=\"" SOURCE_URL "/issues\">%s</a>"
 	    "<a href=\"/stats\">%s</a>"
 	    "</nav>"
 	    "</footer>\n",
@@ -1179,7 +1181,7 @@ render_about(struct buf *b, const struct prefs *p, const char *origin)
 	    "<p>%s is a <a href=\"https://en.wikipedia.org/wiki/Metasearch_engine\">metasearch engine</a> inspired by "
 	    "<a href=\"https://github.com/searxng/searxng\">SearXNG</a> which aggregates the results from other search "
 	    "engines whilst not storing any information on users.</p>\n"
-	    "<p>It runs <a href=\"https://github.com/vojkovic/priv\">priv</a> which is open source software you can host "
+	    "<p>It runs <a href=\"" SOURCE_URL "\">priv</a> which is open source software you can host "
 	    "yourself. If you find it useful, you can <a href=\"https://ko-fi.com/privau\">support its development</a>.</p>\n"
 
 	    "<h2>Add it to your browser</h2>\n"
