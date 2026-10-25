@@ -95,7 +95,7 @@ doc_start(struct buf *b, const char *title, const char *body_class, const struct
 	    "<link rel=\"icon\" href=\"/favicon.svg\" type=\"image/svg+xml\">\n"
 	    "<link rel=\"stylesheet\" href=\"/style.css\">\n"
 	    "<link rel=\"search\" type=\"application/opensearchdescription+xml\" title=\"%s\" href=\"/opensearch.xml\">\n"
-	    "<script src=\"/privy.js\" defer></script>\n",
+	    "<script src=\"/priv.js\" defer></script>\n",
 	    ui->tag, p->theme, ui->rtl ? " dir=\"rtl\"" : "", title, instance_name);
 	if (limiter && limiter_link_token)
 		buf_html(b, "<link rel=\"stylesheet\" href=\"/client%s.css\">\n", botdetect_token());
@@ -577,7 +577,7 @@ image_result(struct buf *b, struct search *s, struct main_result *m)
 	if (m->resolution && resolution(m->resolution, &w, &h))
 		res = aprintf(a, "%ld \xc3\x97 %ld", w, h);
 
-	/* the data- attributes feed the detail panel privy.js opens */
+	/* the data- attributes feed the detail panel priv.js opens */
 	buf_html(b,
 	    "<article class=\"result result-images s%d\" data-title=\"%s\" data-content=\"%s\" data-url=\"%s\" "
 	    "data-site=\"%s\" data-favicon=\"%s\" data-resolution=\"%s\" data-format=\"%s\" data-engines=\"",
@@ -1136,7 +1136,7 @@ render_about(struct buf *b, const struct prefs *p, const char *origin)
 	    "<p>%s is a <a href=\"https://en.wikipedia.org/wiki/Metasearch_engine\">metasearch engine</a> inspired by "
 	    "<a href=\"https://github.com/searxng/searxng\">SearXNG</a> which aggregates the results from other search "
 	    "engines whilst not storing any information on users.</p>\n"
-	    "<p>It runs <a href=\"https://github.com/vojkovic/privy\">privy</a> which is open source software you can host "
+	    "<p>It runs <a href=\"https://github.com/vojkovic/priv\">priv</a> which is open source software you can host "
 	    "yourself. If you find it useful, you can <a href=\"https://ko-fi.com/privau\">support its development</a>.</p>\n"
 
 	    "<h2>Add it to your browser</h2>\n"

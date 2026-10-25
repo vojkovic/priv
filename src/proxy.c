@@ -9,7 +9,7 @@
 #include "proxy.h"
 
 #define MAX_IMAGE (5 << 20)
-/* sent for images that failed; privy.js recognises its odd 403x302 size and hides the result */
+/* sent for images that failed; priv.js recognises its odd 403x302 size and hides the result */
 #define FALLBACK_IMAGE \
 	"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"403\" height=\"302\" viewBox=\"0 0 403 302\">" \
 	"<rect width=\"403\" height=\"302\" fill=\"#363a4f\"/><g transform=\"translate(159.5 109) scale(3.5)\" " \

@@ -10,7 +10,7 @@
 #include "result.h"
 #include "search.h"
 
-#define COOKIE "privy"
+#define COOKIE "priv"
 #define COOKIE_AGE (5 * 365 * 24 * 3600)
 
 /* browser tags that name one of our interface languages differently, most specific first */

@@ -26,9 +26,9 @@ GENERATED = src/locales.c
 FORMAT_SRC = $(filter-out $(GENERATED),$(wildcard src/*.c src/*.h src/engines/*.c tools/*.c))
 LINT_SRC = $(filter %.c,$(FORMAT_SRC))
 
-all: privy
+all: priv
 
-privy: $(OBJ)
+priv: $(OBJ)
 	$(CC) $(LDFLAGS) -o $@ $(OBJ) $(LDLIBS)
 
 obj/tools/embed: tools/embed.c
@@ -38,8 +38,8 @@ obj/tools/embed: tools/embed.c
 obj/style.h: static/style.css obj/tools/embed
 	obj/tools/embed style_css static/style.css > $@
 
-obj/script.h: static/privy.js obj/tools/embed
-	obj/tools/embed privy_js static/privy.js > $@
+obj/script.h: static/priv.js obj/tools/embed
+	obj/tools/embed priv_js static/priv.js > $@
 
 obj/favicon_svg.h: static/favicon.svg obj/tools/embed
 	obj/tools/embed favicon_svg static/favicon.svg > $@
@@ -94,12 +94,12 @@ obj/lint/%.ok: %.c $(wildcard src/*.h) .clang-tidy | obj/style.h obj/script.h ob
 	@touch $@
 
 docker:
-	docker build -t privy .
+	docker build -t priv .
 
 docker-check:
 	docker build --target check .
 
 clean:
-	rm -rf obj privy
+	rm -rf obj priv
 
 .PHONY: all clean format format-check lint lint-files docker docker-check

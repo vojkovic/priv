@@ -1,4 +1,4 @@
-instance_name = "privy"
+instance_name = "priv"
 motd = ""
 listen = "::1"
 port = 8888

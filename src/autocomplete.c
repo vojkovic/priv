@@ -760,7 +760,7 @@ static const struct backend backends[] = {
     {"qwant", "https://api.qwant.com/v3/suggest?version=2&q=%s", params_qwant, parse_qwant, 0},
     {"seznam", "https://suggest.seznam.cz/fulltext/cs?format=json-2&highlight=1&count=6&phrase=%s", params_seznam,
         parse_seznam, 0},
-    {"sogou", "https://sor.html5.qq.com/api/getsug?m=privy&key=%s", NULL, parse_opensearch, 1},
+    {"sogou", "https://sor.html5.qq.com/api/getsug?m=priv&key=%s", NULL, parse_opensearch, 1},
     {"startpage", "https://www.startpage.com/osuggestions?q=%s", NULL, parse_opensearch, 0},
     {"swisscows", "https://api.swisscows.com/suggest?itemsCount=5&query=%s", NULL, parse_list, 0},
     {"wikipedia", "https://%s/w/rest.php/v1/search/title?limit=10&q=%s", params_wikipedia, parse_wikipedia, 0},

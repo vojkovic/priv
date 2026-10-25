@@ -11,7 +11,7 @@
 #include "fetch.h"
 #include "proxy.h"
 
-#define MAGIC "privy-favicon 1\n"
+#define MAGIC "priv-favicon 1\n"
 #define MAX_AGE "604800"
 #define BLOB_MAX (20 << 10)
 #define MAX_INFLIGHT 16

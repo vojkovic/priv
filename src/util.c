@@ -1078,21 +1078,23 @@ const char *
 cache_base(void)
 {
 	static char *base;
-	const char *env;
+	const char *env, *parent = "/tmp", *home = "";
 	size_t n;
 
 	if (base)
 		return base;
 	if (cache_dir && *cache_dir)
 		base = xstrdup(cache_dir);
-	else if ((env = getenv("XDG_CACHE_HOME")) && *env) {
-		base = xmalloc((n = strlen(env) + 8));
-		snprintf(base, n, "%s/privy", env);
-	} else if ((env = getenv("HOME")) && *env) {
-		base = xmalloc((n = strlen(env) + 16));
-		snprintf(base, n, "%s/.cache/privy", env);
-	} else
-		base = xstrdup("/tmp/privy");
+	else {
+		if ((env = getenv("XDG_CACHE_HOME")) && *env)
+			parent = env;
+		else if ((env = getenv("HOME")) && *env) {
+			parent = env;
+			home = "/.cache";
+		}
+		base = xmalloc((n = strlen(parent) + strlen(home) + 6));
+		snprintf(base, n, "%s%s/priv", parent, home);
+	}
 	if (mkdirs(base) < 0)
 		die("cache directory %s: %s", base, strerror(errno));
 	return base;

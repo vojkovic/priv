@@ -4,10 +4,10 @@
 
 #include "util.h"
 
-static const char *paths[] = {"config.toml", "/etc/privy/config.toml"};
+static const char *paths[] = {"config.toml", "/etc/priv/config.toml"};
 
 /* settings from config.toml */
-const char *instance_name = "privy";
+const char *instance_name = "priv";
 const char **motd;
 const char *listen_addr = "::1";
 int listen_port = 8888;

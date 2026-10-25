@@ -132,8 +132,8 @@ route(struct conn *c, struct request *r)
 		static_file(c, r, "image/svg+xml", favicon_etag, favicon_svg, sizeof(favicon_svg));
 		return;
 	}
-	if (!strcmp(r->path, "/privy.js")) {
-		static_file(c, r, "text/javascript", script_etag, privy_js, sizeof(privy_js));
+	if (!strcmp(r->path, "/priv.js")) {
+		static_file(c, r, "text/javascript", script_etag, priv_js, sizeof(priv_js));
 		return;
 	}
 	if (!strcmp(r->path, "/autocompleter")) {
@@ -219,7 +219,7 @@ main(void)
 	signal(SIGPIPE, SIG_IGN);
 	srandom(time(NULL) ^ getpid());
 	etag(style_etag, style_css, sizeof(style_css));
-	etag(script_etag, privy_js, sizeof(privy_js));
+	etag(script_etag, priv_js, sizeof(priv_js));
 	etag(favicon_etag, favicon_svg, sizeof(favicon_svg));
 
 	xmlInitParser();
