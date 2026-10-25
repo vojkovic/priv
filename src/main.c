@@ -11,6 +11,7 @@
 #include "autocomplete.h"
 #include "bangs.h"
 #include "botdetect.h"
+#include "calc.h"
 #include "engine.h"
 #include "ev.h"
 #include "favicon.h"
@@ -28,7 +29,7 @@
 
 #define HTML_HEADERS "Content-Type: text/html; charset=utf-8\r\n" SECURITY_HEADERS
 
-static char style_etag[16], script_etag[16], favicon_etag[16];
+static char style_etag[16], script_etag[16], calc_etag[16], favicon_etag[16];
 
 static void
 respond_buf(struct conn *c, int status, const char *headers, struct buf *b)
@@ -142,6 +143,10 @@ route(struct conn *c, struct request *r)
 		static_file(c, r, "text/javascript", script_etag, priv_js, sizeof(priv_js));
 		return;
 	}
+	if (!strcmp(r->path, "/calc.js")) {
+		static_file(c, r, "text/javascript", calc_etag, calc_js, sizeof(calc_js));
+		return;
+	}
 	if (!strcmp(r->path, "/autocompleter")) {
 		autocomplete(c, r);
 		return;
@@ -228,6 +233,7 @@ main(void)
 	srandom(time(NULL) ^ getpid());
 	etag(style_etag, style_css, sizeof(style_css));
 	etag(script_etag, priv_js, sizeof(priv_js));
+	etag(calc_etag, calc_js, sizeof(calc_js));
 	etag(favicon_etag, favicon_svg, sizeof(favicon_svg));
 
 	xmlInitParser();

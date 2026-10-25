@@ -280,6 +280,83 @@ render_home(struct buf *b, const struct prefs *p)
 	    "</html>\n");
 }
 
+/* whether a query reads as arithmetic, which loads the calculator; calc.js does the real parsing */
+static int
+math_query(const char *q)
+{
+	static const char *const fillers[] = {"what", "is", "whats", "calculate", "calc", "compute", "solve", "equals",
+	    "to", "the", "by"};
+	static const char *const constants[] = {"pi", "e", "tau", "phi", "ans"};
+	static const char *const operations[] = {"sin", "cos", "tan", "asin", "acos", "atan", "atan2", "sinh", "cosh",
+	    "tanh", "asinh", "acosh", "atanh", "arcsin", "arccos", "arctan", "sqrt", "cbrt", "cuberoot", "root", "abs",
+	    "sign", "sgn", "floor", "ceil", "ceiling", "trunc", "round", "exp", "ln", "log", "log2", "log10", "lg",
+	    "pow", "hypot", "min", "max", "mod", "modulo", "gcd", "lcm", "comb", "perm", "ncr", "npr", "factorial",
+	    "fact", "radians", "degrees", "deg", "rad", "of", "percent", "cent", "per", "plus", "minus", "times",
+	    "multiplied", "divided", "over", "squared", "cubed", "power", "raised"};
+	/* UTF-8 for the times, divide, minus, dot, power, degree, pi and root signs */
+	static const char *const symbols[] = {"\xc3\x97", "\xc3\xb7", "\xe2\x88\x92", "\xe2\x80\x93", "\xe2\x80\x94",
+	    "\xc2\xb7", "\xe2\x8b\x85", "\xe2\x88\x97", "\xc2\xb2", "\xc2\xb3", "\xc2\xb0", "\xcf\x80", "\xe2\x88\x9a",
+	    "\xe2\x88\x9b"};
+	size_t n = strlen(q), i, k, len;
+	int operators = 0, operands = 0, hyphens = 0, dashed = 1;
+	char word[16];
+
+	if (!n || n > 200)
+		return 0;
+	for (i = 0; i < n;) {
+		if (IS_DIGIT(q[i])) {
+			operands = 1;
+			i++;
+		} else if (IS_ALPHA(q[i])) {
+			for (len = 0; IS_ALPHA(q[i + len]) || IS_DIGIT(q[i + len]); len++)
+				if (len >= sizeof(word) - 1)
+					return 0;
+			memcpy(word, q + i, len);
+			word[len] = 0;
+			i += len;
+			dashed = 0;
+			if (i > len && IS_DIGIT(q[i - len - 1]) && (word[0] | 0x20) == 'e' &&
+			    strspn(word + 1, "0123456789") == len - 1)
+				continue;
+			for (k = 0; k < LEN(operations) && strcasecmp(word, operations[k]); k++)
+				;
+			if (k < LEN(operations)) {
+				operators = 1;
+				continue;
+			}
+			for (k = 0; k < LEN(constants) && strcasecmp(word, constants[k]); k++)
+				;
+			if (k < LEN(constants)) {
+				operands = 1;
+				continue;
+			}
+			for (k = 0; k < LEN(fillers) && strcasecmp(word, fillers[k]); k++)
+				;
+			if (k == LEN(fillers))
+				return 0;
+		} else if (strchr(" \t.,'=()", q[i])) {
+			dashed = 0;
+			i++;
+		} else if (strchr("+-*/^%!", q[i])) {
+			operators = 1;
+			hyphens += q[i] == '-';
+			dashed &= q[i] == '-';
+			i++;
+		} else {
+			for (k = 0; k < LEN(symbols) && strncmp(q + i, symbols[k], strlen(symbols[k])); k++)
+				;
+			if (k == LEN(symbols))
+				return 0;
+			operators = 1;
+			operands |= k == 11;
+			dashed = 0;
+			i += strlen(symbols[k]);
+		}
+	}
+	/* 555-1234-9876 and 2024-10-25 are phone numbers and dates */
+	return operators && operands && !(dashed && hyphens >= 2);
+}
+
 void
 render_head(struct buf *b, struct search *s)
 {
@@ -308,6 +385,8 @@ render_head(struct buf *b, struct search *s)
 	    MIN(MAX(seconds, 1), 10), tr("Searching"));
 	search_filters(b, &s->filters);
 	buf_html(b, "<div id=\"results\" class=\"category-%s\">\n", s->filters.category);
+	if (s->pageno == 1 && !strcmp(s->filters.category, "general") && math_query(s->raw))
+		buf_puts(b, "<script src=\"/calc.js\"></script>\n");
 }
 
 /* results */

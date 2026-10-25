@@ -45,6 +45,9 @@ obj/style.h: static/style.css obj/tools/embed
 obj/script.h: static/priv.js obj/tools/embed
 	obj/tools/embed priv_js static/priv.js > $@
 
+obj/calc.h: static/calc.js obj/tools/embed
+	obj/tools/embed calc_js static/calc.js > $@
+
 obj/favicon_svg.h: static/favicon.svg obj/tools/embed
 	obj/tools/embed favicon_svg static/favicon.svg > $@
 
@@ -53,7 +56,7 @@ obj/version.h: FORCE
 	@printf '#define VERSION "%s"\n' '$(VERSION)' > $@.tmp
 	@cmp -s $@.tmp $@ && rm $@.tmp || mv $@.tmp $@
 
-obj/src/main.o: obj/style.h obj/script.h obj/favicon_svg.h
+obj/src/main.o: obj/style.h obj/script.h obj/calc.h obj/favicon_svg.h
 obj/src/render.o: obj/version.h
 
 obj/tools/po2c: tools/po2c.c
@@ -94,7 +97,7 @@ lint:
 
 lint-files: $(LINT_SRC:%.c=obj/lint/%.ok)
 
-obj/lint/%.ok: %.c $(wildcard src/*.h) .clang-tidy | obj/style.h obj/script.h obj/favicon_svg.h obj/version.h $(CURL_IMPERSONATE)/libcurl-impersonate.a
+obj/lint/%.ok: %.c $(wildcard src/*.h) .clang-tidy | obj/style.h obj/script.h obj/calc.h obj/favicon_svg.h obj/version.h $(CURL_IMPERSONATE)/libcurl-impersonate.a
 	@mkdir -p $(@D)
 	@out=$$(clang-tidy --quiet $< -- $(CPPFLAGS) $(CFLAGS) -DCURL_DISABLE_TYPECHECK 2>&1) || \
 		{ echo "$$out" | grep -v 'warnings* generated\.$$'; exit 1; }
