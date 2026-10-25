@@ -9,7 +9,7 @@
 
 #define PREFS_CATEGORIES 16
 #define SAFESEARCH_DEFAULT 1
-#define THEME_DEFAULT "macchiato"
+#define THEME_DEFAULT "sorbetnight"
 
 struct engine;
 
