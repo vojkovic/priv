@@ -14,6 +14,7 @@
 #include "../lib/picohttpparser/picohttpparser.h"
 #include "ev.h"
 #include "http.h"
+#include "metrics.h"
 #include "util.h"
 
 #define IDLE_MS 30000
@@ -26,7 +27,7 @@ struct conn {
 	char hdr[8192 + MAX_HEADERS + 2];
 	struct buf out;
 	size_t outoff;
-	int busy, keepalive, chunked, head, closing, dead, processing;
+	int busy, keepalive, chunked, head, closing, dead, processing, search;
 	char peer[64];
 	struct ev_timer timer;
 	void (*on_close)(void *);
@@ -110,6 +111,9 @@ status_text(int status)
 static void
 put_head(struct conn *c, int status, const char *headers, long len)
 {
+	if (c->search)
+		metrics_search(status);
+	c->search = 0;
 	buf_printf(&c->out, "HTTP/1.1 %d %s\r\n", status, status_text(status));
 	if (len >= 0 && status != 304)
 		buf_printf(&c->out, "Content-Length: %ld\r\n", len);
@@ -292,6 +296,7 @@ handle(struct conn *c, size_t len, const char *method, size_t mlen, const char *
 	c->head = !strcmp(r.method, "HEAD");
 	r.head = c->head;
 	c->busy = 1;
+	c->search = !strcmp(r.path, "/search");
 	ev_timer_stop(&c->timer);
 	if (strcmp(r.method, "GET") && !c->head) {
 		c->keepalive = 0;

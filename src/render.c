@@ -911,7 +911,6 @@ engine_timing(struct buf *b, struct search *s)
 
 /* pagination */
 
-/* paging tokens of the engines that answered, signed so they can be handed back by the next page's link */
 static void
 token_params(struct buf *b, struct search *s)
 {

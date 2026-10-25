@@ -18,6 +18,7 @@
 #include "fetch.h"
 #include "http.h"
 #include "locales.h"
+#include "metrics.h"
 #include "proxy.h"
 #include "render.h"
 #include "script.h"
@@ -114,6 +115,11 @@ route(struct conn *c, struct request *r)
 	/* before the limiter, which turns away the curl-like clients that check health */
 	if (!strcmp(r->path, "/healthz")) {
 		http_respond(c, 200, "Content-Type: text/plain\r\nCache-Control: no-store\r\n", "ok\n", 3);
+		return;
+	}
+	if (!strcmp(r->path, "/metrics")) {
+		metrics_render(&b);
+		respond_buf(c, 200, "Content-Type: text/plain; version=0.0.4\r\nCache-Control: no-store\r\n", &b);
 		return;
 	}
 	if (botdetect(c, r))

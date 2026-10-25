@@ -7,6 +7,7 @@
 #include "engine.h"
 #include "favicon.h"
 #include "icons.h"
+#include "metrics.h"
 #include "proxy.h"
 #include "render.h"
 #include "search.h"
@@ -121,6 +122,8 @@ search_finish(struct search *s)
 		if (s->jobs[i].done)
 			continue;
 		s->jobs[i].done = 1;
+		if (s->jobs[i].f)
+			metrics_cancelled(s->jobs[i].e);
 		job_cleanup(&s->jobs[i]);
 		results_unresponsive(&s->res, s->jobs[i].e, "timeout", 0);
 		results_timing(&s->res, s->jobs[i].e, (now_ms() - s->start) / 1e3, s->jobs[i].load);
@@ -240,6 +243,7 @@ trampoline(struct fetch *f, void *arg)
 	curl_off_t us = 0;
 
 	j->f = NULL;
+	metrics_fetch(j->e, f);
 	if (curl_easy_getinfo(f->h, CURLINFO_TOTAL_TIME_T, &us) == CURLE_OK)
 		j->load += us / 1e6;
 	cb(j, f);
