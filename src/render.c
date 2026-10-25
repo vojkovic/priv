@@ -410,6 +410,44 @@ quantity_query(const char *q)
 	return words <= 3 && (IS_ALPHA(q[n - 1]) || (unsigned char)q[n - 1] >= 0x80);
 }
 
+/* whether a query asks for a colour, such as "color picker", "#f0f0f0" or "rgb 255 255 255"; color.js reads it */
+static int
+color_query(const char *q)
+{
+	static const char *const phrases[] = {"color picker", "colour picker", "colorpicker", "colourpicker",
+	    "hex to rgb", "rgb to hex", "hex to hsl", "hsl to hex", "rgb to hsl", "hsl to rgb", "rgb to hsv",
+	    "hex to hsv", "rgb to cmyk", "hex to cmyk", "html color", "color converter", "colour converter",
+	    "color code", "colour code"};
+	static const char *const notations[] = {"rgb", "rgba", "hsl", "hsla", "hsv", "hsb", "cmyk"};
+	size_t n = strlen(q), i, len;
+
+	if (!n || n > 80)
+		return 0;
+	while (*q == ' ')
+		q++;
+	for (i = 0; i < LEN(phrases); i++)
+		if (strcasestr(q, phrases[i]))
+			return 1;
+	if (*q == '#') {
+		len = strspn(q + 1, "0123456789abcdefABCDEF");
+		return (len == 3 || len == 4 || len == 6 || len == 8) && (!q[len + 1] || q[len + 1] == ' ');
+	}
+	if (!strncasecmp(q, "color ", 6) || !strncasecmp(q, "colour ", 7) || !strncasecmp(q, "hex ", 4)) {
+		q += strcspn(q, " ") + 1;
+		len = strspn(q, "0123456789abcdefABCDEF");
+		return (len == 3 || len == 4 || len == 6 || len == 8) && !q[len];
+	}
+	for (i = 0; i < LEN(notations); i++) {
+		len = strlen(notations[i]);
+		if (!strncasecmp(q, notations[i], len)) {
+			q += len;
+			q += strspn(q, " (");
+			return IS_DIGIT(*q) || ((*q == '-' || *q == '.') && IS_DIGIT(q[1]));
+		}
+	}
+	return 0;
+}
+
 void
 render_head(struct buf *b, struct search *s)
 {
@@ -438,9 +476,12 @@ render_head(struct buf *b, struct search *s)
 	    MIN(MAX(seconds, 1), 10), tr("Searching"));
 	search_filters(b, &s->filters);
 	buf_html(b, "<div id=\"results\" class=\"category-%s\">\n", s->filters.category);
-	if (s->pageno == 1 && !strcmp(s->filters.category, "general") &&
-	    (math_query(s->raw) || unit_query(s->raw) || quantity_query(s->raw)))
-		buf_puts(b, "<script src=\"/calc.js\"></script>\n");
+	if (s->pageno == 1 && !strcmp(s->filters.category, "general")) {
+		if (color_query(s->raw))
+			buf_puts(b, "<script src=\"/color.js\"></script>\n");
+		else if (math_query(s->raw) || unit_query(s->raw) || quantity_query(s->raw))
+			buf_puts(b, "<script src=\"/calc.js\"></script>\n");
+	}
 }
 
 /* results */

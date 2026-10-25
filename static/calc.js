@@ -245,6 +245,10 @@
 		pow: ([a, b]) => power(a, b),
 	};
 
+	const integersOnly = () => {
+		throw new RangeError("integer");
+	};
+
 	const toRadians = (x) => (angle === "deg" ? (x * Math.PI) / 180 : x);
 	const fromRadians = (x) => (angle === "deg" ? (x * 180) / Math.PI : x);
 
@@ -299,18 +303,10 @@
 		min: [1, 8, Math.min],
 		max: [1, 8, Math.max],
 		mod: [2, 2, (a, b) => ((a % b) + b) % b],
-		gcd: [2, 2, () => {
-			throw new RangeError("integer");
-		}],
-		lcm: [2, 2, () => {
-			throw new RangeError("integer");
-		}],
-		comb: [2, 2, () => {
-			throw new RangeError("integer");
-		}],
-		perm: [2, 2, () => {
-			throw new RangeError("integer");
-		}],
+		gcd: [2, 2, integersOnly],
+		lcm: [2, 2, integersOnly],
+		comb: [2, 2, integersOnly],
+		perm: [2, 2, integersOnly],
 		factorial: [1, 1, (x) => gamma(x + 1)],
 		radians: [1, 1, (x) => (x * Math.PI) / 180],
 		degrees: [1, 1, (x) => (x * 180) / Math.PI],
@@ -931,7 +927,6 @@
 
 	const convertValue = (value, from, to) => to.fromBase(from.toBase(value));
 
-	/* a number and a unit from the words, such as "5 km", "a mile" or just "km" */
 	const quantity = (words) => {
 		for (let n = Math.min(3, words.length); n >= 1; n--) {
 			const units = findUnits(words.slice(-n).join(" "));
@@ -957,7 +952,6 @@
 		return null;
 	};
 
-	/* six significant digits, and whole numbers in full */
 	const shortFormat = (x) => {
 		if (!isExact(x))
 			return format(inexact(Number(x.f.toPrecision(6))));

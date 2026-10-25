@@ -12,6 +12,7 @@
 #include "bangs.h"
 #include "botdetect.h"
 #include "calc.h"
+#include "color.h"
 #include "engine.h"
 #include "ev.h"
 #include "favicon.h"
@@ -29,7 +30,7 @@
 
 #define HTML_HEADERS "Content-Type: text/html; charset=utf-8\r\n" SECURITY_HEADERS
 
-static char style_etag[16], script_etag[16], calc_etag[16], favicon_etag[16];
+static char style_etag[16], script_etag[16], calc_etag[16], color_etag[16], favicon_etag[16];
 
 static void
 respond_buf(struct conn *c, int status, const char *headers, struct buf *b)
@@ -61,7 +62,8 @@ static_file(struct conn *c, struct request *r, const char *ctype, const char *et
 		http_respond(c, 304, NULL, NULL, 0);
 		return;
 	}
-	buf_printf(&b, "Content-Type: %s\r\nCache-Control: no-cache\r\nETag: %s\r\n", ctype, etag);
+	buf_printf(&b, "Content-Type: %s\r\nCache-Control: no-cache\r\nX-Content-Type-Options: nosniff\r\nETag: %s\r\n",
+	    ctype, etag);
 	http_respond(c, 200, buf_str(&b), (const char *)data, len);
 	buf_free(&b);
 }
@@ -145,6 +147,10 @@ route(struct conn *c, struct request *r)
 	}
 	if (!strcmp(r->path, "/calc.js")) {
 		static_file(c, r, "text/javascript", calc_etag, calc_js, sizeof(calc_js));
+		return;
+	}
+	if (!strcmp(r->path, "/color.js")) {
+		static_file(c, r, "text/javascript", color_etag, color_js, sizeof(color_js));
 		return;
 	}
 	if (!strcmp(r->path, "/autocompleter")) {
@@ -234,6 +240,7 @@ main(void)
 	etag(style_etag, style_css, sizeof(style_css));
 	etag(script_etag, priv_js, sizeof(priv_js));
 	etag(calc_etag, calc_js, sizeof(calc_js));
+	etag(color_etag, color_js, sizeof(color_js));
 	etag(favicon_etag, favicon_svg, sizeof(favicon_svg));
 
 	xmlInitParser();
