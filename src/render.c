@@ -13,11 +13,12 @@
 #include "version.h"
 
 #define LOGO \
-	"<svg class=\"logo\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 92 92\" aria-hidden=\"true\"><g " \
-	"transform=\"translate(-40.921 -17.417)\"><circle cx=\"75.921\" cy=\"53.903\" r=\"30\" fill=\"none\" " \
-	"stroke=\"currentColor\" stroke-width=\"10\"/><path d=\"M67.515 37.915a18 18 0 0 1 21.051 3.313 18 18 0 0 1 " \
-	"3.138 21.078\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"5\"/><rect width=\"18.846\" " \
-	"height=\"39.963\" x=\"3.706\" y=\"122.09\" transform=\"rotate(-46.235)\" fill=\"currentColor\"/></g></svg>"
+	"<svg class=\"logo\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"3.2 2 21.6 21.6\" aria-hidden=\"true\"><path " \
+	"fill=\"currentColor\" fill-rule=\"evenodd\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linejoin=\"round\" " \
+	"d=\"M6.02 7.81L5.7 2.9l4.53 2.02A7.3 7.3 0 0 1 13.77 4.92L18.3 2.9l-.32 4.91A7.3 7.3 0 1 1 6.02 7.81zM17.5 12a5.5 " \
+	"5.5 0 1 0-11 0 5.5 5.5 0 0 0 11 0z\"/>" \
+	"<path d=\"M17.2 17.2L21.8 21.8\" stroke=\"currentColor\" stroke-width=\"3.6\" stroke-linecap=\"round\" " \
+	"fill=\"none\"/></svg>"
 
 #define YES "<span class=\"yes\">" ICON_CHECK "</span>"
 #define NO "<span class=\"no\">" ICON_MINUS "</span>"
