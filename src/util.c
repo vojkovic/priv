@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <strings.h>
 #include <sys/stat.h>
 #include <time.h>
 #include <wctype.h>
@@ -611,6 +612,13 @@ starts_with(const char *s, const char *prefix)
 	return s && !strncmp(s, prefix, strlen(prefix));
 }
 
+/* the only links taken from upstream data, so none can run script when clicked */
+int
+web_url(const char *s)
+{
+	return s && (!strncasecmp(s, "https://", 8) || !strncasecmp(s, "http://", 7));
+}
+
 const char *
 find_between(const char *s, const char *begin, const char *end, size_t *n)
 {
@@ -987,7 +995,7 @@ strhash(const char *s)
 }
 
 static void
-cache_purge(int all)
+cache_purge(void)
 {
 	struct centry **pp, *e;
 	double now = now_ms();
@@ -995,7 +1003,7 @@ cache_purge(int all)
 
 	for (i = 0; i < LEN(ctable); i++) {
 		for (pp = &ctable[i]; (e = *pp);) {
-			if (all || e->expire < now) {
+			if (e->expire < now) {
 				*pp = e->next;
 				free(e->key);
 				free(e->val);
@@ -1032,9 +1040,15 @@ cache_set(const char *key, const char *val, int ttl)
 		}
 	}
 	if (ccount >= 4096)
-		cache_purge(0);
-	if (ccount >= 4096)
-		cache_purge(1);
+		cache_purge();
+	/* still full: drop this key's bucket rather than every entry */
+	while (ccount >= 4096 && (e = *head)) {
+		*head = e->next;
+		free(e->key);
+		free(e->val);
+		free(e);
+		ccount--;
+	}
 	e = xmalloc(sizeof(*e));
 	e->key = xstrdup(key);
 	e->val = xstrdup(val);

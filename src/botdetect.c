@@ -20,6 +20,10 @@
 #define ESCALATE_CHILDREN 3
 #define MAX_ESCALATED 1024
 #define PING_LIVE_TIME 3600
+#define PING_MAX 20
+#define AUTOCOMPLETE_WINDOW 20
+#define AUTOCOMPLETE_MAX 100
+#define MAX_COUNTERS (1 << 17)
 
 #define USER_AGENT \
 	"^(unknown" \
@@ -55,7 +59,8 @@ static const char *searxng_org[] = {"167.235.158.251", "2a01:04f8:1c1c:8fc2::/64
 static regex_t ua_re;
 static struct net *trusted, *passlist, *blocklist;
 static size_t ntrusted, npass, nblock;
-static struct counter *counters[1024];
+static struct counter *counters[1 << 14];
+static size_t ncounters;
 /* ipv6 networks blocked for rate limits, so neighbouring /48s from one allocation add up to a wider block */
 static struct {
 	struct net net;
@@ -322,6 +327,7 @@ purge(double now)
 				free(c->key);
 				free(c->ts);
 				free(c);
+				ncounters--;
 			} else
 				pp = &c->next;
 		}
@@ -339,6 +345,20 @@ slot(const char *key)
 	return pp;
 }
 
+static void
+evict_bucket(const char *key)
+{
+	struct counter **head = &counters[hash(key) % LEN(counters)], *c;
+
+	while ((c = *head)) {
+		*head = c->next;
+		free(c->key);
+		free(c->ts);
+		free(c);
+		ncounters--;
+	}
+}
+
 static size_t
 incr_sliding_window(const char *name, const char *net, int window)
 {
@@ -354,7 +374,13 @@ incr_sliding_window(const char *name, const char *net, int window)
 	}
 	snprintf(key, sizeof(key), "%s:%s", name, net);
 	pp = slot(key);
+	if (!*pp && ncounters >= MAX_COUNTERS) {
+		/* a flood of networks evicts its own bucket instead of growing without bound */
+		evict_bucket(key);
+		pp = slot(key);
+	}
 	if (!(c = *pp)) {
+		ncounters++;
 		c = *pp = xcalloc(1, sizeof(*c));
 		c->key = xstrdup(key);
 		c->window = window;
@@ -385,6 +411,7 @@ drop_counter(const char *name, const char *net)
 		free(c->key);
 		free(c->ts);
 		free(c);
+		ncounters--;
 	}
 }
 
@@ -403,10 +430,10 @@ botdetect_ping(struct conn *c, struct request *r, const char *tok)
 	struct ip ip = real_ip(r);
 	char net[96];
 
-	if (!strcmp(tok, botdetect_token())) {
-		network(&ip, net, sizeof(net));
+	network(&ip, net, sizeof(net));
+	/* the token is public, so one network could otherwise push every other client's ping out */
+	if (!strcmp(tok, botdetect_token()) && incr_sliding_window("PING", net, PING_LIVE_TIME) <= PING_MAX)
 		cache_set(ping_key(net, r), "1", PING_LIVE_TIME);
-	}
 	http_respond(c, 200, "Content-Type: text/css\r\nCache-Control: no-store\r\n", "", 0);
 }
 
@@ -562,6 +589,10 @@ botdetect(struct conn *c, struct request *r)
 	}
 	if (bad_user_agent(r))
 		return too_many(c, net, "bot detected, HTTP header User-Agent");
+	/* every suggestion is a request to google from this server */
+	if (!strcmp(r->path, "/autocompleter") &&
+	    incr_sliding_window("AUTOCOMPLETE_WINDOW", net, AUTOCOMPLETE_WINDOW) > AUTOCOMPLETE_MAX)
+		return too_many(c, net, "too many request in AUTOCOMPLETE_WINDOW");
 	if (strcmp(r->path, "/search"))
 		return 0;
 	if (!r->has_accept || !accepts_html(r->accept))

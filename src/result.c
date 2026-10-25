@@ -84,6 +84,8 @@ normalize_main(struct arena *a, struct main_result *m)
 		m->content = "";
 	if (!m->template)
 		m->template = "default";
+	if (!web_url(m->pdf_url))
+		m->pdf_url = NULL;
 	m->engines = ENGINE_BIT(m->base.engine);
 	return 0;
 }

@@ -91,6 +91,7 @@ char *url_query_get(struct arena *a, const char *url, const char *key);
 char *idna_decode(struct arena *a, const char *host);
 
 int starts_with(const char *s, const char *prefix);
+int web_url(const char *s);
 long parse_long(const char *s, long fallback);
 const char *find_between(const char *s, const char *begin, const char *end, size_t *n);
 char *str_strip(char *s);

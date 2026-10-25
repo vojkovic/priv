@@ -319,7 +319,8 @@ process(struct conn *c)
 	char *end;
 
 	c->processing = 1;
-	while (!c->busy && !c->dead && !c->closing) {
+	/* a client that pipelines requests without reading the answers gets no more until it does */
+	while (!c->busy && !c->dead && !c->closing && !c->out.len) {
 		c->in[c->inlen] = 0;
 		end = c->inlen >= 4 ? strstr(c->in, "\r\n\r\n") : NULL;
 		if (!end) {
@@ -341,10 +342,12 @@ on_conn(int fd, int events, void *arg)
 	(void)fd;
 	if (events & EV_WRITE) {
 		flush(c);
+		if (!c->dead && !c->busy && !c->out.len && !c->processing && c->inlen)
+			process(c);
 		return;
 	}
 	if (c->inlen >= sizeof(c->in) - 1) {
-		if (c->busy)
+		if (c->busy || c->out.len)
 			ev_watch(c->fd, c->outoff < c->out.len ? EV_WRITE : 0, on_conn, c);
 		return;
 	}

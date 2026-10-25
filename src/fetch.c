@@ -143,7 +143,7 @@ private_v4(const unsigned char *a)
 {
 	return a[0] == 0 || a[0] == 10 || a[0] == 127 || (a[0] == 100 && (a[1] & 0xc0) == 64) ||
 	    (a[0] == 169 && a[1] == 254) || (a[0] == 172 && (a[1] & 0xf0) == 16) || (a[0] == 192 && a[1] == 168) ||
-	    a[0] >= 224;
+	    (a[0] == 192 && a[1] == 0 && a[2] == 0) || (a[0] == 198 && (a[1] & 0xfe) == 18) || a[0] >= 224;
 }
 
 static int
@@ -163,6 +163,11 @@ private_addr(const struct curl_sockaddr *addr)
 	a = v6.sin6_addr.s6_addr;
 	if (!memcmp(a, "\0\0\0\0\0\0\0\0\0\0\xff\xff", 12))
 		return private_v4(a + 12);
+	/* nat64 and 6to4 carry an ipv4 address that may be a private one */
+	if (!memcmp(a, "\0\x64\xff\x9b\0\0\0\0\0\0\0\0", 12))
+		return private_v4(a + 12);
+	if (a[0] == 0x20 && a[1] == 0x02)
+		return private_v4(a + 2);
 	return !memcmp(a, "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 15) || (a[0] & 0xfe) == 0xfc ||
 	    (a[0] == 0xfe && (a[1] & 0xc0) == 0x80) || a[0] == 0xff;
 }

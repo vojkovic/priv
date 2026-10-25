@@ -423,8 +423,11 @@ add_infobox(struct job *j, const char *title)
 void
 infobox_url(struct job *j, struct infobox *ib, const char *title, const char *url, const char *entity, int official)
 {
-	struct infobox_url *u = amalloc(j->a, sizeof(*u)), **tail;
+	struct infobox_url *u, **tail;
 
+	if (!web_url(url))
+		return;
+	u = amalloc(j->a, sizeof(*u));
 	u->title = astrdup(j->a, title ? title : "");
 	u->url = astrdup(j->a, url);
 	u->entity = entity ? astrdup(j->a, entity) : NULL;
@@ -469,7 +472,7 @@ add_answer(struct job *j, const char *answer, const char *url)
 
 	memset(a, 0, sizeof(*a));
 	a->answer = astrdup(j->a, answer);
-	a->url = url && *url ? astrdup(j->a, url) : NULL;
+	a->url = web_url(url) ? astrdup(j->a, url) : NULL;
 	add(j, &a->base, RESULT_ANSWER);
 }
 
@@ -576,7 +579,7 @@ format_date(struct arena *a, const char *iso)
 	int y, mo, d;
 
 	if (!iso || sscanf(iso, "%4d-%2d-%2d", &y, &mo, &d) != 3 || mo < 1 || mo > 12) // NOLINT(cert-err34-c)
-		return iso ? iso : "";
+		return iso ? astrdup(a, iso) : "";
 	return aprintf(a, "%s %d, %d", months[mo - 1], d, y);
 }
 
