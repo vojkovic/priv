@@ -13,11 +13,13 @@
 #include "version.h"
 
 #define LOGO \
-	"<svg class=\"logo\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"3.2 2 21.6 21.6\" aria-hidden=\"true\"><path " \
-	"fill=\"currentColor\" fill-rule=\"evenodd\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linejoin=\"round\" " \
-	"d=\"M6.02 7.81L5.7 2.9l4.53 2.02A7.3 7.3 0 0 1 13.77 4.92L18.3 2.9l-.32 4.91A7.3 7.3 0 1 1 6.02 7.81zM17.5 12a5.5 " \
-	"5.5 0 1 0-11 0 5.5 5.5 0 0 0 11 0z\"/>" \
-	"<path d=\"M17.2 17.2L21.8 21.8\" stroke=\"currentColor\" stroke-width=\"3.6\" stroke-linecap=\"round\" " \
+	"<svg class=\"logo\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"3.2 2 21.6 21.6\" aria-hidden=\"true\"><defs>" \
+	"<linearGradient id=\"logo-rainbow\" gradientUnits=\"userSpaceOnUse\" x1=\"3.2\" y1=\"2\" x2=\"29.2\" y2=\"11.5\">" \
+	"<stop offset=\"0\"/><stop offset=\".22\"/><stop offset=\".22\"/><stop offset=\".34\"/><stop offset=\".34\"/><stop offset=\".46\"/><stop offset=\".46\"/><stop offset=\".58\"/><stop offset=\".58\"/><stop offset=\".7\"/><stop offset=\".7\"/><stop offset=\".82\"/><stop offset=\".82\"/><stop offset=\"1\"/></linearGradient></defs>" \
+	"<path fill=\"url(#logo-rainbow)\" fill-rule=\"evenodd\" stroke=\"url(#logo-rainbow)\" stroke-width=\"1.4\" " \
+	"stroke-linejoin=\"round\" d=\"M6.02 7.81L5.7 2.9l4.53 2.02A7.3 7.3 0 0 1 13.77 4.92L18.3 2.9l-.32 4.91A7.3 7.3 0 1 1 " \
+	"6.02 7.81zM17.5 12a5.5 5.5 0 1 0-11 0 5.5 5.5 0 0 0 11 0z\"/>" \
+	"<path d=\"M17.2 17.2L21.8 21.8\" stroke=\"url(#logo-rainbow)\" stroke-width=\"3.6\" stroke-linecap=\"round\" " \
 	"fill=\"none\"/></svg>"
 
 #define YES "<span class=\"yes\">" ICON_CHECK "</span>"

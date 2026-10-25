@@ -21,12 +21,20 @@
 	--favicon-bg: #ddd;
 	--favicon-border: #ccc;
 	--bar: #5bc0de;
+	--rainbow-1: #ed8796;
+	--rainbow-2: #f5a97f;
+	--rainbow-3: #eed49f;
+	--rainbow-4: #a6da95;
+	--rainbow-5: #91d7e3;
+	--rainbow-6: #8aadf4;
+	--rainbow-7: #c6a0f6;
+	--arrow: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpolygon fill='%23cad3f5' points='128,192 256,320 384,192'/%3E%3C/svg%3E");
 
 	color-scheme: dark;
 }
 
-/* the themes of privau/searxng, mapped onto the palette above; macchiato is the default */
-:root[data-theme="brave"] {
+/* the themes, in the variables above; macchiato is the default */
+:root[data-theme="slate"] {
 	--red: #e11f3d;
 	--yellow: #f1d561;
 	--text: #a1b2ba;
@@ -92,28 +100,6 @@
 	color-scheme: dark;
 }
 
-:root[data-theme="evergarden"] {
-	--red: #f57f82;
-	--yellow: #f5d098;
-	--text: #f8f9e8;
-	--subtext1: #b2caed;
-	--subtext0: #acc2d2;
-	--overlay1: #a0a49c;
-	--surface2: #4a585c;
-	--surface1: #4a585c;
-	--surface0: #374145;
-	--base: #2b3337;
-	--mantle: #232a2e;
-	--crust: #1e2426;
-	--link: #f8f9e8;
-	--link-visited: #d2bdf3;
-	--accent: #b2caed;
-	--favicon-bg: #4a585c;
-	--favicon-border: #58686d;
-
-	color-scheme: dark;
-}
-
 :root[data-theme="frappe"] {
 	--red: #e78284;
 	--yellow: #e5c890;
@@ -158,29 +144,7 @@
 	color-scheme: dark;
 }
 
-:root[data-theme="gruvboxmat"] {
-	--red: #cc241d;
-	--yellow: #d8a657;
-	--text: #d4be98;
-	--subtext1: #d4be98;
-	--subtext0: #d4be98;
-	--overlay1: #8a7e68;
-	--surface2: #504945;
-	--surface1: #3c3836;
-	--surface0: #1d2021;
-	--base: #292828;
-	--mantle: #32302f;
-	--crust: #1d1c1c;
-	--link: #89b482;
-	--link-visited: #d3869b;
-	--accent: #89b482;
-	--favicon-bg: #ddd;
-	--favicon-border: #ccc;
-
-	color-scheme: dark;
-}
-
-:root[data-theme="kagi"] {
+:root[data-theme="mono"] {
 	--red: #f55b5b;
 	--yellow: #f1d561;
 	--text: #acacaf;
@@ -220,6 +184,7 @@
 	--accent: #3050ff;
 	--favicon-bg: #ddd;
 	--favicon-border: #ccc;
+	--arrow: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpolygon fill='%234c4f69' points='128,192 256,320 384,192'/%3E%3C/svg%3E");
 
 	color-scheme: light;
 }
@@ -240,28 +205,6 @@
 	--link: #ccd7d4;
 	--link-visited: #2eb398;
 	--accent: #2eb398;
-	--favicon-bg: #ddd;
-	--favicon-border: #ccc;
-
-	color-scheme: dark;
-}
-
-:root[data-theme="moa"] {
-	--red: #f55b5b;
-	--yellow: #f1d561;
-	--text: #bbb;
-	--subtext1: #fff;
-	--subtext0: lightgray;
-	--overlay1: #797a7c;
-	--surface2: #555;
-	--surface1: #373b49;
-	--surface0: #2b2e36;
-	--base: #222428;
-	--mantle: #212127;
-	--crust: #18191c;
-	--link: #8af;
-	--link-visited: #c09cd9;
-	--accent: #b984ff;
 	--favicon-bg: #ddd;
 	--favicon-border: #ccc;
 
@@ -290,28 +233,6 @@
 	color-scheme: dark;
 }
 
-:root[data-theme="night"] {
-	--red: #f55b5b;
-	--yellow: #f1d561;
-	--text: #eaecf0;
-	--subtext1: #eaecf0;
-	--subtext0: lightgray;
-	--overlay1: #8c8f93;
-	--surface2: #44475a;
-	--surface1: #44475a;
-	--surface0: #111213;
-	--base: #101418;
-	--mantle: #101418;
-	--crust: #0b0e11;
-	--link: #6d8af2;
-	--link-visited: #977dbd;
-	--accent: #447ff5;
-	--favicon-bg: #ddd;
-	--favicon-border: #ccc;
-
-	color-scheme: dark;
-}
-
 :root[data-theme="nord"] {
 	--red: #bf616a;
 	--yellow: #ebcb8b;
@@ -334,26 +255,161 @@
 	color-scheme: dark;
 }
 
-:root[data-theme="paulgo"] {
-	--red: #f55b5b;
-	--yellow: #f1d561;
-	--text: #bdc1c6;
-	--subtext1: #bdc1c6;
-	--subtext0: lightgray;
-	--overlay1: #797c80;
-	--surface2: #44475a;
-	--surface1: #44475a;
-	--surface0: #303134;
-	--base: #202124;
-	--mantle: #202124;
-	--crust: #161719;
-	--link: #8ab4f8;
-	--link-visited: #c58af9;
-	--accent: #8ab4f8;
+:root[data-theme="sorbet"] {
+	--red: #d9486e;
+	--yellow: #d99a2b;
+	--text: #3e2a3c;
+	--subtext1: #553a52;
+	--subtext0: #5e4259;
+	--overlay1: #76586f;
+	--surface2: #b78aa9;
+	--surface1: #c9a3bb;
+	--surface0: #ecd0e2;
+	--base: #fff7fb;
+	--mantle: #fbeaf3;
+	--crust: #f4dcea;
+	--link: #5230b8;
+	--link-visited: #b24fae;
+	--accent: #5646d8;
 	--favicon-bg: #ddd;
 	--favicon-border: #ccc;
+	--arrow: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpolygon fill='%233e2a3c' points='128,192 256,320 384,192'/%3E%3C/svg%3E");
+
+	color-scheme: light;
+}
+
+:root[data-theme="sorbetnight"] {
+	--red: #ff7a93;
+	--yellow: #ffd479;
+	--text: #f2e9fa;
+	--subtext1: #d8c9ea;
+	--subtext0: #bfaed6;
+	--overlay1: #9a88b0;
+	--surface2: #54456b;
+	--surface1: #3d3050;
+	--surface0: #2d2338;
+	--base: #1d1626;
+	--mantle: #17111f;
+	--crust: #110c18;
+	--link: #a9b8ff;
+	--link-visited: #e29bd8;
+	--accent: #b69cff;
+	--favicon-bg: #ddd;
+	--favicon-border: #ccc;
+	--arrow: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpolygon fill='%23f2e9fa' points='128,192 256,320 384,192'/%3E%3C/svg%3E");
 
 	color-scheme: dark;
+}
+
+/* the rainbow of the home title, in each theme's own colours; the themes not listed use the default */
+:root[data-theme="dracula"] {
+	--rainbow-1: #ff5555;
+	--rainbow-2: #ffb86c;
+	--rainbow-3: #f1fa8c;
+	--rainbow-4: #50fa7b;
+	--rainbow-5: #8be9fd;
+	--rainbow-6: #bd93f9;
+	--rainbow-7: #ff79c6;
+}
+:root[data-theme="everforest"] {
+	--rainbow-1: #e67e80;
+	--rainbow-2: #e69875;
+	--rainbow-3: #dbbc7f;
+	--rainbow-4: #a7c080;
+	--rainbow-5: #83c092;
+	--rainbow-6: #7fbbb3;
+	--rainbow-7: #d699b6;
+}
+:root[data-theme="frappe"] {
+	--rainbow-1: #e78284;
+	--rainbow-2: #ef9f76;
+	--rainbow-3: #e5c890;
+	--rainbow-4: #a6d189;
+	--rainbow-5: #99d1db;
+	--rainbow-6: #8caaee;
+	--rainbow-7: #ca9ee6;
+}
+:root[data-theme="gruvbox"] {
+	--rainbow-1: #fb4934;
+	--rainbow-2: #fe8019;
+	--rainbow-3: #fabd2f;
+	--rainbow-4: #b8bb26;
+	--rainbow-5: #8ec07c;
+	--rainbow-6: #83a598;
+	--rainbow-7: #d3869b;
+}
+:root[data-theme="latte"] {
+	--rainbow-1: #d20f39;
+	--rainbow-2: #fe640b;
+	--rainbow-3: #df8e1d;
+	--rainbow-4: #40a02b;
+	--rainbow-5: #04a5e5;
+	--rainbow-6: #1e66f5;
+	--rainbow-7: #8839ef;
+}
+:root[data-theme="mocha"] {
+	--rainbow-1: #f38ba8;
+	--rainbow-2: #fab387;
+	--rainbow-3: #f9e2af;
+	--rainbow-4: #a6e3a1;
+	--rainbow-5: #89dceb;
+	--rainbow-6: #89b4fa;
+	--rainbow-7: #cba6f7;
+}
+:root[data-theme="nord"] {
+	--rainbow-1: #bf616a;
+	--rainbow-2: #d08770;
+	--rainbow-3: #ebcb8b;
+	--rainbow-4: #a3be8c;
+	--rainbow-5: #88c0d0;
+	--rainbow-6: #81a1c1;
+	--rainbow-7: #b48ead;
+}
+:root[data-theme="sorbet"] {
+	--rainbow-1: #f2788e;
+	--rainbow-2: #f7a26b;
+	--rainbow-3: #f2cc5c;
+	--rainbow-4: #7fcf8f;
+	--rainbow-5: #6fcbe3;
+	--rainbow-6: #7aa2f7;
+	--rainbow-7: #b18cf5;
+}
+
+:root[data-theme="sorbetnight"] {
+	--rainbow-1: #ff8fa3;
+	--rainbow-2: #ffb48a;
+	--rainbow-3: #ffe08a;
+	--rainbow-4: #9be5a8;
+	--rainbow-5: #86dcef;
+	--rainbow-6: #8fb2ff;
+	--rainbow-7: #c4a2ff;
+}
+:root[data-theme="slate"] {
+	--rainbow-1: #9ad0ff;
+	--rainbow-2: #86b8ff;
+	--rainbow-3: #7c9bff;
+	--rainbow-4: #7c91ff;
+	--rainbow-5: #8f84ff;
+	--rainbow-6: #a97cf5;
+	--rainbow-7: #c283ee;
+}
+:root[data-theme="mono"] {
+	--rainbow-1: #f5f5f7;
+	--rainbow-2: #dcdce0;
+	--rainbow-3: #c3c3c8;
+	--rainbow-4: #aaaab0;
+	--rainbow-5: #92929a;
+	--rainbow-6: #7a7a84;
+	--rainbow-7: #62626c;
+}
+:root[data-theme="matcha"] {
+	--rainbow-1: #d9f2b0;
+	--rainbow-2: #b7e8a0;
+	--rainbow-3: #8fdca0;
+	--rainbow-4: #66d0a8;
+	--rainbow-5: #3fc2a8;
+	--rainbow-6: #2eb398;
+	--rainbow-7: #229a85;
 }
 
 html {
@@ -456,7 +512,7 @@ body:has(#urls) .search_filters { visibility: visible; }
 	color: var(--text);
 	font-size: 0.9rem;
 	text-overflow: ellipsis;
-	background: transparent url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpolygon fill='%23cad3f5' points='128,192 256,320 384,192'/%3E%3C/svg%3E") no-repeat right 0 center / 1.4rem;
+	background: transparent var(--arrow) no-repeat right 0 center / 1.4rem;
 	border: 0;
 	cursor: pointer;
 }
@@ -534,7 +590,7 @@ body:has(#urls) .search_filters { visibility: visible; }
 	align-items: center;
 	justify-content: center;
 	min-height: 100vh;
-	padding: 0 1rem 8rem;
+	padding: 0 1rem 14rem;
 }
 #footer { position: absolute; right: 0; bottom: 0; left: 0; display: flex; flex-direction: column; align-items: center; gap: 0.375rem; padding: 0.75rem 1rem; color: var(--overlay1); background: var(--mantle); font-size: 0.75rem; }
 #footer a { color: inherit; }
@@ -545,8 +601,15 @@ body:has(#urls) .search_filters { visibility: visible; }
 #main_index #search_view { width: 100%; }
 #main_index .title {
 	margin: 0 0 3.5rem;
+	padding: 0 0.06em 0.12em 0;
 	color: var(--accent);
-	font-size: 3.5rem;
+	background: linear-gradient(110deg, var(--rainbow-1) 0 22%, var(--rainbow-2) 0 34%, var(--rainbow-3) 0 46%,
+		var(--rainbow-4) 0 58%, var(--rainbow-5) 0 70%, var(--rainbow-6) 0 82%, var(--rainbow-7) 0);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-size: 7rem;
+	line-height: 1.1;
 	letter-spacing: -0.05em;
 }
 #main_index .title:has(+ .motd) { margin-bottom: 1rem; }
@@ -563,6 +626,14 @@ body:has(#urls) .search_filters { visibility: visible; }
 	background: var(--mantle);
 }
 #search_header #search { display: contents; }
+/* the logo is striped like the home title, in the theme's colours */
+.logo stop:nth-child(1), .logo stop:nth-child(2) { stop-color: var(--rainbow-1); }
+.logo stop:nth-child(3), .logo stop:nth-child(4) { stop-color: var(--rainbow-2); }
+.logo stop:nth-child(5), .logo stop:nth-child(6) { stop-color: var(--rainbow-3); }
+.logo stop:nth-child(7), .logo stop:nth-child(8) { stop-color: var(--rainbow-4); }
+.logo stop:nth-child(9), .logo stop:nth-child(10) { stop-color: var(--rainbow-5); }
+.logo stop:nth-child(11), .logo stop:nth-child(12) { stop-color: var(--rainbow-6); }
+.logo stop:nth-child(13), .logo stop:nth-child(14) { stop-color: var(--rainbow-7); }
 #search_logo { grid-area: logo; display: flex; justify-content: center; align-items: center; padding: 0.5rem 10px 0; color: var(--accent); }
 #search_logo svg { flex: 1; width: 30px; height: 30px; margin: 0.5rem 0 auto; }
 #search_view { grid-area: search; min-width: 0; padding-top: 0.5rem; }
@@ -1164,7 +1235,7 @@ article.result.result-images {
 	white-space: nowrap;
 	color: var(--text);
 	font-size: 0.95rem;
-	background: var(--surface0) url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpolygon fill='%23cad3f5' points='128,192 256,320 384,192'/%3E%3C/svg%3E") no-repeat right 0.5rem center / 1.2rem;
+	background: var(--surface0) var(--arrow) no-repeat right 0.5rem center / 1.2rem;
 	border: 0;
 	border-radius: 0.5rem;
 	cursor: pointer;

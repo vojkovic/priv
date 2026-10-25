@@ -32,22 +32,19 @@ static const struct {
 };
 
 const struct theme themes[] = {
-    {"brave", "Brave"},
     {"dracula", "Dracula"},
     {"everforest", "Everforest"},
-    {"evergarden", "Evergarden"},
     {"frappe", "Frappé"},
     {"gruvbox", "Gruvbox"},
-    {"gruvboxmat", "Gruvbox Material"},
-    {"kagi", "Kagi"},
     {"latte", "Latte"},
     {"macchiato", "Macchiato"},
     {"matcha", "Matcha"},
-    {"moa", "Moa"},
     {"mocha", "Mocha"},
-    {"night", "Night"},
+    {"mono", "Mono"},
     {"nord", "Nord"},
-    {"paulgo", "PaulGo"},
+    {"slate", "Slate"},
+    {"sorbet", "Sorbet"},
+    {"sorbetnight", "Sorbet Night"},
 };
 const size_t nthemes = LEN(themes);
 
