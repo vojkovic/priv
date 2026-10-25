@@ -2,11 +2,30 @@
 
 A minimal metasearch engine in C. Works without JS sans a few niceties.
 
+<p align="center"><img src="docs/screenshots/front-page.png" alt="Front page" width="720"></p>
+
 I have been a bit disappointed with the memory usage and speed of SXNG (i.e. such as when ranking many results). This is probably due to the nature of an interpreted language.
 
 For priv, I have put performance at the forefront. I have made many micro optimisations and also gave the UI a small refresh in a way I've always wanted to do but never had the tools to do it. More updates will be on the way.
 
 This whole project has been made possible through the use of LLMs (AI assisted development) - please note this is still very much in beta and may have bugs despite me taking care for it not to.
+
+## Screenshots
+
+<table>
+<tr>
+<td width="50%"><img src="docs/screenshots/calculator.png" alt="Calculator"><br><sub>Calculator</sub></td>
+<td width="50%"><img src="docs/screenshots/units.png" alt="Unit converter"><br><sub>Unit converter</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/screenshots/colour-picker.png" alt="Colour picker"><br><sub>Colour picker</sub></td>
+<td width="50%"><img src="docs/screenshots/preferences.png" alt="Preferences"><br><sub>Preferences</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/screenshots/results.png" alt="Web results"><br><sub>Web results</sub></td>
+<td width="50%"><img src="docs/screenshots/images.jpg" alt="Images"><br><sub>Images</sub></td>
+</tr>
+</table>
 
 ## Run
 
