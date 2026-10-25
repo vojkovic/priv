@@ -21,7 +21,7 @@ override LDFLAGS += $(if $(STATIC),-static)
 override LDLIBS += $(CURL_LIBS) $(XML_LIBS) -lm
 
 SRC = $(wildcard src/*.c src/engines/*.c)
-OBJ = $(SRC:%.c=obj/%.o) obj/i18n.o obj/lib/yyjson/yyjson.o
+OBJ = $(SRC:%.c=obj/%.o) obj/i18n.o obj/lib/yyjson/yyjson.o obj/lib/picohttpparser/picohttpparser.o
 GENERATED = src/locales.c
 FORMAT_SRC = $(filter-out $(GENERATED),$(wildcard src/*.c src/*.h src/engines/*.c tools/*.c))
 LINT_SRC = $(filter %.c,$(FORMAT_SRC))
@@ -57,6 +57,10 @@ obj/i18n.o: obj/i18n.c src/i18n.h
 	$(CC) $(CPPFLAGS) -Isrc -O2 -c -o $@ $<
 
 obj/lib/yyjson/yyjson.o: lib/yyjson/yyjson.c
+	@mkdir -p $(@D)
+	$(CC) $(CPPFLAGS) -O2 -c -o $@ $<
+
+obj/lib/picohttpparser/picohttpparser.o: lib/picohttpparser/picohttpparser.c lib/picohttpparser/picohttpparser.h
 	@mkdir -p $(@D)
 	$(CC) $(CPPFLAGS) -O2 -c -o $@ $<
 

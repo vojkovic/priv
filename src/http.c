@@ -11,17 +11,19 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
+#include "../lib/picohttpparser/picohttpparser.h"
 #include "ev.h"
 #include "http.h"
 #include "util.h"
 
 #define IDLE_MS 30000
+#define MAX_HEADERS 64
 
 struct conn {
 	int fd;
 	char in[8192];
 	size_t inlen;
-	char hdr[8192];
+	char hdr[8192 + MAX_HEADERS + 2];
 	struct buf out;
 	size_t outoff;
 	int busy, keepalive, chunked, head, closing, dead, processing;
@@ -202,54 +204,39 @@ bad(struct conn *c, int status)
 	http_respond(c, status, "Content-Type: text/plain\r\n", status_text(status), strlen(status_text(status)));
 }
 
+/* copies a parsed piece out of the input buffer, which the next request overwrites */
 static char *
-header(char *line, const char *name)
+keep(struct conn *c, size_t *off, const char *p, size_t n)
 {
-	size_t n = strlen(name);
+	char *s = c->hdr + *off;
 
-	if (strncasecmp(line, name, n) || line[n] != ':')
-		return NULL;
-	line += n + 1;
-	while (*line == ' ' || *line == '\t')
-		line++;
-	return str_strip(line);
+	memcpy(s, p, n);
+	s[n] = 0;
+	*off += n + 1;
+	return s;
+}
+
+static int
+named(const struct phr_header *h, const char *name)
+{
+	return h->name_len == strlen(name) && !strncasecmp(h->name, name, h->name_len);
 }
 
 static void
-handle(struct conn *c, size_t hlen)
+handle(struct conn *c, size_t len, const char *method, size_t mlen, const char *path, size_t plen, int minor,
+    const struct phr_header *h, size_t nh)
 {
 	struct request r = {0};
-	char *line, *next, *sp, *target, *version, *v;
-	int http11, close_hdr = 0, keep_hdr = 0;
+	size_t off = 0, i;
+	char *v, *q;
+	int close_hdr = 0, keep_hdr = 0;
 
-	memcpy(c->hdr, c->in, hlen);
-	c->hdr[hlen] = 0;
-	memmove(c->in, c->in + hlen + 4, c->inlen - hlen - 4);
-	c->inlen -= hlen + 4;
-
-	line = c->hdr;
-	next = strstr(line, "\r\n");
-	if (next) {
-		*next = 0;
-		next += 2;
-	}
-	if (!(sp = strchr(line, ' ')))
-		goto invalid;
-	*sp = 0;
-	target = sp + 1;
-	if (!(sp = strchr(target, ' ')))
-		goto invalid;
-	*sp = 0;
-	version = sp + 1;
-	if (strncmp(version, "HTTP/1.", 7))
-		goto invalid;
-	http11 = strcmp(version, "HTTP/1.0") != 0;
-	r.method = line;
-	r.path = target;
+	r.method = keep(c, &off, method, mlen);
+	r.path = keep(c, &off, path, plen);
 	r.query = "";
-	if ((sp = strchr(target, '?'))) {
-		*sp = 0;
-		r.query = sp + 1;
+	if ((q = strchr(r.path, '?'))) {
+		*q = 0;
+		r.query = q + 1;
 	}
 	r.host = "";
 	r.if_none_match = "";
@@ -258,46 +245,50 @@ handle(struct conn *c, size_t hlen)
 	r.accept_encoding = r.x_forwarded_for = r.x_real_ip = r.sec_fetch_mode = r.cookie = "";
 	r.remote_addr = c->peer;
 	r.has_accept = r.has_user_agent = 0;
-	for (line = next; line && *line; line = next) {
-		next = strstr(line, "\r\n");
-		if (next) {
-			*next = 0;
-			next += 2;
+	for (i = 0; i < nh; i++) {
+		/* a folded continuation line, obsolete and a way to smuggle headers past a proxy */
+		if (!h[i].name) {
+			bad(c, 400);
+			return;
 		}
-		if ((v = header(line, "Host")))
-			r.host = v;
-		else if ((v = header(line, "If-None-Match")))
-			r.if_none_match = v;
-		else if ((v = header(line, "X-Forwarded-Proto")) && !strcmp(v, "https"))
+		if (named(&h[i], "Host"))
+			r.host = keep(c, &off, h[i].value, h[i].value_len);
+		else if (named(&h[i], "If-None-Match"))
+			r.if_none_match = keep(c, &off, h[i].value, h[i].value_len);
+		else if (named(&h[i], "X-Forwarded-Proto") && h[i].value_len == 5 && !strncmp(h[i].value, "https", 5))
 			r.proto = "https";
-		else if ((v = header(line, "Accept"))) {
-			r.accept = v;
+		else if (named(&h[i], "Accept")) {
+			r.accept = keep(c, &off, h[i].value, h[i].value_len);
 			r.has_accept = 1;
-		} else if ((v = header(line, "User-Agent"))) {
-			r.user_agent = v;
+		} else if (named(&h[i], "User-Agent")) {
+			r.user_agent = keep(c, &off, h[i].value, h[i].value_len);
 			r.has_user_agent = 1;
-		} else if ((v = header(line, "Accept-Encoding")))
-			r.accept_encoding = v;
-		else if ((v = header(line, "X-Forwarded-For")))
-			r.x_forwarded_for = v;
-		else if ((v = header(line, "X-Real-IP")))
-			r.x_real_ip = v;
-		else if ((v = header(line, "Sec-Fetch-Mode")))
-			r.sec_fetch_mode = v;
-		else if ((v = header(line, "Sec-CH-UA")))
-			r.sec_ch_ua = v;
-		else if ((v = header(line, "Accept-Language")))
-			r.accept_language = v;
-		else if ((v = header(line, "Cookie")))
-			r.cookie = v;
-		else if ((v = header(line, "Connection"))) {
-			close_hdr = strcasestr(v, "close") != NULL;
-			keep_hdr = strcasestr(v, "keep-alive") != NULL;
-		} else if (((v = header(line, "Content-Length")) && strcmp(v, "0")) ||
-		    header(line, "Transfer-Encoding"))
+		} else if (named(&h[i], "Accept-Encoding"))
+			r.accept_encoding = keep(c, &off, h[i].value, h[i].value_len);
+		else if (named(&h[i], "X-Forwarded-For"))
+			r.x_forwarded_for = keep(c, &off, h[i].value, h[i].value_len);
+		else if (named(&h[i], "X-Real-IP"))
+			r.x_real_ip = keep(c, &off, h[i].value, h[i].value_len);
+		else if (named(&h[i], "Sec-Fetch-Mode"))
+			r.sec_fetch_mode = keep(c, &off, h[i].value, h[i].value_len);
+		else if (named(&h[i], "Sec-CH-UA"))
+			r.sec_ch_ua = keep(c, &off, h[i].value, h[i].value_len);
+		else if (named(&h[i], "Accept-Language"))
+			r.accept_language = keep(c, &off, h[i].value, h[i].value_len);
+		else if (named(&h[i], "Cookie"))
+			r.cookie = keep(c, &off, h[i].value, h[i].value_len);
+		else if (named(&h[i], "Connection")) {
+			v = keep(c, &off, h[i].value, h[i].value_len);
+			close_hdr |= strcasestr(v, "close") != NULL;
+			keep_hdr |= strcasestr(v, "keep-alive") != NULL;
+		} else if ((named(&h[i], "Content-Length") && !(h[i].value_len == 1 && h[i].value[0] == '0')) ||
+		    named(&h[i], "Transfer-Encoding"))
 			close_hdr = 1;
 	}
-	c->keepalive = http11 ? !close_hdr : keep_hdr && !close_hdr;
+	memmove(c->in, c->in + len, c->inlen - len);
+	c->inlen -= len;
+
+	c->keepalive = minor ? !close_hdr : keep_hdr && !close_hdr;
 	c->head = !strcmp(r.method, "HEAD");
 	r.head = c->head;
 	c->busy = 1;
@@ -308,27 +299,31 @@ handle(struct conn *c, size_t hlen)
 		return;
 	}
 	handler(c, &r);
-	return;
-invalid:
-	bad(c, 400);
 }
 
 static void
 process(struct conn *c)
 {
-	char *end;
+	struct phr_header h[MAX_HEADERS];
+	const char *method, *path;
+	size_t mlen, plen, nh;
+	int minor, n;
 
 	c->processing = 1;
 	/* a client that pipelines requests without reading the answers gets no more until it does */
 	while (!c->busy && !c->dead && !c->closing && !c->out.len) {
-		c->in[c->inlen] = 0;
-		end = c->inlen >= 4 ? strstr(c->in, "\r\n\r\n") : NULL;
-		if (!end) {
+		nh = MAX_HEADERS;
+		n = phr_parse_request(c->in, c->inlen, &method, &mlen, &path, &plen, &minor, h, &nh, 0);
+		if (n == -2) {
 			if (c->inlen >= sizeof(c->in) - 1)
 				bad(c, 431);
 			break;
 		}
-		handle(c, end - c->in);
+		if (n < 0) {
+			bad(c, 400);
+			break;
+		}
+		handle(c, (size_t)n, method, mlen, path, plen, minor, h, nh);
 	}
 	c->processing = 0;
 }
