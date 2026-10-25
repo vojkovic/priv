@@ -184,7 +184,7 @@ struct engine engine_soundcloud = {
     .shortcut = "sc",
     .website = "soundcloud.com",
     .bang = "https://soundcloud.com/search?q=%s",
-    .categories = {"music"},
+    .category = "music",
     .paging = 1,
     .init = init,
     .search = search,

@@ -59,7 +59,7 @@ struct engine engine_wikicommons_audio = {
     .shortcut = "wca",
     .website = "commons.wikimedia.org",
     .bang = "https://commons.wikimedia.org/w/index.php?search=%s&fulltext=1",
-    .categories = {"music"},
+    .category = "music",
     .paging = 1,
     .search = search,
 };

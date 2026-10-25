@@ -58,7 +58,7 @@ struct engine engine_superuser = {
     .shortcut = "su",
     .website = "superuser.com",
     .bang = "https://superuser.com/search?q=%s",
-    .categories = {"tech"},
+    .category = "tech",
     .paging = 1,
     .search = search,
 };

@@ -59,7 +59,7 @@ struct engine engine_radio_browser = {
     .shortcut = "rb",
     .website = "www.radio-browser.info",
     .bang = "https://www.radio-browser.info/search?name=%s",
-    .categories = {"music"},
+    .category = "music",
     .paging = 1,
     .search = search,
 };

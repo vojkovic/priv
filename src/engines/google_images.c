@@ -88,7 +88,7 @@ struct engine engine_google_images = {
     .website = "images.google.com",
     .safesearch = 1,
     .bang = "https://www.google.com/search?tbm=isch&q=%s",
-    .categories = {"images"},
+    .category = "images",
     .paging = 1,
     .max_page = 50,
     .time_range = 1,

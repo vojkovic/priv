@@ -77,7 +77,7 @@ struct engine engine_reuters = {
     .shortcut = "reu",
     .website = "www.reuters.com",
     .bang = "https://www.reuters.com/site-search/?query=%s",
-    .categories = {"news"},
+    .category = "news",
     .paging = 1,
     .time_range = 1,
     .search = search,

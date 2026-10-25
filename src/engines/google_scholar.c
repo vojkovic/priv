@@ -76,7 +76,7 @@ struct engine engine_google_scholar = {
     .shortcut = "gos",
     .website = "scholar.google.com",
     .bang = "https://scholar.google.com/scholar?q=%s",
-    .categories = {"research"},
+    .category = "research",
     .paging = 1,
     .time_range = 1,
     .search = search,

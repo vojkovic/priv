@@ -57,7 +57,7 @@ struct engine engine_wikinews = {
     .shortcut = "wn",
     .website = "en.wikinews.org",
     .bang = "https://en.wikinews.org/w/index.php?search=%s",
-    .categories = {"news"},
+    .category = "news",
     .paging = 1,
     .search = search,
 };

@@ -16,14 +16,12 @@
 struct job;
 struct locale;
 
-#define MAX_CATEGORIES 3
-
 struct engine {
 	const char *name;
 	const char *shortcut;
 	const char *website;
 	const char *bang;
-	const char *categories[MAX_CATEGORIES];
+	const char *category;
 	int paging, max_page, time_range, safesearch, starts_off;
 	int no_accept_language;
 	void (*init)(void);

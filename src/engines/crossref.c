@@ -75,7 +75,7 @@ struct engine engine_crossref = {
     .shortcut = "cr",
     .website = "www.crossref.org",
     .bang = "https://search.crossref.org/?q=%s",
-    .categories = {"research"},
+    .category = "research",
     .paging = 1,
     .search = search,
 };

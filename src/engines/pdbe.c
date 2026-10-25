@@ -85,6 +85,6 @@ struct engine engine_pdbe = {
     .shortcut = "pdb",
     .website = "www.ebi.ac.uk",
     .bang = "https://www.ebi.ac.uk/pdbe/entry/search/index?text:%s",
-    .categories = {"research"},
+    .category = "research",
     .search = search,
 };

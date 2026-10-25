@@ -62,7 +62,7 @@ struct engine engine_genius = {
     .shortcut = "gen",
     .website = "genius.com",
     .bang = "https://genius.com/search?q=%s",
-    .categories = {"music"},
+    .category = "music",
     .paging = 1,
     .search = search,
 };

@@ -48,7 +48,7 @@ struct engine engine_mixcloud = {
     .shortcut = "mc",
     .website = "www.mixcloud.com",
     .bang = "https://www.mixcloud.com/search/?q=%s",
-    .categories = {"music"},
+    .category = "music",
     .paging = 1,
     .search = search,
 };

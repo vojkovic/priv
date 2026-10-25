@@ -76,7 +76,7 @@ struct engine engine_arxiv = {
     .shortcut = "arx",
     .website = "arxiv.org",
     .bang = "https://arxiv.org/search/?query=%s&searchtype=all",
-    .categories = {"research"},
+    .category = "research",
     .paging = 1,
     .search = search,
 };

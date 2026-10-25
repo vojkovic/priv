@@ -55,6 +55,6 @@ struct engine engine_oceanhero = {
     .website = "oceanhero.today",
     .safesearch = 1,
     .bang = "https://oceanhero.today/web?q=%s",
-    .categories = {"general"},
+    .category = "general",
     .search = search,
 };

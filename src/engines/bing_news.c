@@ -62,7 +62,7 @@ struct engine engine_bing_news = {
     .shortcut = "bin",
     .website = "www.bing.com",
     .bang = "https://www.bing.com/news/search?q=%s",
-    .categories = {"news"},
+    .category = "news",
     .paging = 1,
     .time_range = 1,
     .search = search,

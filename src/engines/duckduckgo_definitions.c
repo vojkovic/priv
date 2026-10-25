@@ -264,6 +264,6 @@ struct engine engine_duckduckgo_definitions = {
     .shortcut = "ddd",
     .website = "duckduckgo.com",
     .bang = "https://duckduckgo.com/?q=%s",
-    .categories = {"general"},
+    .category = "general",
     .search = search,
 };

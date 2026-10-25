@@ -100,6 +100,6 @@ struct engine engine_pubmed = {
     .shortcut = "pub",
     .website = "pubmed.ncbi.nlm.nih.gov",
     .bang = "https://pubmed.ncbi.nlm.nih.gov/?term=%s",
-    .categories = {"research"},
+    .category = "research",
     .search = search,
 };

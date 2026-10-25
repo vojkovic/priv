@@ -66,7 +66,7 @@ struct engine engine_bing_videos = {
     .shortcut = "biv",
     .website = "www.bing.com",
     .bang = "https://www.bing.com/videos/search?q=%s",
-    .categories = {"videos"},
+    .category = "videos",
     .paging = 1,
     .time_range = 1,
     .search = search,

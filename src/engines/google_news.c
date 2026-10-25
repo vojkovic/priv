@@ -121,7 +121,7 @@ struct engine engine_google_news = {
     .shortcut = "gon",
     .website = "news.google.com",
     .bang = "https://news.google.com/search?q=%s",
-    .categories = {"news"},
+    .category = "news",
     .paging = 1,
     .max_page = 50,
     .no_accept_language = 1,

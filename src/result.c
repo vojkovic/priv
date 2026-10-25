@@ -399,7 +399,7 @@ results_close(struct results *r)
 	groups = amalloc(r->a, (r->nmain + 1) * sizeof(*groups));
 	for (i = 0; i < r->nmain; i++) {
 		m = r->main[i];
-		m->category = m->base.engine->categories[0];
+		m->category = m->base.engine->category;
 		key = aprintf(r->a, "%s:%s:%s", m->category, m->template,
 		    (m->thumbnail && *m->thumbnail) || (m->img_src && *m->img_src) ? "img_src" : "");
 		for (j = 0; j < ngroups && strcmp(groups[j].key, key); j++)

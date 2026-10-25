@@ -179,7 +179,7 @@ struct engine engine_google_cse = {
     .website = "www.google.com",
     .safesearch = 1,
     .bang = "https://www.google.com/search?q=%s",
-    .categories = {"general"},
+    .category = "general",
     .paging = 1,
     .max_page = 5,
     .time_range = 1,

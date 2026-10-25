@@ -53,7 +53,7 @@ struct engine engine_s1search = {
     .name = "s1search",
     .shortcut = "s1",
     .website = "search.answers.com",
-    .categories = {"general"},
+    .category = "general",
     .paging = 1,
     .search = search,
 };

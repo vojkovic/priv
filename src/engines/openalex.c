@@ -106,7 +106,7 @@ struct engine engine_openalex = {
     .shortcut = "oa",
     .website = "openalex.org",
     .bang = "https://openalex.org/works?search=%s",
-    .categories = {"research"},
+    .category = "research",
     .paging = 1,
     .search = search,
 };

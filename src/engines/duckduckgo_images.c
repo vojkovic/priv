@@ -134,7 +134,7 @@ struct engine engine_duckduckgo_images = {
     .website = "duckduckgo.com",
     .safesearch = 1,
     .bang = "https://duckduckgo.com/?q=%s&iax=images&ia=images",
-    .categories = {"images"},
+    .category = "images",
     .paging = 1,
     .no_accept_language = 1,
     .search = search,

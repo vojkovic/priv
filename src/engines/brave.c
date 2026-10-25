@@ -106,7 +106,7 @@ struct engine engine_brave = {
     .website = "search.brave.com",
     .safesearch = 1,
     .bang = "https://search.brave.com/search?q=%s",
-    .categories = {"general"},
+    .category = "general",
     .paging = 1,
     .max_page = 10,
     .time_range = 1,

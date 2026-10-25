@@ -132,7 +132,7 @@ struct engine engine_google_videos = {
     .website = "www.google.com",
     .safesearch = 1,
     .bang = "https://www.google.com/search?tbm=vid&q=%s",
-    .categories = {"videos"},
+    .category = "videos",
     .paging = 1,
     .max_page = 50,
     .time_range = 1,

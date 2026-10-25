@@ -115,7 +115,7 @@ struct engine engine_dogpile_images = {
     .website = "www.dogpile.com",
     .safesearch = 1,
     .bang = "https://www.dogpile.com/serp/images?q=%s",
-    .categories = {"images"},
+    .category = "images",
     .paging = 1,
     .init = init,
     .search = search,

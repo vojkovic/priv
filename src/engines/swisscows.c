@@ -149,7 +149,7 @@ struct engine engine_swisscows = {
     .shortcut = "sw",
     .website = "swisscows.com",
     .bang = "https://swisscows.com/en/web?query=%s",
-    .categories = {"general"},
+    .category = "general",
     .paging = 1,
     .time_range = 1,
     .search = search,

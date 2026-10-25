@@ -110,7 +110,7 @@ struct engine engine_google = {
     .website = "www.google.com",
     .safesearch = 1,
     .bang = "https://www.google.com/search?q=%s",
-    .categories = {"general"},
+    .category = "general",
     .paging = 1,
     .max_page = 50,
     .time_range = 1,

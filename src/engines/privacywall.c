@@ -50,7 +50,7 @@ struct engine engine_privacywall = {
     .website = "www.privacywall.org",
     .safesearch = 1,
     .bang = "https://www.privacywall.org/search/secure?q=%s",
-    .categories = {"general"},
+    .category = "general",
     .time_range = 1,
     .search = search,
 };

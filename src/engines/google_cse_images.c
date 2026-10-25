@@ -185,7 +185,7 @@ struct engine engine_google_cse_images = {
     .website = "cse.google.com",
     .safesearch = 1,
     .bang = "https://www.google.com/search?tbm=isch&q=%s",
-    .categories = {"images"},
+    .category = "images",
     .paging = 1,
     .max_page = 5,
     .time_range = 1,

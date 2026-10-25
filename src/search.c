@@ -675,7 +675,7 @@ bang(struct arena *a, const char *value, struct filters *f)
 		e = engines[i];
 		if ((e->shortcut && !strcmp(e->shortcut, v)) || !strcmp(e->name, v)) {
 			if (!f->engines)
-				f->category = e->categories[0];
+				f->category = e->category;
 			/* the first bang picks the category, later ones only add engines that belong to it */
 			if (engine_in(e, f->category))
 				f->engines |= ENGINE_BIT(e);

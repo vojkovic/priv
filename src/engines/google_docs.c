@@ -133,7 +133,7 @@ struct engine engine_google_docs = {
     .shortcut = "god",
     .website = "docs.google.com",
     .bang = "https://www.google.com/search?q=%s",
-    .categories = {"general"},
+    .category = "general",
     .paging = 1,
     .search = search,
 };

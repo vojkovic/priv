@@ -84,12 +84,7 @@ engine_find(const char *name)
 int
 engine_in(const struct engine *e, const char *category)
 {
-	size_t i;
-
-	for (i = 0; i < MAX_CATEGORIES && e->categories[i]; i++)
-		if (!strcmp(e->categories[i], category))
-			return 1;
-	return 0;
+	return !strcmp(e->category, category);
 }
 
 /* the name as written in config.toml: "google cse" is google_cse, "brave.images" is brave_images */

@@ -105,7 +105,7 @@ struct engine engine_europepmc = {
     .shortcut = "epmc",
     .website = "europepmc.org",
     .bang = "https://europepmc.org/search?query=%s",
-    .categories = {"research"},
+    .category = "research",
     .paging = 1,
     .search = search,
 };

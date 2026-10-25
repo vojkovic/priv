@@ -84,6 +84,6 @@ struct engine engine_brave_images = {
     .website = "search.brave.com",
     .safesearch = 1,
     .bang = "https://search.brave.com/images?q=%s",
-    .categories = {"images"},
+    .category = "images",
     .search = search,
 };

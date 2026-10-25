@@ -140,7 +140,7 @@ struct engine engine_duckduckgo_news = {
     .website = "duckduckgo.com",
     .safesearch = 1,
     .bang = "https://duckduckgo.com/?q=%s&iar=news&ia=news",
-    .categories = {"news"},
+    .category = "news",
     .paging = 1,
     .no_accept_language = 1,
     .search = search,

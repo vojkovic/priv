@@ -266,7 +266,7 @@ struct engine engine_bing = {
     .website = "www.bing.com",
     .safesearch = 1,
     .bang = "https://www.bing.com/search?q=%s",
-    .categories = {"general"},
+    .category = "general",
     .paging = 1,
     .search = search,
 };

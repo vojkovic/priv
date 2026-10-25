@@ -49,6 +49,6 @@ struct engine engine_pypi = {
     .shortcut = "pypi",
     .website = "pypi.org",
     .bang = "https://pypi.org/search/?q=%s",
-    .categories = {"tech"},
+    .category = "tech",
     .search = search,
 };

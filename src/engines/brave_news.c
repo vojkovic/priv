@@ -78,6 +78,6 @@ struct engine engine_brave_news = {
     .website = "search.brave.com",
     .safesearch = 1,
     .bang = "https://search.brave.com/news?q=%s",
-    .categories = {"news"},
+    .category = "news",
     .search = search,
 };
