@@ -1231,41 +1231,58 @@
 		const fn = (label, aria, text, altLabel, altAria, altText) =>
 			key(label, aria, type(text), "calc-fn", { label: altLabel, aria: altAria, action: type(altText) });
 
-		const keys = make("div", "calc-keys");
-		keys.append(
-			modeKey,
+		const sci = make("div", "calc-sci");
+		sci.id = "calc-sci";
+		sci.append(
+			modeKey, invKey,
 			key("x!", "Factorial", type("!"), "calc-fn"),
 			key("(", "Open bracket", type("("), "calc-fn"),
 			key(")", "Close bracket", type(")"), "calc-fn"),
-			key("%", "Percent", type("%"), "calc-op"),
-			key("⌫", "Delete", backspace, "calc-op"),
-			key("AC", "Clear", clear, "calc-clear"),
-
-			invKey,
 			fn("sin", "Sine", "sin(", "sin⁻¹", "Inverse sine", "asin("),
-			fn("ln", "Natural logarithm", "ln(", "eˣ", "e to the power", "e^"),
-			num("7"), num("8"), num("9"),
-			key("÷", "Divide", type("÷"), "calc-op"),
-
-			key("π", "Pi", type("π"), "calc-fn"),
 			fn("cos", "Cosine", "cos(", "cos⁻¹", "Inverse cosine", "acos("),
-			fn("log", "Logarithm base 10", "log(", "10ˣ", "10 to the power", "10^"),
-			num("4"), num("5"), num("6"),
-			key("×", "Multiply", type("×"), "calc-op"),
-
-			key("e", "Euler's number", type("e"), "calc-fn"),
 			fn("tan", "Tangent", "tan(", "tan⁻¹", "Inverse tangent", "atan("),
+			fn("ln", "Natural logarithm", "ln(", "eˣ", "e to the power", "e^"),
+			fn("log", "Logarithm base 10", "log(", "10ˣ", "10 to the power", "10^"),
 			fn("√", "Square root", "√(", "x²", "Square", "^2"),
-			num("1"), num("2"), num("3"),
-			key("−", "Subtract", type("-"), "calc-op"),
-
+			key("π", "Pi", type("π"), "calc-fn"),
+			key("e", "Euler's number", type("e"), "calc-fn"),
+			fn("xʸ", "Power", "^", "ʸ√x", "Root", "root("),
 			key("Ans", "Previous answer", type("ans"), "calc-fn"),
 			key("EXP", "Times ten to the power", type("×10^"), "calc-fn"),
-			fn("xʸ", "Power", "^", "ʸ√x", "Root", "root("),
+		);
+
+		const pad = make("div", "calc-pad");
+		pad.append(
+			key("AC", "Clear", clear, "calc-clear"),
+			key("⌫", "Delete", backspace, "calc-op"),
+			key("%", "Percent", type("%"), "calc-op"),
+			key("÷", "Divide", type("÷"), "calc-op"),
+			num("7"), num("8"), num("9"),
+			key("×", "Multiply", type("×"), "calc-op"),
+			num("4"), num("5"), num("6"),
+			key("−", "Subtract", type("-"), "calc-op"),
+			num("1"), num("2"), num("3"),
+			key("+", "Add", type("+"), "calc-op"),
 			num("0"), key(".", "Decimal point", type("."), "calc-digit"),
 			key("=", "Equals", equals, "calc-equals"),
-			key("+", "Add", type("+"), "calc-op"),
 		);
+		pad.lastChild.classList.add("calc-wide");
+
+		const keys = make("div", "calc-keys");
+		keys.append(sci, pad);
+
+		const more = make("button", "calc-more", "fx");
+		more.type = "button";
+		more.setAttribute("aria-label", "Scientific functions");
+		more.setAttribute("aria-controls", "calc-sci");
+		more.setAttribute("aria-expanded", "false");
+		more.addEventListener("click", () => {
+			const open = more.getAttribute("aria-expanded") !== "true";
+			more.setAttribute("aria-expanded", String(open));
+			keys.classList.toggle("sci-open", open);
+			field.focus({ preventScroll: true });
+		});
+		head.prepend(more);
 
 		field.addEventListener("input", () => {
 			if (finished) {
