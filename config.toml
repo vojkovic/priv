@@ -53,6 +53,7 @@ wikinews = 2
 duckduckgo_news = 2
 reuters = 2
 brave_news = 2
+abc_news = 2
 
 # music
 soundcloud = 2
@@ -60,6 +61,7 @@ genius = 2
 mixcloud = 2
 radio_browser = 2
 wikicommons_audio = 2
+abc_radio = 2
 
 # tech
 arch_linux_wiki = 2

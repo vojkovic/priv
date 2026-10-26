@@ -445,9 +445,7 @@ botdetect_ping(struct conn *c, struct request *r, const char *tok)
 	if (!strcmp(tok, botdetect_token())) {
 		const char *key = ping_key(net, r);
 
-		if (cache_get(key))
-			cache_set(key, "1", PING_LIVE_TIME);
-		else if (incr_sliding_window("PING", net, PING_LIVE_TIME) <= PING_MAX)
+		if (cache_get(key) || incr_sliding_window("PING", net, PING_LIVE_TIME) <= PING_MAX)
 			cache_set(key, "1", PING_LIVE_TIME);
 	}
 	http_respond(c, 200, "Content-Type: text/css\r\nCache-Control: no-store\r\n", "", 0);

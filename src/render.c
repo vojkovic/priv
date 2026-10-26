@@ -453,9 +453,10 @@ color_query(const char *q)
 static int
 self_query(const char *q)
 {
-	static const char *const asks[] = {"ip", "myip", "whatismyip", "my ip", "ip address", "my ip address", "what is my ip",
-	    "what is my ip address", "whats my ip", "whats my ip address", "whats my user agent", "what is my user agent", "user agent", "my user agent", "my browser",
-	    "what is my browser", "my language", "my browser language", "what is my language"};
+	static const char *const asks[] = {"ip", "myip", "whatismyip", "my ip", "ip address", "my ip address",
+	    "what is my ip", "what is my ip address", "whats my ip", "whats my ip address", "whats my user agent",
+	    "what is my user agent", "user agent", "my user agent", "my browser", "what is my browser", "my language",
+	    "my browser language", "what is my language"};
 	char norm[64], *d = norm;
 	int space = 0;
 	size_t i;
@@ -488,8 +489,9 @@ selfinfo(struct buf *b, struct filters *f)
 	    "<div class=\"self-ip\"><strong%r>%s</strong><span>%s</span></div>"
 	    "<dl><dt>%s</dt><dd>%s</dd><dt>%s</dt><dd>%s</dd></dl>"
 	    "</section>\n",
-	    tr("Your connection"), tr("IP address"), strlen(f->client_ip) > 15 ? " class=\"long\"" : "", f->client_ip, strchr(f->client_ip, ':') ? "IPv6" : "IPv4",
-	    tr("User agent"), f->client_agent, tr("Languages"), f->client_language);
+	    tr("Your connection"), tr("IP address"), strlen(f->client_ip) > 15 ? " class=\"long\"" : "", f->client_ip,
+	    strchr(f->client_ip, ':') ? "IPv6" : "IPv4", tr("User agent"), f->client_agent, tr("Languages"),
+	    f->client_language);
 }
 
 void

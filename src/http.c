@@ -375,7 +375,7 @@ resume_accept(void *arg)
 static void
 on_accept(int fd, int events, void *arg)
 {
-	struct sockaddr_storage ss;
+	struct sockaddr_storage ss = {0};
 	socklen_t sl;
 	struct conn *c;
 	int cfd, one = 1;

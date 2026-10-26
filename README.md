@@ -63,7 +63,7 @@ Most of the bangs are supported:
 | general | google, google docs, bing, google cse, brave, duckduckgo, duckduckgo web, dogpile, privacywall, oceanhero, swisscows, iseek, s1search, wikipedia |
 | images | google images, google cse images, brave images, duckduckgo images, dogpile images |
 | videos | google videos, duckduckgo videos, youtube, brave videos, bing videos, dailymotion |
-| news | google news, duckduckgo news, reuters, brave news, bing news, wikinews |
-| music | soundcloud, wikicommons audio, genius, mixcloud, radio browser |
+| news | google news, duckduckgo news, reuters, brave news, abc news, bing news, wikinews |
+| music | soundcloud, wikicommons audio, genius, mixcloud, radio browser, abc radio |
 | tech | arch linux wiki, mdn, mankier, pypi, stackoverflow, askubuntu, superuser |
 | research | arxiv, europepmc, pdbe, pubmed, openalex, crossref, google scholar |
