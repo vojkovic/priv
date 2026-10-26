@@ -432,8 +432,14 @@ botdetect_ping(struct conn *c, struct request *r, const char *tok)
 
 	network(&ip, net, sizeof(net));
 	/* the token is public, so one network could otherwise push every other client's ping out */
-	if (!strcmp(tok, botdetect_token()) && incr_sliding_window("PING", net, PING_LIVE_TIME) <= PING_MAX)
-		cache_set(ping_key(net, r), "1", PING_LIVE_TIME);
+	if (!strcmp(tok, botdetect_token())) {
+		const char *key = ping_key(net, r);
+
+		if (cache_get(key))
+			cache_set(key, "1", PING_LIVE_TIME);
+		else if (incr_sliding_window("PING", net, PING_LIVE_TIME) <= PING_MAX)
+			cache_set(key, "1", PING_LIVE_TIME);
+	}
 	http_respond(c, 200, "Content-Type: text/css\r\nCache-Control: no-store\r\n", "", 0);
 }
 
