@@ -485,10 +485,10 @@ selfinfo(struct buf *b, struct filters *f)
 	buf_html(b,
 	    "<section id=\"selfinfo\" aria-label=\"%s\">"
 	    "<div class=\"self-label\">%s</div>"
-	    "<div class=\"self-ip\"><strong>%s</strong><span>%s</span></div>"
+	    "<div class=\"self-ip\"><strong%r>%s</strong><span>%s</span></div>"
 	    "<dl><dt>%s</dt><dd>%s</dd><dt>%s</dt><dd>%s</dd></dl>"
 	    "</section>\n",
-	    tr("Your connection"), tr("IP address"), f->client_ip, strchr(f->client_ip, ':') ? "IPv6" : "IPv4",
+	    tr("Your connection"), tr("IP address"), strlen(f->client_ip) > 15 ? " class=\"long\"" : "", f->client_ip, strchr(f->client_ip, ':') ? "IPv6" : "IPv4",
 	    tr("User agent"), f->client_agent, tr("Languages"), f->client_language);
 }
 

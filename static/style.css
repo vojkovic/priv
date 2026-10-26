@@ -758,6 +758,7 @@ body:has(#footer) { position: relative; min-height: 100vh; min-height: 100dvh; }
 	letter-spacing: -0.02em;
 	overflow-wrap: anywhere;
 }
+#selfinfo .self-ip .long { font-size: 1.7rem; }
 #selfinfo .self-ip span {
 	padding: 0.1rem 0.6rem;
 	color: var(--accent);
@@ -895,8 +896,8 @@ body:has(#footer) { position: relative; min-height: 100vh; min-height: 100dvh; }
 
 #search_header {
 	display: grid;
-	grid-template-columns: 3rem 44rem;
-	grid-template-areas: "logo search" "spacer categories";
+	grid-template-columns: 3rem 44rem 1fr;
+	grid-template-areas: "logo search ." "spacer categories categories";
 	gap: 0.7rem 0.5em;
 	padding: 1.5rem 2rem 0 7rem;
 	background: var(--mantle);
@@ -1408,6 +1409,7 @@ article.result.result-images {
 @media (max-width: 79.75em) {
 	#search_header {
 		grid-template-columns: 3rem minmax(0, 44rem);
+		grid-template-areas: "logo search" "spacer categories";
 		justify-content: center;
 		padding: 1.5rem 0.5rem 0;
 	}
@@ -1719,6 +1721,7 @@ article.result.result-images {
 	#results { margin: 0.25rem 0 2rem; padding: 0; }
 	article.result, #answers, #calculator, #converter, #colorpicker, #selfinfo { margin: 0.5em; }
 	#selfinfo .self-ip strong { font-size: 1.9rem; }
+	#selfinfo .self-ip .long { font-size: 1.25rem; }
 	#selfinfo dl { grid-template-columns: 1fr; gap: 0.15rem; }
 	#selfinfo dd { margin-bottom: 0.6rem; }
 	#selfinfo dd:last-child { margin-bottom: 0; }
