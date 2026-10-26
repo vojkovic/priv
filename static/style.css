@@ -589,9 +589,10 @@ body:has(#urls) .search_filters { visibility: visible; }
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	min-height: 100vh;
+	min-height: inherit;
 	padding: 0 1rem 14rem;
 }
+body:has(#footer) { position: relative; min-height: 100vh; min-height: 100dvh; }
 #footer { position: absolute; right: 0; bottom: 0; left: 0; display: flex; flex-direction: column; align-items: center; gap: 0.375rem; padding: 0.75rem 1rem; color: var(--overlay1); background: var(--mantle); font-size: 0.75rem; }
 #footer a { color: inherit; }
 #footer nav { display: flex; gap: 1rem; }
