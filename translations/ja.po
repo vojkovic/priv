@@ -63,6 +63,9 @@ msgstr "形式"
 msgid "General"
 msgstr "一般"
 
+msgid "IP address"
+msgstr "IPアドレス"
+
 msgid "Image details"
 msgstr "画像の詳細"
 
@@ -74,6 +77,9 @@ msgstr "インターフェースの言語"
 
 msgid "Journal"
 msgstr "刊行物"
+
+msgid "Languages"
+msgstr "言語"
 
 msgid "Last day"
 msgstr "24 時間以内"
@@ -192,6 +198,9 @@ msgstr "別の言葉や別のカテゴリで試してください。"
 msgid "Type"
 msgstr "分類"
 
+msgid "User agent"
+msgstr "ユーザーエージェント"
+
 msgid "Version"
 msgstr "バージョン"
 
@@ -203,6 +212,9 @@ msgstr "閲覧数"
 
 msgid "What language do you prefer for search?"
 msgstr "どの言語で検索しますか？"
+
+msgid "Your connection"
+msgstr "お使いの接続"
 
 msgid "{0} of {1} engines"
 msgstr "{1} 件中 {0} 件のエンジン"

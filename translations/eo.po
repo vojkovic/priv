@@ -63,6 +63,9 @@ msgstr "Formato"
 msgid "General"
 msgstr "Ĝenerala"
 
+msgid "IP address"
+msgstr "IP-adreso"
+
 msgid "Image details"
 msgstr "Detaloj de la bildo"
 
@@ -74,6 +77,9 @@ msgstr "Fasada lingvo"
 
 msgid "Journal"
 msgstr "Revuo"
+
+msgid "Languages"
+msgstr "Lingvoj"
 
 msgid "Last day"
 msgstr "Pasinta tago"
@@ -192,6 +198,9 @@ msgstr "Provu aliajn vortojn aŭ alian kategorion."
 msgid "Type"
 msgstr "Tipo"
 
+msgid "User agent"
+msgstr "Uzantagento"
+
 msgid "Version"
 msgstr "Versio"
 
@@ -203,6 +212,9 @@ msgstr "Spektoj"
 
 msgid "What language do you prefer for search?"
 msgstr "Kiun lingvon vi pli ŝatas por serĉi?"
+
+msgid "Your connection"
+msgstr "Via konekto"
 
 msgid "{0} of {1} engines"
 msgstr "{0} el {1} serĉiloj"

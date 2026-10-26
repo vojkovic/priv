@@ -63,6 +63,9 @@ msgstr "Format"
 msgid "General"
 msgstr "Umum"
 
+msgid "IP address"
+msgstr "Alamat IP"
+
 msgid "Image details"
 msgstr "Detail gambar"
 
@@ -74,6 +77,9 @@ msgstr "Bahasa antarmuka"
 
 msgid "Journal"
 msgstr "Jurnal"
+
+msgid "Languages"
+msgstr "Bahasa"
 
 msgid "Last day"
 msgstr "Kemarin"
@@ -192,6 +198,9 @@ msgstr "Coba kata lain atau kategori lain."
 msgid "Type"
 msgstr "Jenis"
 
+msgid "User agent"
+msgstr "User agent"
+
 msgid "Version"
 msgstr "Versi"
 
@@ -203,6 +212,9 @@ msgstr "Tampilan"
 
 msgid "What language do you prefer for search?"
 msgstr "Anda ingin mencari dalam bahasa apa?"
+
+msgid "Your connection"
+msgstr "Koneksi Anda"
 
 msgid "{0} of {1} engines"
 msgstr "{0} dari {1} mesin"

@@ -63,6 +63,9 @@ msgstr "Format"
 msgid "General"
 msgstr "General"
 
+msgid "IP address"
+msgstr "Adresă IP"
+
 msgid "Image details"
 msgstr "Detaliile imaginii"
 
@@ -74,6 +77,9 @@ msgstr "Limba interfeței"
 
 msgid "Journal"
 msgstr "Jurnal"
+
+msgid "Languages"
+msgstr "Limbi"
 
 msgid "Last day"
 msgstr "Ultima zi"
@@ -192,6 +198,9 @@ msgstr "Încercați alte cuvinte sau altă categorie."
 msgid "Type"
 msgstr "Tip"
 
+msgid "User agent"
+msgstr "User agent"
+
 msgid "Version"
 msgstr "Versiune"
 
@@ -203,6 +212,9 @@ msgstr "Afișări"
 
 msgid "What language do you prefer for search?"
 msgstr "Ce limbă preferați pentru căutare?"
+
+msgid "Your connection"
+msgstr "Conexiunea ta"
 
 msgid "{0} of {1} engines"
 msgstr "{0} din {1} motoare"

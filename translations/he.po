@@ -64,6 +64,9 @@ msgstr "תבנית"
 msgid "General"
 msgstr "כללי"
 
+msgid "IP address"
+msgstr "כתובת IP"
+
 msgid "Image details"
 msgstr "פרטי התמונה"
 
@@ -75,6 +78,9 @@ msgstr "שפת ממשק"
 
 msgid "Journal"
 msgstr "יומן"
+
+msgid "Languages"
+msgstr "שפות"
 
 msgid "Last day"
 msgstr "מהיום האחרון"
@@ -193,6 +199,9 @@ msgstr "נסו מילים אחרות או קטגוריה אחרת."
 msgid "Type"
 msgstr "סוג"
 
+msgid "User agent"
+msgstr "סוכן משתמש"
+
 msgid "Version"
 msgstr "גרסה"
 
@@ -204,6 +213,9 @@ msgstr "צפיות"
 
 msgid "What language do you prefer for search?"
 msgstr "באיזו שפה ברצונך לחפש?"
+
+msgid "Your connection"
+msgstr "החיבור שלך"
 
 msgid "{0} of {1} engines"
 msgstr "{0} מתוך {1} מנועים"

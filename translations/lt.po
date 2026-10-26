@@ -63,6 +63,9 @@ msgstr "Formatas"
 msgid "General"
 msgstr "Bendra"
 
+msgid "IP address"
+msgstr "IP adresas"
+
 msgid "Image details"
 msgstr "Paveikslėlio informacija"
 
@@ -74,6 +77,9 @@ msgstr "Sąsajos kalba"
 
 msgid "Journal"
 msgstr "Žurnalas"
+
+msgid "Languages"
+msgstr "Kalbos"
 
 msgid "Last day"
 msgstr "Praeitą dieną"
@@ -192,6 +198,9 @@ msgstr "Pabandykite kitus žodžius arba kitą kategoriją."
 msgid "Type"
 msgstr "Tipas"
 
+msgid "User agent"
+msgstr "Naudotojo agentas"
+
 msgid "Version"
 msgstr "Versija"
 
@@ -203,6 +212,9 @@ msgstr "Peržiūros"
 
 msgid "What language do you prefer for search?"
 msgstr "Kokią kalbą pageidaujate paieškai?"
+
+msgid "Your connection"
+msgstr "Jūsų ryšys"
 
 msgid "{0} of {1} engines"
 msgstr "{0} iš {1} paieškos sistemų"

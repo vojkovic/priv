@@ -63,6 +63,9 @@ msgstr "ഫോർമാറ്റ്"
 msgid "General"
 msgstr "പൊതുവായ"
 
+msgid "IP address"
+msgstr "ഐപി വിലാസം"
+
 msgid "Image details"
 msgstr "ചിത്രത്തിന്റെ വിശദാംശങ്ങൾ"
 
@@ -74,6 +77,9 @@ msgstr "ഇന്റർഫേസ് ഭാഷ"
 
 msgid "Journal"
 msgstr "ജേണൽ"
+
+msgid "Languages"
+msgstr "ഭാഷകൾ"
 
 msgid "Last day"
 msgstr "കഴിഞ്ഞ ദിവസം"
@@ -192,6 +198,9 @@ msgstr "മറ്റ് വാക്കുകളോ മറ്റൊരു വി
 msgid "Type"
 msgstr "തരം"
 
+msgid "User agent"
+msgstr "യൂസർ ഏജന്റ്"
+
 msgid "Version"
 msgstr "പതിപ്പ്"
 
@@ -203,6 +212,9 @@ msgstr "കാഴ്ചകൾ"
 
 msgid "What language do you prefer for search?"
 msgstr "തിരയലിന് ഏത് ഭാഷയാണ് നിങ്ങൾക്ക് ഇഷ്ടം?"
+
+msgid "Your connection"
+msgstr "നിങ്ങളുടെ കണക്ഷൻ"
 
 msgid "{0} of {1} engines"
 msgstr "{1} എഞ്ചിനുകളിൽ {0}"

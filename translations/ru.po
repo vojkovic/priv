@@ -63,6 +63,9 @@ msgstr "Формат"
 msgid "General"
 msgstr "Общие"
 
+msgid "IP address"
+msgstr "IP-адрес"
+
 msgid "Image details"
 msgstr "Сведения об изображении"
 
@@ -74,6 +77,9 @@ msgstr "Язык интерфейса"
 
 msgid "Journal"
 msgstr "Журнал"
+
+msgid "Languages"
+msgstr "Языки"
 
 msgid "Last day"
 msgstr "Последние сутки"
@@ -192,6 +198,9 @@ msgstr "Попробуйте другие слова или другую кат�
 msgid "Type"
 msgstr "Тип"
 
+msgid "User agent"
+msgstr "User agent"
+
 msgid "Version"
 msgstr "Версия"
 
@@ -203,6 +212,9 @@ msgstr "Просмотры"
 
 msgid "What language do you prefer for search?"
 msgstr "Какой язык предпочтителен для поиска?"
+
+msgid "Your connection"
+msgstr "Ваше соединение"
 
 msgid "{0} of {1} engines"
 msgstr "{0} из {1} поисковиков"

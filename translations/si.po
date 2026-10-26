@@ -63,6 +63,9 @@ msgstr "ආකෘතිය"
 msgid "General"
 msgstr "සාමාන්‍ය"
 
+msgid "IP address"
+msgstr "අයිපී ලිපිනය"
+
 msgid "Image details"
 msgstr "රූපයේ විස්තර"
 
@@ -74,6 +77,9 @@ msgstr "අතුරුමුහුණත් භාෂාව"
 
 msgid "Journal"
 msgstr "සඟරාව"
+
+msgid "Languages"
+msgstr "භාෂා"
 
 msgid "Last day"
 msgstr "පසුගිය දිනය"
@@ -192,6 +198,9 @@ msgstr "වෙනත් වචන හෝ වෙනත් ප්‍රවර්�
 msgid "Type"
 msgstr "වර්ගය"
 
+msgid "User agent"
+msgstr "පරිශීලක ඒජන්තයා"
+
 msgid "Version"
 msgstr "අනුවාදය"
 
@@ -203,6 +212,9 @@ msgstr "නැරඹුම්"
 
 msgid "What language do you prefer for search?"
 msgstr "සෙවුම් සඳහා ඔබ කැමති භාෂාව කුමක්ද?"
+
+msgid "Your connection"
+msgstr "ඔබගේ සම්බන්ධතාව"
 
 msgid "{0} of {1} engines"
 msgstr "එන්ජින් {1}න් {0}"

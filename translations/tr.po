@@ -63,6 +63,9 @@ msgstr "Biçim"
 msgid "General"
 msgstr "Genel"
 
+msgid "IP address"
+msgstr "IP adresi"
+
 msgid "Image details"
 msgstr "Görsel ayrıntıları"
 
@@ -74,6 +77,9 @@ msgstr "Arayüz dili"
 
 msgid "Journal"
 msgstr "Günlük"
+
+msgid "Languages"
+msgstr "Diller"
 
 msgid "Last day"
 msgstr "Geçen gün"
@@ -192,6 +198,9 @@ msgstr "Farklı kelimeler veya başka bir kategori deneyin."
 msgid "Type"
 msgstr "Yaz"
 
+msgid "User agent"
+msgstr "Kullanıcı aracısı"
+
 msgid "Version"
 msgstr "Sürüm"
 
@@ -203,6 +212,9 @@ msgstr "Görüntülemeler"
 
 msgid "What language do you prefer for search?"
 msgstr "Arama için hangi dili tercih edersiniz?"
+
+msgid "Your connection"
+msgstr "Bağlantınız"
 
 msgid "{0} of {1} engines"
 msgstr "{1} motordan {0} tanesi"

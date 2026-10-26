@@ -63,6 +63,9 @@ msgstr "รูปแบบ"
 msgid "General"
 msgstr "ทั่วไป"
 
+msgid "IP address"
+msgstr "ที่อยู่ IP"
+
 msgid "Image details"
 msgstr "รายละเอียดรูปภาพ"
 
@@ -74,6 +77,9 @@ msgstr "ภาษาส่วนต่อประสาน"
 
 msgid "Journal"
 msgstr "วารสาร"
+
+msgid "Languages"
+msgstr "ภาษา"
 
 msgid "Last day"
 msgstr "วันล่าสุด"
@@ -192,6 +198,9 @@ msgstr "ลองใช้คำอื่นหรือหมวดหมู่
 msgid "Type"
 msgstr "พิมพ์"
 
+msgid "User agent"
+msgstr "User agent"
+
 msgid "Version"
 msgstr "เวอร์ชัน"
 
@@ -203,6 +212,9 @@ msgstr "มุมมอง"
 
 msgid "What language do you prefer for search?"
 msgstr "คุณต้องการค้นหาภาษาใด?"
+
+msgid "Your connection"
+msgstr "การเชื่อมต่อของคุณ"
 
 msgid "{0} of {1} engines"
 msgstr "{0} จาก {1} เครื่องมือค้นหา"

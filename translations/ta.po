@@ -63,6 +63,9 @@ msgstr "வடிவம்"
 msgid "General"
 msgstr "பொதுத் தேடல்"
 
+msgid "IP address"
+msgstr "IP முகவரி"
+
 msgid "Image details"
 msgstr "படத்தின் விவரங்கள்"
 
@@ -74,6 +77,9 @@ msgstr "முகப்பின் மொழி"
 
 msgid "Journal"
 msgstr "பத்திரிகை"
+
+msgid "Languages"
+msgstr "மொழிகள்"
 
 msgid "Last day"
 msgstr "நேற்று"
@@ -192,6 +198,9 @@ msgstr "வேறு சொற்களையோ வேறு வகையைய
 msgid "Type"
 msgstr "வகை"
 
+msgid "User agent"
+msgstr "பயனர் முகவர்"
+
 msgid "Version"
 msgstr "பதிப்பு"
 
@@ -203,6 +212,9 @@ msgstr "பார்க்கப்பட்டது"
 
 msgid "What language do you prefer for search?"
 msgstr "தேடலுக்கு எந்த மொழியை விரும்புகிறீர்கள்?"
+
+msgid "Your connection"
+msgstr "உங்கள் இணைப்பு"
 
 msgid "{0} of {1} engines"
 msgstr "{1} பொறிகளில் {0}"

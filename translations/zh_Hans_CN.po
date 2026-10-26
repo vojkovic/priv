@@ -63,6 +63,9 @@ msgstr "格式"
 msgid "General"
 msgstr "综合"
 
+msgid "IP address"
+msgstr "IP 地址"
+
 msgid "Image details"
 msgstr "图片详情"
 
@@ -74,6 +77,9 @@ msgstr "界面语言"
 
 msgid "Journal"
 msgstr "杂志"
+
+msgid "Languages"
+msgstr "语言"
 
 msgid "Last day"
 msgstr "过去一天内"
@@ -192,6 +198,9 @@ msgstr "请尝试其他词语或其他类别。"
 msgid "Type"
 msgstr "输入"
 
+msgid "User agent"
+msgstr "用户代理"
+
 msgid "Version"
 msgstr "版本"
 
@@ -203,6 +212,9 @@ msgstr "查看次数"
 
 msgid "What language do you prefer for search?"
 msgstr "您偏好搜索哪种语言？"
+
+msgid "Your connection"
+msgstr "你的连接"
 
 msgid "{0} of {1} engines"
 msgstr "{1} 个引擎中的 {0} 个"

@@ -63,6 +63,9 @@ msgstr "Формат"
 msgid "General"
 msgstr "Уопштено"
 
+msgid "IP address"
+msgstr "IP адреса"
+
 msgid "Image details"
 msgstr "Детаљи слике"
 
@@ -74,6 +77,9 @@ msgstr "Језик интерфејса"
 
 msgid "Journal"
 msgstr "Дневник"
+
+msgid "Languages"
+msgstr "Језици"
 
 msgid "Last day"
 msgstr "Последњи дан"
@@ -192,6 +198,9 @@ msgstr "Покушајте другим речима или другом кат�
 msgid "Type"
 msgstr "Tip"
 
+msgid "User agent"
+msgstr "User agent"
+
 msgid "Version"
 msgstr "Верзија"
 
@@ -203,6 +212,9 @@ msgstr "Прегледи"
 
 msgid "What language do you prefer for search?"
 msgstr "Који језик преферирате за претрагу?"
+
+msgid "Your connection"
+msgstr "Ваша веза"
 
 msgid "{0} of {1} engines"
 msgstr "{0} од {1} претраживача"

@@ -63,6 +63,9 @@ msgstr "Oblika"
 msgid "General"
 msgstr "Splošno"
 
+msgid "IP address"
+msgstr "Naslov IP"
+
 msgid "Image details"
 msgstr "Podrobnosti slike"
 
@@ -74,6 +77,9 @@ msgstr "Jezik vmesnika"
 
 msgid "Journal"
 msgstr "Revija"
+
+msgid "Languages"
+msgstr "Jeziki"
 
 msgid "Last day"
 msgstr "V zadnjem dnevu"
@@ -192,6 +198,9 @@ msgstr "Poskusite z drugimi besedami ali drugo kategorijo."
 msgid "Type"
 msgstr "Vrsta"
 
+msgid "User agent"
+msgstr "Uporabniški agent"
+
 msgid "Version"
 msgstr "Različica"
 
@@ -203,6 +212,9 @@ msgstr "Ogledi"
 
 msgid "What language do you prefer for search?"
 msgstr "V katerem jeziku želite iskati?"
+
+msgid "Your connection"
+msgstr "Vaša povezava"
 
 msgid "{0} of {1} engines"
 msgstr "{0} od {1} iskalnikov"

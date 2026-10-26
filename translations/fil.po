@@ -63,6 +63,9 @@ msgstr "Format"
 msgid "General"
 msgstr "Pangkalahatan"
 
+msgid "IP address"
+msgstr "IP address"
+
 msgid "Image details"
 msgstr "Mga detalye ng larawan"
 
@@ -74,6 +77,9 @@ msgstr "Ang wika ng Interface"
 
 msgid "Journal"
 msgstr "Talaan"
+
+msgid "Languages"
+msgstr "Mga wika"
 
 msgid "Last day"
 msgstr "Nakaraang araw"
@@ -192,6 +198,9 @@ msgstr "Subukan ang ibang mga salita o ibang kategorya."
 msgid "Type"
 msgstr "Uri"
 
+msgid "User agent"
+msgstr "User agent"
+
 msgid "Version"
 msgstr "Bersyon"
 
@@ -203,6 +212,9 @@ msgstr "mga pananaw"
 
 msgid "What language do you prefer for search?"
 msgstr "Ano ang gusto mong wika sa paghahanap?"
+
+msgid "Your connection"
+msgstr "Ang iyong koneksyon"
 
 msgid "{0} of {1} engines"
 msgstr "{0} sa {1} na engine"

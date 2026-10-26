@@ -63,6 +63,9 @@ msgstr "Format"
 msgid "General"
 msgstr "Ôgōlne"
 
+msgid "IP address"
+msgstr "Adresa IP"
+
 msgid "Image details"
 msgstr "Szczegōły ôbrazka"
 
@@ -74,6 +77,9 @@ msgstr "Jynzyk interfejsu"
 
 msgid "Journal"
 msgstr "Cajtōng"
+
+msgid "Languages"
+msgstr "Gŏdki"
 
 msgid "Last day"
 msgstr "Z ôstatnigo dnia"
@@ -192,6 +198,9 @@ msgstr "Sprōbuj inkszych słōw abo inkszyj kategoryje."
 msgid "Type"
 msgstr "Typ"
 
+msgid "User agent"
+msgstr "User agent"
+
 msgid "Version"
 msgstr "Wersyjo"
 
@@ -203,6 +212,9 @@ msgstr "Ôbejrzynia"
 
 msgid "What language do you prefer for search?"
 msgstr "W jakim jynzyku wolisz wyszukować?"
+
+msgid "Your connection"
+msgstr "Twoje połōnczynie"
 
 msgid "{0} of {1} engines"
 msgstr "{0} ze {1} wyszukiwarek"

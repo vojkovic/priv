@@ -63,6 +63,9 @@ msgstr "ফরম্যাট"
 msgid "General"
 msgstr "সাধারণ"
 
+msgid "IP address"
+msgstr "আইপি ঠিকানা"
+
 msgid "Image details"
 msgstr "ছবির বিবরণ"
 
@@ -74,6 +77,9 @@ msgstr "ইন্টারফেসের ভাষা"
 
 msgid "Journal"
 msgstr "দৈনিক সংবাদপত্র"
+
+msgid "Languages"
+msgstr "ভাষা"
 
 msgid "Last day"
 msgstr "শেষ দিন"
@@ -192,6 +198,9 @@ msgstr "অন্য শব্দ বা অন্য বিভাগ দিয�
 msgid "Type"
 msgstr "ধরন"
 
+msgid "User agent"
+msgstr "ইউজার এজেন্ট"
+
 msgid "Version"
 msgstr "সংস্করণ"
 
@@ -203,6 +212,9 @@ msgstr "ভিউ"
 
 msgid "What language do you prefer for search?"
 msgstr "আপনি অনুসন্ধানের জন্য কোন ভাষা পছন্দ করেন?"
+
+msgid "Your connection"
+msgstr "আপনার সংযোগ"
 
 msgid "{0} of {1} engines"
 msgstr "{1}টির মধ্যে {0}টি ইঞ্জিন"

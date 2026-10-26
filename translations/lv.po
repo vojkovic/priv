@@ -63,6 +63,9 @@ msgstr "Formāts"
 msgid "General"
 msgstr "Viss"
 
+msgid "IP address"
+msgstr "IP adrese"
+
 msgid "Image details"
 msgstr "Attēla informācija"
 
@@ -74,6 +77,9 @@ msgstr "Saskarnes valoda"
 
 msgid "Journal"
 msgstr "Žurnāls"
+
+msgid "Languages"
+msgstr "Valodas"
 
 msgid "Last day"
 msgstr "Pēdējā diennakts"
@@ -192,6 +198,9 @@ msgstr "Mēģiniet citus vārdus vai citu kategoriju."
 msgid "Type"
 msgstr "Tips"
 
+msgid "User agent"
+msgstr "Lietotāja aģents"
+
 msgid "Version"
 msgstr "Versija"
 
@@ -203,6 +212,9 @@ msgstr "Skatījumi"
 
 msgid "What language do you prefer for search?"
 msgstr "Kādai valodai dodat priekšroku priekš meklēšanas?"
+
+msgid "Your connection"
+msgstr "Jūsu savienojums"
 
 msgid "{0} of {1} engines"
 msgstr "{0} no {1} meklētājiem"

@@ -64,6 +64,9 @@ msgstr "ފޯމެޓް"
 msgid "General"
 msgstr "އާންމުގޮތެއްގައި"
 
+msgid "IP address"
+msgstr "އައިޕީ އެޑްރެސް"
+
 msgid "Image details"
 msgstr "ފޮޓޯގެ ތަފްސީލު"
 
@@ -75,6 +78,9 @@ msgstr "އިންޓަފޭސްގެ ބަސް"
 
 msgid "Journal"
 msgstr "ޖާނަލް"
+
+msgid "Languages"
+msgstr "ބަސްތައް"
 
 msgid "Last day"
 msgstr "ފާއިތުވި ދުވަސް"
@@ -193,6 +199,9 @@ msgstr "އެހެން ބަހެއް ނުވަތަ އެހެން ބައެއް ބޭނ�
 msgid "Type"
 msgstr "ބާވަތް"
 
+msgid "User agent"
+msgstr "ޔޫޒަރ އޭޖެންޓް"
+
 msgid "Version"
 msgstr "ވާޝަން"
 
@@ -204,6 +213,9 @@ msgstr "ބެލުންތައް"
 
 msgid "What language do you prefer for search?"
 msgstr "ހޯދުމަށް ބޭނުންވަނީ ކޮން ބަހެއް؟"
+
+msgid "Your connection"
+msgstr "ތިބާގެ ކަނެކްޝަން"
 
 msgid "{0} of {1} engines"
 msgstr "{1} އިންޖީނުން {0}"

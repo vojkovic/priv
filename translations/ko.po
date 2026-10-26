@@ -63,6 +63,9 @@ msgstr "형식"
 msgid "General"
 msgstr "일반"
 
+msgid "IP address"
+msgstr "IP 주소"
+
 msgid "Image details"
 msgstr "이미지 세부정보"
 
@@ -74,6 +77,9 @@ msgstr "인터페이스 언어"
 
 msgid "Journal"
 msgstr "발행처"
+
+msgid "Languages"
+msgstr "언어"
 
 msgid "Last day"
 msgstr "지난 1일"
@@ -192,6 +198,9 @@ msgstr "다른 단어나 다른 카테고리로 시도해 보세요."
 msgid "Type"
 msgstr "분류"
 
+msgid "User agent"
+msgstr "사용자 에이전트"
+
 msgid "Version"
 msgstr "버전"
 
@@ -203,6 +212,9 @@ msgstr "조회수"
 
 msgid "What language do you prefer for search?"
 msgstr "어떤 언어로 검색하시겠습니까?"
+
+msgid "Your connection"
+msgstr "내 연결"
 
 msgid "{0} of {1} engines"
 msgstr "엔진 {1}개 중 {0}개"

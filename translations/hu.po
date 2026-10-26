@@ -63,6 +63,9 @@ msgstr "Formátum"
 msgid "General"
 msgstr "Általános"
 
+msgid "IP address"
+msgstr "IP-cím"
+
 msgid "Image details"
 msgstr "Kép részletei"
 
@@ -74,6 +77,9 @@ msgstr "Felület nyelve"
 
 msgid "Journal"
 msgstr "Folyóirat"
+
+msgid "Languages"
+msgstr "Nyelvek"
 
 msgid "Last day"
 msgstr "Legutóbbi nap"
@@ -192,6 +198,9 @@ msgstr "Próbáljon más szavakat vagy másik kategóriát."
 msgid "Type"
 msgstr "Típus"
 
+msgid "User agent"
+msgstr "Felhasználói ügynök"
+
 msgid "Version"
 msgstr "Verzió"
 
@@ -203,6 +212,9 @@ msgstr "Nézetek"
 
 msgid "What language do you prefer for search?"
 msgstr "Milyen nyelven keres?"
+
+msgid "Your connection"
+msgstr "Az Ön kapcsolata"
 
 msgid "{0} of {1} engines"
 msgstr "{0} / {1} keresőmotor"

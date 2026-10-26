@@ -63,6 +63,9 @@ msgstr "Format"
 msgid "General"
 msgstr "Ogólne"
 
+msgid "IP address"
+msgstr "Adres IP"
+
 msgid "Image details"
 msgstr "Szczegóły obrazu"
 
@@ -74,6 +77,9 @@ msgstr "Język interfejsu"
 
 msgid "Journal"
 msgstr "Gazeta"
+
+msgid "Languages"
+msgstr "Języki"
 
 msgid "Last day"
 msgstr "W ostatnim dniu"
@@ -192,6 +198,9 @@ msgstr "Spróbuj innych słów lub innej kategorii."
 msgid "Type"
 msgstr "Typ"
 
+msgid "User agent"
+msgstr "User agent"
+
 msgid "Version"
 msgstr "Wersja"
 
@@ -203,6 +212,9 @@ msgstr "Wyświetlenia"
 
 msgid "What language do you prefer for search?"
 msgstr "W jakim języku wolisz wyszukiwać?"
+
+msgid "Your connection"
+msgstr "Twoje połączenie"
 
 msgid "{0} of {1} engines"
 msgstr "{0} z {1} wyszukiwarek"

@@ -63,6 +63,9 @@ msgstr "ਫ਼ਾਰਮੈਟ"
 msgid "General"
 msgstr "ਆਮ"
 
+msgid "IP address"
+msgstr "ਆਈਪੀ ਪਤਾ"
+
 msgid "Image details"
 msgstr "ਤਸਵੀਰ ਦੇ ਵੇਰਵੇ"
 
@@ -74,6 +77,9 @@ msgstr "ਇੰਟਰਫੇਸ ਭਾਸ਼ਾ"
 
 msgid "Journal"
 msgstr "ਰਸਾਲਾ"
+
+msgid "Languages"
+msgstr "ਭਾਸ਼ਾਵਾਂ"
 
 msgid "Last day"
 msgstr "ਪਿਛਲਾ ਦਿਨ"
@@ -192,6 +198,9 @@ msgstr "ਹੋਰ ਸ਼ਬਦ ਜਾਂ ਕੋਈ ਹੋਰ ਸ਼੍ਰੇਣ�
 msgid "Type"
 msgstr "ਕਿਸਮ"
 
+msgid "User agent"
+msgstr "ਯੂਜ਼ਰ ਏਜੰਟ"
+
 msgid "Version"
 msgstr "ਸੰਸਕਰਣ"
 
@@ -203,6 +212,9 @@ msgstr "ਵਿਊ"
 
 msgid "What language do you prefer for search?"
 msgstr "ਤੁਸੀਂ ਖੋਜ ਲਈ ਕਿਹੜੀ ਭਾਸ਼ਾ ਪਸੰਦ ਕਰਦੇ ਹੋ?"
+
+msgid "Your connection"
+msgstr "ਤੁਹਾਡਾ ਕਨੈਕਸ਼ਨ"
 
 msgid "{0} of {1} engines"
 msgstr "{1} ਵਿੱਚੋਂ {0} ਇੰਜਣ"

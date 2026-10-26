@@ -63,6 +63,9 @@ msgstr "Định dạng"
 msgid "General"
 msgstr "Chung"
 
+msgid "IP address"
+msgstr "Địa chỉ IP"
+
 msgid "Image details"
 msgstr "Chi tiết hình ảnh"
 
@@ -74,6 +77,9 @@ msgstr "Ngôn ngữ giao diện"
 
 msgid "Journal"
 msgstr "Tạp chí"
+
+msgid "Languages"
+msgstr "Ngôn ngữ"
 
 msgid "Last day"
 msgstr "Hôm trước"
@@ -192,6 +198,9 @@ msgstr "Hãy thử từ khác hoặc danh mục khác."
 msgid "Type"
 msgstr "Loại"
 
+msgid "User agent"
+msgstr "User agent"
+
 msgid "Version"
 msgstr "Phiên bản"
 
@@ -203,6 +212,9 @@ msgstr "Lượt xem"
 
 msgid "What language do you prefer for search?"
 msgstr "Bạn muốn tìm kiếm bằng ngôn ngữ nào?"
+
+msgid "Your connection"
+msgstr "Kết nối của bạn"
 
 msgid "{0} of {1} engines"
 msgstr "{0} trên {1} công cụ"

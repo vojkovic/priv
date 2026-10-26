@@ -63,6 +63,9 @@ msgstr "Formaat"
 msgid "General"
 msgstr "Algemeen"
 
+msgid "IP address"
+msgstr "IP-adres"
+
 msgid "Image details"
 msgstr "Afbeeldingsdetails"
 
@@ -74,6 +77,9 @@ msgstr "Interfacetaal"
 
 msgid "Journal"
 msgstr "Dagboek"
+
+msgid "Languages"
+msgstr "Talen"
 
 msgid "Last day"
 msgstr "Gisteren"
@@ -192,6 +198,9 @@ msgstr "Probeer andere woorden of een andere categorie."
 msgid "Type"
 msgstr "Type"
 
+msgid "User agent"
+msgstr "User-agent"
+
 msgid "Version"
 msgstr "Versie"
 
@@ -203,6 +212,9 @@ msgstr "Aantal keer bekeken"
 
 msgid "What language do you prefer for search?"
 msgstr "Met welke taalinstelling wil je zoeken?"
+
+msgid "Your connection"
+msgstr "Je verbinding"
 
 msgid "{0} of {1} engines"
 msgstr "{0} van {1} zoekmachines"

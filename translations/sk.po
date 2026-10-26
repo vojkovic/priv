@@ -63,6 +63,9 @@ msgstr "Formát"
 msgid "General"
 msgstr "Všeobecné"
 
+msgid "IP address"
+msgstr "IP adresa"
+
 msgid "Image details"
 msgstr "Podrobnosti obrázka"
 
@@ -74,6 +77,9 @@ msgstr "Jazyk rozhrania"
 
 msgid "Journal"
 msgstr "Žurnál"
+
+msgid "Languages"
+msgstr "Jazyky"
 
 msgid "Last day"
 msgstr "Posledný deň"
@@ -192,6 +198,9 @@ msgstr "Skúste iné slová alebo inú kategóriu."
 msgid "Type"
 msgstr "Typ"
 
+msgid "User agent"
+msgstr "User agent"
+
 msgid "Version"
 msgstr "Verzia"
 
@@ -203,6 +212,9 @@ msgstr "Zobrazenia"
 
 msgid "What language do you prefer for search?"
 msgstr "Aký jazyk preferujete pre vyhľadávanie?"
+
+msgid "Your connection"
+msgstr "Vaše pripojenie"
 
 msgid "{0} of {1} engines"
 msgstr "{0} z {1} vyhľadávačov"

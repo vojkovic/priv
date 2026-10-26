@@ -63,6 +63,9 @@ msgstr "Формат"
 msgid "General"
 msgstr "Гомуми"
 
+msgid "IP address"
+msgstr "IP адресы"
+
 msgid "Image details"
 msgstr "Рәсем турында мәгълүмат"
 
@@ -74,6 +77,9 @@ msgstr "Интерфәйс теле"
 
 msgid "Journal"
 msgstr "Журнал"
+
+msgid "Languages"
+msgstr "Телләр"
 
 msgid "Last day"
 msgstr "Соңгы көн"
@@ -192,6 +198,9 @@ msgstr "Башка сүзләр яки башка категория белән 
 msgid "Type"
 msgstr "Төр"
 
+msgid "User agent"
+msgstr "Кулланучы агенты"
+
 msgid "Version"
 msgstr "Версия"
 
@@ -203,6 +212,9 @@ msgstr "Карау"
 
 msgid "What language do you prefer for search?"
 msgstr "Эзләү өчен сез нинди телне яхшырак табасыз?"
+
+msgid "Your connection"
+msgstr "Сезнең тоташу"
 
 msgid "{0} of {1} engines"
 msgstr "{1} эзләү системасыннан {0}"

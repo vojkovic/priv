@@ -63,6 +63,9 @@ msgstr "Format"
 msgid "General"
 msgstr "General"
 
+msgid "IP address"
+msgstr "Adreça IP"
+
 msgid "Image details"
 msgstr "Detalhs de l'imatge"
 
@@ -74,6 +77,9 @@ msgstr "Lenga de l'interfàcia"
 
 msgid "Journal"
 msgstr "Jornal"
+
+msgid "Languages"
+msgstr "Lengas"
 
 msgid "Last day"
 msgstr "Ièr"
@@ -192,6 +198,9 @@ msgstr "Ensajatz d'autres mots o una autra categoria."
 msgid "Type"
 msgstr "Tipe"
 
+msgid "User agent"
+msgstr "Agent d'utilizaire"
+
 msgid "Version"
 msgstr "Version"
 
@@ -203,6 +212,9 @@ msgstr "Vistas"
 
 msgid "What language do you prefer for search?"
 msgstr "Dins quina lenga vos agrada mai cercar ?"
+
+msgid "Your connection"
+msgstr "Vòstra connexion"
 
 msgid "{0} of {1} engines"
 msgstr "{0} motors sus {1}"

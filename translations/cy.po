@@ -63,6 +63,9 @@ msgstr "Fformat"
 msgid "General"
 msgstr "Cyffredinol"
 
+msgid "IP address"
+msgstr "Cyfeiriad IP"
+
 msgid "Image details"
 msgstr "Manylion y ddelwedd"
 
@@ -74,6 +77,9 @@ msgstr "Iaith y rhyngwyneb"
 
 msgid "Journal"
 msgstr "Cylchgrawn"
+
+msgid "Languages"
+msgstr "Ieithoedd"
 
 msgid "Last day"
 msgstr "Y diwrnod diwethaf"
@@ -192,6 +198,9 @@ msgstr "Rhowch gynnig ar eiriau gwahanol neu gategori arall."
 msgid "Type"
 msgstr "Math"
 
+msgid "User agent"
+msgstr "Asiant defnyddiwr"
+
 msgid "Version"
 msgstr "Fersiwn"
 
@@ -203,6 +212,9 @@ msgstr "Golygon"
 
 msgid "What language do you prefer for search?"
 msgstr "Ym mha iaith ydych chi'n ffafrio chwilio?"
+
+msgid "Your connection"
+msgstr "Eich cysylltiad"
 
 msgid "{0} of {1} engines"
 msgstr "{0} o {1} peiriant"

@@ -64,6 +64,9 @@ msgstr "قالب"
 msgid "General"
 msgstr "عمومی"
 
+msgid "IP address"
+msgstr "نشانی IP"
+
 msgid "Image details"
 msgstr "جزئیات تصویر"
 
@@ -75,6 +78,9 @@ msgstr "زبان رابط کاربری"
 
 msgid "Journal"
 msgstr "مجله"
+
+msgid "Languages"
+msgstr "زبان‌ها"
 
 msgid "Last day"
 msgstr "روز گذشته"
@@ -193,6 +199,9 @@ msgstr "کلمات دیگر یا دستهٔ دیگری را امتحان کنی�
 msgid "Type"
 msgstr "نوع"
 
+msgid "User agent"
+msgstr "عامل کاربر"
+
 msgid "Version"
 msgstr "ورژن"
 
@@ -204,6 +213,9 @@ msgstr "بازدید‌ها"
 
 msgid "What language do you prefer for search?"
 msgstr "چه زبانی را برای جست‌وجو می‌پسندید؟"
+
+msgid "Your connection"
+msgstr "اتصال شما"
 
 msgid "{0} of {1} engines"
 msgstr "{0} از {1} موتور"

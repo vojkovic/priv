@@ -63,6 +63,9 @@ msgstr "Format"
 msgid "General"
 msgstr "Umum"
 
+msgid "IP address"
+msgstr "Alamat IP"
+
 msgid "Image details"
 msgstr "Butiran imej"
 
@@ -74,6 +77,9 @@ msgstr "Bahasa antara muka"
 
 msgid "Journal"
 msgstr "Jurnal"
+
+msgid "Languages"
+msgstr "Bahasa"
 
 msgid "Last day"
 msgstr "Dalam 24 jam"
@@ -192,6 +198,9 @@ msgstr "Cuba perkataan lain atau kategori lain."
 msgid "Type"
 msgstr "Jenis"
 
+msgid "User agent"
+msgstr "Ejen pengguna"
+
 msgid "Version"
 msgstr "Versi"
 
@@ -203,6 +212,9 @@ msgstr "Tontonan"
 
 msgid "What language do you prefer for search?"
 msgstr "Bahasa apa yang anda suka untuk membuat carian?"
+
+msgid "Your connection"
+msgstr "Sambungan anda"
 
 msgid "{0} of {1} engines"
 msgstr "{0} daripada {1} enjin"

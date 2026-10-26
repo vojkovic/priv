@@ -64,6 +64,9 @@ msgstr "الصيغة"
 msgid "General"
 msgstr "عام"
 
+msgid "IP address"
+msgstr "عنوان IP"
+
 msgid "Image details"
 msgstr "تفاصيل الصورة"
 
@@ -75,6 +78,9 @@ msgstr "لغة الواجهة"
 
 msgid "Journal"
 msgstr "السجل اليومي"
+
+msgid "Languages"
+msgstr "اللغات"
 
 msgid "Last day"
 msgstr "آخر يوم"
@@ -193,6 +199,9 @@ msgstr "جرّب كلمات مختلفة أو فئة أخرى."
 msgid "Type"
 msgstr "نوع"
 
+msgid "User agent"
+msgstr "وكيل المستخدم"
+
 msgid "Version"
 msgstr "الإصدار"
 
@@ -204,6 +213,9 @@ msgstr "المشاهدات"
 
 msgid "What language do you prefer for search?"
 msgstr "ما هي لغتك المفضلة للبحث ؟"
+
+msgid "Your connection"
+msgstr "اتصالك"
 
 msgid "{0} of {1} engines"
 msgstr "{0} من {1} محركات"

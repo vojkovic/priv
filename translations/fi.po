@@ -63,6 +63,9 @@ msgstr "Muoto"
 msgid "General"
 msgstr "Yleiset"
 
+msgid "IP address"
+msgstr "IP-osoite"
+
 msgid "Image details"
 msgstr "Kuvan tiedot"
 
@@ -74,6 +77,9 @@ msgstr "Käyttöliittymän kieli"
 
 msgid "Journal"
 msgstr "Journaali"
+
+msgid "Languages"
+msgstr "Kielet"
 
 msgid "Last day"
 msgstr "Viimeinen päivä"
@@ -192,6 +198,9 @@ msgstr "Kokeile muita sanoja tai toista luokkaa."
 msgid "Type"
 msgstr "Tyyppi"
 
+msgid "User agent"
+msgstr "User agent"
+
 msgid "Version"
 msgstr "Versio"
 
@@ -203,6 +212,9 @@ msgstr "Näkymät"
 
 msgid "What language do you prefer for search?"
 msgstr "Millä kielellä haluat etsiä ensisijaisesti?"
+
+msgid "Your connection"
+msgstr "Yhteytesi"
 
 msgid "{0} of {1} engines"
 msgstr "{0}/{1} hakukonetta"

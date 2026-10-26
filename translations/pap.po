@@ -63,6 +63,9 @@ msgstr "Formato"
 msgid "General"
 msgstr "General"
 
+msgid "IP address"
+msgstr "Adrès IP"
+
 msgid "Image details"
 msgstr "Detaye di e imágen"
 
@@ -74,6 +77,9 @@ msgstr "Idioma di interfas"
 
 msgid "Journal"
 msgstr "Revista"
+
+msgid "Languages"
+msgstr "Idiomanan"
 
 msgid "Last day"
 msgstr "Último dia"
@@ -192,6 +198,9 @@ msgstr "Purba otro palabra òf otro kategoria."
 msgid "Type"
 msgstr "Tipo"
 
+msgid "User agent"
+msgstr "Agente di usuario"
+
 msgid "Version"
 msgstr "Vershon"
 
@@ -203,6 +212,9 @@ msgstr "Bista"
 
 msgid "What language do you prefer for search?"
 msgstr "Ki idioma bo ta preferá pa buska?"
+
+msgid "Your connection"
+msgstr "Bo konekshon"
 
 msgid "{0} of {1} engines"
 msgstr "{0} di {1} motor"

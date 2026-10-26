@@ -63,6 +63,9 @@ msgstr "Formatua"
 msgid "General"
 msgstr "Orokorra"
 
+msgid "IP address"
+msgstr "IP helbidea"
+
 msgid "Image details"
 msgstr "Irudiaren xehetasunak"
 
@@ -74,6 +77,9 @@ msgstr "Interfazearen hizkuntza"
 
 msgid "Journal"
 msgstr "Egunkaria"
+
+msgid "Languages"
+msgstr "Hizkuntzak"
 
 msgid "Last day"
 msgstr "Azken eguna"
@@ -192,6 +198,9 @@ msgstr "Saiatu beste hitz batzuekin edo beste kategoria batekin."
 msgid "Type"
 msgstr "Mota"
 
+msgid "User agent"
+msgstr "Erabiltzaile-agentea"
+
 msgid "Version"
 msgstr "Bertsioa"
 
@@ -203,6 +212,9 @@ msgstr "Ikuspegiak"
 
 msgid "What language do you prefer for search?"
 msgstr "Zein hizkuntzan egin nahi duzu bilaketa?"
+
+msgid "Your connection"
+msgstr "Zure konexioa"
 
 msgid "{0} of {1} engines"
 msgstr "{1} bilatzailetatik {0}"

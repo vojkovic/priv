@@ -63,6 +63,9 @@ msgstr "Format"
 msgid "General"
 msgstr "Generelt"
 
+msgid "IP address"
+msgstr "IP-adresse"
+
 msgid "Image details"
 msgstr "Bildedetaljer"
 
@@ -74,6 +77,9 @@ msgstr "Grensesnitts-språk"
 
 msgid "Journal"
 msgstr "Tidsskrift"
+
+msgid "Languages"
+msgstr "Språk"
 
 msgid "Last day"
 msgstr "Siste dag"
@@ -192,6 +198,9 @@ msgstr "Prøv andre ord eller en annen kategori."
 msgid "Type"
 msgstr "Type"
 
+msgid "User agent"
+msgstr "Brukeragent"
+
 msgid "Version"
 msgstr "Versjon"
 
@@ -203,6 +212,9 @@ msgstr "Visninger"
 
 msgid "What language do you prefer for search?"
 msgstr "Hvilket språk foretrekker du for søk?"
+
+msgid "Your connection"
+msgstr "Din tilkobling"
 
 msgid "{0} of {1} engines"
 msgstr "{0} av {1} søkemotorer"

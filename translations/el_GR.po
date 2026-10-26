@@ -63,6 +63,9 @@ msgstr "Μορφή"
 msgid "General"
 msgstr "Γενικά"
 
+msgid "IP address"
+msgstr "Διεύθυνση IP"
+
 msgid "Image details"
 msgstr "Λεπτομέρειες εικόνας"
 
@@ -74,6 +77,9 @@ msgstr "Γλώσσα διεπαφής"
 
 msgid "Journal"
 msgstr "Περιοδικό"
+
+msgid "Languages"
+msgstr "Γλώσσες"
 
 msgid "Last day"
 msgstr "Τελευταία μέρα"
@@ -192,6 +198,9 @@ msgstr "Δοκιμάστε διαφορετικές λέξεις ή άλλη κ�
 msgid "Type"
 msgstr "Τύπος"
 
+msgid "User agent"
+msgstr "User agent"
+
 msgid "Version"
 msgstr "Έκδοση"
 
@@ -203,6 +212,9 @@ msgstr "Προβολές"
 
 msgid "What language do you prefer for search?"
 msgstr "Τι γλώσσα προτιμάτε για αναζήτηση;"
+
+msgid "Your connection"
+msgstr "Η σύνδεσή σας"
 
 msgid "{0} of {1} engines"
 msgstr "{0} από {1} μηχανές"

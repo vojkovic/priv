@@ -63,6 +63,9 @@ msgstr "Formáid"
 msgid "General"
 msgstr "Ginearálta"
 
+msgid "IP address"
+msgstr "Seoladh IP"
+
 msgid "Image details"
 msgstr "Sonraí na híomhá"
 
@@ -74,6 +77,9 @@ msgstr "Teanga comhéadain"
 
 msgid "Journal"
 msgstr "Dialann"
+
+msgid "Languages"
+msgstr "Teangacha"
 
 msgid "Last day"
 msgstr "An lá deireanach"
@@ -192,6 +198,9 @@ msgstr "Bain triail as focail eile nó catagóir eile."
 msgid "Type"
 msgstr "Cineál"
 
+msgid "User agent"
+msgstr "Gníomhaire úsáideora"
+
 msgid "Version"
 msgstr "Leagan"
 
@@ -203,6 +212,9 @@ msgstr "Amharcanna"
 
 msgid "What language do you prefer for search?"
 msgstr "Cén teanga is fearr leat le haghaidh cuardaigh?"
+
+msgid "Your connection"
+msgstr "Do cheangal"
 
 msgid "{0} of {1} engines"
 msgstr "{0} as {1} inneall"

@@ -63,6 +63,9 @@ msgstr "ఫార్మాట్"
 msgid "General"
 msgstr "సాధారణ"
 
+msgid "IP address"
+msgstr "IP చిరునామా"
+
 msgid "Image details"
 msgstr "చిత్ర వివరాలు"
 
@@ -74,6 +77,9 @@ msgstr "వినిమయసీమ భాష"
 
 msgid "Journal"
 msgstr "జర్నల్"
+
+msgid "Languages"
+msgstr "భాషలు"
 
 msgid "Last day"
 msgstr "క్రిందటి రోజు"
@@ -192,6 +198,9 @@ msgstr "వేరే పదాలు లేదా వేరే వర్గా�
 msgid "Type"
 msgstr "రకం"
 
+msgid "User agent"
+msgstr "యూజర్ ఏజెంట్"
+
 msgid "Version"
 msgstr "వెర్షన్"
 
@@ -203,6 +212,9 @@ msgstr "వ్యూస్"
 
 msgid "What language do you prefer for search?"
 msgstr "శోధన కోసం మీరు ఏ భాషను ఇష్టపడతారు?"
+
+msgid "Your connection"
+msgstr "మీ కనెక్షన్"
 
 msgid "{0} of {1} engines"
 msgstr "{1} ఇంజిన్లలో {0}"
