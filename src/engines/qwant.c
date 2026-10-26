@@ -122,6 +122,7 @@ struct engine engine_qwant = {
     .shortcut = "qw",
     .website = "www.qwant.com",
     .safesearch = 1,
+    .no_accept_language = 1,
     .bang = "https://www.qwant.com/?q=%s",
     .category = "general",
     .init = warm,
