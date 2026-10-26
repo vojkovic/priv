@@ -18,7 +18,7 @@
 
 #define STREAM_HEADERS \
 	"Content-Type: text/html; charset=utf-8\r\n" \
-	"Cache-Control: no-store\r\n" \
+	"Cache-Control: private, no-cache\r\n" \
 	"X-Accel-Buffering: no\r\n" \
 	"Trailer: Server-Timing\r\n" SECURITY_HEADERS
 
