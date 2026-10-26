@@ -60,7 +60,7 @@ Most of the bangs are supported:
 
 | category | engines |
 | --- | --- |
-| general | google, google docs, bing, google cse, brave, duckduckgo, duckduckgo web, dogpile, privacywall, oceanhero, swisscows, iseek, s1search, wikipedia |
+| general | google, google docs, bing, google cse, brave, duckduckgo, duckduckgo web, dogpile, qwant, privacywall, oceanhero, swisscows, iseek, s1search, wikipedia |
 | images | google images, google cse images, brave images, duckduckgo images, dogpile images |
 | videos | google videos, duckduckgo videos, youtube, brave videos, bing videos, dailymotion |
 | news | google news, duckduckgo news, reuters, brave news, abc news, bing news, wikinews |

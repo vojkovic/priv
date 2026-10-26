@@ -122,7 +122,10 @@ on_header(char *p, size_t size, size_t n, void *arg)
 	struct fetch *f = arg;
 	size_t len = size * n, vlen;
 
-	if (len > 7 && !strncasecmp(p, "server:", 7)) {
+	if (len > 11 && !strncasecmp(p, "set-cookie:", 11)) {
+		buf_add(&f->set_cookie, p + 11, len - 11);
+		buf_putc(&f->set_cookie, '\n');
+	} else if (len > 7 && !strncasecmp(p, "server:", 7)) {
 		p += 7;
 		len -= 7;
 		while (len && (*p == ' ' || *p == '\t')) {
@@ -284,6 +287,7 @@ fetch_free(struct fetch *f)
 	curl_slist_free_all(f->headers);
 	buf_free(&f->body);
 	buf_free(&f->cookies);
+	buf_free(&f->set_cookie);
 	free(f->post);
 	free(f);
 }

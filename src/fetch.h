@@ -13,6 +13,7 @@ struct fetch {
 	struct curl_slist *headers;
 	struct buf body;
 	struct buf cookies;
+	struct buf set_cookie;
 	char *post;
 	char server[64];
 	long status;
