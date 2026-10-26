@@ -105,7 +105,10 @@ doc_start(struct buf *b, const char *title, const char *body_class, const struct
 	    "<script src=\"/priv.js\" defer></script>\n",
 	    ui->tag, p->theme, ui->rtl ? " dir=\"rtl\"" : "", title, instance_name);
 	if (limiter && limiter_link_token)
-		buf_html(b, "<link rel=\"stylesheet\" href=\"/client%s.css\">\n", botdetect_token());
+		buf_html(b,
+		    "<link rel=\"stylesheet\" href=\"/client%s.css\">\n"
+		    "<template><link rel=\"stylesheet\" href=\"/client%s.css\"></template>\n",
+		    botdetect_token(), botdetect_decoy());
 	buf_html(b,
 	    "</head>\n"
 	    "<body class=\"%s\">\n",

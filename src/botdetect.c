@@ -67,7 +67,7 @@ static struct {
 	double expire;
 } escalated[MAX_ESCALATED];
 static const int levels[] = {48, 44, 40, 36, 32, 29};
-static char token[17];
+static char token[17], decoy[17];
 static double token_expire;
 
 static int
@@ -225,9 +225,11 @@ new_token(void)
 	static const char chars[] = "abcdefghijklmnopqrstuvwxyz0123456789";
 	size_t i;
 
-	for (i = 0; i < sizeof(token) - 1; i++)
+	for (i = 0; i < sizeof(token) - 1; i++) {
 		token[i] = chars[rnd(sizeof(chars) - 1)];
-	token[i] = 0;
+		decoy[i] = chars[rnd(sizeof(chars) - 1)];
+	}
+	token[i] = decoy[i] = 0;
 	token_expire = now_ms() + TOKEN_LIVE_TIME * 1e3;
 }
 
@@ -425,6 +427,23 @@ drop_counter(const char *name, const char *net)
 	}
 }
 
+/* a stylesheet only a client that fetches every link it finds would request */
+const char *
+botdetect_decoy(void)
+{
+	botdetect_token();
+	return decoy;
+}
+
+static const char *
+decoy_key(const char *net, struct request *r)
+{
+	static char key[1024];
+
+	snprintf(key, sizeof(key), "botdetect decoy|%s|%s|%s", net, r->accept_language, r->user_agent);
+	return key;
+}
+
 static const char *
 ping_key(const char *net, struct request *r)
 {
@@ -442,7 +461,9 @@ botdetect_ping(struct conn *c, struct request *r, const char *tok)
 
 	network(&ip, net, sizeof(net));
 	/* the token is public, so one network could otherwise push every other client's ping out */
-	if (!strcmp(tok, botdetect_token())) {
+	if (!strcmp(tok, botdetect_decoy()))
+		cache_set(decoy_key(net, r), "1", PING_LIVE_TIME);
+	else if (!strcmp(tok, botdetect_token())) {
 		const char *key = ping_key(net, r);
 
 		if (cache_get(key) || incr_sliding_window("PING", net, PING_LIVE_TIME) <= PING_MAX)
@@ -561,7 +582,7 @@ ip_limit(struct conn *c, const struct ip *ip, const char *net, struct request *r
 	}
 	if (limiter_link_token) {
 		snprintf(pk, sizeof(pk), "%s", ping_key(net, r));
-		if (cache_get(pk)) {
+		if (cache_get(pk) && !cache_get(decoy_key(net, r))) {
 			cache_set(pk, "1", PING_LIVE_TIME);
 			drop_counter("SUSPICIOUS_IP_WINDOW", net);
 			return 0;
