@@ -285,6 +285,16 @@ real_ip(struct request *r)
 	return ip;
 }
 
+const char *
+botdetect_client_ip(struct request *r)
+{
+	static char addr[INET6_ADDRSTRLEN];
+	struct ip ip = real_ip(r);
+
+	inet_ntop(ip.v6 ? AF_INET6 : AF_INET, ip.a, addr, sizeof(addr));
+	return addr;
+}
+
 static void
 network(const struct ip *ip, char *out, size_t len)
 {

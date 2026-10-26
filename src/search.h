@@ -27,6 +27,7 @@ struct filters {
 	uint64_t engines;
 	double timeout;
 	struct prefs prefs;
+	const char *client_ip, *client_agent, *client_language;
 };
 
 struct search {

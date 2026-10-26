@@ -1,3 +1,4 @@
+#include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
 #include <strings.h>
@@ -446,6 +447,49 @@ color_query(const char *q)
 		}
 	}
 	return 0;
+}
+
+/* whether a query asks for the visitor's own connection details */
+static int
+self_query(const char *q)
+{
+	static const char *const asks[] = {"ip", "myip", "whatismyip", "my ip", "ip address", "my ip address", "what is my ip",
+	    "what is my ip address", "whats my ip", "whats my ip address", "whats my user agent", "what is my user agent", "user agent", "my user agent", "my browser",
+	    "what is my browser", "my language", "my browser language", "what is my language"};
+	char norm[64], *d = norm;
+	int space = 0;
+	size_t i;
+
+	for (; *q && d < norm + sizeof(norm) - 1; q++) {
+		if (*q == '\'' || *q == '?' || *q == '.')
+			continue;
+		if (*q == ' ') {
+			space = d > norm;
+			continue;
+		}
+		if (space)
+			*d++ = ' ';
+		space = 0;
+		*d++ = (char)tolower((unsigned char)*q);
+	}
+	*d = 0;
+	for (i = 0; i < LEN(asks); i++)
+		if (!strcmp(norm, asks[i]))
+			return 1;
+	return 0;
+}
+
+static void
+selfinfo(struct buf *b, struct filters *f)
+{
+	buf_html(b,
+	    "<section id=\"selfinfo\" aria-label=\"%s\">"
+	    "<div class=\"self-label\">%s</div>"
+	    "<div class=\"self-ip\"><strong>%s</strong><span>%s</span></div>"
+	    "<dl><dt>%s</dt><dd>%s</dd><dt>%s</dt><dd>%s</dd></dl>"
+	    "</section>\n",
+	    tr("Your connection"), tr("IP address"), f->client_ip, strchr(f->client_ip, ':') ? "IPv6" : "IPv4",
+	    tr("User agent"), f->client_agent, tr("Languages"), f->client_language);
 }
 
 void
@@ -1177,6 +1221,8 @@ render_results(struct buf *b, struct search *s)
 	size_t i;
 
 	i18n_use(s->filters.prefs.ui);
+	if (s->pageno == 1 && !strcmp(s->filters.category, "general") && self_query(s->raw))
+		selfinfo(b, &s->filters);
 	answers(b, s);
 
 	/* images use the full width, so their timings take a grid slot instead of the sidebar */

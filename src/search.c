@@ -820,6 +820,9 @@ search_start(struct conn *c, const char *raw, int pageno, const char *tokens, co
 	s->pageno = pageno;
 	s->tokens = tokens ? astrdup(&s->a, tokens) : NULL;
 	s->filters.language = astrdup(&s->a, s->filters.language);
+	s->filters.client_ip = astrdup(&s->a, f->client_ip);
+	s->filters.client_agent = astrdup(&s->a, f->client_agent);
+	s->filters.client_language = astrdup(&s->a, f->client_language);
 	if (s->filters.prefs.language)
 		s->filters.prefs.language = astrdup(&s->a, s->filters.prefs.language);
 	if (f->time_range)

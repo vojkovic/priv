@@ -215,6 +215,9 @@ route(struct conn *c, struct request *r)
 	p = query_param(&a, r->query, "pt");
 	tokens = p && proxy_hmac_ok(p, query_param(&a, r->query, "ph")) ? p : NULL;
 	filters_parse(&a, r, &f);
+	f.client_ip = botdetect_client_ip(r);
+	f.client_agent = r->user_agent;
+	f.client_language = r->accept_language;
 	scratch = f;
 	if (!*query_parse(&a, q, &scratch)) {
 		http_respond(c, 302, "Location: /\r\n", "", 0);

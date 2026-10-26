@@ -741,6 +741,42 @@ body:has(#footer) { position: relative; min-height: 100vh; min-height: 100dvh; }
 .convert-swap:hover { background: var(--surface0); }
 .convert-formula { min-height: 1.2em; margin-top: 0.9rem; color: var(--subtext0); overflow-wrap: anywhere; }
 
+#selfinfo {
+	grid-area: calc;
+	margin: 0.5em;
+	padding: 1.1em 1.2em 1.2em;
+	background: var(--mantle);
+	border-radius: 0.75em;
+}
+#selfinfo .self-label { color: var(--subtext0); }
+#selfinfo .self-ip { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.8rem; margin: 0.2rem 0 1rem; }
+#selfinfo .self-ip strong {
+	min-width: 0;
+	color: var(--accent);
+	font-size: 2.4rem;
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	overflow-wrap: anywhere;
+}
+#selfinfo .self-ip span {
+	padding: 0.1rem 0.6rem;
+	color: var(--accent);
+	background: var(--surface0);
+	border-radius: 1rem;
+	font-size: 0.85rem;
+	font-weight: 600;
+}
+#selfinfo dl {
+	display: grid;
+	grid-template-columns: max-content minmax(0, 1fr);
+	gap: 0.7rem 1.4rem;
+	margin: 0;
+	padding-top: 1rem;
+	border-top: 1px solid var(--surface0);
+}
+#selfinfo dt { color: var(--subtext0); }
+#selfinfo dd { margin: 0; overflow-wrap: anywhere; }
+
 #colorpicker {
 	grid-area: calc;
 	margin: 0.5em;
@@ -1385,7 +1421,7 @@ article.result.result-images {
 		padding: 0 0.5rem;
 	}
 	#sidebar { display: contents; }
-	#calculator, #converter, #colorpicker { order: 0; }
+	#calculator, #converter, #colorpicker, #selfinfo { order: 0; }
 	#answers { order: 1; }
 	#infoboxes { order: 2; margin: 0 0.5em; }
 	#engines_msg { order: 3; margin: 0.5em; padding: 0.7em 1em; }
@@ -1681,7 +1717,11 @@ article.result.result-images {
 	#preferences { margin-top: 1rem; }
 	.pref select { width: 100%; max-width: none; }
 	#results { margin: 0.25rem 0 2rem; padding: 0; }
-	article.result, #answers, #calculator, #converter, #colorpicker { margin: 0.5em; }
+	article.result, #answers, #calculator, #converter, #colorpicker, #selfinfo { margin: 0.5em; }
+	#selfinfo .self-ip strong { font-size: 1.9rem; }
+	#selfinfo dl { grid-template-columns: 1fr; gap: 0.15rem; }
+	#selfinfo dd { margin-bottom: 0.6rem; }
+	#selfinfo dd:last-child { margin-bottom: 0; }
 	.color-top { grid-template-columns: 1fr; }
 	.color-swatch { min-height: 4.5rem; }
 	.color-area { height: 11rem; }

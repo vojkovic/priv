@@ -6,6 +6,18 @@ msgstr ""
 msgid "About"
 msgstr ""
 
+msgid "IP address"
+msgstr ""
+
+msgid "Languages"
+msgstr ""
+
+msgid "User agent"
+msgstr ""
+
+msgid "Your connection"
+msgstr ""
+
 msgid "Allow"
 msgstr "On"
 
