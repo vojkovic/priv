@@ -10,8 +10,9 @@
 static char *sid;
 
 static void
-common_headers(struct fetch *f)
+prepare(struct fetch *f)
 {
+	curl_easy_setopt(f->h, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
 	fetch_header(f, "Referer: " SITE);
 	fetch_header(f, "Sec-Fetch-Site: same-site");
 	fetch_header(f, "Upgrade-Insecure-Requests:");
@@ -73,7 +74,7 @@ request(struct job *j, char *header)
 	fetch_header(f, "Sec-Fetch-Mode: cors");
 	fetch_header(f, "Sec-Fetch-Dest: empty");
 	fetch_header(f, "Priority: u=1, i");
-	common_headers(f);
+	prepare(f);
 	job_send(j, f, response);
 }
 
@@ -132,7 +133,7 @@ search(struct job *j)
 	fetch_header(f, "Sec-Fetch-Mode: no-cors");
 	fetch_header(f, "Sec-Fetch-Dest: script");
 	fetch_header(f, "Priority:");
-	common_headers(f);
+	prepare(f);
 	job_send(j, f, embed_response);
 }
 
