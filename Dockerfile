@@ -1,4 +1,4 @@
-FROM alpine:3.22 AS build
+FROM alpine:3.24 AS build
 RUN apk add --no-cache build-base curl pkgconf libxml2-dev libxml2-static zlib-static xz-static ca-certificates git
 WORKDIR /src
 ARG VERSION=
