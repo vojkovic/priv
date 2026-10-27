@@ -17,14 +17,6 @@
       "depNameTemplate": "lexiforest/curl-impersonate"
     }
   ],
-  "packageRules": [
-    {
-      "matchPackageNames": [
-        "*"
-      ],
-      "groupName": "dependencies"
-    }
-  ],
   "automerge": true,
   "automergeType": "branch",
   "ignoreTests": true
