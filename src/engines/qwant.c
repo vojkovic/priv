@@ -18,7 +18,7 @@ remember(struct fetch *f)
 	const char *v;
 	size_t n;
 
-	if (!(v = find_between(buf_str(&f->set_cookie), "datadome=", ";", &n)) || !n)
+	if (!(v = find_between(buf_str(&f->response), "datadome=", ";", &n)) || !n)
 		return;
 	if (!datadome)
 		datadome_since = now_ms();
@@ -62,7 +62,7 @@ response(struct job *j, struct fetch *f)
 	if (!job_ok(j, f))
 		return;
 	remember(f);
-	if (f->status == 403 && strstr(buf_str(&f->set_cookie), "datadome=") && !strstr(fetch_body(f), "\"status\"")) {
+	if (f->status == 403 && strstr(buf_str(&f->response), "datadome=") && !strstr(fetch_body(f), "\"status\"")) {
 		job_fail(j, "CAPTCHA", RETRY_SECS);
 		return;
 	}

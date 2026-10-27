@@ -116,16 +116,21 @@ on_body(char *p, size_t size, size_t n, void *arg)
 	return size * n;
 }
 
+#define MAX_HEADERS (16 << 10)
+
 static size_t
 on_header(char *p, size_t size, size_t n, void *arg)
 {
 	struct fetch *f = arg;
 	size_t len = size * n, vlen;
 
-	if (len > 11 && !strncasecmp(p, "set-cookie:", 11)) {
-		buf_add(&f->set_cookie, p + 11, len - 11);
-		buf_putc(&f->set_cookie, '\n');
-	} else if (len > 7 && !strncasecmp(p, "server:", 7)) {
+	if (f->response.len < MAX_HEADERS) {
+		for (vlen = len; vlen && (p[vlen - 1] == '\r' || p[vlen - 1] == '\n'); vlen--)
+			;
+		buf_add(&f->response, p, vlen);
+		buf_putc(&f->response, '\n');
+	}
+	if (len > 7 && !strncasecmp(p, "server:", 7)) {
 		p += 7;
 		len -= 7;
 		while (len && (*p == ' ' || *p == '\t')) {
@@ -287,7 +292,7 @@ fetch_free(struct fetch *f)
 	curl_slist_free_all(f->headers);
 	buf_free(&f->body);
 	buf_free(&f->cookies);
-	buf_free(&f->set_cookie);
+	buf_free(&f->response);
 	free(f->post);
 	free(f);
 }
@@ -320,6 +325,27 @@ const char *
 fetch_body(struct fetch *f)
 {
 	return buf_str(&f->body);
+}
+
+/* the first response header line starting with prefix, as "name: value" */
+char *
+fetch_find_header(struct fetch *f, const char *prefix)
+{
+	size_t n = strlen(prefix), len;
+	const char *p = buf_str(&f->response), *end;
+	char *line;
+
+	for (; *p; p = end + (*end == '\n')) {
+		end = strchrnul(p, '\n');
+		if ((size_t)(end - p) > n && !strncasecmp(p, prefix, n)) {
+			len = (size_t)(end - p);
+			line = xmalloc(len + 1);
+			memcpy(line, p, len);
+			line[len] = 0;
+			return line;
+		}
+	}
+	return NULL;
 }
 
 const char *

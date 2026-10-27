@@ -25,6 +25,7 @@ duckduckgo = 2
 duckduckgo_web = 1
 dogpile = 2
 qwant = 2
+tusksearch = 2
 privacywall = 1
 oceanhero = 2
 swisscows = 2
@@ -37,6 +38,7 @@ google_images = 2
 google_cse_images = 2
 brave_images = 2
 duckduckgo_images = 2
+tusksearch_images = 2
 dogpile_images = 2
 
 # videos
