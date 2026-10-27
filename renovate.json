@@ -1,14 +1,31 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
+  "extends": [
+    "config:recommended"
+  ],
   "commitMessagePrefix": "[mod]",
   "customManagers": [
     {
       "customType": "regex",
-      "managerFilePatterns": ["/^Makefile$/"],
-      "matchStrings": ["CURL_IMPERSONATE_VERSION = (?<currentValue>v\\S+)"],
+      "managerFilePatterns": [
+        "/^Makefile$/"
+      ],
+      "matchStrings": [
+        "CURL_IMPERSONATE_VERSION = (?<currentValue>v\\S+)"
+      ],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "lexiforest/curl-impersonate"
     }
-  ]
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "*"
+      ],
+      "groupName": "dependencies"
+    }
+  ],
+  "automerge": true,
+  "automergeType": "branch",
+  "ignoreTests": true
 }
