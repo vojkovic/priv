@@ -75,7 +75,7 @@ token(struct arena *a, const char *name)
 
 /* searxng's Server-Timing, sent as a trailer since the head is streamed before the engines finish */
 static const char *
-server_timing(struct search *s, double render_ms)
+server_timing(struct search *s)
 {
 	struct results *r = &s->res;
 	struct buf b = {0};
@@ -84,7 +84,7 @@ server_timing(struct search *s, double render_ms)
 
 	if (r->ntimings)
 		qsort(r->timings, r->ntimings, sizeof(*r->timings), by_total);
-	buf_printf(&b, "Server-Timing: total;dur=%.3f, render;dur=%.3f", now_ms() - s->start, render_ms);
+	buf_printf(&b, "Server-Timing: total;dur=%.3f", now_ms() - s->start);
 	for (i = 0; i < r->ntimings; i++)
 		buf_printf(&b, ", total_%zu_%s;dur=%.3f", i, token(&s->a, r->timings[i].engine->name),
 		    r->timings[i].seconds * 1e3);
@@ -102,7 +102,6 @@ static void
 search_finish(struct search *s)
 {
 	struct buf b = {0};
-	double render_start;
 	size_t i;
 
 	ev_timer_stop(&s->deadline);
@@ -119,11 +118,10 @@ search_finish(struct search *s)
 	}
 	s->elapsed = (now_ms() - s->start) / 1e3;
 	results_close(&s->res);
-	render_start = now_ms();
 	render_results(&b, s);
 	http_on_close(s->c, NULL, NULL);
 	http_write(s->c, b.p, b.len);
-	http_end_trailers(s->c, server_timing(s, now_ms() - render_start));
+	http_end_trailers(s->c, server_timing(s));
 	buf_free(&b);
 	search_free(s);
 }
@@ -362,7 +360,7 @@ search_start(struct conn *c, const char *raw, int pageno, const char *tokens, co
 	s->jobs = xcalloc(nengines, sizeof(*s->jobs));
 
 	render_head(&b, s);
-	http_begin(c, 200, aprintf(&s->a, STREAM_HEADERS "Server-Timing: head;dur=%.3f\r\n", now_ms() - s->start));
+	http_begin(c, 200, STREAM_HEADERS);
 	http_write(c, b.p, b.len);
 	buf_free(&b);
 

@@ -29,7 +29,6 @@ int ipv4_prefix = 24;
 int ipv6_prefix = 48;
 const char *pass_ip[] = {NULL};
 const char *block_ip[] = {NULL};
-int pass_searxng_org = 1;
 int ban_time_on_fail = 5;
 int max_ban_time_on_fail = 120;
 int suspend_access_denied = 180;

@@ -54,8 +54,6 @@ struct counter {
 	int window;
 };
 
-static const char *searxng_org[] = {"167.235.158.251", "2a01:04f8:1c1c:8fc2::/64", 0};
-
 static regex_t ua_re;
 static struct net *trusted, *passlist, *blocklist;
 static size_t ntrusted, npass, nblock;
@@ -241,8 +239,6 @@ botdetect_init(void)
 	load_list(trusted_proxies, &trusted, &ntrusted, "trusted_proxies");
 	load_list(pass_ip, &passlist, &npass, "pass_ip");
 	load_list(block_ip, &blocklist, &nblock, "block_ip");
-	if (pass_searxng_org)
-		load_list(searxng_org, &passlist, &npass, "searxng_org");
 	new_token();
 }
 

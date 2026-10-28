@@ -26,7 +26,7 @@ extern int listen_port;
 extern const char *cache_dir;
 extern int favicon_hold_days;
 extern size_t favicon_cache_bytes;
-extern int limiter, limiter_link_token, limiter_filter_link_local, ipv4_prefix, ipv6_prefix, pass_searxng_org;
+extern int limiter, limiter_link_token, limiter_filter_link_local, ipv4_prefix, ipv6_prefix;
 extern const char **trusted_proxies, *pass_ip[], *block_ip[];
 extern int ban_time_on_fail, max_ban_time_on_fail;
 extern int suspend_access_denied, suspend_captcha, suspend_too_many_requests;
