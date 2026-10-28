@@ -102,6 +102,9 @@ msgstr "ദൈർഘ്യം"
 msgid "Moderate"
 msgstr "മിതമായ"
 
+msgid "More"
+msgstr "കൂടുതൽ"
+
 msgid "Music"
 msgstr "സംഗീതം"
 

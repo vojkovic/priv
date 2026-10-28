@@ -102,6 +102,9 @@ msgstr "Pituus"
 msgid "Moderate"
 msgstr "Keskitaso"
 
+msgid "More"
+msgstr "Lisää"
+
 msgid "Music"
 msgstr "Musiikki"
 

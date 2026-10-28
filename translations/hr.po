@@ -102,6 +102,9 @@ msgstr "Dužina"
 msgid "Moderate"
 msgstr "Umjereno"
 
+msgid "More"
+msgstr "Više"
+
 msgid "Music"
 msgstr "Glazba"
 

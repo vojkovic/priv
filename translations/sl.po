@@ -102,6 +102,9 @@ msgstr "Dolžina"
 msgid "Moderate"
 msgstr "Zmerno"
 
+msgid "More"
+msgstr "Več"
+
 msgid "Music"
 msgstr "Glasba"
 

@@ -102,6 +102,9 @@ msgstr "Lengde"
 msgid "Moderate"
 msgstr "Moderat"
 
+msgid "More"
+msgstr "Mer"
+
 msgid "Music"
 msgstr "Musikk"
 

@@ -102,6 +102,9 @@ msgstr "Fad"
 msgid "Moderate"
 msgstr "Measartha"
 
+msgid "More"
+msgstr "Tuilleadh"
+
 msgid "Music"
 msgstr "Ceol"
 

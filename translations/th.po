@@ -102,6 +102,9 @@ msgstr "ความยาว"
 msgid "Moderate"
 msgstr "ปานกลาง"
 
+msgid "More"
+msgstr "เพิ่มเติม"
+
 msgid "Music"
 msgstr "ดนตรี"
 

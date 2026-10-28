@@ -83,6 +83,9 @@ void infobox_url(struct job *j, struct infobox *ib, const char *title, const cha
 void infobox_also(struct job *j, struct infobox *ib, const char *title, const char *description);
 void infobox_attr(struct job *j, struct infobox *ib, const char *label, const char *value, const char *entity);
 void add_answer(struct job *j, const char *answer, const char *url);
+struct definition *add_definition(struct job *j, const char *word, const char *url);
+struct word_class *definition_class(struct job *j, struct definition *d, const char *name);
+void definition_sense(struct job *j, struct word_class *c, const char *text, const char *example);
 
 const char *time_range_code(const struct filters *f, const char *day, const char *week, const char *month,
     const char *year);

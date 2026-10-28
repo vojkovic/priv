@@ -102,6 +102,9 @@ msgstr "Haba"
 msgid "Moderate"
 msgstr "Banayad"
 
+msgid "More"
+msgstr "Higit pa"
+
 msgid "Music"
 msgstr "Musika"
 

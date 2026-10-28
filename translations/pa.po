@@ -102,6 +102,9 @@ msgstr "ਲੰਬਾਈ"
 msgid "Moderate"
 msgstr "ਦਰਮਿਆਨਾ"
 
+msgid "More"
+msgstr "ਹੋਰ"
+
 msgid "Music"
 msgstr "ਸੰਗੀਤ"
 

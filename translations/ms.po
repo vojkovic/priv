@@ -102,6 +102,9 @@ msgstr "Panjang"
 msgid "Moderate"
 msgstr "Sederhana"
 
+msgid "More"
+msgstr "Lagi"
+
 msgid "Music"
 msgstr "Muzik"
 

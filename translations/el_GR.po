@@ -102,6 +102,9 @@ msgstr "Μήκος"
 msgid "Moderate"
 msgstr "Μέτριο"
 
+msgid "More"
+msgstr "Περισσότερα"
+
 msgid "Music"
 msgstr "Μουσική"
 

@@ -102,6 +102,9 @@ msgstr "Hyd"
 msgid "Moderate"
 msgstr "Cymedrol"
 
+msgid "More"
+msgstr "Mwy"
+
 msgid "Music"
 msgstr "Cerddoriaeth"
 

@@ -102,6 +102,9 @@ msgstr "Pikkus"
 msgid "Moderate"
 msgstr "Mõõdukas"
 
+msgid "More"
+msgstr "Rohkem"
+
 msgid "Music"
 msgstr "Muusika"
 

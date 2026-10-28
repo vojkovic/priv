@@ -103,6 +103,9 @@ msgstr "אורך"
 msgid "Moderate"
 msgstr "מתון"
 
+msgid "More"
+msgstr "עוד"
+
 msgid "Music"
 msgstr "מוזיקה"
 

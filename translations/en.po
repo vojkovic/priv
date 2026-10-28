@@ -15,6 +15,9 @@ msgstr ""
 msgid "Languages"
 msgstr ""
 
+msgid "More"
+msgstr ""
+
 msgid "Timeout"
 msgstr ""
 

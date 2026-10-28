@@ -102,6 +102,9 @@ msgstr "Độ dài"
 msgid "Moderate"
 msgstr "Vừa phải"
 
+msgid "More"
+msgstr "Thêm"
+
 msgid "Music"
 msgstr "Nhạc"
 

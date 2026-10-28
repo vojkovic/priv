@@ -102,6 +102,9 @@ msgstr "పొడవు"
 msgid "Moderate"
 msgstr "మితమైన"
 
+msgid "More"
+msgstr "మరిన్ని"
+
 msgid "Music"
 msgstr "సంగీతం"
 

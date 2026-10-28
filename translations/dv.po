@@ -103,6 +103,9 @@ msgstr "ދިގުމިން"
 msgid "Moderate"
 msgstr "މެދުމިނުން"
 
+msgid "More"
+msgstr "އިތުރަށް"
+
 msgid "Music"
 msgstr "މިއުޒިކު"
 

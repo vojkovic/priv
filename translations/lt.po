@@ -102,6 +102,9 @@ msgstr "Trukmė"
 msgid "Moderate"
 msgstr "Nuosaiki"
 
+msgid "More"
+msgstr "Daugiau"
+
 msgid "Music"
 msgstr "Muzika"
 

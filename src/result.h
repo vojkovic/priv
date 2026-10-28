@@ -51,11 +51,29 @@ struct infobox_attr {
 	struct infobox_attr *next;
 };
 
+/* a dictionary entry, which an infobox can hold in place of the usual fields */
+struct sense {
+	char *text, *example;
+	struct sense *next;
+};
+
+struct word_class {
+	char *name;
+	struct sense *senses, **tail;
+	struct word_class *next;
+};
+
+struct definition {
+	char *word;
+	struct word_class *classes, **tail;
+};
+
 struct infobox {
 	struct result base;
 	char *title, *id, *content, *img_src, *description;
 	struct infobox_url *urls, *also;
 	struct infobox_attr *attrs;
+	struct definition *definition;
 	uint64_t engines;
 };
 

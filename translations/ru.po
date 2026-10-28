@@ -102,6 +102,9 @@ msgstr "Длительность"
 msgid "Moderate"
 msgstr "Умеренный"
 
+msgid "More"
+msgstr "Ещё"
+
 msgid "Music"
 msgstr "Музыка"
 

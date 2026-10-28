@@ -102,6 +102,9 @@ msgstr "Comprimento"
 msgid "Moderate"
 msgstr "Moderado"
 
+msgid "More"
+msgstr "Mais"
+
 msgid "Music"
 msgstr "Música"
 

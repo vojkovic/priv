@@ -102,6 +102,9 @@ msgstr "Garums"
 msgid "Moderate"
 msgstr "Mērena"
 
+msgid "More"
+msgstr "Vairāk"
+
 msgid "Music"
 msgstr "Mūzika"
 

@@ -102,6 +102,9 @@ msgstr "Озынлык"
 msgid "Moderate"
 msgstr "Уртача"
 
+msgid "More"
+msgstr "Тагын"
+
 msgid "Music"
 msgstr "Моң"
 

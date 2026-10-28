@@ -102,6 +102,9 @@ msgstr "Luzera"
 msgid "Moderate"
 msgstr "Moderatua"
 
+msgid "More"
+msgstr "Gehiago"
+
 msgid "Music"
 msgstr "Musika"
 

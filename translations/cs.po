@@ -102,6 +102,9 @@ msgstr "Délka"
 msgid "Moderate"
 msgstr "Střední"
 
+msgid "More"
+msgstr "Více"
+
 msgid "Music"
 msgstr "Hudba"
 

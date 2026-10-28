@@ -102,6 +102,9 @@ msgstr "Longo"
 msgid "Moderate"
 msgstr "Modera"
 
+msgid "More"
+msgstr "Pli"
+
 msgid "Music"
 msgstr "Muziko"
 

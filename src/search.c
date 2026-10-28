@@ -499,6 +499,44 @@ add_answer(struct job *j, const char *answer, const char *url)
 	add(j, &a->base, RESULT_ANSWER);
 }
 
+struct definition *
+add_definition(struct job *j, const char *word, const char *url)
+{
+	struct infobox *ib = add_infobox(j, word);
+
+	ib->definition = amalloc(j->a, sizeof(*ib->definition));
+	memset(ib->definition, 0, sizeof(*ib->definition));
+	ib->definition->word = astrdup(j->a, word);
+	ib->definition->tail = &ib->definition->classes;
+	infobox_url(j, ib, "Wiktionary", url, NULL, 0);
+	return ib->definition;
+}
+
+struct word_class *
+definition_class(struct job *j, struct definition *d, const char *name)
+{
+	struct word_class *c = amalloc(j->a, sizeof(*c));
+
+	memset(c, 0, sizeof(*c));
+	c->name = astrdup(j->a, name);
+	c->tail = &c->senses;
+	*d->tail = c;
+	d->tail = &c->next;
+	return c;
+}
+
+void
+definition_sense(struct job *j, struct word_class *c, const char *text, const char *example)
+{
+	struct sense *s = amalloc(j->a, sizeof(*s));
+
+	memset(s, 0, sizeof(*s));
+	s->text = astrdup(j->a, text);
+	s->example = *example ? astrdup(j->a, example) : NULL;
+	*c->tail = s;
+	c->tail = &s->next;
+}
+
 void
 job_on_cleanup(struct job *j, void (*fn)(void *), void *p)
 {

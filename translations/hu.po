@@ -102,6 +102,9 @@ msgstr "Hossz"
 msgid "Moderate"
 msgstr "Enyhe"
 
+msgid "More"
+msgstr "Több"
+
 msgid "Music"
 msgstr "Zene"
 

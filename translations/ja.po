@@ -102,6 +102,9 @@ msgstr "長さ"
 msgid "Moderate"
 msgstr "標準"
 
+msgid "More"
+msgstr "もっと見る"
+
 msgid "Music"
 msgstr "音楽"
 

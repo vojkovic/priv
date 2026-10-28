@@ -102,6 +102,9 @@ msgstr "Dĺžka"
 msgid "Moderate"
 msgstr "Mierne"
 
+msgid "More"
+msgstr "Viac"
+
 msgid "Music"
 msgstr "Hudba"
 

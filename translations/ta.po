@@ -102,6 +102,9 @@ msgstr "நீளம்"
 msgid "Moderate"
 msgstr "மிதமான"
 
+msgid "More"
+msgstr "மேலும்"
+
 msgid "Music"
 msgstr "இசை"
 

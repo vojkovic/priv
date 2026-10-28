@@ -918,6 +918,54 @@ source_name(struct arena *a, const char *url)
 	return starts_with(u.netloc, "www.") ? u.netloc + 4 : u.netloc;
 }
 
+#define SENSES_SHOWN 2
+
+static void
+senses(struct buf *b, const struct sense *s, int start, int count)
+{
+	buf_html(b, "<ol start=\"%d\">", start);
+	for (; s && count--; s = s->next) {
+		buf_html(b, "<li><span class=\"def-text\">%s</span>", s->text);
+		if (s->example)
+			buf_html(b, "<span class=\"def-example\">%s</span>", s->example);
+		buf_puts(b, "</li>");
+	}
+	buf_puts(b, "</ol>");
+}
+
+static void
+definition(struct buf *b, const struct definition *d)
+{
+	const struct word_class *c;
+	const struct sense *s;
+	int i;
+
+	buf_html(b, "<h2 class=\"def-word\">%s</h2>", d->word);
+	for (c = d->classes; c; c = c->next) {
+		buf_html(b, "<div class=\"def-class\"><span>%s</span></div>", c->name);
+		senses(b, c->senses, 1, SENSES_SHOWN);
+		for (s = c->senses, i = 0; s && i < SENSES_SHOWN; s = s->next)
+			i++;
+		if (s) {
+			buf_html(b, "<details class=\"def-more\"><summary>%s</summary>", tr("More"));
+			senses(b, s, SENSES_SHOWN + 1, 8);
+			buf_puts(b, "</details>");
+		}
+	}
+}
+
+/* a dictionary entry only fills the space when nothing else has an infobox */
+static struct infobox *
+shown_infobox(const struct results *r)
+{
+	size_t i;
+
+	for (i = 0; i < r->ninfoboxes; i++)
+		if (!r->infoboxes[i]->definition)
+			return r->infoboxes[i];
+	return r->infoboxes[0];
+}
+
 static void
 infobox(struct buf *b, struct search *s, struct infobox *ib)
 {
@@ -926,6 +974,14 @@ infobox(struct buf *b, struct search *s, struct infobox *ib)
 	char *img = image_url(&s->a, ib->img_src);
 	int chips = 0;
 
+	if (ib->definition) {
+		buf_puts(b, "<aside class=\"infobox definition\">\n");
+		definition(b, ib->definition);
+		buf_html(b,
+		    "<a class=\"source\" href=\"%s\" rel=\"noreferrer\">Wiktionary" ICON_ARROW_NE "</a>\n</aside>\n",
+		    ib->urls->url);
+		return;
+	}
 	for (u = ib->urls; u && !source; u = u->next)
 		if (u->title && !strcmp(u->title, "Wikipedia"))
 			source = u;
@@ -1235,7 +1291,7 @@ render_results(struct buf *b, struct search *s)
 		buf_puts(b, "<div id=\"sidebar\">\n");
 		if (r->ninfoboxes) {
 			buf_puts(b, "<div id=\"infoboxes\">\n");
-			infobox(b, s, r->infoboxes[0]);
+			infobox(b, s, shown_infobox(r));
 			buf_puts(b, "</div>\n");
 		}
 		engine_timing(b, s);

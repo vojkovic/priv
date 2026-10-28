@@ -102,6 +102,9 @@ msgstr "Dugość"
 msgid "Moderate"
 msgstr "Postrzednie"
 
+msgid "More"
+msgstr "Wiyncyj"
+
 msgid "Music"
 msgstr "Muzyka"
 

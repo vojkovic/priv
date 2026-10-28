@@ -1118,6 +1118,17 @@ img.thumbnail {
 .answer p { margin: 0; font-size: 1.05rem; line-height: 1.45; }
 .answer + .answer { margin-top: 1em; padding-top: 1em; border-top: 1px solid var(--surface0); }
 
+.definition .def-word { margin: 0 0 0.2rem; font-size: 2rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; }
+.def-class { display: flex; align-items: center; gap: 0.8rem; margin: 1rem 0 0.5rem; color: var(--accent); font-style: italic; }
+.def-class::after { content: ""; flex: 1; height: 1px; background: var(--surface1); }
+.definition ol { margin: 0; padding: 0 0 0 1.7rem; }
+.definition li { margin: 0 0 0.6rem; padding-left: 0.4rem; line-height: 1.45; }
+.definition li::marker { color: var(--overlay1); font-variant-numeric: tabular-nums; }
+.definition .def-example { display: block; margin-top: 0.15rem; color: var(--subtext0); font-style: italic; }
+.def-more summary { display: inline-flex; align-items: center; margin: 0.2rem 0 0.7rem; color: var(--accent); cursor: pointer; list-style: none; }
+.def-more summary::-webkit-details-marker { display: none; }
+.def-more[open] summary { display: none; }
+
 
 .no-results { margin: 1.5em 0.5em; }
 .no-results p { margin: 0.4em 0; }

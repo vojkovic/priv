@@ -103,6 +103,9 @@ msgstr "الطول"
 msgid "Moderate"
 msgstr "معتدل"
 
+msgid "More"
+msgstr "المزيد"
+
 msgid "Music"
 msgstr "موسيقى"
 

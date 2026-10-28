@@ -102,6 +102,9 @@ msgstr "දිග"
 msgid "Moderate"
 msgstr "මධ්‍යස්ථ"
 
+msgid "More"
+msgstr "තව"
+
 msgid "Music"
 msgstr "සංගීත"
 

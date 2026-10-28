@@ -102,6 +102,9 @@ msgstr "Uzunluk"
 msgid "Moderate"
 msgstr "Orta"
 
+msgid "More"
+msgstr "Daha fazla"
+
 msgid "Music"
 msgstr "Müzik"
 

@@ -102,6 +102,9 @@ msgstr "Durasi"
 msgid "Moderate"
 msgstr "Menengah"
 
+msgid "More"
+msgstr "Selengkapnya"
+
 msgid "Music"
 msgstr "Musik"
 

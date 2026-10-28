@@ -102,6 +102,9 @@ msgstr "길이"
 msgid "Moderate"
 msgstr "보통"
 
+msgid "More"
+msgstr "더보기"
+
 msgid "Music"
 msgstr "음악"
 

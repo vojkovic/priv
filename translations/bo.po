@@ -102,6 +102,9 @@ msgstr "རིང་ཚད།"
 msgid "Moderate"
 msgstr "འབྲིང་ཙམ།"
 
+msgid "More"
+msgstr "ཁ་སྣོན།"
+
 msgid "Music"
 msgstr "རོལ་མོ།"
 
