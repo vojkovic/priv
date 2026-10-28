@@ -348,7 +348,7 @@ fetched(struct fetch *ft, void *arg)
 	struct waiter *w, *next;
 	const char *ct = fetch_content_type(ft);
 	char mime[64];
-	int ok = ft->code == CURLE_OK && ft->status == 200 && ft->body.len > r->min_size && *ct &&
+	int ok = ft->code == CURLE_OK && ft->status == 200 && ft->body.len > r->min_size && starts_with(ct, "image/") &&
 	    !(r->miss_mime && starts_with(ct, r->miss_mime));
 
 	inflight--;
@@ -412,7 +412,7 @@ favicon_serve(struct conn *c, struct request *r)
 	struct fav *f;
 
 	if (!authority || !*authority || strchr(authority, '/') ||
-	    !proxy_hmac_ok(authority, query_param(&a, r->query, "h"))) {
+	    !proxy_hmac_ok('f', authority, query_param(&a, r->query, "h"))) {
 		arena_free(&a);
 		http_respond(c, 400, "Content-Type: text/plain\r\n", "", 0);
 		return;

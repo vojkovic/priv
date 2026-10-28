@@ -18,8 +18,9 @@
 	"<path d=\"M21 15l-5-5L5 21\"/></g></svg>"
 static unsigned char secret[32];
 
+/* each kind of signed value has its own prefix, so a signature made for an image url cannot vouch for a paging token */
 static void
-hmac(const char *msg, char hex[65])
+hmac(char kind, const char *msg, char hex[65])
 {
 	unsigned char ipad[64], opad[64], inner[32], out[32];
 	struct sha256 s;
@@ -33,6 +34,7 @@ hmac(const char *msg, char hex[65])
 	}
 	sha256_init(&s);
 	sha256_update(&s, ipad, 64);
+	sha256_update(&s, &kind, 1);
 	sha256_update(&s, msg, strlen(msg));
 	sha256_final(&s, inner);
 	sha256_init(&s);
@@ -44,16 +46,16 @@ hmac(const char *msg, char hex[65])
 }
 
 char *
-proxy_hmac(struct arena *a, const char *msg)
+proxy_hmac(struct arena *a, char kind, const char *msg)
 {
 	char h[65];
 
-	hmac(msg, h);
+	hmac(kind, msg, h);
 	return astrdup(a, h);
 }
 
 int
-proxy_hmac_ok(const char *msg, const char *h)
+proxy_hmac_ok(char kind, const char *msg, const char *h)
 {
 	char want[65];
 	unsigned char diff = 0;
@@ -61,7 +63,7 @@ proxy_hmac_ok(const char *msg, const char *h)
 
 	if (!h || strlen(h) != 64)
 		return 0;
-	hmac(msg, want);
+	hmac(kind, msg, want);
 	for (i = 0; i < 64; i++)
 		diff |= want[i] ^ h[i];
 	return !diff;
@@ -110,7 +112,7 @@ image_url(struct arena *a, const char *url)
 				return (char *)url;
 		return NULL;
 	}
-	hmac(url, h);
+	hmac('i', url, h);
 	form_add(&b, "url", url);
 	form_add(&b, "h", h);
 	r = aprintf(a, "/image?%s", buf_str(&b));
@@ -126,7 +128,7 @@ favicon_url(struct arena *a, const char *authority, const char *resolver)
 
 	if (!authority || !*authority)
 		return NULL;
-	hmac(authority, h);
+	hmac('f', authority, h);
 	form_add(&b, "authority", authority);
 	form_add(&b, "h", h);
 	if (resolver && strcmp(resolver, FAVICON_DEFAULT))
@@ -355,7 +357,7 @@ proxy_image(struct conn *c, struct request *r)
 	struct image *img;
 	struct waiter *w;
 
-	if (!url || !*url || !proxy_hmac_ok(url, query_param(&a, r->query, "h"))) {
+	if (!url || !*url || !proxy_hmac_ok('i', url, query_param(&a, r->query, "h"))) {
 		arena_free(&a);
 		empty(c, 400);
 		return;

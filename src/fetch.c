@@ -171,6 +171,8 @@ private_addr(const struct curl_sockaddr *addr)
 	a = v6.sin6_addr.s6_addr;
 	if (!memcmp(a, "\0\0\0\0\0\0\0\0\0\0\xff\xff", 12))
 		return private_v4(a + 12);
+	if (!memcmp(a, "\0\0\0\0\0\0\0\0\0\0\0\0", 12))
+		return private_v4(a + 12) || !memcmp(a + 12, "\0\0\0\0", 4);
 	/* nat64 and 6to4 carry an ipv4 address that may be a private one */
 	if (!memcmp(a, "\0\x64\xff\x9b\0\0\0\0\0\0\0\0", 12))
 		return private_v4(a + 12);

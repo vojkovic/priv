@@ -213,7 +213,7 @@ route(struct conn *c, struct request *r)
 		pageno = (int)parse_long(p, 1);
 	pageno = pageno < 1 ? 1 : pageno > 50 ? 50 : pageno;
 	p = query_param(&a, r->query, "pt");
-	tokens = p && proxy_hmac_ok(p, query_param(&a, r->query, "ph")) ? p : NULL;
+	tokens = p && proxy_hmac_ok('p', p, query_param(&a, r->query, "ph")) ? p : NULL;
 	filters_parse(&a, r, &f);
 	f.client_ip = botdetect_client_ip(r);
 	f.client_agent = r->user_agent;

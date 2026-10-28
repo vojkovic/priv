@@ -109,6 +109,12 @@ embed_response(struct job *j, struct fetch *f)
 	}
 	name = codes(yyjson_arr_get(root, 3));
 	value = codes(yyjson_arr_get(root, 4));
+	if (strncmp(name, "x-sid-", 6) || strpbrk(name, "\r\n :") || strpbrk(value, "\r\n")) {
+		free(name);
+		free(value);
+		job_fail(j, "parsing error", SUSPEND_NONE);
+		return;
+	}
 	header = xmalloc(strlen(name) + strlen(value) + 3);
 	sprintf(header, "%s: %s", name, value);
 	free(name);

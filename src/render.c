@@ -1227,7 +1227,7 @@ token_params(struct buf *b, struct search *s)
 		if (s->jobs[i].next_token)
 			form_add(&t, s->jobs[i].e->name, s->jobs[i].next_token);
 	if (t.len)
-		buf_html(b, "&amp;pt=%u&amp;ph=%s", buf_str(&t), proxy_hmac(&s->a, buf_str(&t)));
+		buf_html(b, "&amp;pt=%u&amp;ph=%s", buf_str(&t), proxy_hmac(&s->a, 'p', buf_str(&t)));
 	buf_free(&t);
 }
 
