@@ -12,7 +12,6 @@ static char *sid;
 static void
 prepare(struct fetch *f)
 {
-	curl_easy_setopt(f->h, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
 	fetch_header(f, "Referer: " SITE);
 	fetch_header(f, "Sec-Fetch-Site: same-site");
 	fetch_header(f, "Upgrade-Insecure-Requests:");
