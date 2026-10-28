@@ -1,3 +1,4 @@
+#include <setjmp.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -58,12 +59,15 @@ struct parser {
 	const char *path;
 	int line;
 	char *p;
+	jmp_buf recover;
 };
 
+/* a setting that cannot be used is reported and skipped, so an old or mistaken config.toml never stops the server */
 _Noreturn static void
 fail(struct parser *ps, const char *msg)
 {
-	die("%s:%d: %s", ps->path, ps->line, msg);
+	fprintf(stderr, "%s:%d: %s (ignored)\n", ps->path, ps->line, msg);
+	longjmp(ps->recover, 1);
 }
 
 static void
@@ -210,41 +214,60 @@ set(struct parser *ps, const char *section, const char *k, struct value *v)
 }
 
 static void
+parse_line(struct parser *ps, char **section)
+{
+	struct value v;
+	char *k;
+
+	skip_space(ps);
+	if (*ps->p == '[') {
+		ps->p++;
+		skip_space(ps);
+		k = key(ps);
+		skip_space(ps);
+		if (*ps->p != ']') {
+			free(k);
+			fail(ps, "expected ]");
+		}
+		ps->p++;
+		free(*section);
+		*section = k;
+	} else if (*ps->p && *ps->p != '#' && *ps->p != '\n' && *ps->p != '\r') {
+		k = key(ps);
+		skip_space(ps);
+		if (*ps->p != '=')
+			fail(ps, "expected =");
+		ps->p++;
+		skip_space(ps);
+		value(ps, &v);
+		set(ps, *section, k, &v);
+		free(k);
+	}
+	skip_space(ps);
+	if (*ps->p == '#')
+		ps->p += strcspn(ps->p, "\n");
+	if (*ps->p == '\r')
+		ps->p++;
+	if (*ps->p && *ps->p != '\n')
+		fail(ps, "unexpected text after the value");
+	if (*ps->p)
+		ps->p++;
+}
+
+static void
 parse(const char *path, char *text)
 {
-	struct parser ps = {path, 1, text};
-	char *section = xstrdup(""), *k;
-	struct value v;
+	struct parser ps = {.path = path, .line = 1, .p = text};
+	char *section = xstrdup("");
 
 	for (; *ps.p; ps.line++) {
-		skip_space(&ps);
-		if (*ps.p == '[') {
-			ps.p++;
-			skip_space(&ps);
-			free(section);
-			section = key(&ps);
-			skip_space(&ps);
-			if (*ps.p++ != ']')
-				fail(&ps, "expected ]");
-		} else if (*ps.p && *ps.p != '#' && *ps.p != '\n' && *ps.p != '\r') {
-			k = key(&ps);
-			skip_space(&ps);
-			if (*ps.p++ != '=')
-				fail(&ps, "expected =");
-			skip_space(&ps);
-			value(&ps, &v);
-			set(&ps, section, k, &v);
-			free(k);
-		}
-		skip_space(&ps);
-		if (*ps.p == '#')
+		if (!setjmp(ps.recover))
+			parse_line(&ps, &section);
+		else {
 			ps.p += strcspn(ps.p, "\n");
-		if (*ps.p == '\r')
-			ps.p++;
-		if (*ps.p && *ps.p != '\n')
-			fail(&ps, "unexpected text after the value");
-		if (*ps.p)
-			ps.p++;
+			if (*ps.p)
+				ps.p++;
+		}
 	}
 	free(section);
 }

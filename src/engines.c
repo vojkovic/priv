@@ -114,7 +114,7 @@ engines_init(void)
 		for (i = 0; i < LEN(available) && !config_name(available[i], engine_toggles[k].name); i++)
 			;
 		if (i == LEN(available))
-			die("config.toml: unknown engine '%s'", engine_toggles[k].name);
+			fprintf(stderr, "config.toml: unknown engine '%s' (ignored)\n", engine_toggles[k].name);
 	}
 	for (i = 0; i < LEN(available) && nengines < LEN(engines); i++) {
 		e = available[i];
