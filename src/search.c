@@ -22,17 +22,35 @@
 	"X-Accel-Buffering: no\r\n" \
 	"Trailer: Server-Timing\r\n" SECURITY_HEADERS
 
-const struct category categories[] = {
-    {"general", "General", ICON_SEARCH},
-    {"images", "Images", ICON_IMAGES},
-    {"videos", "Videos", ICON_VIDEOS},
-    {"news", "News", ICON_NEWS},
-    {"music", "Music", ICON_MUSIC},
-    {"tech", "Tech", ICON_TECH},
-    {"research", "Research", ICON_RESEARCH},
+struct category categories[] = {
+    {"general", "General", ICON_SEARCH, 1.5},
+    {"images", "Images", ICON_IMAGES, 3},
+    {"videos", "Videos", ICON_VIDEOS, 3},
+    {"news", "News", ICON_NEWS, 3},
+    {"music", "Music", ICON_MUSIC, 3},
+    {"tech", "Tech", ICON_TECH, 3},
+    {"research", "Research", ICON_RESEARCH, 5},
 };
 
 const size_t ncategories = LEN(categories);
+
+const int timeout_choices[] = {5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 100};
+const size_t ntimeout_choices = LEN(timeout_choices);
+
+/* the query's own limit, else the user's choice for the category, else the category's default */
+double
+filters_timeout(const struct filters *f)
+{
+	size_t i;
+
+	if (f->timeout > 0)
+		return f->timeout;
+	for (i = 0; i < ncategories; i++)
+		if (!strcmp(categories[i].name, f->category))
+			return i < PREFS_CATEGORIES && f->prefs.timeout[i] ? f->prefs.timeout[i] / 10.0 :
+			                                                     categories[i].timeout;
+	return categories[0].timeout;
+}
 
 static void
 job_cleanup(struct job *j)
@@ -835,8 +853,7 @@ search_start(struct conn *c, const char *raw, int pageno, const char *tokens, co
 	http_write(c, b.p, b.len);
 	buf_free(&b);
 
-	ev_timer_start(&s->deadline, (s->filters.timeout > 0 ? s->filters.timeout : search_timeout) * 1e3, on_deadline,
-	    s);
+	ev_timer_start(&s->deadline, filters_timeout(&s->filters) * 1e3, on_deadline, s);
 	http_on_close(c, on_client_close, s);
 	s->starting = 1;
 	for (i = 0; i < nengines; i++) {

@@ -63,6 +63,9 @@ msgstr "Formáid"
 msgid "General"
 msgstr "Ginearálta"
 
+msgid "How long to wait for engines"
+msgstr "Cé chomh fada le fanacht le hinnill"
+
 msgid "IP address"
 msgstr "Seoladh IP"
 
@@ -191,6 +194,9 @@ msgstr "Níor thug an suíomh seo aon tuairisc ar fáil."
 
 msgid "Time range"
 msgstr "Raon ama"
+
+msgid "Timeout"
+msgstr "Teorainn ama"
 
 msgid "Try different words or another category."
 msgstr "Bain triail as focail eile nó catagóir eile."

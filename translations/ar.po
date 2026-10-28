@@ -64,6 +64,9 @@ msgstr "الصيغة"
 msgid "General"
 msgstr "عام"
 
+msgid "How long to wait for engines"
+msgstr "المدة التي يُنتظر فيها محركات البحث"
+
 msgid "IP address"
 msgstr "عنوان IP"
 
@@ -192,6 +195,9 @@ msgstr "هذا الموقع لم يقدم أي وصف."
 
 msgid "Time range"
 msgstr "الفترة"
+
+msgid "Timeout"
+msgstr "المهلة"
 
 msgid "Try different words or another category."
 msgstr "جرّب كلمات مختلفة أو فئة أخرى."

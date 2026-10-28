@@ -63,6 +63,9 @@ msgstr "Format"
 msgid "General"
 msgstr "General"
 
+msgid "How long to wait for engines"
+msgstr "Quant de temps esperar los motors"
+
 msgid "IP address"
 msgstr "Adreça IP"
 
@@ -191,6 +194,9 @@ msgstr "Aqueste site a pas provesit cap de descripcion."
 
 msgid "Time range"
 msgstr "Espaci temporal"
+
+msgid "Timeout"
+msgstr "Temps d'espèra"
 
 msgid "Try different words or another category."
 msgstr "Ensajatz d'autres mots o una autra categoria."

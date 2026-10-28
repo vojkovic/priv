@@ -64,6 +64,9 @@ msgstr "תבנית"
 msgid "General"
 msgstr "כללי"
 
+msgid "How long to wait for engines"
+msgstr "כמה זמן להמתין למנועי החיפוש"
+
 msgid "IP address"
 msgstr "כתובת IP"
 
@@ -192,6 +195,9 @@ msgstr "אתר זה לא סיפק תיאור."
 
 msgid "Time range"
 msgstr "טווח זמן"
+
+msgid "Timeout"
+msgstr "זמן קצוב"
 
 msgid "Try different words or another category."
 msgstr "נסו מילים אחרות או קטגוריה אחרת."

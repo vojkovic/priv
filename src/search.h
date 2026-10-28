@@ -13,10 +13,15 @@ struct job;
 
 struct category {
 	const char *name, *label, *icon;
+	double timeout;
 };
 
-extern const struct category categories[];
+extern struct category categories[];
 extern const size_t ncategories;
+
+/* seconds to wait for engines unless the user chose otherwise, and the choices offered in tenths */
+extern const int timeout_choices[];
+extern const size_t ntimeout_choices;
 
 struct filters {
 	const char *category;
@@ -45,6 +50,7 @@ struct search {
 	double start, elapsed;
 };
 
+double filters_timeout(const struct filters *f);
 void search_start(struct conn *c, const char *raw, int pageno, const char *tokens, const struct filters *f);
 void filters_parse(struct arena *a, struct request *r, struct filters *f);
 const struct locale *client_locale(struct arena *a, const char *header);

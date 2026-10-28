@@ -23,7 +23,6 @@ extern const char *instance_name;
 extern const char **motd;
 extern const char *listen_addr;
 extern int listen_port;
-extern double search_timeout;
 extern const char *cache_dir;
 extern int favicon_hold_days;
 extern size_t favicon_cache_bytes;

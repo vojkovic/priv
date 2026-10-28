@@ -2,7 +2,16 @@ instance_name = "priv"
 motd = ""
 listen = "::1"
 port = 8888
-timeout = 2.0
+
+[timeout]
+# default seconds to wait for engines in each category
+general = 1.5
+images = 3
+videos = 3
+news = 3
+music = 3
+tech = 3
+research = 5
 
 [limiter]
 enabled = true

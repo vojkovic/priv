@@ -63,6 +63,9 @@ msgstr "Formátum"
 msgid "General"
 msgstr "Általános"
 
+msgid "How long to wait for engines"
+msgstr "Mennyi ideig várjon a keresőkre"
+
 msgid "IP address"
 msgstr "IP-cím"
 
@@ -191,6 +194,9 @@ msgstr "Ennek a weblapnak nincsen leírása."
 
 msgid "Time range"
 msgstr "Időintervallum"
+
+msgid "Timeout"
+msgstr "Időkorlát"
 
 msgid "Try different words or another category."
 msgstr "Próbáljon más szavakat vagy másik kategóriát."

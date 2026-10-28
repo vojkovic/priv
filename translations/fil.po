@@ -63,6 +63,9 @@ msgstr "Format"
 msgid "General"
 msgstr "Pangkalahatan"
 
+msgid "How long to wait for engines"
+msgstr "Gaano katagal maghihintay sa mga engine"
+
 msgid "IP address"
 msgstr "IP address"
 
@@ -191,6 +194,9 @@ msgstr "Ang site na ito ay hindi nagbigay ng deskripsyon."
 
 msgid "Time range"
 msgstr "Agwat ng oras"
+
+msgid "Timeout"
+msgstr "Timeout"
 
 msgid "Try different words or another category."
 msgstr "Subukan ang ibang mga salita o ibang kategorya."

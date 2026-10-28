@@ -36,7 +36,7 @@ This whole project has been made possible through the use of LLMs (AI assisted d
 
 Make priv yours!
 
-You can edit the `config.toml` to change things such as the instance name, listen address, timeout, bot detection and which engines are on.
+You can edit the `config.toml` to change things such as the instance name, listen address, timeouts, bot detection and which engines are on.
 
     curl -o config.toml https://raw.githubusercontent.com/vojkovic/priv/master/config.toml
     docker run -d -p 127.0.0.1:8888:8888 -v priv-cache:/cache -v ./config.toml:/etc/priv/config.toml:ro priv

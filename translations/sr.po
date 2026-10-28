@@ -63,6 +63,9 @@ msgstr "Формат"
 msgid "General"
 msgstr "Уопштено"
 
+msgid "How long to wait for engines"
+msgstr "Колико дуго чекати претраживаче"
+
 msgid "IP address"
 msgstr "IP адреса"
 
@@ -191,6 +194,9 @@ msgstr "Овај сајт није дао никакав опис."
 
 msgid "Time range"
 msgstr "Временски опсег"
+
+msgid "Timeout"
+msgstr "Временско ограничење"
 
 msgid "Try different words or another category."
 msgstr "Покушајте другим речима или другом категоријом."

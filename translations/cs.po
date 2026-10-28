@@ -63,6 +63,9 @@ msgstr "Formát"
 msgid "General"
 msgstr "Obecné"
 
+msgid "How long to wait for engines"
+msgstr "Jak dlouho čekat na vyhledávače"
+
 msgid "IP address"
 msgstr "IP adresa"
 
@@ -191,6 +194,9 @@ msgstr "Tato stránka nemá žádný popis."
 
 msgid "Time range"
 msgstr "Časový interval"
+
+msgid "Timeout"
+msgstr "Časový limit"
 
 msgid "Try different words or another category."
 msgstr "Zkuste jiná slova nebo jinou kategorii."

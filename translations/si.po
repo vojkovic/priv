@@ -63,6 +63,9 @@ msgstr "ආකෘතිය"
 msgid "General"
 msgstr "සාමාන්‍ය"
 
+msgid "How long to wait for engines"
+msgstr "සෙවුම් යන්ත්‍ර සඳහා කොපමණ වේලාවක් බලා සිටිය යුතුද"
+
 msgid "IP address"
 msgstr "අයිපී ලිපිනය"
 
@@ -191,6 +194,9 @@ msgstr "මෙම වෙබ් අඩවිය කිසිදු විස්�
 
 msgid "Time range"
 msgstr "කාල පරාසය"
+
+msgid "Timeout"
+msgstr "කාල සීමාව"
 
 msgid "Try different words or another category."
 msgstr "වෙනත් වචන හෝ වෙනත් ප්‍රවර්ගයක් උත්සාහ කරන්න."

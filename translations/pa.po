@@ -63,6 +63,9 @@ msgstr "ਫ਼ਾਰਮੈਟ"
 msgid "General"
 msgstr "ਆਮ"
 
+msgid "How long to wait for engines"
+msgstr "ਇੰਜਣਾਂ ਲਈ ਕਿੰਨਾ ਚਿਰ ਉਡੀਕ ਕਰਨੀ ਹੈ"
+
 msgid "IP address"
 msgstr "ਆਈਪੀ ਪਤਾ"
 
@@ -190,6 +193,9 @@ msgid "This site did not provide any description."
 msgstr "ਇਸ ਸਾਈਟ ਨੇ ਕੋਈ ਵੇਰਵਾ ਨਹੀਂ ਦਿੱਤਾ।"
 
 msgid "Time range"
+msgstr "ਸਮਾਂ ਸੀਮਾ"
+
+msgid "Timeout"
 msgstr "ਸਮਾਂ ਸੀਮਾ"
 
 msgid "Try different words or another category."

@@ -63,6 +63,9 @@ msgstr "형식"
 msgid "General"
 msgstr "일반"
 
+msgid "How long to wait for engines"
+msgstr "검색 엔진을 기다리는 시간"
+
 msgid "IP address"
 msgstr "IP 주소"
 
@@ -191,6 +194,9 @@ msgstr "사이트에서 소개를 제공하지 않았습니다."
 
 msgid "Time range"
 msgstr "기간"
+
+msgid "Timeout"
+msgstr "제한 시간"
 
 msgid "Try different words or another category."
 msgstr "다른 단어나 다른 카테고리로 시도해 보세요."

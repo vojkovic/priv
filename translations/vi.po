@@ -63,6 +63,9 @@ msgstr "Định dạng"
 msgid "General"
 msgstr "Chung"
 
+msgid "How long to wait for engines"
+msgstr "Thời gian chờ các công cụ tìm kiếm"
+
 msgid "IP address"
 msgstr "Địa chỉ IP"
 
@@ -191,6 +194,9 @@ msgstr "Trang web này không cung cấp bất kỳ mô tả nào."
 
 msgid "Time range"
 msgstr "Khoảng thời gian"
+
+msgid "Timeout"
+msgstr "Thời gian chờ"
 
 msgid "Try different words or another category."
 msgstr "Hãy thử từ khác hoặc danh mục khác."

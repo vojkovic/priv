@@ -63,6 +63,9 @@ msgstr "རྣམ་གཞག"
 msgid "General"
 msgstr "དྲ་སྦྲེལ།"
 
+msgid "How long to wait for engines"
+msgstr "འཚོལ་འཁོར་ལ་ཡུན་ཇི་ཙམ་སྒུག་དགོས།"
+
 msgid "IP address"
 msgstr "IP ཁ་བྲེ།"
 
@@ -191,6 +194,9 @@ msgstr "དྲ་ཚིགས་འདིས་འགྲེལ་བཤད་ག
 
 msgid "Time range"
 msgstr "དུས་ཀྱི་ཁྱབ་ཁོངས།"
+
+msgid "Timeout"
+msgstr "དུས་ཚོད་ཚད་བཀག"
 
 msgid "Try different words or another category."
 msgstr "ཚིག་གཞན་ནམ་རིགས་གཞན་ཞིག་ལ་ཚོད་ལྟ་གྱིས།"

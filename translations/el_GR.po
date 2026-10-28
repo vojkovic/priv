@@ -63,6 +63,9 @@ msgstr "Μορφή"
 msgid "General"
 msgstr "Γενικά"
 
+msgid "How long to wait for engines"
+msgstr "Πόσο να περιμένει για τις μηχανές"
+
 msgid "IP address"
 msgstr "Διεύθυνση IP"
 
@@ -191,6 +194,9 @@ msgstr "Αυτός ο ιστότοπος δεν παρείχε καμία περ
 
 msgid "Time range"
 msgstr "Εύρος χρόνου"
+
+msgid "Timeout"
+msgstr "Χρονικό όριο"
 
 msgid "Try different words or another category."
 msgstr "Δοκιμάστε διαφορετικές λέξεις ή άλλη κατηγορία."

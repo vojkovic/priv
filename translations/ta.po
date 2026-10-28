@@ -63,6 +63,9 @@ msgstr "வடிவம்"
 msgid "General"
 msgstr "பொதுத் தேடல்"
 
+msgid "How long to wait for engines"
+msgstr "தேடுபொறிகளுக்காக எவ்வளவு நேரம் காத்திருக்க வேண்டும்"
+
 msgid "IP address"
 msgstr "IP முகவரி"
 
@@ -190,6 +193,9 @@ msgid "This site did not provide any description."
 msgstr "இந்த தளம் எந்த விளக்கத்தையும் வழங்கவில்லை."
 
 msgid "Time range"
+msgstr "நேர வரம்பு"
+
+msgid "Timeout"
 msgstr "நேர வரம்பு"
 
 msgid "Try different words or another category."

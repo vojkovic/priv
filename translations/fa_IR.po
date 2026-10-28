@@ -64,6 +64,9 @@ msgstr "قالب"
 msgid "General"
 msgstr "عمومی"
 
+msgid "How long to wait for engines"
+msgstr "چه مدت منتظر موتورها بماند"
+
 msgid "IP address"
 msgstr "نشانی IP"
 
@@ -192,6 +195,9 @@ msgstr "این سایت هیچ توصیفی ندارد."
 
 msgid "Time range"
 msgstr "بازهٔ زمانی"
+
+msgid "Timeout"
+msgstr "مهلت"
 
 msgid "Try different words or another category."
 msgstr "کلمات دیگر یا دستهٔ دیگری را امتحان کنید."

@@ -875,7 +875,7 @@ autocomplete(struct conn *c, struct request *r)
 	}
 	p->f = fetch_new(request_url(p, query, f.locale));
 	curl_easy_setopt(p->f->h, CURLOPT_FOLLOWLOCATION, 1L);
-	fetch_timeout(p->f, (long)(search_timeout * 1e3));
+	fetch_timeout(p->f, 2000L);
 	http_on_close(c, on_close, p);
 	fetch_start(p->f, done, p);
 }

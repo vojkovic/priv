@@ -194,6 +194,24 @@ pick(const char *name, const void *list, size_t n, size_t size)
 	return NULL;
 }
 
+/* a timeout in tenths of a second, 0 for the category's own default */
+static int
+timeout_pick(const char *s, size_t cat)
+{
+	size_t i;
+	int n;
+
+	if (!s || !*s || cat >= PREFS_CATEGORIES || cat >= ncategories)
+		return 0;
+	n = (int)parse_long(s, 0);
+	if (n == (int)(categories[cat].timeout * 10 + 0.5))
+		return 0;
+	for (i = 0; i < ntimeout_choices; i++)
+		if (n == timeout_choices[i])
+			return n;
+	return 0;
+}
+
 #define THEME(s) pick(s, themes, nthemes, sizeof(*themes))
 #define FAVICON(s) pick(s, favicon_resolvers, nfavicon_resolvers, sizeof(*favicon_resolvers))
 #define AUTOCOMPLETE(s) pick(s, autocompleters, nautocompleters, sizeof(*autocompleters))
@@ -225,6 +243,16 @@ prefs_parse(struct arena *a, struct request *r, struct prefs *p)
 			p->favicon = v;
 		if ((v = AUTOCOMPLETE(query_param(a, c, "autocomplete"))))
 			p->autocomplete = v;
+		if ((v = query_param(a, c, "to"))) {
+			list = astrdup(a, v);
+			for (item = strtok_r(list, "~", &save); item; item = strtok_r(NULL, "~", &save))
+				if ((v = strchr(item, '.'))) {
+					*(char *)v = 0;
+					cat = category_index(item);
+					if (cat < PREFS_CATEGORIES)
+						p->timeout[cat] = timeout_pick(v + 1, cat);
+				}
+		}
 		if ((v = query_param(a, c, "off"))) {
 			p->saved = 1;
 			list = astrdup(a, v);
@@ -273,6 +301,7 @@ prefs_from_form(struct arena *a, struct request *r, struct prefs *p)
 			on[cat] |= ENGINE_BIT(e);
 	}
 	for (i = 0; i < ncategories && i < PREFS_CATEGORIES; i++) {
+		p->timeout[i] = timeout_pick(query_param(a, r->query, aprintf(a, "timeout_%s", categories[i].name)), i);
 		p->off[i] = 0;
 		for (j = 0; j < nengines; j++)
 			if (engine_in(engines[j], categories[i].name) && !(on[i] & ENGINE_BIT(engines[j])))
@@ -283,7 +312,7 @@ prefs_from_form(struct arena *a, struct request *r, struct prefs *p)
 char *
 prefs_cookie(struct arena *a, const struct prefs *p, int secure)
 {
-	struct buf b = {0}, off = {0};
+	struct buf b = {0}, off = {0}, to = {0};
 	char *r;
 	size_t i, j;
 
@@ -307,11 +336,17 @@ prefs_cookie(struct arena *a, const struct prefs *p, int secure)
 			if (p->off[i] & ENGINE_BIT(engines[j]))
 				buf_printf(&off, "%s%s.%s", off.len ? "~" : "", categories[i].name,
 				    engines[j]->shortcut);
+	for (i = 0; i < ncategories && i < PREFS_CATEGORIES; i++)
+		if (p->timeout[i])
+			buf_printf(&to, "%s%s.%d", to.len ? "~" : "", categories[i].name, p->timeout[i]);
+	if (to.len)
+		buf_printf(&b, "&to=%s", buf_str(&to));
 	buf_printf(&b, "&off=%s", buf_str(&off));
 	r = aprintf(a, "Set-Cookie: " COOKIE "=%s; Path=/; Max-Age=%d; SameSite=Lax; HttpOnly%s\r\n", buf_str(&b) + 1,
 	    COOKIE_AGE, secure ? "; Secure" : "");
 	buf_free(&b);
 	buf_free(&off);
+	buf_free(&to);
 	return r;
 }
 

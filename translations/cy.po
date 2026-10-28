@@ -63,6 +63,9 @@ msgstr "Fformat"
 msgid "General"
 msgstr "Cyffredinol"
 
+msgid "How long to wait for engines"
+msgstr "Pa mor hir i aros am beiriannau"
+
 msgid "IP address"
 msgstr "Cyfeiriad IP"
 
@@ -191,6 +194,9 @@ msgstr "Ni wnaeth y wefan ddarparu disgrifiad."
 
 msgid "Time range"
 msgstr "Cyfnod amser"
+
+msgid "Timeout"
+msgstr "Terfyn amser"
 
 msgid "Try different words or another category."
 msgstr "Rhowch gynnig ar eiriau gwahanol neu gategori arall."

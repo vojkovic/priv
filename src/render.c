@@ -501,7 +501,7 @@ void
 render_head(struct buf *b, struct search *s)
 {
 	struct buf page = {0};
-	int seconds = (int)((s->filters.timeout > 0 ? s->filters.timeout : search_timeout) + 0.99);
+	int seconds = (int)(filters_timeout(&s->filters) + 0.99);
 
 	i18n_use(s->filters.prefs.ui);
 	put_tr(&page, "Page {0}", aprintf(&s->a, "%d", s->pageno), "");
@@ -1113,7 +1113,7 @@ engine_timing(struct buf *b, struct search *s)
 	static const char *cls[] = {"ok", "timeout", "error", "suspended"};
 	struct results *r = &s->res;
 	struct row *rows = amalloc(&s->a, (r->ntimings + r->nunresponsive + 1) * sizeof(*rows));
-	double max, limit = s->filters.timeout > 0 ? s->filters.timeout : search_timeout;
+	double max, limit = filters_timeout(&s->filters);
 	size_t i, n, nok;
 	int pct;
 
@@ -1283,19 +1283,39 @@ engine_table(struct buf *b, const struct prefs *p, size_t cat)
 {
 	const char *name = categories[cat].name;
 	const struct engine *e;
-	size_t j, total = 0;
+	int opts[16], dflt = (int)(categories[cat].timeout * 10 + 0.5), done = 0;
+	int tenths = p->timeout[cat] ? p->timeout[cat] : dflt;
+	size_t j, k, n = 0, total = 0;
 
 	for (j = 0; j < nengines; j++)
 		total += engine_in(engines[j], name);
 	buf_html(b,
 	    "<details class=\"engine_group\"%r>"
 	    "<summary>%r<span>%s</span><span class=\"count\">%z</span>" ICON_EXPAND "</summary>"
-	    "<div class=\"table\">"
+	    "<div class=\"table\">",
+	    cat ? "" : " open", categories[cat].icon, tr(categories[cat].label), total);
+	pref_select(b, aprintf(&scratch, "timeout_%s", name), "Timeout", "How long to wait for engines");
+	/* the instance's default is offered even when it is not one of the usual choices */
+	for (k = 0; k < ntimeout_choices; k++) {
+		if (!done && timeout_choices[k] >= dflt) {
+			opts[n++] = dflt;
+			done = 1;
+			if (timeout_choices[k] == dflt)
+				continue;
+		}
+		opts[n++] = timeout_choices[k];
+	}
+	if (!done)
+		opts[n++] = dflt;
+	for (k = 0; k < n; k++)
+		buf_html(b, "<option value=\"%d\"%r>%d.%d s</option>", opts[k], opts[k] == tenths ? " selected" : "",
+		    opts[k] / 10, opts[k] % 10);
+	buf_puts(b, "</select></div>\n");
+	buf_html(b,
 	    "<table>\n"
 	    "<thead><tr><th>%s</th><th>%s</th><th>!bang</th><th>%s</th><th>%s</th><th>%s</th></tr></thead>"
 	    "<tbody>\n",
-	    cat ? "" : " open", categories[cat].icon, tr(categories[cat].label), total, tr("Allow"), tr("Engine name"),
-	    tr("Pages"), tr("SafeSearch"), tr("Time range"));
+	    tr("Allow"), tr("Engine name"), tr("Pages"), tr("SafeSearch"), tr("Time range"));
 	for (j = 0; j < nengines; j++) {
 		e = engines[j];
 		if (!engine_in(e, name))

@@ -63,6 +63,9 @@ msgstr "Biçim"
 msgid "General"
 msgstr "Genel"
 
+msgid "How long to wait for engines"
+msgstr "Arama motorları için ne kadar beklenir"
+
 msgid "IP address"
 msgstr "IP adresi"
 
@@ -191,6 +194,9 @@ msgstr "Bu site herhangi bir açıklama sağlamadı."
 
 msgid "Time range"
 msgstr "Zaman aralığı"
+
+msgid "Timeout"
+msgstr "Zaman aşımı"
 
 msgid "Try different words or another category."
 msgstr "Farklı kelimeler veya başka bir kategori deneyin."

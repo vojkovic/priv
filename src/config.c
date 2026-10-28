@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "search.h"
 #include "util.h"
 
 static const char *paths[] = {"config.toml", "/etc/priv/config.toml"};
@@ -11,7 +12,6 @@ const char *instance_name = "priv";
 const char **motd;
 const char *listen_addr = "::1";
 int listen_port = 8888;
-double search_timeout = 2.0;
 int limiter = 1;
 int limiter_link_token = 0;
 static const char *default_proxies[] = {"127.0.0.0/8", "::1", NULL};
@@ -177,9 +177,6 @@ set(struct parser *ps, const char *section, const char *k, struct value *v)
 	} else if (!*section && !strcmp(k, "port")) {
 		expect(ps, v, NUMBER);
 		listen_port = (int)v->n;
-	} else if (!*section && !strcmp(k, "timeout")) {
-		expect(ps, v, NUMBER);
-		search_timeout = v->n;
 	} else if (!strcmp(section, "limiter") && !strcmp(k, "enabled")) {
 		expect(ps, v, BOOL);
 		limiter = v->b;
@@ -189,6 +186,17 @@ set(struct parser *ps, const char *section, const char *k, struct value *v)
 	} else if (!strcmp(section, "limiter") && !strcmp(k, "trusted_proxies")) {
 		expect(ps, v, ARRAY);
 		trusted_proxies = v->list;
+	} else if (!strcmp(section, "timeout")) {
+		size_t i;
+
+		expect(ps, v, NUMBER);
+		for (i = 0; i < ncategories && strcmp(categories[i].name, k); i++)
+			;
+		if (i == ncategories)
+			fail(ps, aprintf(&scratch, "unknown category %s", k));
+		if (v->n < 0.5 || v->n > 10)
+			fail(ps, "a timeout is between 0.5 and 10 seconds");
+		categories[i].timeout = v->n;
 	} else if (!strcmp(section, "engines")) {
 		expect(ps, v, NUMBER);
 		if (v->n != 0 && v->n != 1 && v->n != 2)

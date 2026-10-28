@@ -63,6 +63,9 @@ msgstr "Formatua"
 msgid "General"
 msgstr "Orokorra"
 
+msgid "How long to wait for engines"
+msgstr "Zenbat itxaron bilatzaileen zain"
+
 msgid "IP address"
 msgstr "IP helbidea"
 
@@ -191,6 +194,9 @@ msgstr "Gune honek ez du deskribapenik eman."
 
 msgid "Time range"
 msgstr "Denbora tartea"
+
+msgid "Timeout"
+msgstr "Denbora-muga"
 
 msgid "Try different words or another category."
 msgstr "Saiatu beste hitz batzuekin edo beste kategoria batekin."

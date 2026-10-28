@@ -63,6 +63,9 @@ msgstr "格式"
 msgid "General"
 msgstr "综合"
 
+msgid "How long to wait for engines"
+msgstr "等待搜索引擎的时间"
+
 msgid "IP address"
 msgstr "IP 地址"
 
@@ -191,6 +194,9 @@ msgstr "此站点未提供任何描述。"
 
 msgid "Time range"
 msgstr "时间范围"
+
+msgid "Timeout"
+msgstr "超时"
 
 msgid "Try different words or another category."
 msgstr "请尝试其他词语或其他类别。"

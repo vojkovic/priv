@@ -63,6 +63,9 @@ msgstr "ఫార్మాట్"
 msgid "General"
 msgstr "సాధారణ"
 
+msgid "How long to wait for engines"
+msgstr "సెర్చ్ ఇంజిన్ల కోసం ఎంతసేపు వేచి ఉండాలి"
+
 msgid "IP address"
 msgstr "IP చిరునామా"
 
@@ -191,6 +194,9 @@ msgstr "ఈ సైట్ ఎలాంటి వివరణను అంది�
 
 msgid "Time range"
 msgstr "కాల శ్రేణి"
+
+msgid "Timeout"
+msgstr "సమయ పరిమితి"
 
 msgid "Try different words or another category."
 msgstr "వేరే పదాలు లేదా వేరే వర్గాన్ని ప్రయత్నించండి."

@@ -63,6 +63,9 @@ msgstr "Formato"
 msgid "General"
 msgstr "General"
 
+msgid "How long to wait for engines"
+msgstr "Kuantu tempu pa warda pa motornan"
+
 msgid "IP address"
 msgstr "Adrès IP"
 
@@ -191,6 +194,9 @@ msgstr "E sitio aki no a duna ningun deskripshon."
 
 msgid "Time range"
 msgstr "Periodo"
+
+msgid "Timeout"
+msgstr "Limite di tempu"
 
 msgid "Try different words or another category."
 msgstr "Purba otro palabra òf otro kategoria."

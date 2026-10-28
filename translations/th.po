@@ -63,6 +63,9 @@ msgstr "รูปแบบ"
 msgid "General"
 msgstr "ทั่วไป"
 
+msgid "How long to wait for engines"
+msgstr "รอเครื่องมือค้นหานานเท่าไร"
+
 msgid "IP address"
 msgstr "ที่อยู่ IP"
 
@@ -191,6 +194,9 @@ msgstr "ไซต์นี้ไม่ได้ให้คำอธิบาย
 
 msgid "Time range"
 msgstr "ช่วงเวลา"
+
+msgid "Timeout"
+msgstr "หมดเวลา"
 
 msgid "Try different words or another category."
 msgstr "ลองใช้คำอื่นหรือหมวดหมู่อื่น"

@@ -63,6 +63,9 @@ msgstr "Muoto"
 msgid "General"
 msgstr "Yleiset"
 
+msgid "How long to wait for engines"
+msgstr "Kuinka kauan hakukoneita odotetaan"
+
 msgid "IP address"
 msgstr "IP-osoite"
 
@@ -191,6 +194,9 @@ msgstr "Tämä sivu ei antanut mitään kuvausta."
 
 msgid "Time range"
 msgstr "Aikaväli"
+
+msgid "Timeout"
+msgstr "Aikaraja"
 
 msgid "Try different words or another category."
 msgstr "Kokeile muita sanoja tai toista luokkaa."

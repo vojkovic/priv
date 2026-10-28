@@ -63,6 +63,9 @@ msgstr "Formaat"
 msgid "General"
 msgstr "Algemeen"
 
+msgid "How long to wait for engines"
+msgstr "Hoe lang er op zoekmachines wordt gewacht"
+
 msgid "IP address"
 msgstr "IP-adres"
 
@@ -191,6 +194,9 @@ msgstr "Deze site heeft geen beschrijving gegeven."
 
 msgid "Time range"
 msgstr "Tijdspanne"
+
+msgid "Timeout"
+msgstr "Time-out"
 
 msgid "Try different words or another category."
 msgstr "Probeer andere woorden of een andere categorie."

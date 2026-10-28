@@ -63,6 +63,9 @@ msgstr "形式"
 msgid "General"
 msgstr "一般"
 
+msgid "How long to wait for engines"
+msgstr "検索エンジンを待つ時間"
+
 msgid "IP address"
 msgstr "IPアドレス"
 
@@ -191,6 +194,9 @@ msgstr "このサイトは説明を提供しませんでした。"
 
 msgid "Time range"
 msgstr "時間範囲"
+
+msgid "Timeout"
+msgstr "タイムアウト"
 
 msgid "Try different words or another category."
 msgstr "別の言葉や別のカテゴリで試してください。"

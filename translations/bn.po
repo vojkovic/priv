@@ -63,6 +63,9 @@ msgstr "ফরম্যাট"
 msgid "General"
 msgstr "সাধারণ"
 
+msgid "How long to wait for engines"
+msgstr "সার্চ ইঞ্জিনের জন্য কতক্ষণ অপেক্ষা করবে"
+
 msgid "IP address"
 msgstr "আইপি ঠিকানা"
 
@@ -191,6 +194,9 @@ msgstr "এই সাইট কোন বিবরণ প্রদান কর�
 
 msgid "Time range"
 msgstr "সময়সীমা"
+
+msgid "Timeout"
+msgstr "সময়সীমা"
 
 msgid "Try different words or another category."
 msgstr "অন্য শব্দ বা অন্য বিভাগ দিয়ে চেষ্টা করুন।"

@@ -63,6 +63,9 @@ msgstr "ഫോർമാറ്റ്"
 msgid "General"
 msgstr "പൊതുവായ"
 
+msgid "How long to wait for engines"
+msgstr "സെർച്ച് എഞ്ചിനുകൾക്കായി എത്ര നേരം കാത്തിരിക്കണം"
+
 msgid "IP address"
 msgstr "ഐപി വിലാസം"
 
@@ -191,6 +194,9 @@ msgstr "ഈ സൈറ്റ് വിവരണമൊന്നും നൽകി
 
 msgid "Time range"
 msgstr "സമയ പരിധി"
+
+msgid "Timeout"
+msgstr "സമയപരിധി"
 
 msgid "Try different words or another category."
 msgstr "മറ്റ് വാക്കുകളോ മറ്റൊരു വിഭാഗമോ ശ്രമിക്കുക."

@@ -63,6 +63,9 @@ msgstr "Formatas"
 msgid "General"
 msgstr "Bendra"
 
+msgid "How long to wait for engines"
+msgstr "Kiek laukti paieškos variklių"
+
 msgid "IP address"
 msgstr "IP adresas"
 
@@ -191,6 +194,9 @@ msgstr "Šis tiklalapis nepridėjo jokio aprašymo."
 
 msgid "Time range"
 msgstr "Laiko diapazonas"
+
+msgid "Timeout"
+msgstr "Laiko limitas"
 
 msgid "Try different words or another category."
 msgstr "Pabandykite kitus žodžius arba kitą kategoriją."

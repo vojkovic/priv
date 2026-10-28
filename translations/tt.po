@@ -63,6 +63,9 @@ msgstr "Формат"
 msgid "General"
 msgstr "Гомуми"
 
+msgid "How long to wait for engines"
+msgstr "Эзләү системаларын никадәр көтәргә"
+
 msgid "IP address"
 msgstr "IP адресы"
 
@@ -191,6 +194,9 @@ msgstr "Бу сайт тасвирламаны бирмәде."
 
 msgid "Time range"
 msgstr "Вакыт арасы"
+
+msgid "Timeout"
+msgstr "Көтү вакыты"
 
 msgid "Try different words or another category."
 msgstr "Башка сүзләр яки башка категория белән карагыз."

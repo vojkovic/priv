@@ -63,6 +63,9 @@ msgstr "Formāts"
 msgid "General"
 msgstr "Viss"
 
+msgid "How long to wait for engines"
+msgstr "Cik ilgi gaidīt meklētājus"
+
 msgid "IP address"
 msgstr "IP adrese"
 
@@ -191,6 +194,9 @@ msgstr "Šī vietne nesniedza nekādu aprakstu."
 
 msgid "Time range"
 msgstr "Laika diapazons"
+
+msgid "Timeout"
+msgstr "Taimauts"
 
 msgid "Try different words or another category."
 msgstr "Mēģiniet citus vārdus vai citu kategoriju."

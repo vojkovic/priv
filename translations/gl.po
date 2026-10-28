@@ -63,6 +63,9 @@ msgstr "Formato"
 msgid "General"
 msgstr "Xeral"
 
+msgid "How long to wait for engines"
+msgstr "Canto esperar polos motores"
+
 msgid "IP address"
 msgstr "Enderezo IP"
 
@@ -191,6 +194,9 @@ msgstr "A web non proporcionou unha descrición."
 
 msgid "Time range"
 msgstr "Marco temporal"
+
+msgid "Timeout"
+msgstr "Tempo de espera"
 
 msgid "Try different words or another category."
 msgstr "Proba con outras palabras ou outra categoría."

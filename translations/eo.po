@@ -63,6 +63,9 @@ msgstr "Formato"
 msgid "General"
 msgstr "Ĝenerala"
 
+msgid "How long to wait for engines"
+msgstr "Kiom longe atendi serĉilojn"
+
 msgid "IP address"
 msgstr "IP-adreso"
 
@@ -191,6 +194,9 @@ msgstr "Ĉi tiu retejo ne disponigis ajnan priskribon."
 
 msgid "Time range"
 msgstr "Tempa intervalo"
+
+msgid "Timeout"
+msgstr "Tempolimo"
 
 msgid "Try different words or another category."
 msgstr "Provu aliajn vortojn aŭ alian kategorion."

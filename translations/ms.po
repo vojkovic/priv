@@ -63,6 +63,9 @@ msgstr "Format"
 msgid "General"
 msgstr "Umum"
 
+msgid "How long to wait for engines"
+msgstr "Berapa lama menunggu enjin"
+
 msgid "IP address"
 msgstr "Alamat IP"
 
@@ -191,6 +194,9 @@ msgstr "Laman web ini tidak memberikan sebarang diskripsi."
 
 msgid "Time range"
 msgstr "Julat masa"
+
+msgid "Timeout"
+msgstr "Had masa"
 
 msgid "Try different words or another category."
 msgstr "Cuba perkataan lain atau kategori lain."

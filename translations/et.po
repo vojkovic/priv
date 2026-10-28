@@ -63,6 +63,9 @@ msgstr "Vorming"
 msgid "General"
 msgstr "Üldine"
 
+msgid "How long to wait for engines"
+msgstr "Kui kaua otsimootoreid oodata"
+
 msgid "IP address"
 msgstr "IP-aadress"
 
@@ -191,6 +194,9 @@ msgstr "See sait ei andnud mingit kirjeldust."
 
 msgid "Time range"
 msgstr "Ajavahemik"
+
+msgid "Timeout"
+msgstr "Ajalimiit"
 
 msgid "Try different words or another category."
 msgstr "Proovi teisi sõnu või muud kategooriat."
