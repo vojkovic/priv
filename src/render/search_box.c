@@ -13,6 +13,13 @@
 #include <string.h>
 #include <strings.h>
 
+//
+// The home page and the search box with its tabs and filters
+//
+// the box is the same on the home page and the results page, with the
+// language, time range and safesearch filters under it.
+//
+
 void
 search_box(struct buf *b, const char *query, const char *category, int autofocus)
 {

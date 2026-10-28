@@ -3,6 +3,14 @@
 
 #include "engines/engine.h"
 
+//
+// Google Videos, the same basic html as google.c
+//
+// we say we are a feature phone and ask for the video tab (tbm=vid). the
+// class names are scrambled, when results stop showing up look at those first.
+//
+
+/* result links are /url?q=<real address>&..., get the real one out */
 static const char *
 unwrap_url(struct arena *a, const char *raw)
 {
@@ -11,6 +19,7 @@ unwrap_url(struct arena *a, const char *raw)
 	return target && starts_with(target, "http") ? target : raw;
 }
 
+/* real pages only, not google's own images or the "unusual traffic" page */
 static int
 publisher_url(struct arena *a, const char *url)
 {
@@ -24,6 +33,7 @@ publisher_url(struct arena *a, const char *url)
 	return starts_with(url, "http") && !strstr(url, "/sorry/");
 }
 
+/* 3:05 or 1:02:03, the length is one of the grey spans under a video */
 static int
 is_duration(const char *s)
 {
@@ -40,6 +50,7 @@ is_duration(const char *s)
 	return colons >= 1 && colons <= 2;
 }
 
+/* the request worked and we were not sent to the captcha */
 static int
 ok(struct job *j, struct fetch *f)
 {
@@ -66,12 +77,19 @@ response(struct job *j, struct fetch *f)
 	char *title;
 	int i, k;
 
+	//
+	// Detect captcha
+	//
 	if (!ok(j, f))
 		return;
 	if (!(doc = job_html(j, f))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
 	}
+
+	//
+	// Get results
+	//
 	cards = xpath((xmlNodePtr)doc, "//div[contains(@class, \"zMzFAb\") and .//a[contains(@class, \"fuLhoc\")]]");
 	for (i = 0; i < cards.n; i++) {
 		url = xpath_first_text(j->a, cards.v[i], ".//a[contains(@class, \"fuLhoc\")]/@href");
@@ -80,6 +98,8 @@ response(struct job *j, struct fetch *f)
 		if (!title || !*title || !publisher_url(j->a, url))
 			continue;
 		m = add_video(j, url, title, "");
+
+		// no field for the length, so look for the span that looks like one
 		spans = xpath(cards.v[i], ".//span[contains(@class, \"YVIcad\")]");
 		for (k = 0; k < spans.n; k++) {
 			length = str_strip(node_text(j->a, spans.v[k]));
@@ -120,6 +140,7 @@ search(struct job *j)
 		form_add(&q, "safe", safe[j->filters->safesearch]);
 	f = job_request(j, aprintf(j->a, "https://www.google.com/search?%s", buf_str(&q)));
 	buf_free(&q);
+	// no chrome disguise here, we say we are a feature phone instead
 	fetch_impersonate(f, NULL, 0);
 	fetch_header(f, "User-Agent: Nokia6230i/2.0 (03.80) Profile/MIDP-2.0 Configuration/CLDC-1.1");
 	curl_easy_setopt(f->h, CURLOPT_FORBID_REUSE, 1L);

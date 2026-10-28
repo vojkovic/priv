@@ -2,6 +2,10 @@
 
 #define PAGE_SIZE 10
 
+//
+// Mixcloud's public api, plain json. cloudcasts are its word for a mix
+//
+
 static void
 response(struct job *j, struct fetch *f)
 {
@@ -12,6 +16,10 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len)) ||
 	    !yyjson_is_arr(data = yyjson_obj_get(yyjson_doc_get_root(doc), "data"))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);

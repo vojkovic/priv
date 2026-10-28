@@ -4,6 +4,10 @@
 
 #define PAGE_SIZE 10
 
+//
+// Dailymotion's public api, plain json. no tokens or tricks
+//
+
 static const char *
 iso_date(struct arena *a, long long secs)
 {
@@ -27,6 +31,10 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len)) ||
 	    !yyjson_is_arr(list = yyjson_obj_get(yyjson_doc_get_root(doc), "list"))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
@@ -36,7 +44,7 @@ response(struct job *j, struct fetch *f)
 		m = add_video(j, json_str(r, "url"), json_str(r, "title"),
 		    html_to_text(j->a, json_str(r, "description")));
 		if (!m)
-			continue;
+			continue; // no usable link
 		m->thumbnail = astrdup(j->a, json_str(r, "thumbnail_360_url"));
 		m->length = format_duration(j->a, (long)yyjson_get_sint(yyjson_obj_get(r, "duration")));
 		m->pubdate = (char *)iso_date(j->a, yyjson_get_sint(yyjson_obj_get(r, "created_time")));
@@ -60,6 +68,7 @@ search(struct job *j)
 	form_add(&q, "password_protected", "false");
 	form_add(&q, "private", "false");
 	form_add(&q, "fields", "title,url,description,duration,created_time,thumbnail_360_url");
+	// the time filter is "created after" a unix time
 	if (range)
 		form_add(&q, "created_after", aprintf(j->a, "%lld", (long long)time(NULL) - ranges[*range - '0']));
 	f = job_request(j, aprintf(j->a, "https://api.dailymotion.com/videos?%s", buf_str(&q)));

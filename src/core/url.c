@@ -10,6 +10,10 @@
 #include <time.h>
 #include <wctype.h>
 
+//
+// URLs: quoting, parsing, joining, and international domain names
+//
+
 void
 url_quote(struct buf *b, const char *s, const char *safe, int plus)
 {

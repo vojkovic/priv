@@ -1,5 +1,12 @@
 #include "engines/engine.h"
 
+//
+// PyPI has no search api, so this reads its search page
+//
+// each result is a link with the name, version and date in spans, and the
+// "packages" result template shows them as a package card.
+//
+
 static void
 response(struct job *j, struct fetch *f)
 {
@@ -11,6 +18,10 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_html(j, f))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
@@ -20,6 +31,7 @@ response(struct job *j, struct fetch *f)
 		name = xpath_text(j->a, entries.v[i], "./h3/span[@class=\"package-snippet__name\"]");
 		m = add_main(j, aprintf(j->a, "https://pypi.org%s", xpath_text(j->a, entries.v[i], "./@href")), name,
 		    xpath_text(j->a, entries.v[i], "./p"));
+		// the cards that show a version and an install line
 		m->template = "packages";
 		created =
 		    xpath_text(j->a, entries.v[i], "./h3/span[@class=\"package-snippet__created\"]/time/@datetime");

@@ -3,6 +3,15 @@
 
 #include "engines/engine.h"
 
+//
+// Google's basic html page
+//
+// we say we are a feature phone (see search()) and get a plain html page back.
+// the class names in it are scrambled, when results stop showing up look at
+// those first.
+//
+
+/* result links are /url?q=<real address>&..., get the real one out */
 static const char *
 unwrap_url(struct arena *a, const char *raw)
 {
@@ -11,6 +20,7 @@ unwrap_url(struct arena *a, const char *raw)
 	return target && starts_with(target, "http") ? target : raw;
 }
 
+/* real pages only, not google's own images or the "unusual traffic" page */
 static int
 publisher_url(struct arena *a, const char *url)
 {
@@ -24,6 +34,7 @@ publisher_url(struct arena *a, const char *url)
 	return starts_with(url, "http") && !strstr(url, "/sorry/");
 }
 
+/* the request worked and we were not sent to the captcha */
 static int
 ok(struct job *j, struct fetch *f)
 {
@@ -49,12 +60,22 @@ response(struct job *j, struct fetch *f)
 	char *title, *content;
 	int i;
 
+	//
+	// Detect captcha
+	//
 	if (!ok(j, f))
 		return;
 	if (!(doc = job_html(j, f))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
 	}
+
+	//
+	// Get results
+	//
+	// a card is a result with a link, anything else in the page (related
+	// searches, ads) does not have that class
+	//
 	cards = xpath((xmlNodePtr)doc, "//div[contains(@class, \"zMzFAb\") and .//a[contains(@class, \"fuLhoc\")]]");
 	for (i = 0; i < cards.n; i++) {
 		url = xpath_first_text(j->a, cards.v[i], ".//a[contains(@class, \"fuLhoc\")]/@href");
@@ -62,6 +83,7 @@ response(struct job *j, struct fetch *f)
 		title = xpath_first_text(j->a, cards.v[i], ".//span[contains(@class, \"CVA68e\")]");
 		content = xpath_first_text(j->a, cards.v[i],
 		    ".//span[contains(@class, \"FrIlee\")]/span[contains(@class, \"fYyStc\") and not(contains(@class, \"YVIcad\"))]");
+		// no title or a link back to google, not a result
 		if (!title || !*title || !publisher_url(j->a, url))
 			continue;
 		add_main(j, url, title, content);
@@ -80,6 +102,9 @@ search(struct job *j)
 	const char *t;
 	char page[16];
 
+	//
+	// Build the request
+	//
 	form_add(&q, "q", j->query);
 	form_add(&q, "sca_esv", "1");
 	form_add(&q, "hl", l->google_hl);
@@ -88,6 +113,7 @@ search(struct job *j)
 		form_add(&q, "cr", l->google_cr);
 	form_add(&q, "ie", "utf8");
 	form_add(&q, "oe", "utf8");
+	// ten results a page, start is where this one begins
 	if (j->pageno > 1) {
 		snprintf(page, sizeof(page), "%d", (j->pageno - 1) * 10);
 		form_add(&q, "start", page);
@@ -98,6 +124,9 @@ search(struct job *j)
 		form_add(&q, "safe", safe[j->filters->safesearch]);
 	f = job_request(j, aprintf(j->a, "https://www.google.com/search?%s", buf_str(&q)));
 	buf_free(&q);
+
+	// no chrome disguise here, we say we are a feature phone instead. and a
+	// fresh connection every time, so searches do not share one
 	fetch_impersonate(f, NULL, 0);
 	fetch_header(f, "User-Agent: Nokia6230i/2.0 (03.80) Profile/MIDP-2.0 Configuration/CLDC-1.1");
 	curl_easy_setopt(f->h, CURLOPT_FORBID_REUSE, 1L);

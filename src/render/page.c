@@ -13,6 +13,14 @@
 #include <string.h>
 #include <strings.h>
 
+//
+// The page shell and the smaller pages
+//
+// everything that is not the results page: the document start, navigation,
+// footer, and the pages for not found, about and the opensearch file. the
+// helpers at the top are shared by all of render/.
+//
+
 const char *safe_levels[] = {"None", "Moderate", "Strict"};
 struct arena scratch;
 

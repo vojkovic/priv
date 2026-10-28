@@ -85,6 +85,8 @@ void infobox_url(struct job *j, struct infobox *ib, const char *title, const cha
     int official);
 void infobox_also(struct job *j, struct infobox *ib, const char *title, const char *description);
 void infobox_attr(struct job *j, struct infobox *ib, const char *label, const char *value, const char *entity);
+/* the one search that every Stack Exchange engine runs, see stackexchange.c */
+void stackexchange_search(struct job *j);
 void add_answer(struct job *j, const char *answer, const char *url);
 struct definition *add_definition(struct job *j, const char *word, const char *url);
 struct word_class *definition_class(struct job *j, struct definition *d, const char *name);

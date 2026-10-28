@@ -4,7 +4,15 @@
 
 #include "features/urlclean.h"
 
-/* remove trackers from links */
+//
+// Removing trackers from links
+//
+// two jobs: take the real address out of the redirects search engines wrap
+// links in (urlclean_unwrap), and drop tracking parameters from the query
+// string (urlclean_strip). the lists are what clearurls and similar tools
+// use, the main ones only. a name ending in * matches any that start with it.
+//
+
 struct site {
 	const char *host, *params;
 };

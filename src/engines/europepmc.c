@@ -2,6 +2,15 @@
 
 #include "engines/engine.h"
 
+//
+// Europe PMC, plain json
+//
+// paging uses a cursor, not an offset. every answer carries the cursor for
+// the next page, and it goes into our own paging links (nothing is kept on
+// the server). no cursor, no page two.
+//
+
+/* "Smith J, Jones K." becomes "Smith J, Jones K", the trailing dots are noise */
 static const char *
 authors(struct job *j, const char *list)
 {
@@ -34,11 +43,17 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
 	}
 	root = yyjson_doc_get_root(doc);
+
+	// found next page!
 	if (*(next = json_str(root, "nextCursorMark")))
 		j->next_token = astrdup(j->a, next);
 	list = yyjson_ptr_get(root, "/resultList/result");
@@ -59,6 +74,7 @@ response(struct job *j, struct fetch *f)
 		result_attr(j, m, "Type", buf_str(&tb));
 		result_attr(j, m, "DOI", json_str(item, "doi"));
 		result_attr(j, m, "ISSN", json_str(journal, "issn"));
+		// the pdf, but only if it is open access (anything else is a paywall)
 		urls = yyjson_ptr_get(item, "/fullTextUrlList/fullTextUrl");
 		yyjson_arr_foreach (urls, k, kn, u) {
 			if (!strcmp(json_str(u, "documentStyle"), "pdf") &&
@@ -79,6 +95,7 @@ search(struct job *j)
 	struct buf q = {0};
 	struct fetch *f;
 
+	// page two and up need the cursor from the page before
 	if (j->pageno > 1 && !cursor) {
 		job_done(j);
 		return;

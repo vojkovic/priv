@@ -2,6 +2,13 @@
 
 #define BASE_URL "https://www.privacywall.org"
 
+//
+// Privacywall, plain html
+//
+// one page of results, no paging. the result cards have a few class names
+// on them that we look for, if it stops finding results check those.
+//
+
 static void
 response(struct job *j, struct fetch *f)
 {
@@ -11,6 +18,10 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_html(j, f))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
@@ -33,6 +44,7 @@ search(struct job *j)
 	struct fetch *f;
 
 	form_add(&q, "q", j->query);
+	// only on and off, moderate counts as on
 	form_add(&q, "safesearch", j->filters->safesearch ? "on" : "off");
 	if (*j->filters->locale->privacywall_cc)
 		form_add(&q, "cc", j->filters->locale->privacywall_cc);

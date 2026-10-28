@@ -4,6 +4,13 @@
 
 #define BASE_URL "https://oceanhero.today"
 
+//
+// Oceanhero's json api, which is Bing results
+//
+// the answer is bing's own shape (webPages > value), so there is no html to
+// pick apart. all it asks for is a user id cookie that looks like the site's.
+//
+
 static void
 response(struct job *j, struct fetch *f)
 {
@@ -13,6 +20,10 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
@@ -38,6 +49,7 @@ search(struct job *j)
 		id[i] = alphabet[rnd(sizeof(alphabet) - 1)];
 	id[i] = 0;
 	form_add(&q, "q", j->query);
+	// the market needs a region, "en" on its own is not one
 	form_add(&q, "mkt", strchr(tag, '-') ? tag : "en-US");
 	form_add(&q, "safeSearch", (const char *[]){"Off", "Moderate", "Strict"}[j->filters->safesearch]);
 	form_add(&q, "personalizedResults", "no");

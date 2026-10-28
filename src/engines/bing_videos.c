@@ -6,6 +6,13 @@
 #define BASE_URL "https://www.bing.com"
 #define PAGE_SIZE 35
 
+//
+// Bing videos, from the page's async endpoint
+//
+// answers with just the video tiles as html. each tile has its details in a
+// json attribute, see response().
+//
+
 static void
 response(struct job *j, struct fetch *f)
 {
@@ -19,6 +26,10 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_html(j, f))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
@@ -28,7 +39,7 @@ response(struct job *j, struct fetch *f)
 		/* each video carries its details as json in vrhm: murl the page, vt the title, du the length */
 		raw = xpath_first_text(j->a, items.v[i], ".//div[@class='vrhdata']/@vrhm");
 		if (!raw || !(meta = job_json(j, raw, strlen(raw))))
-			continue;
+			continue; // no details, skip the tile
 		root = yyjson_doc_get_root(meta);
 		m = add_video(j, json_str(root, "murl"), json_str(root, "vt"),
 		    xpath_text(j->a, items.v[i], ".//div[@class='mc_vtvc_meta_block']//span"));
@@ -52,6 +63,7 @@ search(struct job *j)
 	form_add(&q, "async", "content");
 	form_add(&q, "first", aprintf(j->a, "%d", (j->pageno - 1) * PAGE_SIZE + 1));
 	form_add(&q, "count", aprintf(j->a, "%d", PAGE_SIZE));
+	// the time filter is "newer than this many minutes"
 	if (age) {
 		form_add(&q, "form", "VRFLTR");
 		form_add(&q, "qft", aprintf(j->a, " filterui:videoage-lt%s", age));

@@ -2,6 +2,16 @@
 
 #include "core/token.h"
 
+//
+// Tokens that engines need before they can search
+//
+// some engines want a short lived value from their site first (a cookie, a
+// key, a session). a token is fetched ahead of time and refreshed on a
+// timer, so a search almost never has to wait for it. searches that arrive
+// while it is being fetched queue up as waiters and go when it lands.
+// nobody refreshes a token that has not been used for half an hour.
+//
+
 #define IDLE_SECS 1800
 
 struct token_waiter {
@@ -73,10 +83,14 @@ token_get(struct job *j, struct token *t, void (*cb)(struct job *j, const char *
 	struct token_waiter *w;
 
 	t->last_used = now_ms();
+
+	// still good, go right away
 	if (valid(t)) {
 		cb(j, astrdup(j->a, t->value));
 		return;
 	}
+
+	// not yet, wait for the fetch (and start one if nobody did)
 	w = xmalloc(sizeof(*w));
 	w->t = t;
 	w->j = j;
@@ -92,6 +106,7 @@ token_set(struct token *t, const char *value)
 {
 	struct token_waiter *w, *next;
 
+	// keep it, and schedule the refresh before it runs out
 	free(t->value);
 	t->value = xstrdup(value);
 	t->fetched_at = now_ms();
@@ -108,6 +123,7 @@ token_fail(struct token *t, const char *error, int suspend)
 {
 	struct token_waiter *w, *next;
 
+	// nobody can search without it, so every waiting search fails with the same error
 	fprintf(stderr, "%s: token: %s\n", t->name, error);
 	t->fetching = 0;
 	for (w = take_waiters(t); w; w = next) {

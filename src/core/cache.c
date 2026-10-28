@@ -10,6 +10,13 @@
 #include <time.h>
 #include <wctype.h>
 
+//
+// A small key/value store with expiry, and the cache folder
+//
+// it holds the bot detector's pings and is capped at a few thousand
+// entries. it must never be used for anything derived from a search.
+//
+
 struct centry {
 	struct centry *next;
 	char *key, *val;

@@ -1,5 +1,9 @@
 #include "engines/engine.h"
 
+//
+// MDN's own search api, plain json
+//
+
 static void
 response(struct job *j, struct fetch *f)
 {
@@ -9,6 +13,10 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;

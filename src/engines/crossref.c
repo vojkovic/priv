@@ -4,6 +4,11 @@
 
 #define PAGE_SIZE 10
 
+//
+// Crossref's works api, plain json. a paper is a "work"
+//
+
+/* the title (and journal) come as lists of strings, with just the one string in them */
 static const char *
 first(yyjson_val *obj, const char *key)
 {
@@ -24,17 +29,23 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len)) ||
 	    !yyjson_is_arr(items = yyjson_obj_get(yyjson_obj_get(yyjson_doc_get_root(doc), "message"), "items"))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
 	}
 	yyjson_arr_foreach (items, i, n, r) {
+		// no title, nothing to show
 		if (!*first(r, "title"))
 			continue;
 		m = add_paper(j, json_str(r, "URL"), first(r, "title"), html_to_text(j->a, json_str(r, "abstract")));
 		if (!m)
 			continue;
+		// the date is [[year, month, day]] and the month and day can be missing
 		parts = yyjson_arr_get(yyjson_obj_get(yyjson_obj_get(r, "published"), "date-parts"), 0);
 		y = (long)yyjson_get_sint(yyjson_arr_get(parts, 0));
 		mo = (long)yyjson_get_sint(yyjson_arr_get(parts, 1));
@@ -42,6 +53,7 @@ response(struct job *j, struct fetch *f)
 		if (y)
 			m->pubdate =
 			    (char *)format_date(j->a, aprintf(j->a, "%04ld-%02ld-%02ld", y, mo ? mo : 1, d ? d : 1));
+		// the first six authors, a paper can have hundreds
 		names.len = 0;
 		authors = yyjson_obj_get(r, "author");
 		yyjson_arr_foreach (authors, k, c, a)

@@ -5,6 +5,10 @@
 #define BASE_URL "https://en.wikinews.org"
 #define PAGE_SIZE 10
 
+//
+// Wikinews, through the mediawiki search api. plain json
+//
+
 static void
 response(struct job *j, struct fetch *f)
 {
@@ -16,12 +20,17 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len)) ||
 	    !yyjson_is_arr(hits = yyjson_obj_get(yyjson_obj_get(yyjson_doc_get_root(doc), "query"), "search"))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
 	}
 	yyjson_arr_foreach (hits, i, n, r) {
+		// the api gives titles, the page's address is the title with underscores
 		title = astrdup(j->a, json_str(r, "title"));
 		for (p = title; *p; p++)
 			if (*p == ' ')

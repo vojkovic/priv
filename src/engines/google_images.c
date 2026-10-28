@@ -2,6 +2,14 @@
 
 #include "engines/engine.h"
 
+//
+// Google images, the same basic html as google.c
+//
+// we say we are an old phone, see google.c. each picture is a tile with
+// everything we need in its data- attributes.
+//
+
+/* the request worked and we were not sent to the captcha */
 static int
 ok(struct job *j, struct fetch *f)
 {
@@ -28,17 +36,27 @@ response(struct job *j, struct fetch *f)
 	char *w, *h, *tbnid;
 	int i;
 
+	//
+	// Detect captcha
+	//
 	if (!ok(j, f))
 		return;
 	if (!(doc = job_html(j, f))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
 	}
+
+	//
+	// Get results
+	//
+	// ou is the picture, ru the page it is on, pt its title, ow and oh its size
+	//
 	tiles = xpath((xmlNodePtr)doc, "//div[contains(@class, \"islrtb\") and @data-ou and @data-ru]");
 	for (i = 0; i < tiles.n; i++) {
 		n = tiles.v[i];
 		m = add_image(j, xpath_text(j->a, n, "@data-ru"), xpath_text(j->a, n, "@data-pt"),
 		    xpath_text(j->a, n, "@data-ou"));
+		// the small version lives on google's own thumbnail server
 		if (*(tbnid = xpath_text(j->a, n, "@data-tbnid")))
 			m->thumbnail_src = aprintf(j->a, "https://encrypted-tbn0.gstatic.com/images?q=tbn:%s", tbnid);
 		w = xpath_text(j->a, n, "@data-ow");
@@ -65,6 +83,7 @@ search(struct job *j)
 	form_add(&q, "ie", "utf8");
 	form_add(&q, "oe", "utf8");
 	form_add(&q, "tbm", "isch");
+	// ijn is the page number, counting from 0
 	if (j->pageno > 1) {
 		snprintf(page, sizeof(page), "%d", j->pageno - 1);
 		form_add(&q, "ijn", page);
@@ -75,6 +94,7 @@ search(struct job *j)
 		form_add(&q, "safe", "active");
 	f = job_request(j, aprintf(j->a, "https://www.google.com/search?%s", buf_str(&q)));
 	buf_free(&q);
+	// no chrome disguise here, we say we are an old phone (opera on symbian)
 	fetch_impersonate(f, NULL, 0);
 	fetch_header(f, "User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Symbian OS) Opera 8.65");
 	curl_easy_setopt(f->h, CURLOPT_FORBID_REUSE, 1L);

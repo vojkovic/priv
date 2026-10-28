@@ -4,6 +4,13 @@
 #include "engines/engine.h"
 #include "search/bangs.h"
 
+//
+// !!bangs, which send the browser straight to another site
+//
+// a single ! picks engines inside the search (see query.c). a double !! is
+// an exit: "!!g cats" redirects to that engine's own search page.
+//
+
 static const struct engine *
 bang_find(const char *name)
 {

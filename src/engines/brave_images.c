@@ -3,6 +3,13 @@
 #include "core/js.h"
 #include "engines/engine.h"
 
+//
+// Brave images, the same trick as brave.c
+//
+// the data is a javascript literal in the page, see brave.c for the details.
+// only the url and the place the results sit in is different.
+//
+
 static yyjson_mut_val *
 get(yyjson_mut_val *v, const char *key)
 {
@@ -28,27 +35,38 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		goto out;
+
+	//
+	// Get the page data
+	//
 	if (!(data = js_page_data(d, fetch_body(f)))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		goto out;
 	}
 	data = get(yyjson_mut_arr_get(data, 1), "data");
 	if (yyjson_mut_is_true(get(data, "noResults"))) {
+		// brave says so itself, not an error
 		job_done(j);
 		goto out;
 	}
+
+	//
+	// Get results
+	//
 	results = get(get(get(data, "body"), "response"), "results");
 	if (!yyjson_mut_is_arr(results)) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		goto out;
 	}
 	yyjson_mut_arr_foreach (results, i, n, r) {
+		// "properties" is the full size image, thumbnail the small one
 		props = get(r, "properties");
 		m = add_image(j, str(r, "url"), str(r, "title"), str(props, "url"));
 		m->thumbnail_src = astrdup(j->a, str(get(r, "thumbnail"), "src"));
 		m->source = astrdup(j->a, str(r, "source"));
 		w = yyjson_mut_get_int(get(props, "width"));
 		h = yyjson_mut_get_int(get(props, "height"));
+		// only show a size when brave knows both sides
 		if (w && h)
 			m->resolution = aprintf(j->a, "%lldx%lld", (long long)w, (long long)h);
 	}
@@ -68,6 +86,7 @@ search(struct job *j)
 	form_add(&q, "source", "web");
 	f = job_request(j, aprintf(j->a, "https://search.brave.com/images?%s", buf_str(&q)));
 	buf_free(&q);
+	// http/3 only and a fresh connection each time, like brave.c
 	curl_easy_setopt(f->h, CURLOPT_FORBID_REUSE, 1L);
 	f->http_version = CURL_HTTP_VERSION_3ONLY;
 	fetch_cookie(f, "safesearch", safe[j->filters->safesearch]);

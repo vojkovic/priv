@@ -6,6 +6,14 @@
 #include "core/util.h"
 #include "search/search.h"
 
+//
+// config.toml, a small toml reader
+//
+// only what we need: strings, numbers, true/false and lists of strings, in
+// sections. a line we cannot use is reported and skipped, never fatal, so an
+// old or mistaken file still starts the server (see fail()).
+//
+
 static const char *paths[] = {"config.toml", "/etc/priv/config.toml"};
 
 /* settings from config.toml */

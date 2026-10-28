@@ -7,6 +7,15 @@
 #define SEARCH_PATH "/v5/web/search"
 #define PAGE_SIZE 20
 
+//
+// Swisscows signs every request
+//
+// the api wants two headers that prove the request came from their own
+// site, see sign() for how they are made. the signed text is the query
+// string exactly as we send it, so it has to be built in the same order in
+// both places (search() builds it twice for that reason).
+//
+
 static const char *regions =
     "AR AU AT BE BR CA CL CN DK FI FR DE HK HU IN ID IT JP KR LV MY MX NL NZ NO PH PL PT RU SA ZA ES SE CH TW TR UA GB US";
 
@@ -26,7 +35,7 @@ locale_of(struct job *j)
 	return strstr(regions, lang) ? aprintf(j->a, "%s-%s", tag, lang) : "en-US";
 }
 
-/* the payload is the middle of a json web token, in unpadded base64url */
+/* the answer is a json web token wrapped in json, and the payload is the middle part, in unpadded base64url */
 static char *
 payload(struct arena *a, const char *jwt, size_t *len)
 {
@@ -69,6 +78,12 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
+	// json inside a token inside json, so two parses
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len)) ||
 	    !(data = payload(j->a, json_str(yyjson_doc_get_root(doc), "payload"), &len)) ||
 	    !(doc = job_json(j, data, len))) {
@@ -77,12 +92,24 @@ response(struct job *j, struct fetch *f)
 	}
 	items = yyjson_obj_get(yyjson_doc_get_root(doc), "items");
 	yyjson_arr_foreach (items, i, n, r)
+		// the list also has images, news and related searches
 		if (!strcmp(json_str(r, "type"), "WebPage"))
 			add_main(j, json_str(r, "url"), json_str(r, "name"),
 			    html_to_text(j->a, json_str(r, "description")));
 	job_done(j);
 }
 
+//
+// How the signature is made
+//
+// 1. make a random 32 character nonce and send it as X-Request-Nonce
+// 2. shift it: rot13 every letter, then swap its case (aB3-x becomes No3-K)
+// 3. sha256 over the path, "?", the query string and the shifted nonce
+// 4. send that as X-Request-Signature, base64url without the = padding
+//
+// they only ever see the original nonce, so they have to shift it the same
+// way to check the hash.
+//
 static void
 sign(struct job *j, struct fetch *f, const char *args)
 {
@@ -127,6 +154,7 @@ search(struct job *j)
 	struct fetch *f;
 	size_t i;
 
+	// the time filter is a word, and "All" when there is none
 	for (i = 0; j->filters->time_range && i < LEN(ranges); i++)
 		if (!strcmp(j->filters->time_range, ranges[i][0]))
 			freshness = ranges[i][1];
@@ -138,6 +166,8 @@ search(struct job *j)
 	form_add(&q, "spellcheck", "True");
 	f = job_request(j, aprintf(j->a, BASE_URL SEARCH_PATH "?%s", buf_str(&q)));
 	buf_free(&q);
+
+	// same parameters in the same order, as plain text this time
 	sign(j, f,
 	    aprintf(j->a, "freshness=%s&itemsCount=%d&locale=%s&offset=%s&query=%s&spellcheck=True", freshness,
 	        PAGE_SIZE, locale, offset, j->query));

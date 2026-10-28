@@ -7,6 +7,14 @@
 #define CX "partner-pub-8993703457585266:4862972284"
 #define PAGE_SIZE 20
 
+//
+// Google images through the programmable search element
+//
+// the same api and the same token as google_cse.c (see there), with
+// searchtype=image. the cached string holds the cse_token, the library
+// version and the experiment ids, one per line.
+//
+
 static int
 range_days(const char *r)
 {
@@ -19,6 +27,7 @@ image_item(struct job *j, yyjson_val *item)
 	const char *url = json_str(item, "originalContextUrl"), *w, *h, *fmt;
 	struct main_result *m;
 
+	// the page the image sits on. without one there is nothing to link to
 	if (!*url)
 		return;
 	m = add_image(j, url, json_str(item, "titleNoFormatting"), json_str(item, "unescapedUrl"));
@@ -28,6 +37,7 @@ image_item(struct job *j, yyjson_val *item)
 	h = json_text(j->a, item, "height");
 	if (*w && *h)
 		m->resolution = aprintf(j->a, "%sx%s", w, h);
+	// the format comes as image/png, keep the png
 	fmt = strrchr(json_str(item, "fileFormat"), '/');
 	m->img_format = astrdup(j->a, fmt ? fmt + 1 : json_str(item, "fileFormat"));
 }
@@ -42,6 +52,12 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get the json
+	//
+	// it comes wrapped in a call to the callback we named ("_"), cut that off
+	//
 	body = fetch_body(f);
 	start = strchr(body, '{');
 	end = strrchr(body, '}');
@@ -50,6 +66,10 @@ response(struct job *j, struct fetch *f)
 		return;
 	}
 	root = yyjson_doc_get_root(doc);
+
+	//
+	// Detect errors
+	//
 	if ((err = yyjson_obj_get(root, "error"))) {
 		const char *msg = yyjson_get_str(yyjson_obj_get(err, "message"));
 		j->detail = msg ? msg : "unknown error";
@@ -59,6 +79,10 @@ response(struct job *j, struct fetch *f)
 			job_fail(j, "server API error", SUSPEND_NONE);
 		return;
 	}
+
+	//
+	// Get results
+	//
 	results = yyjson_obj_get(root, "results");
 	yyjson_arr_foreach (results, i, n, item)
 		image_item(j, item);
@@ -76,6 +100,7 @@ request(struct job *j, const char *token)
 	char page[16], from[16], to[16];
 	time_t now = time(NULL), then;
 
+	// split the cached string back into its three parts
 	tok = token;
 	libv = strchr(tok, '\n') + 1;
 	exp = strchr(libv, '\n') + 1;
@@ -106,6 +131,7 @@ request(struct job *j, const char *token)
 	}
 	f = job_request(j, aprintf(j->a, "https://cse.google.com/cse/element/v1?%s", buf_str(&q)));
 	buf_free(&q);
+	// agree to the cookie banner up front or google redirects to it
 	fetch_cookie(f, "CONSENT", "YES+");
 	fetch_header(f, "Accept: */*");
 	fetch_header(f, "Referer: https://cse.google.com/");
@@ -127,6 +153,8 @@ token_response(struct fetch *f, void *arg)
 		token_fail(t, "network error", SUSPEND_DEFAULT);
 		goto out;
 	}
+
+	// the config is the last "({...});" call in the script, find its ends
 	body = fetch_body(f);
 	start = NULL;
 	for (end = body; (end = strstr(end, "({")); end++)

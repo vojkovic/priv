@@ -4,6 +4,17 @@
 
 #include "engines/engine.h"
 
+//
+// DuckDuckGo images, in two steps
+//
+// 1. load the normal page and read the "vqd" value out of it (vqd_response)
+// 2. ask the json endpoint with it (request)
+//
+// the vqd goes into our own paging links, so later pages skip the first step
+// and nothing is kept on the server.
+//
+
+/* one browser string, both steps send it */
 static char *useragent;
 
 static void
@@ -16,6 +27,10 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len)) ||
 	    !yyjson_is_arr(results = yyjson_obj_get(yyjson_doc_get_root(doc), "results"))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
@@ -30,6 +45,7 @@ response(struct job *j, struct fetch *f)
 	job_done(j);
 }
 
+/* the country is the language's two letters in capitals, and "all" means english */
 static const char *
 country(struct job *j, const char *tag)
 {
@@ -54,6 +70,7 @@ request(struct job *j, const char *vqd)
 	struct fetch *f;
 	char page[16];
 
+	// pass the vqd on, the next page needs it
 	if (*vqd)
 		j->next_token = vqd;
 	form_add(&q, "o", "json");
@@ -64,6 +81,7 @@ request(struct job *j, const char *vqd)
 	form_add(&q, "vqd", vqd);
 	form_add(&q, "a", "h_");
 	form_add(&q, "ct", country(j, l->tag));
+	// a hundred results a page, s is where this one starts
 	if (j->pageno > 1) {
 		snprintf(page, sizeof(page), "%d", (j->pageno - 1) * 100);
 		form_add(&q, "s", page);
@@ -72,6 +90,7 @@ request(struct job *j, const char *vqd)
 		form_add(&q, "p", p);
 	f = job_request(j, aprintf(j->a, "https://duckduckgo.com/i.js?%s", buf_str(&q)));
 	buf_free(&q);
+	// no chrome disguise here, just the user agent we picked
 	fetch_impersonate(f, NULL, 0);
 	fetch_header(f, "User-Agent: %s", useragent);
 	fetch_header(f, "Accept: */*");
@@ -93,6 +112,7 @@ vqd_response(struct job *j, struct fetch *f)
 
 	if (!job_ok(j, f))
 		return;
+	// no vqd is not the end, ask anyway and let the api say what it thinks
 	if (!(f->status == 200 && (v = find_between(fetch_body(f), "vqd=\"", "\"", &n)) && n))
 		j->detail = aprintf(j->a, "no vqd (HTTP %ld)", f->status);
 	request(j, v && n ? astrndup(j->a, v, n) : "");
@@ -110,6 +130,7 @@ search(struct job *j)
 	}
 	if (!useragent)
 		useragent = gen_useragent();
+	// page two and up carry the vqd already
 	if (j->token) {
 		request(j, j->token);
 		return;

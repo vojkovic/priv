@@ -13,6 +13,15 @@
 #include <string.h>
 #include <strings.h>
 
+//
+// The rest of the results page
+//
+// sent after the head, once the engines have answered or time ran out: the
+// answers, the engine timings, each result (web, image or video), the
+// infobox and paging links. favicons are collected as the page is written
+// and added as one sprite at the end, see favicon_sprite.
+//
+
 /* each site's favicon is inlined once, in a sprite at the end of the page, and referenced from there */
 struct favicon {
 	const char *authority, *data;

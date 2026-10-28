@@ -6,6 +6,13 @@
 #define PAGE_SIZE 10
 #define MAX_WORDS 400
 
+//
+// OpenAlex, plain json
+//
+// abstracts are the odd part: they come as an index from each word to the
+// places it appears, not as text, so abstract() puts them back in order.
+//
+
 /* abstracts come as an inverted index, {"word": [positions]}, so they are put back in order */
 static const char *
 abstract(struct job *j, yyjson_val *index)
@@ -52,12 +59,17 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len)) ||
 	    !yyjson_is_arr(works = yyjson_obj_get(yyjson_doc_get_root(doc), "results"))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
 	}
 	yyjson_arr_foreach (works, i, n, r) {
+		// the doi is a link that goes to the paper, use it when there is one
 		doi = json_str(r, "doi");
 		url = *doi ? doi : json_str(r, "id");
 		m = add_paper(j, url, json_str(r, "display_name"),
@@ -65,6 +77,7 @@ response(struct job *j, struct fetch *f)
 		if (!m)
 			continue;
 		m->pubdate = (char *)format_date(j->a, json_str(r, "publication_date"));
+		// the first six authors
 		names.len = 0;
 		authors = yyjson_obj_get(r, "authorships");
 		yyjson_arr_foreach (authors, k, c, a)

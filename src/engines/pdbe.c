@@ -2,6 +2,14 @@
 
 #include "engines/engine.h"
 
+//
+// PDBe, protein structures from the Protein Data Bank in Europe
+//
+// it is a solr search over entries. entries carry a status code and many of
+// them are not public yet, or were replaced, see unpublished() and response().
+//
+
+/* statuses of entries that are not (or not yet) public */
 static int
 unpublished(const char *status)
 {
@@ -26,16 +34,22 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
 	}
 	docs = yyjson_ptr_get(yyjson_doc_get_root(doc), "/response/docs");
 	yyjson_arr_foreach (docs, i, n, r) {
+		// not public, we cannot link to it
 		if (unpublished(json_str(r, "status")))
 			continue;
 		id = json_text(j->a, r, "pdb_id");
 		title = json_text(j->a, r, "title");
+		// obsolete entries are shown only when something replaced them, and say what
 		if (!strcmp(json_str(r, "status"), "OBS")) {
 			if (!*json_str(r, "superseded_by"))
 				continue;
@@ -46,6 +60,7 @@ response(struct job *j, struct fetch *f)
 			        json_str(r, "superseded_by"), json_str(r, "superseded_by")));
 			continue;
 		}
+		// the description is the citation, with the journal when it has one
 		authors = yyjson_obj_get(r, "entry_author_list");
 		if (*json_str(r, "journal"))
 			content = aprintf(j->a, "%s - %s %s (%s) %s (%s)", json_text(j->a, r, "citation_title"),
@@ -61,6 +76,7 @@ response(struct job *j, struct fetch *f)
 			        "",
 			    json_text(j->a, r, "release_year"));
 		m = add_main(j, aprintf(j->a, "https://www.ebi.ac.uk/pdbe/entry/pdb/%s", id), title, content);
+		// every entry has a picture of the structure
 		m->thumbnail = aprintf(j->a,
 		    "https://www.ebi.ac.uk/pdbe/static/entry/%s_deposited_chain_front_image-200x200.png", id);
 	}

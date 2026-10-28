@@ -6,6 +6,14 @@
 
 #define BASE_URL "https://www.dogpile.com"
 
+//
+// Dogpile's json api
+//
+// the api wants a token that the front page prints into its own javascript
+// (window.__DP_TOKEN__). it only lives a few minutes, so a timer fetches a
+// fresh one before the old one runs out and searches never wait for it.
+//
+
 static void
 response(struct job *j, struct fetch *f)
 {
@@ -15,6 +23,10 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len)) ||
 	    !yyjson_is_arr(results = yyjson_obj_get(yyjson_doc_get_root(doc), "results"))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
@@ -34,6 +46,7 @@ request(struct job *j, const char *token)
 	struct fetch *f;
 	char *body;
 
+	// the same json the site posts
 	yyjson_mut_doc_set_root(d, root);
 	yyjson_mut_obj_add_str(d, root, "q", j->query);
 	yyjson_mut_obj_add_str(d, root, "qadf", (const char *[]){"none", "moderate", "heavy"}[j->filters->safesearch]);
@@ -41,6 +54,7 @@ request(struct job *j, const char *token)
 	body = yyjson_mut_write(d, YYJSON_WRITE_ALLOW_INVALID_UNICODE, NULL);
 	yyjson_mut_doc_free(d);
 
+	// it checks that we look like the site's own script
 	f = job_request(j, BASE_URL "/api/search");
 	fetch_header(f, "Origin: " BASE_URL);
 	fetch_header(f, "Referer: " BASE_URL "/search");
@@ -60,6 +74,7 @@ token_response(struct fetch *f, void *arg)
 	const char *tok;
 	size_t n;
 
+	// the token is the string in window.__DP_TOKEN__="..." on the front page
 	if (f->code != CURLE_OK)
 		token_fail(t, "network error", SUSPEND_DEFAULT);
 	else if (f->status >= 400 || !(tok = find_between(fetch_body(f), "window.__DP_TOKEN__=\"", "\"", &n)) || !n)

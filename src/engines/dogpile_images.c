@@ -6,6 +6,13 @@
 
 #define BASE_URL "https://www.dogpile.com"
 
+//
+// Dogpile images, the same api as dogpile.c
+//
+// same token from the front page (see dogpile.c), only the endpoint and the
+// shape of the answer are different.
+//
+
 static void
 response(struct job *j, struct fetch *f)
 {
@@ -16,12 +23,17 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len)) ||
 	    !yyjson_is_arr(results = yyjson_obj_get(yyjson_doc_get_root(doc), "results"))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
 	}
 	yyjson_arr_foreach (results, i, n, r) {
+		// clickUrl is the picture itself, altClickUrl the page it is on
 		m = add_image(j, json_str(r, "altClickUrl"), html_to_text(j->a, json_str(r, "title")),
 		    json_str(r, "clickUrl"));
 		m->content = html_to_text(j->a, json_str(r, "description"));
@@ -66,6 +78,7 @@ token_response(struct fetch *f, void *arg)
 	const char *tok;
 	size_t n;
 
+	// the token is the string in window.__DP_TOKEN__="..." on the front page
 	if (f->code != CURLE_OK)
 		token_fail(t, "network error", SUSPEND_DEFAULT);
 	else if (f->status >= 400 || !(tok = find_between(fetch_body(f), "window.__DP_TOKEN__=\"", "\"", &n)) || !n)

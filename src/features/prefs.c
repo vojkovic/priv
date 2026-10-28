@@ -10,6 +10,18 @@
 #include "search/result.h"
 #include "search/search.h"
 
+//
+// Preferences, kept in the user's own cookie
+//
+// the cookie is a query string (theme=..&language=..) and only holds what
+// differs from the defaults, so most people never have one. nothing is kept
+// on the server. a bad or hand-edited value is ignored and the default is
+// used, which is why every value goes through a list of known ones (pick).
+//
+// the other part is the interface language: which of our translations to
+// use, from the cookie or else from what the browser asks for.
+//
+
 #define COOKIE "priv"
 #define COOKIE_AGE (5 * 365 * 24 * 3600)
 

@@ -5,6 +5,13 @@
 
 #define PAGE_SIZE 5
 
+//
+// Genius' search api, plain json
+//
+// the answer is a list of sections (songs, lyrics, albums, artists...), each
+// with its own hits. we only take two of them, see response().
+//
+
 static void
 response(struct job *j, struct fetch *f)
 {
@@ -16,6 +23,10 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len)) ||
 	    !yyjson_is_arr(
 	        sections = yyjson_obj_get(yyjson_obj_get(yyjson_doc_get_root(doc), "response"), "sections"))) {
@@ -33,7 +44,7 @@ response(struct job *j, struct fetch *f)
 			m = add_main(j, json_str(r, "url"), json_str(r, "full_title"),
 			    *type == 's' ? json_str(r, "artist_names") : json_str(r, "name_with_artist"));
 			if (!m)
-				continue;
+				continue; // no usable link
 			m->thumbnail = astrdup(j->a,
 			    *type == 's' ? json_str(r, "song_art_image_thumbnail_url") :
 			                   json_str(r, "cover_art_thumbnail_url"));

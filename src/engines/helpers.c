@@ -12,6 +12,15 @@
 #include <string.h>
 #include <strings.h>
 
+//
+// What engines call to hand results back and to parse what they get
+//
+// an engine adds results with add_main, add_image and friends, then ends
+// with job_done (or job_fail). the documents it parses (job_html, job_json...)
+// are freed when the job ends, so anything kept past that must be copied into
+// the search's arena.
+//
+
 static void
 add(struct job *j, struct result *r, enum result_type type)
 {

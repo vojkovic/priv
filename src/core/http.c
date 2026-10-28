@@ -17,6 +17,18 @@
 #include "features/metrics.h"
 #include "lib/picohttpparser/picohttpparser.h"
 
+//
+// A small http/1.1 server
+//
+// get and head only, no request bodies, one thread. a connection reads into
+// a fixed buffer, picohttpparser cuts the request out of it, and the handler
+// answers by calling http_respond (all at once) or http_begin/http_write/
+// http_end (streamed, which is how search pages work).
+//
+// keep alive and pipelining work, but a client that pipelines without
+// reading the answers waits until it does (see process()).
+//
+
 #define IDLE_MS 30000
 #define MAX_HEADERS 64
 
@@ -55,6 +67,7 @@ conn_close(void *arg)
 	free(c);
 }
 
+/* never frees right away, the timer does it on the next turn, so callers that still hold c stay safe */
 static void
 conn_kill(struct conn *c)
 {
@@ -74,6 +87,8 @@ flush(struct conn *c)
 		n = write(c->fd, c->out.p + c->outoff, c->out.len - c->outoff);
 		if (n < 0 && errno == EINTR)
 			continue;
+
+		// the socket is full, come back when it can take more
 		if (n < 0 && (errno == EAGAIN || errno == EWOULDBLOCK)) {
 			ev_watch(c->fd, EV_READ | EV_WRITE, on_conn, c);
 			return;
@@ -84,6 +99,8 @@ flush(struct conn *c)
 		}
 		c->outoff += n;
 	}
+
+	// everything is out
 	c->out.len = c->outoff = 0;
 	if (c->closing && !c->busy) {
 		conn_kill(c);
@@ -125,6 +142,7 @@ put_head(struct conn *c, int status, const char *headers, long len)
 	buf_puts(&c->out, "\r\n");
 }
 
+/* the answer is complete: maybe close, otherwise wait for the next request (and start it if one is already here) */
 static void
 finish(struct conn *c)
 {
@@ -289,15 +307,25 @@ handle(struct conn *c, size_t len, const char *method, size_t mlen, const char *
 		    named(&h[i], "Transfer-Encoding"))
 			close_hdr = 1;
 	}
+
+	// the request is read, drop it from the buffer so the next one can follow
 	memmove(c->in, c->in + len, c->inlen - len);
 	c->inlen -= len;
 
+	//
+	// Keep alive
+	//
+	// http/1.1 keeps the connection unless told to close, 1.0 only if asked.
+	// a request with a body closes it, we do not read bodies
+	//
 	c->keepalive = minor ? !close_hdr : keep_hdr && !close_hdr;
 	c->head = !strcmp(r.method, "HEAD");
 	r.head = c->head;
 	c->busy = 1;
 	c->search = !strcmp(r.path, "/search");
 	ev_timer_stop(&c->timer);
+
+	// only get and head
 	if (strcmp(r.method, "GET") && !c->head) {
 		c->keepalive = 0;
 		http_respond(c, 405, "Allow: GET, HEAD\r\nContent-Type: text/plain\r\n", "Method Not Allowed", 18);
@@ -315,10 +343,16 @@ process(struct conn *c)
 	int minor, n;
 
 	c->processing = 1;
+
+	//
+	// Take requests out of the buffer one at a time
+	//
 	/* a client that pipelines requests without reading the answers gets no more until it does */
 	while (!c->busy && !c->dead && !c->closing && !c->out.len) {
 		nh = MAX_HEADERS;
 		n = phr_parse_request(c->in, c->inlen, &method, &mlen, &path, &plen, &minor, h, &nh, 0);
+
+		// -2 is "not all here yet". a full buffer that still is not a whole request is too big
 		if (n == -2) {
 			if (c->inlen >= sizeof(c->in) - 1)
 				bad(c, 431);
@@ -346,6 +380,8 @@ on_conn(int fd, int events, void *arg)
 			process(c);
 		return;
 	}
+
+	// the buffer is full and we are still busy with what is in it, stop reading
 	if (c->inlen >= sizeof(c->in) - 1) {
 		if (c->busy || c->out.len)
 			ev_watch(c->fd, c->outoff < c->out.len ? EV_WRITE : 0, on_conn, c);

@@ -4,6 +4,13 @@
 #include "engines/engine.h"
 #include "features/stats.h"
 
+//
+// How each engine has been doing, for /stats and /metrics
+//
+// the last few outcomes of each engine and how long they took, plus its last
+// error. kept in memory only, and it never holds a query.
+//
+
 static struct engine_stats table[MAX_ENGINES];
 
 const struct engine_stats *

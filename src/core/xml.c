@@ -2,6 +2,10 @@
 
 #include "core/xml.h"
 
+//
+// Small helpers around libxml2 for reading html and xml with xpath
+//
+
 htmlDocPtr
 html_parse(const char *s, size_t len)
 {

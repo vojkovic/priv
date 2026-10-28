@@ -7,6 +7,15 @@
 
 #define PAGE_SIZE 20
 
+//
+// ABC search is algolia
+//
+// the api key is public and sits in the search page, so we read it from
+// there and cache it for a day (the token code refreshes it on a timer). abc
+// rotates it now and then, when that happens the engine errors until the next
+// refresh picks up the new one.
+//
+
 static int
 range_days(const char *r)
 {
@@ -24,6 +33,10 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len)) ||
 	    !yyjson_is_arr(hits = yyjson_obj_get(yyjson_doc_get_root(doc), "hits"))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
@@ -31,6 +44,8 @@ response(struct job *j, struct fetch *f)
 	}
 	yyjson_arr_foreach (hits, i, n, r) {
 		m = add_main(j, json_str(r, "canonicalURL"), json_str(r, "title"), json_str(r, "synopsis"));
+
+		// thumbnails come at 862 wide, ask for a size we would actually show
 		thumb = json_str(yyjson_ptr_get(r, "/defaultThumbnail"), "16x9");
 		if (*thumb && (size = strstr(thumb, "&width=")))
 			m->thumbnail = aprintf(j->a, "%.*s&width=240&height=135", (int)(size - thumb), thumb);
@@ -46,6 +61,7 @@ request(struct job *j, const char *key)
 	struct fetch *f;
 	char *filters = astrdup(j->a, "contentType:audio OR contentType:audioepisode OR contentType:audiosegment");
 
+	// the index is mixed. audio is what radio and podcasts are filed under
 	if (j->filters->time_range)
 		filters = aprintf(j->a, "(%s) AND unixDates.liveDate>=%lld", filters,
 		    (long long)time(NULL) - range_days(j->filters->time_range) * 86400LL);
@@ -53,6 +69,8 @@ request(struct job *j, const char *key)
 	form_add(&q, "page", aprintf(j->a, "%d", j->pageno - 1));
 	form_add(&q, "hitsPerPage", aprintf(j->a, "%d", PAGE_SIZE));
 	form_add(&q, "filters", filters);
+
+	// ask for just what we show, 20 hits drop from ~112 KB to ~14 KB
 	form_add(&q, "attributesToRetrieve", "title,canonicalURL,synopsis,dates.liveDate,defaultThumbnail.16x9");
 	form_add(&q, "attributesToHighlight", "");
 	f = job_request(j, aprintf(j->a, "https://MR0JFLPBAR-dsn.algolia.net/1/indexes/news_prod_all?%s", buf_str(&q)));
@@ -69,6 +87,7 @@ token_response(struct fetch *f, void *arg)
 	const char *key;
 	size_t n;
 
+	// the key sits in the page's json
 	if (f->code != CURLE_OK)
 		token_fail(t, "network error", SUSPEND_DEFAULT);
 	else if (f->status >= 400 || !(key = find_between(fetch_body(f), "\"apiKey\":\"", "\"", &n)) || !n)

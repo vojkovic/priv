@@ -19,6 +19,14 @@
 #include "search/search.h"
 #include "style.h"
 
+//
+// Every url the server answers
+//
+// the table at the bottom lists the paths, and route() is the order things
+// are tried in: the exempt paths, then the bot detector, then the built in
+// files, then the table, then 404.
+//
+
 #define HTML_HEADERS "Content-Type: text/html; charset=utf-8\r\n" SECURITY_HEADERS
 
 static void
@@ -237,19 +245,30 @@ route(struct conn *c, struct request *r)
 	struct arena a = {0};
 	size_t i, n;
 
+	//
+	// Routes that skip the bot detector
+	//
 	for (i = 0; i < LEN(routes); i++)
 		if (routes[i].exempt && !strcmp(r->path, routes[i].path)) {
 			routes[i].handler(c, r);
 			return;
 		}
+
+	//
+	// Everything else goes through the bot detector first
+	//
 	if (botdetect(c, r))
 		return;
+
+	// /client<token>.css is the stylesheet every page links to. A browser
+	// will load it proves it requests css
 	n = strlen(r->path);
 	if (starts_with(r->path, "/client") && n > 11 && !strcmp(r->path + n - 4, ".css")) {
 		botdetect_ping(c, r, astrndup(&a, r->path + 7, n - 11));
 		arena_free(&a);
 		return;
 	}
+	// the files built into the binary
 	for (i = 0; i < LEN(assets); i++)
 		if (!strcmp(r->path, assets[i].path)) {
 			serve_asset(c, r, &assets[i]);
@@ -260,5 +279,6 @@ route(struct conn *c, struct request *r)
 			routes[i].handler(c, r);
 			return;
 		}
+	// nothing matched
 	not_found(c, r);
 }

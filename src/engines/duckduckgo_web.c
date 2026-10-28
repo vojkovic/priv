@@ -6,6 +6,21 @@
 
 #define BASE_URL "https://duckduckgo.com"
 
+//
+// DuckDuckGo's javascript site, without the javascript
+//
+// this takes more steps than the html one, but it has better results and
+// page two does not need a token we keep around:
+//
+// 1. load the search page, it links the api call in deep_preload_link (first_page)
+// 2. call that link asking for json (request, response)
+// 3. sometimes the answer is a javascript puzzle (let jsa = ...) instead of
+//    results. solve it, which gives another url, and call that (solve_jsa)
+// 4. the last result carries the link to the next page, which goes into our
+//    paging links as the token (parse_results)
+//
+
+/* what the site's own script sends to the api, it checks */
 static void
 api_headers(struct fetch *f)
 {
@@ -32,9 +47,11 @@ parse_results(struct job *j, struct fetch *f)
 		const char *url = yyjson_get_str(yyjson_obj_get(r, "u"));
 		last = r;
 		if (!url || !*url)
-			continue;
+			continue; // the last entry is the paging info, not a result
 		add_main(j, url, html_to_text(j->a, json_str(r, "t")), html_to_text(j->a, json_str(r, "a")));
 	}
+
+	// found next page!
 	if (last && *(next = json_str(last, "n")))
 		j->next_token = aprintf(j->a, BASE_URL "%s", next);
 	return 0;
@@ -52,6 +69,7 @@ followed(struct job *j, struct fetch *f)
 	job_done(j);
 }
 
+/* the length of the html a puzzle function builds from a template, learned from the site's script */
 static int
 html_len(const char *s, size_t n)
 {
@@ -92,6 +110,15 @@ find_function(const char *js, const char *name, size_t *len)
 	return NULL;
 }
 
+//
+// The puzzle
+//
+// the answer starts with "let jsa = <number>;" and then calls a few small
+// functions on it, jsa = a(jsa); jsa = b(jsa); ... each one either multiplies
+// by a constant (num * 7) or adds the length of an html snippet. do what they
+// do, add the result to the path in DDG.deep.initialize('...') and that is the
+// url that has the real answer.
+//
 static char *
 solve_jsa(struct job *j, const char *js)
 {
@@ -140,6 +167,8 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	// not results but the puzzle, solve it and ask again
 	if (strstr(fetch_body(f), "let jsa =") && (url = solve_jsa(j, fetch_body(f)))) {
 		nf = job_get(j, url);
 		if (!j->e->no_accept_language)
@@ -161,6 +190,7 @@ request(struct job *j, const char *api_url)
 	struct fetch *f;
 	const char *p;
 
+	// the link is for the script, putting o=json in front makes it answer in json
 	if ((p = strstr(api_url, "/d.js?")))
 		api_url = aprintf(j->a, "%.*s/d.js?o=json&%s", (int)(p - api_url), api_url, p + 6);
 	f = job_request(j, api_url);
@@ -176,6 +206,7 @@ first_page(struct job *j, struct fetch *f)
 
 	if (!job_ok(j, f))
 		return;
+	// no link means no results page, which is a miss and not an error
 	if (!(doc = job_html(j, f)) ||
 	    !*(link = xpath_text(j->a, (xmlNodePtr)doc, "//link[@id='deep_preload_link']/@href"))) {
 		job_done(j);
@@ -194,11 +225,13 @@ search(struct job *j)
 		job_done(j);
 		return;
 	}
+	// page two and up come straight from the link we were handed last time
 	if (j->token) {
 		request(j, j->token);
 		return;
 	}
 	if (j->pageno > 1) {
+		// no link, so no way to find the page
 		job_done(j);
 		return;
 	}

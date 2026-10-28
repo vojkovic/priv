@@ -5,8 +5,16 @@
 #include "engines/engine.h"
 
 #define MAX_WORD 64
-#define MAX_CLASSES 4
-#define MAX_SENSES 8
+#define MAX_CLASSES 4 // parts of speech shown, wiktionary can have a dozen
+#define MAX_SENSES 8 // the card shows two and hides the rest behind "more"
+
+//
+// Wiktionary definitions, shown as an infobox
+//
+// this runs for every query, but only words wiktionary knows come back (the
+// rest is a 404). the card only shows when no other engine has an infobox,
+// that is decided when the page is rendered.
+//
 
 /* senses that only point at another word, which a card has no use for */
 static int
@@ -47,11 +55,18 @@ response(struct job *j, struct fetch *f)
 	size_t i, n, k, m, shown = 0, count;
 
 	if (f->code == CURLE_OK && f->status == 404) {
+		// not a word, which is most searches. not an error
 		job_done(j);
 		return;
 	}
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Pick the language
+	//
+	// the answer is keyed by language code. use the search language, or english
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
@@ -63,6 +78,10 @@ response(struct job *j, struct fetch *f)
 		job_done(j);
 		return;
 	}
+
+	//
+	// Get the definitions
+	//
 	snprintf(word, sizeof(word), "%s", j->query);
 	yyjson_arr_foreach (entries, i, n, entry) {
 		if (shown == MAX_CLASSES)
@@ -71,7 +90,7 @@ response(struct job *j, struct fetch *f)
 		if (!yyjson_is_arr(senses) || !yyjson_arr_size(senses) ||
 		    !strcmp(json_str(entry, "partOfSpeech"), "Symbol") ||
 		    !strcmp(json_str(entry, "partOfSpeech"), "Proper noun"))
-			continue;
+			continue; // names are wikipedia's job, and symbols are noise
 		c = NULL;
 		count = 0;
 		yyjson_arr_foreach (senses, k, m, s) {
@@ -79,9 +98,12 @@ response(struct job *j, struct fetch *f)
 
 			if (!*text || count == MAX_SENSES || form_of(text))
 				continue;
+
+			// first sense we keep, make the card
 			if (!d) {
 				char link[MAX_WORD + 1];
 
+				// wiktionary links use underscores for spaces
 				snprintf(link, sizeof(link), "%s", word);
 				for (size_t x = 0; link[x]; x++)
 					if (link[x] == ' ')
@@ -91,6 +113,7 @@ response(struct job *j, struct fetch *f)
 				    aprintf(j->a, "https://en.wiktionary.org/wiki/%s", buf_str(&url)));
 				buf_free(&url);
 			}
+			// first sense of this part of speech, start its list
 			if (!c) {
 				c = definition_class(j, d, json_str(entry, "partOfSpeech"));
 				shown++;
@@ -109,6 +132,7 @@ search(struct job *j)
 	struct fetch *f;
 
 	if (strlen(j->query) > MAX_WORD) {
+		// a sentence
 		job_done(j);
 		return;
 	}

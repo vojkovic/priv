@@ -5,6 +5,14 @@
 
 #define MAIN_WIKI "wiki.archlinux.org"
 
+//
+// The Arch wiki, through mediawiki's search page
+//
+// a few languages have their own wiki on another site (see wiki()). on the
+// main one every language is a page title suffix, so the query gets the
+// language's name added, like "pacman (Deutsch)".
+//
+
 static const char *
 lang_of(struct job *j)
 {
@@ -89,6 +97,10 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_html(j, f))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
@@ -97,7 +109,7 @@ response(struct job *j, struct fetch *f)
 	for (i = 0; i < items.n; i++) {
 		href = xpath_first_text(j->a, items.v[i], ".//div[@class=\"mw-search-result-heading\"]/a/@href");
 		if (!href)
-			continue;
+			continue; // not a result
 		add_main(j, url_join(j->a, base, href),
 		    xpath_text(j->a, items.v[i], ".//div[@class=\"mw-search-result-heading\"]/a"),
 		    xpath_text(j->a, items.v[i], ".//div[@class=\"searchresult\"]"));
@@ -115,6 +127,7 @@ search(struct job *j)
 	struct fetch *f;
 	char offset[16];
 
+	// the main wiki keeps languages as title suffixes, the chinese one lives under /wzh
 	if (!strcmp(netloc, MAIN_WIKI))
 		query = aprintf(j->a, "%s (%s)", query, language_name(lang));
 	else if (!strcmp(netloc, "wiki.archlinuxcn.org"))
@@ -127,6 +140,7 @@ search(struct job *j)
 	form_add(&q, "profile", "default");
 	f = job_request(j, aprintf(j->a, "%s%s", base, buf_str(&q)));
 	buf_free(&q);
+	// the main wiki asks for a user agent that says who is calling
 	if (!strcmp(netloc, MAIN_WIKI))
 		fetch_header(f, "User-Agent: SearXNG/2026.10.21");
 	job_send(j, f, response);

@@ -3,6 +3,14 @@
 #include "core/js.h"
 #include "engines/engine.h"
 
+//
+// Brave search reads its results out of javascript
+//
+// the page ships its data as a javascript literal for the svelte app to pick
+// up, not as html. js_page_data() turns that literal into json we can walk.
+// the data sits in the second entry of the array, under "data".
+//
+
 static yyjson_mut_val *
 get(yyjson_mut_val *v, const char *key)
 {
@@ -41,15 +49,24 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		goto out;
+
+	//
+	// Get the page data
+	//
 	if (!(data = js_page_data(d, fetch_body(f)))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		goto out;
 	}
 	data = get(yyjson_mut_arr_get(data, 1), "data");
 	if (yyjson_mut_is_true(get(data, "noResults"))) {
+		// brave says so itself, no results and not an error
 		job_done(j);
 		goto out;
 	}
+
+	//
+	// Get results
+	//
 	body = get(get(data, "body"), "response");
 	results = get(get(body, "web"), "results");
 	if (!yyjson_mut_is_arr(results)) {
@@ -59,10 +76,18 @@ response(struct job *j, struct fetch *f)
 	yyjson_mut_arr_foreach (results, i, n, r) {
 		m = add_main(j, str(r, "url"), str(r, "title"), html_to_text(j->a, str(r, "description")));
 		m->pubdate = astrdup(j->a, str(r, "age"));
+
+		// a logo is the site's icon, not a picture of the page
 		thumb = get(r, "thumbnail");
 		if (yyjson_mut_is_obj(thumb) && !yyjson_mut_is_true(get(thumb, "logo")))
 			m->thumbnail = astrdup(j->a, str(thumb, "src"));
 	}
+
+	//
+	// Get the videos
+	//
+	// web searches carry a few video results too, show them as videos
+	//
 	results = get(get(body, "videos"), "results");
 	yyjson_mut_arr_foreach (results, i, n, r)
 		video(j, r);
@@ -82,6 +107,8 @@ search(struct job *j)
 
 	form_add(&q, "q", j->query);
 	form_add(&q, "source", "web");
+
+	// brave's pages are numbered from 0 and its offset is the page number
 	if (j->pageno > 1) {
 		snprintf(page, sizeof(page), "%d", j->pageno - 1);
 		form_add(&q, "offset", page);
@@ -90,8 +117,12 @@ search(struct job *j)
 		form_add(&q, "tf", t);
 	f = job_request(j, aprintf(j->a, "https://search.brave.com/search?%s", buf_str(&q)));
 	buf_free(&q);
+
+	// brave only answers us properly over http/3, and a fresh connection each time
 	curl_easy_setopt(f->h, CURLOPT_FORBID_REUSE, 1L);
 	f->http_version = CURL_HTTP_VERSION_3ONLY;
+
+	// the settings live in cookies. no location, no summary, so nothing extra loads
 	fetch_cookie(f, "safesearch", safe[j->filters->safesearch]);
 	fetch_cookie(f, "useLocation", "0");
 	fetch_cookie(f, "summarizer", "0");

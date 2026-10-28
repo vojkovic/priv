@@ -13,6 +13,16 @@
 #include <string.h>
 #include <strings.h>
 
+//
+// The top of a results page
+//
+// this goes out before the engines answer, so it can only depend on the query.
+// that is why instant answers are decided here, from the text alone: the
+// query is checked for the calculator, a unit conversion or a colour, and the
+// matching script is added to the page. the self info card is the one answer
+// built on the server.
+//
+
 /* whether a query reads as arithmetic, which loads the calculator; calc.js does the real parsing */
 static int
 math_query(const char *q)

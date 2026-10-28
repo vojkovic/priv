@@ -5,6 +5,18 @@
 
 #define NEXT_PAGE_URL "https://www.youtube.com/youtubei/v1/search?key=AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8"
 
+//
+// YouTube, in two parts
+//
+// page one is the normal results page. the data is a json blob in the html
+// (ytInitialData), so there is nothing to scrape. every page also carries a
+// "continuation" token for the one after it, and later pages ask youtube's
+// internal api with that token (next_response). the token travels in our own
+// paging links. the key in NEXT_PAGE_URL is the one youtube's own site sends
+// everyone, it is not ours.
+//
+
+/* the text of a title or a description, which is a plain string or a list of runs */
 static const char *
 text(struct job *j, yyjson_val *v)
 {
@@ -22,6 +34,7 @@ text(struct job *j, yyjson_val *v)
 	return out;
 }
 
+/* first page has no thumbnail urls we can trust, so build them from the id */
 static void
 video(struct job *j, yyjson_val *v, int first_page)
 {
@@ -29,6 +42,7 @@ video(struct job *j, yyjson_val *v, int first_page)
 	const char *id = json_str(v, "videoId"), *content;
 	struct main_result *m;
 
+	// not a video (a channel, a shelf of shorts, an ad)
 	if (!*id)
 		return;
 	content = snippet ? text(j, snippet) : first_page ? "" : "-";
@@ -75,6 +89,10 @@ first_response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get the page data
+	//
 	if (!(data = find_between(fetch_body(f), "ytInitialData = ", ";</script>", &len)) || !len) {
 		job_done(j);
 		return;
@@ -85,6 +103,12 @@ first_response(struct job *j, struct fetch *f)
 	}
 	sections = yyjson_ptr_get(yyjson_doc_get_root(doc),
 	    "/contents/twoColumnSearchResultsRenderer/primaryContents/sectionListRenderer/contents");
+
+	//
+	// Get results
+	//
+	// the sections are the video list and, last, the next page's token
+	//
 	yyjson_arr_foreach (sections, i, n, section) {
 		next_token(j, section);
 		items(j, yyjson_ptr_get(section, "/itemSectionRenderer/contents"), 1);
@@ -121,6 +145,9 @@ search(struct job *j)
 	struct fetch *f;
 	char *body;
 
+	//
+	// Page two and up: ask the api with the continuation token
+	//
 	if (token) {
 		d = yyjson_mut_doc_new(NULL);
 		root = yyjson_mut_obj(d);
@@ -140,12 +167,31 @@ search(struct job *j)
 		job_send(j, f, next_response);
 		return;
 	}
+
+	//
+	// Page one: the results page
+	//
 	url_quote(&q, j->query, "", 1);
 	buf_printf(&q, "&page=%d", j->pageno);
+
+	//
+	// The upload date filter is a protobuf, in the sp parameter
+	//
+	// 12 02 08 <n>, base64 encoded, with the = padding url encoded twice
+	//
+	// day     n=2   EgIIAg%253D%253D
+	// week    n=3   EgIIAw%253D%253D
+	// month   n=4   EgIIBA%253D%253D
+	// year    n=5   EgIIBQ%253D%253D
+	//
+	// (we send the middle two characters as "Ag", "Aw", "BA", "BQ")
+	//
 	if ((t = time_range_code(j->filters, "Ag", "Aw", "BA", "BQ")))
 		buf_printf(&q, "&sp=EgII%s%%253D%%253D", t);
 	f = job_request(j, aprintf(j->a, "https://www.youtube.com/results?search_query=%s", buf_str(&q)));
 	buf_free(&q);
+
+	// agree to the cookie banner up front or youtube redirects to it
 	fetch_cookie(f, "CONSENT", "YES+");
 	f->http_version = CURL_HTTP_VERSION_3;
 	job_send(j, f, first_response);

@@ -10,6 +10,13 @@
 #include <time.h>
 #include <wctype.h>
 
+//
+// Text helpers: utf-8, stripping, and turning html into plain text
+//
+// some of these copy python's behaviour on purpose (py_strip, py_title,
+// text_normalize), so results read the same as searxng's.
+//
+
 long
 parse_long(const char *s, long fallback)
 {

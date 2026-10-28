@@ -5,6 +5,15 @@
 #include "core/js.h"
 #include "core/util.h"
 
+//
+// A reader for javascript data
+//
+// some pages hand their data to the page's script as a javascript literal
+// (unquoted keys, undefined, single quotes) which is not json. this reads
+// that subset and builds a json document from it, so it can be walked like
+// any other. it reads data only and never runs anything.
+//
+
 struct p {
 	yyjson_mut_doc *d;
 	const char *s;

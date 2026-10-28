@@ -6,6 +6,13 @@
 #define API "https://api.tusksearch.com"
 #define SITE "https://tusksearch.com/"
 
+//
+// Tusksearch images, the same api as tusksearch.c
+//
+// same single use session id and the same header fuss, see tusksearch.c. the
+// image search has no paging, one answer holds everything.
+//
+
 /* "x-sid-<id>: <value>", good for one request; every answer carries the next one */
 static char *sid;
 
@@ -37,15 +44,21 @@ response(struct job *j, struct fetch *f)
 	struct main_result *m;
 	size_t i, n;
 
+	// grab the next id before anything else, even a failed answer may carry one
 	keep_sid(f);
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len)) ||
 	    !yyjson_is_arr(list = yyjson_obj_get(yyjson_doc_get_root(doc), "results"))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
 	}
 	yyjson_arr_foreach (list, i, n, r) {
+		// url is the page, properties.url is the picture itself
 		m = add_image(j, json_str(r, "url"), json_str(r, "title"),
 		    json_str(yyjson_obj_get(r, "properties"), "url"));
 		m->thumbnail_src = astrdup(j->a, json_str(yyjson_obj_get(r, "thumbnail"), "src"));
@@ -109,6 +122,8 @@ embed_response(struct job *j, struct fetch *f)
 	}
 	name = codes(yyjson_arr_get(root, 3));
 	value = codes(yyjson_arr_get(root, 4));
+
+	// this ends up in our own request, so be picky about what it may contain
 	if (strncmp(name, "x-sid-", 6) || strpbrk(name, "\r\n :") || strpbrk(value, "\r\n")) {
 		free(name);
 		free(value);
@@ -129,10 +144,13 @@ search(struct job *j)
 	char *header = sid;
 
 	if (header) {
+		// we have an id, use it up. the next search waits for the answer's
 		sid = NULL;
 		request(j, header);
 		return;
 	}
+
+	// no id (cold start, or two searches at once), get one
 	f = job_request(j, API "/revcontent/embed.js");
 	fetch_header(f, "Accept: */*");
 	fetch_header(f, "Sec-Fetch-Mode: no-cors");

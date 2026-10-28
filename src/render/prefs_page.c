@@ -13,6 +13,14 @@
 #include <string.h>
 #include <strings.h>
 
+//
+// The preferences page
+//
+// one form with the interface choices at the top and a section per category
+// below, with that category's timeout and a switch for each engine. saving
+// is a plain GET, see prefs_from_form in features/prefs.c.
+//
+
 static void
 pref_select(struct buf *b, const char *name, const char *label, const char *help)
 {

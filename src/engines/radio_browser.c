@@ -4,6 +4,13 @@
 
 #define PAGE_SIZE 10
 
+//
+// Radio Browser, a community list of internet radio stations
+//
+// this is one of its public servers. the answer is a plain json list, most
+// voted station first.
+//
+
 static void
 response(struct job *j, struct fetch *f)
 {
@@ -16,13 +23,20 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len)) || !yyjson_is_arr(stations = yyjson_doc_get_root(doc))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
 	}
 	yyjson_arr_foreach (stations, i, n, r) {
 		const char *parts[] = {json_str(r, "country"), json_str(r, "tags"), json_str(r, "codec")};
+		// the station's site if it has one, else the stream itself
 		url = *json_str(r, "homepage") ? json_str(r, "homepage") : json_str(r, "url_resolved");
+
+		// the description is country, tags and codec, joined with dots
 		about.len = 0;
 		for (k = 0; k < LEN(parts); k++) {
 			part = parts[k];

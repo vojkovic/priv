@@ -7,20 +7,42 @@
 #include "botdetection/botdetect.h"
 #include "core/util.h"
 
-#define BURST_WINDOW 20
+//
+// Bot detection, modelled on searxng's limiter
+//
+// everything here is per network (a /24 for ipv4, a /48 for ipv6), counted in
+// sliding windows kept in memory, and nothing is logged beyond the block
+// messages. in the order botdetect() asks:
+//
+// 1. lists: passed networks are let through, blocked ones are turned away
+// 2. the user agent, against a list of known scrapers and libraries
+// 3. the headers a browser always sends (Accept, Accept-Encoding,
+//    Accept-Language, and Sec-Fetch-Mode on https)
+// 4. how often the network asks (ip_limit)
+//
+// with the link token on, every page links a stylesheet that only a browser
+// loads, and a client that did gets the roomy limits. see ip_limit.
+//
+
+// requests allowed per window, for networks that look fine and for suspicious ones
+#define BURST_WINDOW 20 // seconds
 #define BURST_WINDOW_MAX 15
 #define BURST_WINDOW_MAX_SUSPICIOUS 2
-#define LONG_WINDOW 600
+#define LONG_WINDOW 600 // seconds
 #define LONG_WINDOW_MAX 150
 #define LONG_WINDOW_MAX_SUSPICIOUS 10
+
+// searches without the stylesheet ping a network gets in a month before it is sent home
 #define SUSPICIOUS_IP_WINDOW (3600 * 24 * 30)
 #define SUSPICIOUS_IP_MAX 3
+
+// the stylesheet's name changes this often, and a ping is remembered for an hour
 #define TOKEN_LIVE_TIME 600
 #define ESCALATE_TIME LONG_WINDOW
 #define ESCALATE_CHILDREN 3
 #define MAX_ESCALATED 1024
 #define PING_LIVE_TIME 3600
-#define PING_MAX 20
+#define PING_MAX 20 // new pings a network may make in that hour
 #define AUTOCOMPLETE_WINDOW 20
 #define AUTOCOMPLETE_MAX 100
 #define MAX_COUNTERS (1 << 17)
@@ -571,28 +593,47 @@ ip_limit(struct conn *c, const struct ip *ip, const char *net, struct request *r
 
 	if (link_local(ip) && !limiter_filter_link_local)
 		return 0;
+
+	// already caught doing something bad
 	if (escalated_block(ip)) {
 		http_respond(c, 429, "Content-Type: text/plain\r\n", "Too Many Requests", 17);
 		return 1;
 	}
+
+	//
+	// Link token mode
+	//
+	// Every page links a stylesheet that only a real browser will fetch. a
+	// client that fetched it recently is trusted and gets some roomy limits,
+	// one that did not is suspicious and gets a few tries before it is blocked
+	//
 	if (limiter_link_token) {
 		snprintf(pk, sizeof(pk), "%s", ping_key(net, r));
+
+		// we have seen it fetch the stylesheet, and it did not touch the decoy
+		// (the decoy link is hidden from browsers, only scrapers follow it)
 		if (cache_get(pk) && !cache_get(decoy_key(net, r))) {
 			cache_set(pk, "1", PING_LIVE_TIME);
 			drop_counter("SUSPICIOUS_IP_WINDOW", net);
 			return 0;
 		}
+
+		// no ping
 		if (incr_sliding_window("SUSPICIOUS_IP_WINDOW", net, SUSPICIOUS_IP_WINDOW) > SUSPICIOUS_IP_MAX) {
 			fprintf(stderr,
 			    "botdetect: BLOCK %s: too many request in SUSPICIOUS_IP_WINDOW (redirect to /)\n", net);
 			return redirect_index(c);
 		}
+
+		// and while they are suspicious, the burst and long limits are tighter
 		if (incr_sliding_window("BURST_WINDOW", net, BURST_WINDOW) > BURST_WINDOW_MAX_SUSPICIOUS)
 			return limited(c, ip, net, "too many request in BURST_WINDOW (BURST_WINDOW_MAX_SUSPICIOUS)");
 		if (incr_sliding_window("LONG_WINDOW", net, LONG_WINDOW) > LONG_WINDOW_MAX_SUSPICIOUS)
 			return limited(c, ip, net, "too many request in LONG_WINDOW (LONG_WINDOW_MAX_SUSPICIOUS)");
 		return 0;
 	}
+
+	// everybody gets the same limits
 	if (incr_sliding_window("BURST_WINDOW", net, BURST_WINDOW) > BURST_WINDOW_MAX)
 		return limited(c, ip, net, "too many request in BURST_WINDOW (BURST_WINDOW_MAX)");
 	if (incr_sliding_window("LONG_WINDOW", net, LONG_WINDOW) > LONG_WINDOW_MAX)
@@ -608,8 +649,15 @@ botdetect(struct conn *c, struct request *r)
 
 	if (!limiter)
 		return 0;
+
+	// the limits are per network, not per address (a /24, or a /48 for ipv6)
+	// because a single person hops around inside theirs
 	ip = real_ip(r);
 	network(&ip, net, sizeof(net));
+
+	//
+	// Lists
+	//
 	if (link_local(&ip) || in_list(&ip, passlist, npass))
 		return 0;
 	if (in_list(&ip, blocklist, nblock)) {
@@ -617,22 +665,35 @@ botdetect(struct conn *c, struct request *r)
 		http_respond(c, 429, "Content-Type: text/plain\r\n", "IP is on BLOCKLIST", 18);
 		return 1;
 	}
+
+	//
+	// Cheap header checks
+	//
 	if (bad_user_agent(r))
 		return too_many(c, net, "bot detected, HTTP header User-Agent");
 	/* every suggestion is a request to google from this server */
 	if (!strcmp(r->path, "/autocompleter") &&
 	    incr_sliding_window("AUTOCOMPLETE_WINDOW", net, AUTOCOMPLETE_WINDOW) > AUTOCOMPLETE_MAX)
 		return too_many(c, net, "too many request in AUTOCOMPLETE_WINDOW");
+
+	// from here on it is only about searching
 	if (strcmp(r->path, "/search"))
 		return 0;
+
+	// a browser always sends these, a lot of scrapers forget
 	if (!r->has_accept || !accepts_html(r->accept))
 		return too_many(c, net, "HTTP header Accept did not contain text/html");
 	if (!accepts_gzip(r->accept_encoding))
 		return too_many(c, net, "HTTP header Accept-Encoding did not contain gzip nor deflate");
 	if (blank(r->accept_language))
 		return too_many(c, net, "missing HTTP header Accept-Language");
+
+	// recent browsers say what kind of request this is. a search is a
+	// navigation (a click or typing), anything else came from a script
 	if (!strcmp(r->proto, "https") && browser_supported(r->user_agent) && strcmp(r->sec_fetch_mode, "navigate") &&
 	    strcmp(r->sec_fetch_mode, "cors"))
 		return redirect_index(c);
+
+	// nothing wrong with the request itself, now count how often they ask
 	return ip_limit(c, &ip, net, r);
 }

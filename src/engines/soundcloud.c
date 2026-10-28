@@ -7,6 +7,15 @@
 #define PAGE_SIZE 10
 #define MAX_SCRIPTS 32
 
+//
+// SoundCloud's api wants a client id
+//
+// there is no sign up, the id sits in one of the scripts the site loads. so
+// we load the home page, collect its script urls (home_response), and try
+// them one by one until one has client_id:"..." in it (script_response). the
+// id is kept for a day and the token code refreshes it on a timer.
+//
+
 static struct {
 	char *urls[MAX_SCRIPTS];
 	int n;
@@ -38,6 +47,7 @@ script_response(struct fetch *f, void *arg)
 	const char *id;
 	size_t n = 0;
 
+	// found it, forget the rest of the list. otherwise try the next script
 	if (f->code == CURLE_OK && f->status < 400 && (id = find_between(fetch_body(f), "client_id:\"", "\"", &n)) &&
 	    n) {
 		char *v = xmalloc(n + 1);
@@ -68,6 +78,7 @@ home_response(struct fetch *f, void *arg)
 		fetch_free(f);
 		return;
 	}
+	// the site's own scripts all live under /assets/
 	tags = xpath((xmlNodePtr)doc, "//script[contains(@src, '/assets/')]/@src");
 	for (i = 0; i < tags.n && scripts.n < MAX_SCRIPTS; i++)
 		scripts.urls[scripts.n++] = xstrdup(node_text(&a, tags.v[i]));
@@ -108,12 +119,17 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
 	}
 	collection = yyjson_obj_get(yyjson_doc_get_root(doc), "collection");
 	yyjson_arr_foreach (collection, i, n, r) {
+		// the search also returns users, we only want tracks and playlists
 		kind = json_str(r, "kind");
 		if ((strcmp(kind, "track") && strcmp(kind, "playlist")) || !*(url = json_str(r, "permalink_url")))
 			continue;
@@ -124,6 +140,7 @@ response(struct job *j, struct fetch *f)
 		        *desc       ? desc :
 		                      label);
 		m->pubdate = (char *)format_date(j->a, json_str(r, "last_modified"));
+		// no artwork means the uploader's picture
 		user = yyjson_obj_get(r, "user");
 		thumb = json_str(r, "artwork_url");
 		m->thumbnail = astrdup(j->a, *thumb ? thumb : json_str(user, "avatar_url"));
@@ -135,6 +152,7 @@ response(struct job *j, struct fetch *f)
 	job_done(j);
 }
 
+/* soundcloud only has a handful of languages, the rest are shown in the closest one */
 static const char *
 app_locale(const char *tag)
 {

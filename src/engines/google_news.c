@@ -3,6 +3,15 @@
 
 #include "engines/engine.h"
 
+//
+// Google News, the same basic html as google.c
+//
+// we say we are a feature phone and ask for the news tab (tbm=nws). the
+// class names are scrambled, when results stop showing up look at those first.
+// the same story shows up more than once, so repeats are dropped.
+//
+
+/* result links are /url?q=<real address>&..., get the real one out */
 static const char *
 unwrap_url(struct arena *a, const char *raw)
 {
@@ -11,6 +20,7 @@ unwrap_url(struct arena *a, const char *raw)
 	return target && starts_with(target, "http") ? target : raw;
 }
 
+/* real pages only, not google's own images or the "unusual traffic" page */
 static int
 publisher_url(struct arena *a, const char *url)
 {
@@ -24,6 +34,7 @@ publisher_url(struct arena *a, const char *url)
 	return starts_with(url, "http") && !strstr(url, "/sorry/");
 }
 
+/* the request worked and we were not sent to the captcha */
 static int
 ok(struct job *j, struct fetch *f)
 {
@@ -51,12 +62,19 @@ response(struct job *j, struct fetch *f)
 	size_t k;
 	int i;
 
+	//
+	// Detect captcha
+	//
 	if (!ok(j, f))
 		return;
 	if (!(doc = job_html(j, f))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
 	}
+
+	//
+	// Get results
+	//
 	links = xpath((xmlNodePtr)doc, "//a[contains(@href, \"/url?\") and .//span[contains(@class, \"CVA68e\")]]");
 	for (i = 0; i < links.n; i++) {
 		url = xpath_text(j->a, links.v[i], "@href");
@@ -64,6 +82,7 @@ response(struct job *j, struct fetch *f)
 		title = xpath_first_text(j->a, links.v[i], ".//span[contains(@class, \"CVA68e\")]");
 		if (!title || !*title || !publisher_url(j->a, url))
 			continue;
+		// already had this one
 		if (seen && strstr(seen, aprintf(j->a, "\n%s\n", url)))
 			continue;
 		seen = aprintf(j->a, "%s\n%s\n", seen ? seen : "", url);
@@ -75,6 +94,8 @@ response(struct job *j, struct fetch *f)
 		    "not(contains(@class, \"dXDvrc\"))]");
 		if (parts[2] && !parts[2][strspn(parts[2], " \xc2\xb7")])
 			parts[2] = NULL;
+
+		// the text under a story is the source, the age and a snippet. join what is there
 		buf_free(&content);
 		for (k = 0; k < LEN(parts); k++) {
 			if (!parts[k] || !*parts[k])
@@ -110,6 +131,7 @@ search(struct job *j)
 	}
 	f = job_request(j, aprintf(j->a, "https://www.google.com/search?%s", buf_str(&q)));
 	buf_free(&q);
+	// no chrome disguise here, we say we are a feature phone instead
 	fetch_impersonate(f, NULL, 0);
 	fetch_header(f, "User-Agent: Nokia6230i/2.0 (03.80) Profile/MIDP-2.0 Configuration/CLDC-1.1");
 	curl_easy_setopt(f->h, CURLOPT_FORBID_REUSE, 1L);

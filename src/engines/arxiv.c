@@ -2,6 +2,11 @@
 
 #define PAGE_SIZE 10
 
+//
+// arXiv's api answers with an atom feed (xml), one entry per paper
+//
+
+/* atom puts every field in a namespace, so match them by their local name */
 static char *
 field(struct job *j, xmlNodePtr entry, const char *name)
 {
@@ -35,6 +40,10 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_xml(j, f))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
@@ -49,6 +58,7 @@ response(struct job *j, struct fetch *f)
 		result_attr(j, m, "Tags", joined(j, e, "./*[local-name()=\"category\"]/@term"));
 		result_attr(j, m, "DOI", field(j, e, "doi"));
 		result_attr(j, m, "Comments", field(j, e, "comment"));
+		// the pdf is the link titled "pdf"
 		m->pdf_url = xpath_first_text(j->a, e, "./*[local-name()=\"link\" and @title=\"pdf\"]/@href");
 	}
 	xnodes_free(&entries);
@@ -63,6 +73,7 @@ search(struct job *j)
 	char start[16];
 
 	snprintf(start, sizeof(start), "%d", (j->pageno - 1) * PAGE_SIZE);
+	// all: searches every field, not just the title
 	form_add(&q, "search_query", aprintf(j->a, "all:%s", j->query));
 	form_add(&q, "start", start);
 	form_add(&q, "max_results", "10");

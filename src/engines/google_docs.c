@@ -5,6 +5,15 @@
 
 #define PAGE_SIZE 20
 
+//
+// Google search through the docs "explore" panel
+//
+// explore is a side panel in google docs that searches the web, and it works
+// without logging in as long as the document it hangs off is public. it only
+// has one knob (see search()), and it answers with a json array behind a junk
+// first line (see response()).
+//
+
 /* a public document that still allows the explore panel */
 #define DOCUMENT "https://docs.google.com/document/d/1X8Gd2RPfsQdiYVcrUmgk_RpQ7iAl-UQd9vlvpZ8Itvs"
 
@@ -58,6 +67,12 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
+	// the first line is junk, the json is everything after it
+	//
 	if (!json || !(doc = job_json(j, json, strlen(json))) ||
 	    !yyjson_is_arr(results = yyjson_arr_get(yyjson_arr_get(yyjson_doc_get_root(doc), 0), 1))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
@@ -67,6 +82,7 @@ response(struct job *j, struct fetch *f)
 	yyjson_arr_foreach (results, i, n, item) {
 		r = yyjson_arr_get(item, 0);
 		if (!yyjson_is_arr(r)) {
+			// found the knowledge card. only page one gets it
 			if (j->pageno == 1)
 				card(j, yyjson_arr_get(item, 1));
 			continue;
@@ -77,7 +93,21 @@ response(struct job *j, struct fetch *f)
 	job_done(j);
 }
 
-/* the offset travels as a protobuf with it in field 1, base64 encoded: 0 is CAA= and 20 is CBQ= */
+//
+// The paging token is a protobuf message holding the offset in field 1
+//
+// the first byte is always 08 (field 1, a varint). the offset follows, 7 bits
+// per byte, lowest bits first, and a byte with its top bit set means another
+// byte comes after it. the whole thing goes out base64 encoded.
+//
+// offset   bytes       base64
+// 0        08 00       CAA=
+// 10       08 0a       CAo=
+// 20       08 14       CBQ=
+// 100      08 64       CGQ=
+// 128      08 80 01    CIAB     (the first one that needs two bytes)
+// 300      08 ac 02    CKwC
+//
 static const char *
 offset_token(struct job *j, unsigned offset)
 {
@@ -101,6 +131,11 @@ search(struct job *j)
 	struct fetch *f;
 	char *json;
 
+	//
+	// Build the request
+	//
+	// [name of the call, query, [page size, offset token], language or null, 1]
+	//
 	yyjson_mut_doc_set_root(d, root);
 	yyjson_mut_arr_add_str(d, root, "documentsuggest.search.search_request");
 	yyjson_mut_arr_add_str(d, root, j->query);
@@ -116,7 +151,7 @@ search(struct job *j)
 	} else {
 		yyjson_mut_arr_add_null(d, root);
 	}
-	yyjson_mut_arr_add_int(d, root, 1);
+	yyjson_mut_arr_add_int(d, root, 1); // the site always sends a 1 here
 	json = yyjson_mut_write(d, YYJSON_WRITE_ALLOW_INVALID_UNICODE, NULL);
 	yyjson_mut_doc_free(d);
 

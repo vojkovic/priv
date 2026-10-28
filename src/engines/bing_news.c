@@ -4,6 +4,13 @@
 
 #define BASE_URL "https://www.bing.com"
 
+//
+// Bing news, from the page's infinite scroll
+//
+// the news page loads more stories from an ajax endpoint that answers with a
+// piece of html (just the stories). that is easier to read than the whole page.
+//
+
 static void
 response(struct job *j, struct fetch *f)
 {
@@ -15,6 +22,10 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_html(j, f))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
@@ -25,10 +36,11 @@ response(struct job *j, struct fetch *f)
 		    xpath_text(j->a, items.v[i], ".//a[@class='title']"),
 		    xpath_text(j->a, items.v[i], ".//div[@class='snippet']"));
 		if (!m)
-			continue;
+			continue; // no usable link
 		m->pubdate = xpath_first_text(j->a, items.v[i],
 		    ".//div[contains(@class, 'source')]//span[@aria-label]/@aria-label");
 		thumb = xpath_first_text(j->a, items.v[i], ".//a[@class='imagelink']//img/@src");
+		// thumbnails are sometimes relative to bing
 		if (thumb && *thumb)
 			m->thumbnail = starts_with(thumb, "http") ?
 			    thumb :
@@ -46,6 +58,7 @@ search(struct job *j)
 	struct fetch *f;
 
 	form_add(&q, "q", j->query);
+	// the same parameters the page sends when it scrolls
 	form_add(&q, "InfiniteScroll", "1");
 	form_add(&q, "first", aprintf(j->a, "%d", (j->pageno - 1) * 10 + 1));
 	form_add(&q, "SFX", aprintf(j->a, "%d", j->pageno - 1));

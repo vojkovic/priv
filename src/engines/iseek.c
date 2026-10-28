@@ -3,6 +3,13 @@
 #define BASE_URL "https://api.iseek.com"
 #define PAGE_SIZE 10
 
+//
+// Iseek's search api
+//
+// the answers are groups of documents (solr style), and the text of a result
+// can come as one string or as a list of pieces, see response().
+//
+
 static void
 response(struct job *j, struct fetch *f)
 {
@@ -12,6 +19,10 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len)) ||
 	    !yyjson_is_arr(groups = yyjson_obj_get(yyjson_doc_get_root(doc), "data"))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
@@ -21,6 +32,7 @@ response(struct job *j, struct fetch *f)
 		docs = yyjson_obj_get(yyjson_obj_get(g, "doclist"), "docs");
 		yyjson_arr_foreach (docs, k, m, r) {
 			struct buf text = {0};
+			// the text is a string or a list of strings, join either
 			content = yyjson_obj_get(r, "content_txt");
 			if (yyjson_is_str(content))
 				buf_puts(&text, yyjson_get_str(content));

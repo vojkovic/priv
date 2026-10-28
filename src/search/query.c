@@ -12,6 +12,16 @@
 #include <string.h>
 #include <strings.h>
 
+//
+// Reading a query and the settings that go with it
+//
+// the search box takes more than words: !bangs pick engines or a category,
+// :languages pick a language and <3 sets a timeout in seconds. query_parse
+// takes those out and leaves the words. filters_parse reads the rest of what
+// a search depends on (category, language, time range, safesearch) from the
+// request and the user's preferences.
+//
+
 struct category categories[] = {
     {"general", "General", ICON_SEARCH, 1.5},
     {"images", "Images", ICON_IMAGES, 3},

@@ -3,6 +3,15 @@
 #include "engines/engine.h"
 #include "features/metrics.h"
 
+//
+// /metrics, in the prometheus text format
+//
+// counts of searches by response code, and of each engine's requests by
+// code. a request that never got an http status (a timeout, a failed
+// connection, a tls error) is counted under a number of our own (the
+// METRICS_ values in metrics.h), so it shows next to the real codes.
+//
+
 #define SLOTS 16
 
 struct counts {

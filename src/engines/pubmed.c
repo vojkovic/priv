@@ -3,6 +3,13 @@
 #define EUTILS "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
 #define PAGE_SIZE 10
 
+//
+// PubMed, in two steps
+//
+// 1. esearch finds the ids of the papers that match (search, ids_response)
+// 2. efetch turns the ids into the papers themselves, as xml (response)
+//
+
 static void
 response(struct job *j, struct fetch *f)
 {
@@ -16,6 +23,10 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_xml(j, f))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
@@ -41,6 +52,7 @@ response(struct job *j, struct fetch *f)
 		result_attr(j, m, "Journal", xpath_text(j->a, c, "./Article/Journal/Title"));
 		result_attr(j, m, "DOI", xpath_text(j->a, c, ".//ELocationID[@EIdType='doi']"));
 		result_attr(j, m, "ISSN", xpath_text(j->a, c, "./Article/Journal/ISSN"));
+		// the date the paper was accepted, only when all three parts are there
 		y = xpath_text(j->a, articles.v[i], "./PubmedData/History//PubMedPubDate[@PubStatus='accepted']/Year");
 		mo =
 		    xpath_text(j->a, articles.v[i], "./PubmedData/History//PubMedPubDate[@PubStatus='accepted']/Month");
@@ -64,6 +76,10 @@ ids_response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get the ids, then ask for the papers
+	//
 	if (!(doc = job_xml(j, f))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;

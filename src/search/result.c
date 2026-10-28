@@ -6,6 +6,15 @@
 #include "features/urlclean.h"
 #include "search/result.h"
 
+//
+// Putting results from many engines together
+//
+// every engine hands over its own list (results_extend). each result is
+// cleaned up (normalize_main), then merged into an existing one if another
+// engine already found the same page (merge_main). when everyone is done,
+// results_close ranks them and groups the ones that look alike.
+//
+
 #define MAX_TITLE 200
 #define MAX_CONTENT 1200
 
@@ -29,11 +38,20 @@ default_scheme(struct arena *a, const char *url)
 	return url_unparse(a, &u);
 }
 
+/* cleans a result up so equal ones compare equal. returns -1 for one we cannot keep */
 static int
 normalize_main(struct arena *a, struct main_result *m)
 {
+	// no link, nothing to show
 	if (!m->url || !*m->url)
 		return -1;
+
+	//
+	// The address
+	//
+	// take it out of tracking redirects, show internationalised names
+	// readably, then strip the tracking parameters. only web links survive
+	//
 	url_parse(a, urlclean_unwrap(a, m->url), &m->parsed);
 	if (starts_with(m->parsed.netloc, "xn--"))
 		m->parsed.netloc = idna_decode(a, m->parsed.netloc);
@@ -43,12 +61,18 @@ normalize_main(struct arena *a, struct main_result *m)
 		return -1;
 	urlclean_strip(a, &m->parsed);
 	m->url = url_unparse(a, &m->parsed);
+
+	//
+	// The text
+	//
 	m->title = text_normalize(a, m->title, MAX_TITLE);
 	m->content = text_normalize(a, m->content, MAX_CONTENT);
+	// a snippet that just repeats the title adds nothing
 	if (!strcmp(m->content, m->title))
 		m->content = "";
 	if (!m->template)
 		m->template = "default";
+	// the pdf link comes from upstream too, same rule as the main link
 	if (!web_url(m->pdf_url))
 		m->pdf_url = NULL;
 	m->engines = ENGINE_BIT(m->base.engine);
@@ -137,6 +161,13 @@ merge_main(struct results *r, struct main_result *m, int position)
 		o = r->main[i];
 		if (!same_main(o, m))
 			continue;
+
+		//
+		// Found the same page again, merge
+		//
+		// keep the longer text, remember that this engine had it too, and
+		// take the https link over an http one
+		//
 		if (strlen(m->content) > strlen(o->content))
 			o->content = m->content;
 		if (strlen(m->title) > strlen(o->title))
@@ -147,12 +178,16 @@ merge_main(struct results *r, struct main_result *m, int position)
 			o->parsed.scheme = m->parsed.scheme;
 			o->url = url_unparse(r->a, &o->parsed);
 		}
+
+		// and where this engine ranked it, which is what the score is made of
 		pos = amalloc(r->a, (o->npositions + 1) * sizeof(*pos));
 		memcpy(pos, o->positions, o->npositions * sizeof(*pos));
 		pos[o->npositions++] = position;
 		o->positions = pos;
 		return;
 	}
+
+	// new page
 	m->positions = amalloc(r->a, sizeof(*m->positions));
 	m->positions[0] = position;
 	m->npositions = 1;
@@ -263,12 +298,15 @@ results_extend(struct results *r, const struct engine *e, struct result *list)
 		switch (res->type) {
 		case RESULT_MAIN:
 			m = (struct main_result *)res;
+
+			// count only the ones we keep, that is the position
 			if (normalize_main(r->a, m) < 0)
 				continue;
 			merge_main(r, m, ++count);
 			break;
 		case RESULT_INFOBOX: merge_infobox(r, (struct infobox *)res); break;
 		case RESULT_ANSWER:
+			// the same answer from two engines shows once
 			an = (struct answer *)res;
 			for (i = 0; i < r->nanswers; i++)
 				if (!strcmp(r->answers[i]->answer, an->answer))
@@ -278,6 +316,8 @@ results_extend(struct results *r, const struct engine *e, struct result *list)
 			break;
 		}
 	}
+
+	// any engine that can page means there may be a next page
 	if (e->paging)
 		r->paging = 1;
 }
@@ -298,6 +338,7 @@ results_timing(struct results *r, const struct engine *e, double seconds, double
 	PUSH(r->timings, r->ntimings, r->captimings, t);
 }
 
+/* a result's score adds up how many engines had it, weighted by how high each put it */
 static double
 score(struct main_result *m)
 {
@@ -355,11 +396,24 @@ results_close(struct results *r)
 	size_t i, j, n = 0, ngroups = 0;
 	const char *key;
 
+	//
+	// Rank
+	//
+	// infoboxes with a picture and a description first, results by score
+	//
 	sort_by((void **)r->infoboxes, r->ninfoboxes, has_image);
 	for (i = 0; i < r->nmain; i++)
 		r->main[i]->score = score(r->main[i]);
 	sort_by((void **)r->main, r->nmain, higher_score);
 
+	//
+	// Group
+	//
+	// results of the same kind (same category, template and whether they
+	// have a picture) get pulled together so a few images or videos do not
+	// end up scattered through the page. up to 8 of a kind, and only if the
+	// group started within the last 20 results
+	//
 	out = amalloc(r->a, (r->nmain + 1) * sizeof(*out));
 	groups = amalloc(r->a, (r->nmain + 1) * sizeof(*groups));
 	for (i = 0; i < r->nmain; i++) {

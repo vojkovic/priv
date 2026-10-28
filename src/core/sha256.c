@@ -10,6 +10,10 @@
 #include <time.h>
 #include <wctype.h>
 
+//
+// sha256, so nothing else needs a crypto library
+//
+
 static const uint32_t K[64] = {
     0x428a2f98,
     0x71374491,

@@ -4,8 +4,18 @@
 #include "engines/engine.h"
 
 #define API_URL "https://api.qwant.com/v3/search/web"
-#define SEASON_MS 12000
+#define SEASON_MS 12000 // datadome only trusts a cookie once it is about 12s old
 #define RETRY_SECS 15
+
+//
+// Qwant sits behind datadome
+//
+// the first request always gets a captcha, but that response also hands out
+// the cookie. send it back after 12 seconds and datadome lets us through.
+// so: ask once at startup, keep the cookie, and only use it when it is old
+// enough. the request shape matters too (see search()), anything off gets a
+// 403 with error_code 50 and no cookie, which is a dead end.
+//
 
 static char *datadome;
 static double datadome_since;
@@ -20,6 +30,8 @@ remember(struct fetch *f)
 
 	if (!(v = find_between(buf_str(&f->response), "datadome=", ";", &n)) || !n)
 		return;
+
+	// first cookie we have seen, start the clock
 	if (!datadome)
 		datadome_since = now_ms();
 	free(datadome);
@@ -45,6 +57,8 @@ warm(void)
 	if (warming)
 		return;
 	warming = 1;
+
+	// a throwaway search, we only want the cookie from the captcha it gets
 	f = fetch_new(API_URL
 	    "?q=test&count=10&locale=en_US&offset=0&device=desktop&tgp=2&safesearch=1&displayed=true&llm=false");
 	fetch_header(f, "Accept: application/json, text/plain, */*");
@@ -59,15 +73,29 @@ response(struct job *j, struct fetch *f)
 	yyjson_doc *doc = NULL;
 	size_t i, n, k, m;
 
+	//
+	// Keep the cookie
+	//
 	if (!job_ok(j, f))
 		return;
 	remember(f);
+
+	//
+	// Detect captcha
+	//
+	// 403, a datadome cookie and no json: the cookie was missing or too new
+	// (json errors are different, that is error_code 50 and friends)
+	//
 	if (f->status == 403 && strstr(buf_str(&f->response), "datadome=") && !strstr(fetch_body(f), "\"status\"")) {
 		job_fail(j, "CAPTCHA", RETRY_SECS);
 		return;
 	}
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len)) ||
 	    strcmp(json_str(yyjson_doc_get_root(doc), "status"), "success") ||
 	    !yyjson_is_arr(rows = yyjson_ptr_get(yyjson_doc_get_root(doc), "/data/result/items/mainline"))) {
@@ -75,6 +103,7 @@ response(struct job *j, struct fetch *f)
 		return;
 	}
 	yyjson_arr_foreach (rows, i, n, row) {
+		// mainline mixes web results with news, videos and so on
 		if (strcmp(json_str(row, "type"), "web"))
 			continue;
 		items = yyjson_obj_get(row, "items");
@@ -93,14 +122,18 @@ search(struct job *j)
 	struct fetch *f;
 
 	if (!datadome) {
+		// cold start or the first ask failed, try again
 		warm();
 		job_fail(j, "warming up", RETRY_SECS);
 		return;
 	}
 	if (now_ms() - datadome_since < SEASON_MS) {
+		// too young, a fresh cookie still gets the captcha
 		job_fail(j, "warming up", RETRY_SECS);
 		return;
 	}
+
+	// keep this exact order, device has to come before tgp or it is a 403
 	form_add(&q, "q", j->query);
 	form_add(&q, "count", "10");
 	form_add(&q, "locale", strchr(locale, '_') ? locale : "en_US");
@@ -112,6 +145,8 @@ search(struct job *j)
 	form_add(&q, "llm", "false");
 	f = job_request(j, aprintf(j->a, API_URL "?%s", buf_str(&q)));
 	buf_free(&q);
+
+	// the browser's accept, plain application/json alone gets a captcha
 	fetch_header(f, "Accept: application/json, text/plain, */*");
 	fetch_cookie(f, "datadome", datadome);
 	job_send(j, f, response);

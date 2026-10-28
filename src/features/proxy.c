@@ -16,6 +16,19 @@
 	"fill=\"none\" stroke=\"#5b6078\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">" \
 	"<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><circle cx=\"8.5\" cy=\"8.5\" r=\"1.5\"/>" \
 	"<path d=\"M21 15l-5-5L5 21\"/></g></svg>"
+//
+// The image proxy and the signed links
+//
+// pictures in results are never loaded by the browser directly, that would
+// tell every site who is searching. the page links /image?url=...&h=... and
+// we fetch it. only urls we signed ourselves (h) are fetched, otherwise this
+// would be an open proxy. images are kept for two minutes so the prefetched
+// ones can go inline into the page.
+//
+// the same key signs favicon domains and paging tokens. each kind has its own
+// prefix so a signature for one cannot be used for another.
+//
+
 static unsigned char secret[32];
 
 /* each kind of signed value has its own prefix, so a signature made for an image url cannot vouch for a paging token */
@@ -75,6 +88,7 @@ proxy_init(void)
 	char p[4096];
 	int fd;
 
+	// the key lives in the cache folder, so links keep working across restarts
 	snprintf(p, sizeof(p), "%s/secret", cache_base());
 	if ((fd = open(p, O_RDONLY)) >= 0) {
 		if (read(fd, secret, sizeof(secret)) == (ssize_t)sizeof(secret)) {
@@ -254,6 +268,8 @@ fetched(struct fetch *f, void *arg)
 	struct waiter *w, *next;
 
 	prefetching--;
+
+	// anything that is not an image is not worth keeping, remember the failure briefly
 	if (f->code != CURLE_OK || f->status != 200 ||
 	    (!starts_with(ct, "image/") && !starts_with(ct, "binary/octet-stream"))) {
 		img->state = FAILED;
@@ -357,11 +373,14 @@ proxy_image(struct conn *c, struct request *r)
 	struct image *img;
 	struct waiter *w;
 
+	// not signed by us (or no url at all)
 	if (!url || !*url || !proxy_hmac_ok('i', url, query_param(&a, r->query, "h"))) {
 		arena_free(&a);
 		empty(c, 400);
 		return;
 	}
+
+	// a prefetch may have it already, otherwise fetch it now
 	if (!(img = lookup(url)))
 		img = fetch_image(url);
 	arena_free(&a);

@@ -6,12 +6,22 @@
 #define API "https://api.tusksearch.com"
 #define SITE "https://tusksearch.com/"
 
+//
+// Tusksearch wants a session id header on every search
+//
+// the id is single use. embed.js hands out the first one, and every 200
+// answer carries the next one in a header, so we only fetch embed.js on a
+// cold start or after something failed. it is also picky about chrome's
+// navigation defaults, leave any of the four below in and it is a 401.
+//
+
 /* "x-sid-<id>: <value>", good for one request; every answer carries the next one */
 static char *sid;
 
 static void
 prepare(struct fetch *f)
 {
+	// these are for page loads, not for api calls
 	fetch_header(f, "Referer: " SITE);
 	fetch_header(f, "Sec-Fetch-Site: same-site");
 	fetch_header(f, "Upgrade-Insecure-Requests:");
@@ -37,9 +47,16 @@ response(struct job *j, struct fetch *f)
 	struct main_result *m;
 	size_t i, n;
 
+	// grab the next id before anything else, even a failed answer may carry one
 	keep_sid(f);
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
+	// this is the brave search api's json, passed through
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len)) ||
 	    !yyjson_is_arr(list = yyjson_ptr_get(yyjson_doc_get_root(doc), "/results/web/results"))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
@@ -64,15 +81,17 @@ request(struct job *j, char *header)
 	form_add(&q, "l", "center");
 	f = job_request(j, aprintf(j->a, API "/Search/Web?%s", buf_str(&q)));
 	buf_free(&q);
+
+	// the session id, then the rest of what the site sends
 	fetch_header(f, "%s", header);
 	free(header);
-	fetch_header(f, "x-lon: 12.3456");
+	fetch_header(f, "x-lon: 12.3456"); // any numbers will do, but the headers must exist
 	fetch_header(f, "x-lat: 34.5678");
 	fetch_header(f, "Origin: https://tusksearch.com");
 	fetch_header(f, "Accept: application/json, text/plain, */*");
 	fetch_header(f, "Sec-Fetch-Mode: cors");
 	fetch_header(f, "Sec-Fetch-Dest: empty");
-	fetch_header(f, "Priority: u=1, i");
+	fetch_header(f, "Priority: u=1, i"); // chrome's i alone ("u=0, i") is rejected
 	prepare(f);
 	job_send(j, f, response);
 }
@@ -101,6 +120,13 @@ embed_response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Read the session id out of embed.js
+	//
+	// "var x=" and then six arrays of char codes, we want the fourth (the
+	// header name) and the fifth (its value)
+	//
 	if (strncmp(body, "var x=", 6) || !(doc = job_json(j, body + 6, f->body.len - 6)) ||
 	    !yyjson_is_arr(root = yyjson_doc_get_root(doc)) || yyjson_arr_size(root) < 5 ||
 	    !yyjson_is_arr(yyjson_arr_get(root, 3)) || !yyjson_is_arr(yyjson_arr_get(root, 4))) {
@@ -109,6 +135,8 @@ embed_response(struct job *j, struct fetch *f)
 	}
 	name = codes(yyjson_arr_get(root, 3));
 	value = codes(yyjson_arr_get(root, 4));
+
+	// this ends up in our own request, so be picky about what it may contain
 	if (strncmp(name, "x-sid-", 6) || strpbrk(name, "\r\n :") || strpbrk(value, "\r\n")) {
 		free(name);
 		free(value);
@@ -129,10 +157,13 @@ search(struct job *j)
 	char *header = sid;
 
 	if (header) {
+		// we have an id, use it up. the next search waits for the answer's
 		sid = NULL;
 		request(j, header);
 		return;
 	}
+
+	// no id (cold start, or two searches at once), get one
 	f = job_request(j, API "/revcontent/embed.js");
 	fetch_header(f, "Accept: */*");
 	fetch_header(f, "Sec-Fetch-Mode: no-cors");

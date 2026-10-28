@@ -2,6 +2,13 @@
 
 #define BASE_URL "https://search.answers.com"
 
+//
+// S1search (the answers.com search)
+//
+// the page prints its results as a javascript object, "response: {...} };",
+// so we cut that out of the html and read it as json. no html parsing.
+//
+
 static void
 response(struct job *j, struct fetch *f)
 {
@@ -12,12 +19,17 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(data = find_between(fetch_body(f), "response: ", " };", &n)) || !(doc = job_json(j, data, n))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
 	}
 	regions = yyjson_obj_get(yyjson_obj_get(yyjson_doc_get_root(doc), "search"), "regions");
 	yyjson_arr_foreach (regions, i, k, region) {
+		// mainline is the results column, the rest is ads and sidebars
 		if (strcmp(json_str(region, "name"), "mainline"))
 			continue;
 		groups = yyjson_obj_get(region, "groups");
@@ -26,6 +38,7 @@ response(struct job *j, struct fetch *f)
 				continue;
 			results = yyjson_obj_get(group, "results");
 			yyjson_arr_foreach (results, m, c, r) {
+				// some results only have the tracking link
 				url = json_str(r, "url");
 				add_main(j, *url ? url : json_str(r, "clickUrl"),
 				    html_to_text(j->a, json_str(r, "title")),

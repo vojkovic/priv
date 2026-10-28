@@ -6,6 +6,13 @@
 #include "core/ev.h"
 #include "core/util.h"
 
+//
+// The event loop: epoll for sockets and a heap of timers, in one thread
+//
+// everything else in the program is a callback that runs from here, so none
+// of it may block. timers sit in a min-heap ordered by when they fire.
+//
+
 struct watch {
 	ev_fd_cb cb;
 	void *arg;
@@ -133,6 +140,7 @@ run_timers(void)
 	double now = now_ms();
 
 	while (nheap && heap[0]->when <= now) {
+		// stop it before the callback, which may restart it or free whatever holds it
 		t = heap[0];
 		ev_timer_stop(t);
 		t->cb(t->arg);
@@ -159,6 +167,8 @@ ev_run(void)
 			timeout = d < 0 ? 0 : (int)d + 1;
 		}
 		n = epoll_wait(pfd, evs, LEN(evs), timeout);
+
+		// sockets first, then whatever timers came due
 		for (i = 0; i < n; i++) {
 			int fd = evs[i].data.fd;
 			if (evs[i].events & (EPOLLIN | EPOLLHUP | EPOLLERR | EPOLLRDHUP))

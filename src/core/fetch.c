@@ -11,6 +11,19 @@
 
 static CURLM *multi;
 static struct ev_timer timer;
+//
+// Outgoing requests
+//
+// libcurl (the curl-impersonate build, so tls looks like chrome) drives all
+// of them from our own event loop: it tells us which sockets to watch
+// (sock_cb) and when to wake up (timer_cb), and check_done hands finished
+// requests to whoever started them. nothing here blocks.
+//
+// by default a request is dressed as chrome. engines that need something
+// else call fetch_impersonate or set their own headers. every connection
+// goes through open_socket, which refuses private addresses.
+//
+
 static const char *cainfo, *capath;
 
 static void
@@ -23,6 +36,8 @@ check_done(void)
 	while ((msg = curl_multi_info_read(multi, &left))) {
 		if (msg->msg != CURLMSG_DONE)
 			continue;
+
+		// the callback frees the fetch, so nothing touches it after that
 		curl_easy_getinfo(msg->easy_handle, CURLINFO_PRIVATE, (char **)&f);
 		f->code = msg->data.result;
 		curl_easy_getinfo(f->h, CURLINFO_RESPONSE_CODE, &f->status);
@@ -98,6 +113,7 @@ fetch_init(void)
 	curl_multi_setopt(multi, CURLMOPT_MAXCONNECTS, 100L);
 	curl_multi_setopt(multi, CURLMOPT_PIPELINING, CURLPIPE_MULTIPLEX);
 
+	// the certificate bundle lives somewhere different on every distro, find one
 	cainfo = getenv("SSL_CERT_FILE");
 	capath = getenv("SSL_CERT_DIR");
 	for (i = 0; !cainfo && i < LEN(bundles); i++)
@@ -110,6 +126,7 @@ on_body(char *p, size_t size, size_t n, void *arg)
 {
 	struct fetch *f = arg;
 
+	// too big. returning less than we were given makes curl give up on the request
 	if (f->body.len + size * n > f->max_body)
 		return 0;
 	buf_add(&f->body, p, size * n);
@@ -182,7 +199,9 @@ private_addr(const struct curl_sockaddr *addr)
 	    (a[0] == 0xfe && (a[1] & 0xc0) == 0x80) || a[0] == 0xff;
 }
 
-/* upstream urls come from search results, so never let one (or its redirects) reach the local network */
+/* upstream urls come from search results, so never let one (or its redirects) reach the local network.
+ * this runs for every connection curl makes, after the name has been looked up, so a name that points at a
+ * private address is caught too */
 static curl_socket_t
 open_socket(void *arg, curlsocktype purpose, struct curl_sockaddr *addr)
 {

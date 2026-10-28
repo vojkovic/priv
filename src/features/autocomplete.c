@@ -13,6 +13,19 @@
 #include "search/locales.h"
 #include "search/search.h"
 
+//
+// Autocomplete
+//
+// two kinds of suggestions. words that start with !, : or < are completed
+// from our own lists (complete_local), no request leaves the server. anything
+// else is passed to the backend the user picked in preferences, a request
+// that is made fresh every time and never kept, since it holds what someone
+// is typing (see split_query for how bangs are kept out of that request).
+//
+// the answer is rendered as plain json for pages, or as the opensearch
+// format for browsers' address bars.
+//
+
 struct suggestion {
 	char *text, *icon, *description;
 	int trending;
@@ -855,14 +868,21 @@ autocomplete(struct conn *c, struct request *r)
 	p->chromium = *r->sec_ch_ua && !strstr(r->sec_ch_ua, "Google Chrome") &&
 	    !strstr(r->sec_ch_ua, "Microsoft Edge") && strstr(r->sec_ch_ua, "Chromium");
 	p->origin = aprintf(&p->a, "%s://%s", r->proto, *r->host ? r->host : "localhost");
+
+	// !bangs, :languages and <timeouts are answered here
 	if (complete_local(p))
 		return;
+
+	// the rest goes upstream, without the special words
 	query = split_query(p);
 	if (!*query && *p->prefix) {
 		respond(p, NULL, 0);
 		return;
 	}
 
+	//
+	// Pick the backend
+	//
 	filters_parse(&p->a, r, &f);
 	if (!(p->backend = backend_find(f.prefs.autocomplete))) {
 		respond(p, NULL, 0);
@@ -873,6 +893,10 @@ autocomplete(struct conn *c, struct request *r)
 		respond(p, NULL, 0);
 		return;
 	}
+
+	//
+	// Ask it
+	//
 	p->f = fetch_new(request_url(p, query, f.locale));
 	curl_easy_setopt(p->f->h, CURLOPT_FOLLOWLOCATION, 1L);
 	fetch_timeout(p->f, 2000L);

@@ -13,6 +13,14 @@
 #include <string.h>
 #include <strings.h>
 
+//
+// The /stats page
+//
+// reliability is the share of recent searches an engine answered, typical is
+// its median time for those. both come from features/stats.c and only count
+// what happened since the server started.
+//
+
 struct stats_row {
 	const struct engine *e;
 	int reliability, suspended;

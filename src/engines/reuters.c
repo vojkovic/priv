@@ -7,6 +7,13 @@
 #define BASE_URL "https://www.reuters.com"
 #define PAGE_SIZE 20
 
+//
+// Reuters' own search api
+//
+// the query goes in as json inside the url (see search()). it is sorted by
+// relevance, and the time filter is a start date.
+//
+
 static int
 range_days(const char *r)
 {
@@ -24,6 +31,10 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
@@ -32,6 +43,7 @@ response(struct job *j, struct fetch *f)
 	yyjson_arr_foreach (articles, i, n, r) {
 		m = add_main(j, aprintf(j->a, BASE_URL "%s", json_str(r, "canonical_url")), json_str(r, "web"),
 		    json_str(r, "description"));
+		// the thumbnail is a resizer url, ask for a small one
 		thumb = yyjson_obj_get(r, "thumbnail");
 		if (*(resizer = json_str(thumb, "resizer_url")))
 			m->thumbnail = aprintf(j->a, "%s&height=80", resizer);

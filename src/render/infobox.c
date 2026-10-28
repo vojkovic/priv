@@ -13,6 +13,14 @@
 #include <string.h>
 #include <strings.h>
 
+//
+// The infobox, answers and dictionary cards
+//
+// an infobox comes from an engine (wikipedia, google docs...) and is shown
+// in the sidebar. a dictionary entry is an infobox too, but only fills the
+// space when nothing else has one.
+//
+
 static const char *
 url_authority(struct arena *a, const char *url)
 {

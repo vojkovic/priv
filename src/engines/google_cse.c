@@ -7,6 +7,19 @@
 #define CX "partner-pub-8993703457585266:4862972284"
 #define PAGE_SIZE 20
 
+//
+// Google's programmable search element
+//
+// cx is a public search engine id that searches the whole web, the same one
+// a site embeds in its own page. its api wants a token and a few version
+// strings that the widget's javascript prints, so a timer fetches those from
+// cse.js (token_response) and keeps them in one string, one per line:
+//
+// 1. the cse_token
+// 2. the library version (cselibv)
+// 3. the experiment ids, comma separated (exp)
+//
+
 static int
 range_days(const char *r)
 {
@@ -20,7 +33,7 @@ web_item(struct job *j, yyjson_val *item)
 	struct main_result *m;
 
 	if (!*url)
-		return;
+		return; // an ad or a card, not a page
 	m = add_main(j, url, json_str(item, "titleNoFormatting"), json_str(item, "contentNoFormatting"));
 	m->thumbnail =
 	    astrdup(j->a, json_str(yyjson_obj_get(yyjson_obj_get(item, "richSnippet"), "cseThumbnail"), "src"));
@@ -36,6 +49,12 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get the json
+	//
+	// it comes wrapped in a call to the callback we named ("_"), cut that off
+	//
 	body = fetch_body(f);
 	start = strchr(body, '{');
 	end = strrchr(body, '}');
@@ -44,6 +63,10 @@ response(struct job *j, struct fetch *f)
 		return;
 	}
 	root = yyjson_doc_get_root(doc);
+
+	//
+	// Detect errors
+	//
 	if ((err = yyjson_obj_get(root, "error"))) {
 		const char *msg = yyjson_get_str(yyjson_obj_get(err, "message"));
 		j->detail = msg ? msg : "unknown error";
@@ -53,6 +76,10 @@ response(struct job *j, struct fetch *f)
 			job_fail(j, "server API error", SUSPEND_NONE);
 		return;
 	}
+
+	//
+	// Get results
+	//
 	results = yyjson_obj_get(root, "results");
 	yyjson_arr_foreach (results, i, n, item)
 		web_item(j, item);
@@ -70,6 +97,7 @@ request(struct job *j, const char *token)
 	char page[16], from[16], to[16];
 	time_t now = time(NULL), then;
 
+	// split the cached string back into its three parts
 	tok = token;
 	libv = strchr(tok, '\n') + 1;
 	exp = strchr(libv, '\n') + 1;
@@ -84,6 +112,7 @@ request(struct job *j, const char *token)
 	form_add(&q, "callback", "_");
 	form_add(&q, "rurl", "");
 	form_add(&q, "searchtype", "");
+	// the time filter is a sort by date, between two days
 	if (j->filters->time_range) {
 		then = now - range_days(j->filters->time_range) * 86400;
 		strftime(from, sizeof(from), "%Y%m%d", localtime(&then));
@@ -100,6 +129,7 @@ request(struct job *j, const char *token)
 	}
 	f = job_request(j, aprintf(j->a, "https://cse.google.com/cse/element/v1?%s", buf_str(&q)));
 	buf_free(&q);
+	// agree to the cookie banner up front or google redirects to it
 	fetch_cookie(f, "CONSENT", "YES+");
 	fetch_header(f, "Accept: */*");
 	fetch_header(f, "Referer: https://cse.google.com/");
@@ -121,6 +151,8 @@ token_response(struct fetch *f, void *arg)
 		token_fail(t, "network error", SUSPEND_DEFAULT);
 		goto out;
 	}
+
+	// the config is the last "({...});" call in the script, find its ends
 	body = fetch_body(f);
 	start = NULL;
 	for (end = body; (end = strstr(end, "({")); end++)

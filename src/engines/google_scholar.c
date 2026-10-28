@@ -4,6 +4,13 @@
 
 #include "engines/engine.h"
 
+//
+// Google Scholar's html
+//
+// it is the one engine that does better with a plain request than a
+// browser-like one (see search()). it needs no tricks otherwise.
+//
+
 static void
 response(struct job *j, struct fetch *f)
 {
@@ -16,6 +23,10 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Detect captcha
+	//
 	if (f->status == 302 || strstr(fetch_url(f), "/sorry/") || strstr(fetch_body(f), "gs_captcha_f")) {
 		job_fail(j, "CAPTCHA", suspend_captcha);
 		return;
@@ -24,8 +35,13 @@ response(struct job *j, struct fetch *f)
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
 	}
+
+	//
+	// Get results
+	//
 	items = xpath((xmlNodePtr)doc, "//div[@data-rp]");
 	for (i = 0; i < items.n; i++) {
+		// no title link means a citation or a book, skip it
 		title = xpath_text(j->a, items.v[i], ".//h3[1]//a");
 		if (!title || !*title)
 			continue;
@@ -37,6 +53,7 @@ response(struct job *j, struct fetch *f)
 		byline = xpath_text(j->a, items.v[i], ".//div[@class='gs_a']");
 		if (byline && *byline)
 			result_attr(j, m, "Author", byline);
+		// a [PDF] tag next to the title means there is a direct link
 		if (strstr(xpath_text(j->a, items.v[i], ".//span[@class='gs_ctg2']"), "PDF"))
 			m->pdf_url = xpath_first_text(j->a, items.v[i], ".//div[@class='gs_or_ggsm']/a/@href");
 	}

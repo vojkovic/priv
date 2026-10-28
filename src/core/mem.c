@@ -10,6 +10,14 @@
 #include <time.h>
 #include <wctype.h>
 
+//
+// Memory and strings: allocation that exits on failure, a growing buffer
+// (buf), and a bump allocator for a request's lifetime (arena)
+//
+// buf_html is the way text reaches a page, and it escapes by default: %s is
+// escaped, %r is raw and only for constant markup, %u is url-encoded.
+//
+
 _Noreturn void
 die(const char *fmt, ...)
 {

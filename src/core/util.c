@@ -10,6 +10,10 @@
 #include <time.h>
 #include <wctype.h>
 
+//
+// Time, random numbers and a browser string
+//
+
 double
 now_ms(void)
 {

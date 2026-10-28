@@ -7,6 +7,14 @@
 #define BASE_URL "https://www.bing.com"
 #define BLOCKED_SUSPEND 300
 
+//
+// Bing's html page
+//
+// bing is the fussiest engine we have. it blocks quietly (a normal looking
+// page with no results, or results for somebody else's query), so most of
+// this file is about telling a real answer from a fake one. see response().
+//
+
 static const char *stopwords[] = {"and", "are", "for", "from", "how", "the", "was", "what", "when", "where", "which",
     "who", "why", "with", "you", "your"};
 
@@ -153,19 +161,32 @@ response(struct job *j, struct fetch *f, int retry)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Detect captcha
+	//
 	url_parse(j->a, fetch_url(f), &u);
 	if (strstr(body, "/turing/captcha") || strstr(body, "id=\"b_captcha\"") || strstr(u.path, "/challenge")) {
 		job_fail(j, "CAPTCHA", suspend_captcha);
 		return;
 	}
+
+	// no results list at all, that is not how a normal page looks
 	if (!(doc = job_html(j, f)) || !xpath_exists((xmlNodePtr)doc, "//ol[@id='b_results']")) {
 		job_fail(j, "blocked", BLOCKED_SUSPEND);
 		return;
 	}
+
+	//
+	// Get results
+	//
 	items = xpath((xmlNodePtr)doc,
 	    "//ol[@id='b_results']/li[contains(concat(' ', normalize-space(@class), ' '), ' b_algo ')]");
 	if (!items.n) {
 		xnodes_free(&items);
+
+		// an empty list is either a real "no results", a block (the Ref A/B/C
+		// debug lines give it away) or a flaky answer that a second try fixes
 		none = xpath_first_text(j->a, (xmlNodePtr)doc, "//li[contains(@class, 'b_no')]");
 		if (none && strstr(none, "Ref A:") && strstr(none, "Ref B:") && strstr(none, "Ref C:"))
 			job_fail(j, "blocked", BLOCKED_SUSPEND);
@@ -181,12 +202,15 @@ response(struct job *j, struct fetch *f, int retry)
 		job_fail(j, "wrong page", SUSPEND_NONE);
 		return;
 	}
+
+	// collect the hits first, we only keep them if they pass the checks below
 	hits = amalloc(j->a, (size_t)items.n * sizeof(*hits));
 	for (i = 0; i < items.n; i++) {
 		href = xpath_first_text(j->a, items.v[i], "(.//h2/a/@href | .//a[h2]/@href)[1]");
 		title = xpath_first_text(j->a, items.v[i], "(.//h2/a | .//a/h2)[1]");
 		content = xpath_first_text(j->a, items.v[i],
 		    "(.//div[contains(@class, 'b_caption')]//p | .//p[contains(@class, 'b_lineclamp')] | .//p)[1]");
+		// links go through bing's redirector, take the real address out
 		url = unwrap(j->a, href ? href : "");
 		if (!starts_with(url, "http://") && !starts_with(url, "https://"))
 			continue;
@@ -204,6 +228,8 @@ response(struct job *j, struct fetch *f, int retry)
 		job_fail(j, "unrelated results", SUSPEND_NONE);
 		return;
 	}
+
+	// looks real, keep them
 	for (i = 0; i < (int)nhits; i++)
 		add_main(j, hits[i].url, hits[i].title, hits[i].content);
 	job_done(j);
@@ -229,6 +255,8 @@ request(struct job *j, job_cb cb)
 	struct fetch *f;
 
 	form_add(&q, "q", j->query);
+
+	// bing's paging is odd: page two has its own FORM, the rest count up from PERE
 	if (j->pageno == 2) {
 		form_add(&q, "first", "11");
 		form_add(&q, "FORM", "PORE");

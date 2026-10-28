@@ -4,6 +4,13 @@
 
 #define PAGE_SIZE 10
 
+//
+// Wikimedia Commons, audio files only
+//
+// the mediawiki search api with filetype:audio in front of the query. files
+// are pages in the "File:" namespace (gsrnamespace=6).
+//
+
 static void
 response(struct job *j, struct fetch *f)
 {
@@ -15,14 +22,21 @@ response(struct job *j, struct fetch *f)
 
 	if (!job_http_ok(j, f))
 		return;
+
+	//
+	// Get results
+	//
 	if (!(doc = job_json(j, f->body.p, f->body.len))) {
 		job_fail(j, "parsing error", SUSPEND_NONE);
 		return;
 	}
 	pages = yyjson_ptr_get(yyjson_doc_get_root(doc), "/query/pages");
 	yyjson_obj_foreach (pages, i, n, key, item) {
+		// no file info means it is not really a file
 		if (!(info = yyjson_arr_get_first(yyjson_obj_get(item, "imageinfo"))))
 			continue;
+
+		// "File:Name.ogg" shows better as "Name"
 		title = astrdup(j->a, json_str(item, "title"));
 		if (starts_with(title, "File:"))
 			title += 5;

@@ -11,6 +11,21 @@
 #include "features/favicon.h"
 #include "features/proxy.h"
 
+//
+// Favicons, fetched for the user and kept on disk
+//
+// a browser never talks to the icon service. results ask for an icon
+// (favicon_prefetch), we fetch it from the chosen resolver, keep it as a
+// file and send it from there. a page can inline small ones right away
+// (favicon_inline), the rest are served from /favicon, but only for domains
+// we signed ourselves (favicon_serve).
+//
+// the cache is keyed by domain and resolver, never by the query, and a file
+// holds a header line (MAGIC), the domain, the content type and the bytes.
+// a domain the resolver has no icon for is kept as a file with no bytes, so
+// we do not ask again.
+//
+
 #define MAGIC "priv-favicon 1\n"
 #define MAX_AGE "604800"
 #define BLOB_MAX (20 << 10)
@@ -193,6 +208,9 @@ favicon_init(void)
 		if (mkdirs(dirs[i]) < 0)
 			die("favicon cache %s: %s", dirs[i], strerror(errno));
 	}
+	//
+	// Move the old icons
+	//
 	/* icons cached before there was a choice came from kagi */
 	if ((d = opendir(dir))) {
 		while ((de = readdir(d)))
@@ -203,6 +221,10 @@ favicon_init(void)
 			}
 		closedir(d);
 	}
+
+	//
+	// Read what is on disk, so we start warm
+	//
 	for (i = 0; i < LEN(favicon_resolvers); i++) {
 		if (!(d = opendir(dirs[i])))
 			die("favicon cache %s: %s", dirs[i], strerror(errno));
@@ -211,6 +233,8 @@ favicon_init(void)
 				load(i, de->d_name);
 		closedir(d);
 	}
+
+	// the cache may be over its size limit if the limit was lowered
 	evict();
 }
 
@@ -308,6 +332,7 @@ store(struct fav *f, const char *mime, const char *data, size_t len)
 	FILE *fp;
 	size_t n;
 
+	// write to a temporary name and rename, so a crash never leaves half a file
 	drop(f);
 	snprintf(tmp, sizeof(tmp), "%s.tmp", path(f->resolver, f->authority));
 	if (!(fp = fopen(tmp, "wb")))
@@ -354,10 +379,19 @@ fetched(struct fetch *ft, void *arg)
 	inflight--;
 	f->fetching = 0;
 	snprintf(mime, sizeof(mime), "%s", ok ? ct : "");
+
+	//
+	// Keep what came back
+	//
+	// a real icon is kept. an answer that says "no icon" is kept as an empty
+	// file. a network error is not kept, so it is tried again next time
+	//
 	if (ok && ft->body.len <= BLOB_MAX)
 		store(f, mime, ft->body.p, ft->body.len);
 	else if (!ok && ft->code == CURLE_OK)
 		store(f, "", NULL, 0);
+
+	// and answer everyone who was waiting for it
 	w = f->waiters;
 	f->waiters = NULL;
 	for (; w; w = next) {
@@ -417,12 +451,20 @@ favicon_serve(struct conn *c, struct request *r)
 		http_respond(c, 400, "Content-Type: text/plain\r\n", "", 0);
 		return;
 	}
+
+	//
+	// Serve from disk if it is fresh enough
+	//
 	f = find(resolver_index(query_param(&a, r->query, "resolver")), authority, 1);
 	arena_free(&a);
 	if (fresh(f) && respond_disk(c, f) == 0)
 		return;
 	if (f->cached)
 		drop(f);
+
+	//
+	// Otherwise fetch it, and queue up behind whoever already asked
+	//
 	w = xmalloc(sizeof(*w));
 	w->c = c;
 	w->f = f;

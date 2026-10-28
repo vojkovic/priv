@@ -105,6 +105,12 @@ search_finish(struct search *s)
 	size_t i;
 
 	ev_timer_stop(&s->deadline);
+
+	//
+	// Give up on the stragglers
+	//
+	// anything still running now timed out, cancel its request and say so
+	//
 	for (i = 0; i < s->njobs; i++) {
 		if (s->jobs[i].done)
 			continue;
@@ -117,8 +123,14 @@ search_finish(struct search *s)
 		stats_record(s->jobs[i].e, OUTCOME_TIMEOUT, (now_ms() - s->start) / 1e3, "timeout");
 	}
 	s->elapsed = (now_ms() - s->start) / 1e3;
+
+	//
+	// Merge, rank, render
+	//
 	results_close(&s->res);
 	render_results(&b, s);
+
+	// the page is done, whatever the browser does now is not our problem
 	http_on_close(s->c, NULL, NULL);
 	http_write(s->c, b.p, b.len);
 	http_end_trailers(s->c, server_timing(s));
@@ -126,6 +138,7 @@ search_finish(struct search *s)
 	search_free(s);
 }
 
+/* called whenever a job ends, the last one out turns the lights off */
 static void
 maybe_finish(struct search *s)
 {
@@ -341,11 +354,17 @@ search_start(struct conn *c, const char *raw, int pageno, const char *tokens, co
 	struct job *j;
 	size_t i;
 
+	//
+	// Copy what we need
+	//
+	// the request's arena is freed as soon as we return, but the search
+	// lives until the engines are done, so everything gets its own copy
+	//
 	s->c = c;
 	s->res.a = &s->a;
 	s->raw = astrdup(&s->a, raw);
 	s->filters = *f;
-	s->query = query_parse(&s->a, raw, &s->filters);
+	s->query = query_parse(&s->a, raw, &s->filters); // also takes the !bangs and :language out
 	s->pageno = pageno;
 	s->tokens = tokens ? astrdup(&s->a, tokens) : NULL;
 	s->filters.language = astrdup(&s->a, s->filters.language);
@@ -359,32 +378,58 @@ search_start(struct conn *c, const char *raw, int pageno, const char *tokens, co
 	s->start = now_ms();
 	s->jobs = xcalloc(nengines, sizeof(*s->jobs));
 
+	//
+	// Send the head now
+	//
+	// the engines take a second or more, no reason to make the browser wait
+	// for the page's css and scripts as well. the rest follows when they answer
+	//
 	render_head(&b, s);
 	http_begin(c, 200, STREAM_HEADERS);
 	http_write(c, b.p, b.len);
 	buf_free(&b);
 
+	// whoever is slowest loses, the deadline finishes the page without them
 	ev_timer_start(&s->deadline, filters_timeout(&s->filters) * 1e3, on_deadline, s);
+
+	// if the browser goes away we stop everything and free the search
 	http_on_close(c, on_client_close, s);
+
+	//
+	// Start the engines
+	//
+	// starting stops an engine that answers instantly from finishing the
+	// page before the others have even been started
+	//
 	s->starting = 1;
 	for (i = 0; i < nengines; i++) {
 		e = engines[i];
+
+		// not every engine has page 2
 		if (pageno > 1 && !e->paging)
 			continue;
 		if (e->max_page && pageno > e->max_page)
 			continue;
+
+		// only bangs and filters, nothing to search for
 		if (!*s->query)
 			break;
+
+		// a bang picks the engines by hand, otherwise it is the category and
+		// whatever the user switched off in preferences
 		if (s->filters.engines ? !(s->filters.engines & ENGINE_BIT(e)) :
 		                         !engine_in(e, s->filters.category) ||
 		            !prefs_engine_on(&s->filters.prefs, s->filters.category, e))
 			continue;
 		if (s->filters.time_range && !e->time_range)
 			continue;
+
+		// it failed recently, leave it alone until the ban is over
 		if (e->suspend_end >= now_ms()) {
 			results_unresponsive(&s->res, e, e->suspend_reason, 1);
 			continue;
 		}
+		// all good, give it a job
 		j = &s->jobs[s->njobs++];
 		j->s = s;
 		j->e = e;
@@ -396,8 +441,10 @@ search_start(struct conn *c, const char *raw, int pageno, const char *tokens, co
 		j->tail = &j->head;
 		j->start = now_ms();
 		s->pending++;
-		e->search(j);
+		e->search(j); // may answer right away, even finish the whole search
 	}
 	s->starting = 0;
+
+	// every engine answered (or there were none) while we were still starting
 	maybe_finish(s);
 }
