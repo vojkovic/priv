@@ -2,7 +2,7 @@
 #include <string.h>
 #include <time.h>
 
-#include "../engine.h"
+#include "engines/engine.h"
 
 #define BASE_URL "https://www.reuters.com"
 #define PAGE_SIZE 20

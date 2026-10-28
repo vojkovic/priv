@@ -2,7 +2,7 @@
 #include <string.h>
 #include <strings.h>
 
-#include "../engine.h"
+#include "engines/engine.h"
 
 #define MAX_WORD 64
 #define MAX_CLASSES 4

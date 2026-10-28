@@ -2,8 +2,8 @@
 #include <string.h>
 #include <time.h>
 
-#include "../engine.h"
-#include "../token.h"
+#include "core/token.h"
+#include "engines/engine.h"
 
 #define PAGE_SIZE 20
 

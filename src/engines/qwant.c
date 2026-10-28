@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../engine.h"
+#include "engines/engine.h"
 
 #define API_URL "https://api.qwant.com/v3/search/web"
 #define SEASON_MS 12000

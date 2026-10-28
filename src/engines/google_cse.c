@@ -1,8 +1,8 @@
 #include <string.h>
 #include <time.h>
 
-#include "../engine.h"
-#include "../token.h"
+#include "core/token.h"
+#include "engines/engine.h"
 
 #define CX "partner-pub-8993703457585266:4862972284"
 #define PAGE_SIZE 20

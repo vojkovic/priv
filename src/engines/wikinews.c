@@ -1,6 +1,6 @@
 #include <string.h>
 
-#include "../engine.h"
+#include "engines/engine.h"
 
 #define BASE_URL "https://en.wikinews.org"
 #define PAGE_SIZE 10

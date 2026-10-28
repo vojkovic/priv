@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../engine.h"
+#include "engines/engine.h"
 
 #define MAIN_WIKI "wiki.archlinux.org"
 

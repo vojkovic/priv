@@ -1,6 +1,6 @@
 #include <string.h>
 
-#include "../engine.h"
+#include "engines/engine.h"
 
 static int
 ok(struct job *j, struct fetch *f)

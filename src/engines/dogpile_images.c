@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../engine.h"
-#include "../token.h"
+#include "core/token.h"
+#include "engines/engine.h"
 
 #define BASE_URL "https://www.dogpile.com"
 

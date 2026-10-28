@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../engine.h"
+#include "engines/engine.h"
 
 #define PAGE_SIZE 10
 #define MAX_WORDS 400

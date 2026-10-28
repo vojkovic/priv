@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../engine.h"
+#include "engines/engine.h"
 
 /* the "More at <source>" link that ends the abstract */
 #define ABSTRACT_SOURCE "//div[@id=\"zero_click_abstract\"]/a[normalize-space()][last()]"

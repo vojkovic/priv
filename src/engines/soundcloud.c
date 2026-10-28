@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../engine.h"
-#include "../token.h"
+#include "core/token.h"
+#include "engines/engine.h"
 
 #define PAGE_SIZE 10
 #define MAX_SCRIPTS 32

@@ -1,7 +1,7 @@
 #include <string.h>
 #include <strings.h>
 
-#include "../engine.h"
+#include "engines/engine.h"
 
 static const char *
 unwrap_url(struct arena *a, const char *raw)

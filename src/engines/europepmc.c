@@ -1,6 +1,6 @@
 #include <string.h>
 
-#include "../engine.h"
+#include "engines/engine.h"
 
 static const char *
 authors(struct job *j, const char *list)

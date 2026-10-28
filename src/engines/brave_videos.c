@@ -1,7 +1,7 @@
 #include <string.h>
 
-#include "../engine.h"
-#include "../js.h"
+#include "core/js.h"
+#include "engines/engine.h"
 
 static yyjson_mut_val *
 get(yyjson_mut_val *v, const char *key)

@@ -1,7 +1,7 @@
 #include <ctype.h>
 #include <string.h>
 
-#include "../engine.h"
+#include "engines/engine.h"
 
 #define BASE_URL "https://api.swisscows.com"
 #define SEARCH_PATH "/v5/web/search"
