@@ -313,6 +313,13 @@ format_count(struct arena *a, long long n)
 	return aprintf(a, "%lld", n);
 }
 
+/* how many days back a time range filter reaches, for the engines that want a date and not a word */
+int
+time_range_days(const char *range)
+{
+	return !strcmp(range, "day") ? 1 : !strcmp(range, "week") ? 7 : !strcmp(range, "month") ? 30 : 365;
+}
+
 const char *
 time_range_code(const struct filters *f, const char *day, const char *week, const char *month, const char *year)
 {

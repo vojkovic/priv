@@ -2,25 +2,19 @@
 #include <string.h>
 #include <time.h>
 
-#include "core/token.h"
 #include "engines/engine.h"
+#include "engines/tokens.h"
 
 #define PAGE_SIZE 20
 
 //
 // ABC search is algolia
 //
-// the api key is public and sits in the search page, so we read it from
-// there and cache it for a day (the token code refreshes it on a timer). abc
-// rotates it now and then, when that happens the engine errors until the next
-// refresh picks up the new one.
+// the api key is public and sits in the search page, so tokens.c reads it
+// from there and caches it for a day, shared with the other abc engine. abc
+// rotates it now and then, when that happens the engines error until the
+// next refresh picks up the new one.
 //
-
-static int
-range_days(const char *r)
-{
-	return !strcmp(r, "day") ? 1 : !strcmp(r, "week") ? 7 : !strcmp(r, "month") ? 30 : 365;
-}
 
 static void
 response(struct job *j, struct fetch *f)
@@ -64,7 +58,7 @@ request(struct job *j, const char *key)
 	// no radio, listen or iview, just the news site
 	if (j->filters->time_range)
 		filters = aprintf(j->a, "%s AND unixDates.liveDate>=%lld", filters,
-		    (long long)time(NULL) - range_days(j->filters->time_range) * 86400LL);
+		    (long long)time(NULL) - time_range_days(j->filters->time_range) * 86400LL);
 	form_add(&q, "query", j->query);
 	form_add(&q, "page", aprintf(j->a, "%d", j->pageno - 1));
 	form_add(&q, "hitsPerPage", aprintf(j->a, "%d", PAGE_SIZE));
@@ -81,54 +75,15 @@ request(struct job *j, const char *key)
 }
 
 static void
-token_response(struct fetch *f, void *arg)
-{
-	struct token *t = arg;
-	const char *key;
-	size_t n;
-
-	// the key is in the page's json
-	if (f->code != CURLE_OK)
-		token_fail(t, "network error", SUSPEND_DEFAULT);
-	else if (f->status >= 400 || !(key = find_between(fetch_body(f), "\"apiKey\":\"", "\"", &n)) || !n)
-		token_fail(t, "server API error", SUSPEND_NONE);
-	else {
-		char *v = xmalloc(n + 1);
-		memcpy(v, key, n);
-		v[n] = 0;
-		token_set(t, v);
-		free(v);
-	}
-	fetch_free(f);
-}
-
-static void
-token_fetch(struct token *t)
-{
-	struct fetch *f = fetch_new("https://www.abc.net.au/news/search");
-
-	curl_easy_setopt(f->h, CURLOPT_FOLLOWLOCATION, 1L);
-	fetch_timeout(f, 10000);
-	fetch_start(f, token_response, t);
-}
-
-static struct token token = {
-    .name = "abc news",
-    .ttl = 86400,
-    .refresh = 80000,
-    .fetch = token_fetch,
-};
-
-static void
 init(void)
 {
-	token_warm(&token);
+	token_warm(&abc_token);
 }
 
 static void
 search(struct job *j)
 {
-	token_get(j, &token, request);
+	token_get(j, &abc_token, request);
 }
 
 struct engine engine_abc_news = {

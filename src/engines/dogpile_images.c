@@ -1,16 +1,16 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "core/token.h"
 #include "engines/engine.h"
+#include "engines/tokens.h"
 
 #define BASE_URL "https://www.dogpile.com"
 
 //
 // Dogpile images, the same api as dogpile.c
 //
-// same token from the front page (see dogpile.c), only the endpoint and the
-// shape of the answer are different.
+// it shares dogpile's token (see tokens.c), only the endpoint and the shape
+// of the answer are different.
 //
 
 static void
@@ -72,54 +72,15 @@ request(struct job *j, const char *token)
 }
 
 static void
-token_response(struct fetch *f, void *arg)
-{
-	struct token *t = arg;
-	const char *tok;
-	size_t n;
-
-	// the token is the string in window.__DP_TOKEN__="..." on the front page
-	if (f->code != CURLE_OK)
-		token_fail(t, "network error", SUSPEND_DEFAULT);
-	else if (f->status >= 400 || !(tok = find_between(fetch_body(f), "window.__DP_TOKEN__=\"", "\"", &n)) || !n)
-		token_fail(t, "server API error", SUSPEND_NONE);
-	else {
-		char *v = xmalloc(n + 1);
-		memcpy(v, tok, n);
-		v[n] = 0;
-		token_set(t, v);
-		free(v);
-	}
-	fetch_free(f);
-}
-
-static void
-token_fetch(struct token *t)
-{
-	struct fetch *f = fetch_new(BASE_URL "/");
-
-	curl_easy_setopt(f->h, CURLOPT_FOLLOWLOCATION, 1L);
-	fetch_timeout(f, 10000);
-	fetch_start(f, token_response, t);
-}
-
-static struct token token = {
-    .name = "dogpile images",
-    .ttl = 240,
-    .refresh = 180,
-    .fetch = token_fetch,
-};
-
-static void
 init(void)
 {
-	token_warm(&token);
+	token_warm(&dogpile_token);
 }
 
 static void
 search(struct job *j)
 {
-	token_get(j, &token, request);
+	token_get(j, &dogpile_token, request);
 }
 
 struct engine engine_dogpile_images = {

@@ -14,12 +14,6 @@
 // relevance, and the time filter is a start date.
 //
 
-static int
-range_days(const char *r)
-{
-	return !strcmp(r, "day") ? 1 : !strcmp(r, "week") ? 7 : !strcmp(r, "month") ? 30 : 365;
-}
-
 static void
 response(struct job *j, struct fetch *f)
 {
@@ -70,7 +64,7 @@ search(struct job *j)
 	yyjson_mut_obj_add_int(d, root, "size", PAGE_SIZE);
 	yyjson_mut_obj_add_str(d, root, "website", "reuters");
 	if (j->filters->time_range) {
-		then = time(NULL) - range_days(j->filters->time_range) * 86400;
+		then = time(NULL) - time_range_days(j->filters->time_range) * 86400;
 		strftime(start, sizeof(start), "%Y-%m-%dT%H:%M:%S", localtime(&then));
 		yyjson_mut_obj_add_str(d, root, "start_date", start);
 	}

@@ -92,6 +92,7 @@ struct definition *add_definition(struct job *j, const char *word, const char *u
 struct word_class *definition_class(struct job *j, struct definition *d, const char *name);
 void definition_sense(struct job *j, struct word_class *c, const char *text, const char *example);
 
+int time_range_days(const char *range);
 const char *time_range_code(const struct filters *f, const char *day, const char *week, const char *month,
     const char *year);
 

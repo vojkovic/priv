@@ -1,25 +1,18 @@
 #include <string.h>
 #include <time.h>
 
-#include "core/token.h"
 #include "engines/engine.h"
+#include "engines/tokens.h"
 
-#define CX "partner-pub-8993703457585266:4862972284"
 #define PAGE_SIZE 20
 
 //
 // Google images through the programmable search element
 //
-// the same api and the same token as google_cse.c (see there), with
-// searchtype=image. the cached string holds the cse_token, the library
-// version and the experiment ids, one per line.
+// the same api and the same token as google_cse.c, with searchtype=image.
+// the token is shared (see tokens.c), a string holding the cse_token, the
+// library version and the experiment ids, one per line.
 //
-
-static int
-range_days(const char *r)
-{
-	return !strcmp(r, "day") ? 1 : !strcmp(r, "week") ? 7 : !strcmp(r, "month") ? 30 : 365;
-}
 
 static void
 image_item(struct job *j, yyjson_val *item)
@@ -108,7 +101,7 @@ request(struct job *j, const char *token)
 	form_add(&q, "num", "20");
 	form_add(&q, "hl", l->google_hl);
 	form_add(&q, "cselibv", astrndup(j->a, libv, exp - libv - 1));
-	form_add(&q, "cx", CX);
+	form_add(&q, "cx", GOOGLE_CSE_CX);
 	form_add(&q, "q", j->query);
 	form_add(&q, "safe", safe[j->filters->safesearch]);
 	form_add(&q, "cse_tok", astrndup(j->a, tok, libv - tok - 1));
@@ -116,7 +109,7 @@ request(struct job *j, const char *token)
 	form_add(&q, "rurl", "");
 	form_add(&q, "searchtype", "image");
 	if (j->filters->time_range) {
-		then = now - range_days(j->filters->time_range) * 86400;
+		then = now - time_range_days(j->filters->time_range) * 86400;
 		strftime(from, sizeof(from), "%Y%m%d", localtime(&then));
 		strftime(to, sizeof(to), "%Y%m%d", localtime(&now));
 		form_add(&q, "sort", aprintf(j->a, "date:r:%s:%s", from, to));
@@ -140,71 +133,15 @@ request(struct job *j, const char *token)
 }
 
 static void
-token_response(struct fetch *f, void *arg)
-{
-	struct token *t = arg;
-	const char *body, *start, *end, *tok;
-	yyjson_doc *doc = NULL;
-	yyjson_val *root, *exp, *v;
-	struct buf b = {0};
-	size_t i, n;
-
-	if (f->code != CURLE_OK) {
-		token_fail(t, "network error", SUSPEND_DEFAULT);
-		goto out;
-	}
-
-	// the config is the last "({...});" call in the script, find its ends
-	body = fetch_body(f);
-	start = NULL;
-	for (end = body; (end = strstr(end, "({")); end++)
-		start = end;
-	end = NULL;
-	for (tok = body; (tok = strstr(tok, "});")); tok++)
-		end = tok;
-	if (f->status >= 400 || !start || !end || end <= start || !(doc = yyjson_read(start + 1, end - start, 0)) ||
-	    !*(tok = json_str(root = yyjson_doc_get_root(doc), "cse_token"))) {
-		token_fail(t, "server API error", SUSPEND_NONE);
-		goto out;
-	}
-	buf_printf(&b, "%s\n%s\n", tok, json_str(root, "cselibVersion"));
-	exp = yyjson_obj_get(root, "exp");
-	yyjson_arr_foreach (exp, i, n, v)
-		buf_printf(&b, "%s%s", i ? "," : "", yyjson_get_str(v) ? yyjson_get_str(v) : "");
-	token_set(t, buf_str(&b));
-	buf_free(&b);
-out:
-	yyjson_doc_free(doc);
-	fetch_free(f);
-}
-
-static void
-token_fetch(struct token *t)
-{
-	struct fetch *f = fetch_new("https://www.google.com/cse/cse.js?cx=" CX);
-
-	curl_easy_setopt(f->h, CURLOPT_FOLLOWLOCATION, 1L);
-	fetch_timeout(f, 10000);
-	fetch_start(f, token_response, t);
-}
-
-static struct token token = {
-    .name = "google cse images",
-    .ttl = 3600,
-    .refresh = 3000,
-    .fetch = token_fetch,
-};
-
-static void
 init(void)
 {
-	token_warm(&token);
+	token_warm(&google_cse_token);
 }
 
 static void
 search(struct job *j)
 {
-	token_get(j, &token, request);
+	token_get(j, &google_cse_token, request);
 }
 
 struct engine engine_google_cse_images = {
