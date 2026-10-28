@@ -2,13 +2,15 @@
 #include <strings.h>
 
 #include "engines/engine.h"
+#include "engines/google.h"
 
 //
 // Google's basic html page
 //
-// we say we are a feature phone (see search()) and get a plain html page back.
-// the class names in it are scrambled, when results stop showing up look at
-// those first.
+// google's ad preview flags (see google.h) make it answer with the plain
+// html page, whatever user agent we send. the class names in it are
+// scrambled, when results stop showing up look at those first. it is an
+// undocumented flag, google could take it away.
 //
 
 /* result links are /url?q=<real address>&..., get the real one out */
@@ -95,7 +97,6 @@ response(struct job *j, struct fetch *f)
 static void
 search(struct job *j)
 {
-	static const char *safe[] = {"off", "medium", "high"};
 	const struct locale *l = j->filters->locale;
 	struct buf q = {0};
 	struct fetch *f;
@@ -106,6 +107,8 @@ search(struct job *j)
 	// Build the request
 	//
 	form_add(&q, "q", j->query);
+
+	// sca_esv has to be there (any value) or it is a 403
 	form_add(&q, "sca_esv", "1");
 	form_add(&q, "hl", l->google_hl);
 	form_add(&q, "lr", l->google_lr);
@@ -120,16 +123,11 @@ search(struct job *j)
 	}
 	if ((t = time_range_code(j->filters, "d", "w", "m", "y")))
 		form_add(&q, "tbs", aprintf(j->a, "qdr:%s", t));
+	// the flags go on the very end, "preview" last
 	if (j->filters->safesearch)
-		form_add(&q, "safe", safe[j->filters->safesearch]);
-	f = job_request(j, aprintf(j->a, "https://www.google.com/search?%s", buf_str(&q)));
+		form_add(&q, "safe", "active");
+	f = job_request(j, aprintf(j->a, "https://www.google.com/search?%s%s", buf_str(&q), GOOGLE_ADTEST));
 	buf_free(&q);
-
-	// no chrome disguise here, we say we are a feature phone instead. and a
-	// fresh connection every time, so searches do not share one
-	fetch_impersonate(f, NULL, 0);
-	fetch_header(f, "User-Agent: Nokia6230i/2.0 (03.80) Profile/MIDP-2.0 Configuration/CLDC-1.1");
-	curl_easy_setopt(f->h, CURLOPT_FORBID_REUSE, 1L);
 	job_send(j, f, response);
 }
 
@@ -143,6 +141,5 @@ struct engine engine_google = {
     .paging = 1,
     .max_page = 50,
     .time_range = 1,
-    .no_accept_language = 1,
     .search = search,
 };

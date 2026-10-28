@@ -2,12 +2,14 @@
 #include <strings.h>
 
 #include "engines/engine.h"
+#include "engines/google.h"
 
 //
 // Google Videos, the same basic html as google.c
 //
-// we say we are a feature phone and ask for the video tab (tbm=vid). the
-// class names are scrambled, when results stop showing up look at those first.
+// the same ad preview flags as google.c (see google.h), on the video tab
+// (tbm=vid). the class names are scrambled, when results stop showing up
+// look at those first.
 //
 
 /* result links are /url?q=<real address>&..., get the real one out */
@@ -117,7 +119,6 @@ response(struct job *j, struct fetch *f)
 static void
 search(struct job *j)
 {
-	static const char *safe[] = {"off", "medium", "high"};
 	const struct locale *l = j->filters->locale;
 	struct buf q = {0};
 	struct fetch *f;
@@ -137,13 +138,9 @@ search(struct job *j)
 	if ((t = time_range_code(j->filters, "d", "w", "m", "y")))
 		form_add(&q, "tbs", aprintf(j->a, "qdr:%s", t));
 	if (j->filters->safesearch)
-		form_add(&q, "safe", safe[j->filters->safesearch]);
-	f = job_request(j, aprintf(j->a, "https://www.google.com/search?%s", buf_str(&q)));
+		form_add(&q, "safe", "active");
+	f = job_request(j, aprintf(j->a, "https://www.google.com/search?%s%s", buf_str(&q), GOOGLE_ADTEST));
 	buf_free(&q);
-	// no chrome disguise here, we say we are a feature phone instead
-	fetch_impersonate(f, NULL, 0);
-	fetch_header(f, "User-Agent: Nokia6230i/2.0 (03.80) Profile/MIDP-2.0 Configuration/CLDC-1.1");
-	curl_easy_setopt(f->h, CURLOPT_FORBID_REUSE, 1L);
 	job_send(j, f, response);
 }
 
@@ -157,6 +154,5 @@ struct engine engine_google_videos = {
     .paging = 1,
     .max_page = 50,
     .time_range = 1,
-    .no_accept_language = 1,
     .search = search,
 };

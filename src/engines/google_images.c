@@ -1,12 +1,14 @@
 #include <string.h>
 
 #include "engines/engine.h"
+#include "engines/google.h"
 
 //
 // Google images, the same basic html as google.c
 //
-// we say we are an old phone, see google.c. each picture is a tile with
-// everything we need in its data- attributes.
+// the same ad preview flags as google.c, with the opera string for images
+// (google.h). each picture is a tile with everything we need in its data-
+// attributes, the tile's own link is a redirect we ignore.
 //
 
 /* the request worked and we were not sent to the captcha */
@@ -92,13 +94,8 @@ search(struct job *j)
 		form_add(&q, "tbs", aprintf(j->a, "qdr:%s", t));
 	if (j->filters->safesearch)
 		form_add(&q, "safe", "active");
-	f = job_request(j, aprintf(j->a, "https://www.google.com/search?%s", buf_str(&q)));
+	f = job_request(j, aprintf(j->a, "https://www.google.com/search?%s%s", buf_str(&q), GOOGLE_ADTEST_IMAGES));
 	buf_free(&q);
-	// no chrome disguise here, we say we are an old phone (opera on symbian)
-	fetch_impersonate(f, NULL, 0);
-	fetch_header(f, "User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Symbian OS) Opera 8.65");
-	curl_easy_setopt(f->h, CURLOPT_FORBID_REUSE, 1L);
-	f->http_version = CURL_HTTP_VERSION_3;
 	job_send(j, f, response);
 }
 
@@ -112,6 +109,5 @@ struct engine engine_google_images = {
     .paging = 1,
     .max_page = 50,
     .time_range = 1,
-    .no_accept_language = 1,
     .search = search,
 };

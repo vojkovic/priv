@@ -2,12 +2,14 @@
 #include <strings.h>
 
 #include "engines/engine.h"
+#include "engines/google.h"
 
 //
 // Google News, the same basic html as google.c
 //
-// we say we are a feature phone and ask for the news tab (tbm=nws). the
-// class names are scrambled, when results stop showing up look at those first.
+// the same ad preview flags as google.c (see google.h), on the news tab
+// (tbm=nws). the class names are scrambled, when results stop showing up
+// look at those first.
 // the same story shows up more than once, so repeats are dropped.
 //
 
@@ -129,12 +131,8 @@ search(struct job *j)
 		snprintf(page, sizeof(page), "%d", (j->pageno - 1) * 10);
 		form_add(&q, "start", page);
 	}
-	f = job_request(j, aprintf(j->a, "https://www.google.com/search?%s", buf_str(&q)));
+	f = job_request(j, aprintf(j->a, "https://www.google.com/search?%s%s", buf_str(&q), GOOGLE_ADTEST));
 	buf_free(&q);
-	// no chrome disguise here, we say we are a feature phone instead
-	fetch_impersonate(f, NULL, 0);
-	fetch_header(f, "User-Agent: Nokia6230i/2.0 (03.80) Profile/MIDP-2.0 Configuration/CLDC-1.1");
-	curl_easy_setopt(f->h, CURLOPT_FORBID_REUSE, 1L);
 	job_send(j, f, response);
 }
 
@@ -146,6 +144,5 @@ struct engine engine_google_news = {
     .category = "news",
     .paging = 1,
     .max_page = 50,
-    .no_accept_language = 1,
     .search = search,
 };
