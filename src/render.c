@@ -464,7 +464,7 @@ self_query(const char *q)
 	int space = 0;
 	size_t i;
 
-	for (; *q && d < norm + sizeof(norm) - 1; q++) {
+	for (; *q && d < norm + sizeof(norm) - 2; q++) {
 		if (*q == '\'' || *q == '?' || *q == '.')
 			continue;
 		if (*q == ' ') {
