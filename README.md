@@ -29,8 +29,9 @@ This whole project has been made possible through the use of LLMs (AI assisted d
 
 ## Run
 
-    docker build -t priv .
-    docker run -d -p 127.0.0.1:8888:8888 -v priv-cache:/cache priv
+    docker run -d --name priv -p 127.0.0.1:8888:8888 -v priv-cache:/cache ghcr.io/vojkovic/priv:latest
+
+Then open http://127.0.0.1:8888 in your browser
 
 ## Configure
 
@@ -39,7 +40,7 @@ Make priv yours!
 You can edit the `config.toml` to change things such as the instance name, listen address, timeouts, bot detection and which engines are on.
 
     curl -o config.toml https://raw.githubusercontent.com/vojkovic/priv/master/config.toml
-    docker run -d -p 127.0.0.1:8888:8888 -v priv-cache:/cache -v ./config.toml:/etc/priv/config.toml:ro priv
+    docker run -d --name priv -p 127.0.0.1:8888:8888 -v priv-cache:/cache -v ./config.toml:/etc/priv/config.toml:ro ghcr.io/vojkovic/priv:latest
 
 ## Develop
 
