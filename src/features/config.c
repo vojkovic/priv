@@ -18,6 +18,7 @@ static const char *paths[] = {"config.toml", "/etc/priv/config.toml"};
 
 /* settings from config.toml */
 const char *instance_name = "priv";
+const char *contact_url = "";
 const char **motd;
 const char *listen_addr = "::1";
 int listen_port = 8888;
@@ -174,6 +175,11 @@ set(struct parser *ps, const char *section, const char *k, struct value *v)
 	if (!*section && !strcmp(k, "instance_name")) {
 		expect(ps, v, STRING);
 		instance_name = v->s;
+	} else if (!*section && !strcmp(k, "contact_url")) {
+		expect(ps, v, STRING);
+		if (*v->s && !web_url(v->s) && !starts_with(v->s, "mailto:"))
+			fail(ps, "contact_url has to start with https://, http:// or mailto:");
+		contact_url = v->s;
 	} else if (!*section && !strcmp(k, "motd")) {
 		if (v->type == STRING) {
 			motd = xcalloc(2, sizeof(*motd));

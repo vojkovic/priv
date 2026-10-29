@@ -39,6 +39,9 @@ msgstr "Zavřít"
 msgid "Comments"
 msgstr "Komentáře"
 
+msgid "Contact"
+msgstr "Kontakt"
+
 msgid "Default language"
 msgstr "Výchozí jazyk"
 

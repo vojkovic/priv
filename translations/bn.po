@@ -39,6 +39,9 @@ msgstr "বন্ধ করুন"
 msgid "Comments"
 msgstr "কমেন্ট"
 
+msgid "Contact"
+msgstr "যোগাযোগ"
+
 msgid "Default language"
 msgstr "পূর্বনির্ধারিত ভাষা"
 

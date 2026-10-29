@@ -40,6 +40,9 @@ msgstr "بستن"
 msgid "Comments"
 msgstr "نظر ها"
 
+msgid "Contact"
+msgstr "تماس"
+
 msgid "Default language"
 msgstr "زبان پیش‌گزیده"
 

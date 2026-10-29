@@ -39,6 +39,9 @@ msgstr "మూసివేయండి"
 msgid "Comments"
 msgstr "కామెంట్ లు"
 
+msgid "Contact"
+msgstr "సంప్రదించండి"
+
 msgid "Default language"
 msgstr "నిష్క్రియ భాష"
 

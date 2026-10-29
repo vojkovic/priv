@@ -39,6 +39,9 @@ msgstr "Sluiten"
 msgid "Comments"
 msgstr "Reacties"
 
+msgid "Contact"
+msgstr "Contact"
+
 msgid "Default language"
 msgstr "Standaardtaal"
 

@@ -39,6 +39,9 @@ msgstr "Dún"
 msgid "Comments"
 msgstr "Tráchtanna"
 
+msgid "Contact"
+msgstr "Teagmháil"
+
 msgid "Default language"
 msgstr "Teanga réamhshocraithe"
 

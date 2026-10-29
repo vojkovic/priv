@@ -2,6 +2,7 @@ instance_name = "priv"
 motd = ""
 listen = "::1"
 port = 8888
+contact_url = ""
 
 [timeout]
 # default seconds to wait for engines in each category

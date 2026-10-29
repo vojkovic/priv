@@ -39,6 +39,9 @@ msgstr "Tanca"
 msgid "Comments"
 msgstr "Comentaris"
 
+msgid "Contact"
+msgstr "Contacte"
+
 msgid "Default language"
 msgstr "Llengua predeterminada"
 

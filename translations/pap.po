@@ -39,6 +39,9 @@ msgstr "Sera"
 msgid "Comments"
 msgstr "Komentario"
 
+msgid "Contact"
+msgstr "Kontakto"
+
 msgid "Default language"
 msgstr "Idioma predeterminá"
 

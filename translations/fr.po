@@ -39,6 +39,9 @@ msgstr "Fermer"
 msgid "Comments"
 msgstr "Commentaires"
 
+msgid "Contact"
+msgstr "Contact"
+
 msgid "Default language"
 msgstr "Langue par défaut"
 

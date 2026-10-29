@@ -39,6 +39,9 @@ msgstr "Đóng"
 msgid "Comments"
 msgstr "Bình luận"
 
+msgid "Contact"
+msgstr "Liên hệ"
+
 msgid "Default language"
 msgstr "Ngôn ngữ mặc định"
 

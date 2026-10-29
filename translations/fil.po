@@ -39,6 +39,9 @@ msgstr "Isara"
 msgid "Comments"
 msgstr "Mga komento"
 
+msgid "Contact"
+msgstr "Makipag-ugnayan"
+
 msgid "Default language"
 msgstr "Default na wika"
 

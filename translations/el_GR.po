@@ -39,6 +39,9 @@ msgstr "Κλείσιμο"
 msgid "Comments"
 msgstr "Σχόλια"
 
+msgid "Contact"
+msgstr "Επικοινωνία"
+
 msgid "Default language"
 msgstr "Προεπιλεγμένη γλώσσα"
 

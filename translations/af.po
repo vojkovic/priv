@@ -39,6 +39,9 @@ msgstr "Sluit"
 msgid "Comments"
 msgstr "Kommentaar"
 
+msgid "Contact"
+msgstr "Kontak"
+
 msgid "Default language"
 msgstr "Verstek taal"
 

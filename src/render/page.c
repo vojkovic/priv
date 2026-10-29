@@ -128,10 +128,12 @@ footer(struct buf *b)
 	    "<nav>"
 	    "<a href=\"" SOURCE_URL "\">%s</a>"
 	    "<a href=\"" SOURCE_URL "/issues\">%s</a>"
-	    "<a href=\"/stats\">%s</a>"
-	    "</nav>"
-	    "</footer>\n",
+	    "<a href=\"/stats\">%s</a>",
 	    tr("Source code"), tr("Issue tracker"), tr("Engine stats"));
+
+	if (*contact_url)
+		buf_html(b, "<a href=\"%s\">%s</a>", contact_url, tr("Contact"));
+	buf_puts(b, "</nav></footer>\n");
 }
 
 void

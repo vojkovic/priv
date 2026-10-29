@@ -39,6 +39,9 @@ msgstr "Tutup"
 msgid "Comments"
 msgstr "Komen"
 
+msgid "Contact"
+msgstr "Hubungi"
+
 msgid "Default language"
 msgstr "Bahasa lalai"
 

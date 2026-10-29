@@ -39,6 +39,9 @@ msgstr "Clauder"
 msgid "Comments"
 msgstr "Commentos"
 
+msgid "Contact"
+msgstr "Contacto"
+
 msgid "Default language"
 msgstr "Lingua predefinite"
 

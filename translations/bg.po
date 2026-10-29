@@ -39,6 +39,9 @@ msgstr "Затвори"
 msgid "Comments"
 msgstr "Коментари"
 
+msgid "Contact"
+msgstr "Контакт"
+
 msgid "Default language"
 msgstr "Основен език"
 

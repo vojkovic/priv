@@ -6,6 +6,9 @@ msgstr ""
 msgid "About"
 msgstr ""
 
+msgid "Contact"
+msgstr ""
+
 msgid "How long to wait for engines"
 msgstr ""
 

@@ -39,6 +39,9 @@ msgstr "Itxi"
 msgid "Comments"
 msgstr "Iruzkinak"
 
+msgid "Contact"
+msgstr "Kontaktua"
+
 msgid "Default language"
 msgstr "Lehenetsitako hizkuntza"
 

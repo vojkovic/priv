@@ -39,6 +39,9 @@ msgstr "Zawrzij"
 msgid "Comments"
 msgstr "Kōmyntorze"
 
+msgid "Contact"
+msgstr "Kōntakt"
+
 msgid "Default language"
 msgstr "Wychodny jynzyk"
 

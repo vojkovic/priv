@@ -39,6 +39,9 @@ msgstr "ਬੰਦ ਕਰੋ"
 msgid "Comments"
 msgstr "ਟਿੱਪਣੀਆਂ"
 
+msgid "Contact"
+msgstr "ਸੰਪਰਕ"
+
 msgid "Default language"
 msgstr "ਮੂਲ ਭਾਸ਼ਾ"
 

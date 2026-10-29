@@ -39,6 +39,9 @@ msgstr "Sulge"
 msgid "Comments"
 msgstr "Kommentaare"
 
+msgid "Contact"
+msgstr "Kontakt"
+
 msgid "Default language"
 msgstr "Vaikimisi keel"
 

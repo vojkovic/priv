@@ -39,6 +39,9 @@ msgstr "Zapri"
 msgid "Comments"
 msgstr "Komentarji"
 
+msgid "Contact"
+msgstr "Stik"
+
 msgid "Default language"
 msgstr "Privzeti jezik"
 

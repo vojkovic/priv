@@ -39,6 +39,9 @@ msgstr "Aizvērt"
 msgid "Comments"
 msgstr "Komentāri"
 
+msgid "Contact"
+msgstr "Kontakti"
+
 msgid "Default language"
 msgstr "Noklusējuma valoda"
 

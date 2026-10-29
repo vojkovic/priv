@@ -39,6 +39,9 @@ msgstr "അടയ്ക്കുക"
 msgid "Comments"
 msgstr "അഭിപ്രായങ്ങൾ"
 
+msgid "Contact"
+msgstr "ബന്ധപ്പെടുക"
+
 msgid "Default language"
 msgstr "സ്ഥിര ഭാഷ"
 

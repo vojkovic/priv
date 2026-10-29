@@ -39,6 +39,9 @@ msgstr "Sulje"
 msgid "Comments"
 msgstr "Kommentit"
 
+msgid "Contact"
+msgstr "Yhteystiedot"
+
 msgid "Default language"
 msgstr "Oletuskieli"
 

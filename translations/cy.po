@@ -39,6 +39,9 @@ msgstr "Cau"
 msgid "Comments"
 msgstr "Sylwadau"
 
+msgid "Contact"
+msgstr "Cyswllt"
+
 msgid "Default language"
 msgstr "Iaith ragosodedig"
 

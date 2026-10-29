@@ -40,6 +40,9 @@ msgstr "إغلاق"
 msgid "Comments"
 msgstr "التعليقات"
 
+msgid "Contact"
+msgstr "اتصل بنا"
+
 msgid "Default language"
 msgstr "اللغة الإفتراضية"
 

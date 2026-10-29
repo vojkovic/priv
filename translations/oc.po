@@ -39,6 +39,9 @@ msgstr "Tampar"
 msgid "Comments"
 msgstr "Comentaris"
 
+msgid "Contact"
+msgstr "Contacte"
+
 msgid "Default language"
 msgstr "Lenga per defaut"
 

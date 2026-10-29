@@ -39,6 +39,9 @@ msgstr "닫기"
 msgid "Comments"
 msgstr "댓글"
 
+msgid "Contact"
+msgstr "문의"
+
 msgid "Default language"
 msgstr "기본 언어"
 

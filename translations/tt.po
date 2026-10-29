@@ -39,6 +39,9 @@ msgstr "Ябу"
 msgid "Comments"
 msgstr "Аңлатмалар"
 
+msgid "Contact"
+msgstr "Элемтә"
+
 msgid "Default language"
 msgstr "Беренчел тел"
 

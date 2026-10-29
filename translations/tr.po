@@ -39,6 +39,9 @@ msgstr "Kapat"
 msgid "Comments"
 msgstr "Yorumlar"
 
+msgid "Contact"
+msgstr "İletişim"
+
 msgid "Default language"
 msgstr "Varsayılan dil"
 

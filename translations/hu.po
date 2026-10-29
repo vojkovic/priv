@@ -39,6 +39,9 @@ msgstr "Bezárás"
 msgid "Comments"
 msgstr "Kommentek"
 
+msgid "Contact"
+msgstr "Kapcsolat"
+
 msgid "Default language"
 msgstr "Alapértelmezett nyelv"
 

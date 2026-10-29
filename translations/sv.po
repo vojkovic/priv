@@ -39,6 +39,9 @@ msgstr "Stäng"
 msgid "Comments"
 msgstr "Kommentarer"
 
+msgid "Contact"
+msgstr "Kontakt"
+
 msgid "Default language"
 msgstr "Standardspråk"
 

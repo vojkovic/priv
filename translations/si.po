@@ -39,6 +39,9 @@ msgstr "වසන්න"
 msgid "Comments"
 msgstr "අදහස්"
 
+msgid "Contact"
+msgstr "සම්බන්ධ වන්න"
+
 msgid "Default language"
 msgstr "මූලික භාෂාව"
 

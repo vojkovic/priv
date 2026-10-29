@@ -39,6 +39,9 @@ msgstr "關閉"
 msgid "Comments"
 msgstr "留言"
 
+msgid "Contact"
+msgstr "聯絡"
+
 msgid "Default language"
 msgstr "預設語言"
 

@@ -39,6 +39,9 @@ msgstr "Închide"
 msgid "Comments"
 msgstr "Comentarii"
 
+msgid "Contact"
+msgstr "Contact"
+
 msgid "Default language"
 msgstr "Limbă implicită"
 

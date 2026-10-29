@@ -39,6 +39,9 @@ msgstr "Uždaryti"
 msgid "Comments"
 msgstr "Komentarai"
 
+msgid "Contact"
+msgstr "Kontaktai"
+
 msgid "Default language"
 msgstr "Numatytoji kalba"
 

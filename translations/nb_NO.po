@@ -39,6 +39,9 @@ msgstr "Lukk"
 msgid "Comments"
 msgstr "Kommentarer"
 
+msgid "Contact"
+msgstr "Kontakt"
+
 msgid "Default language"
 msgstr "Forvalgt språk"
 

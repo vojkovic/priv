@@ -40,6 +40,9 @@ msgstr "סגירה"
 msgid "Comments"
 msgstr "הערות"
 
+msgid "Contact"
+msgstr "צור קשר"
+
 msgid "Default language"
 msgstr "שפה ברירת מחדל"
 

@@ -39,6 +39,9 @@ msgstr "ปิด"
 msgid "Comments"
 msgstr "คอมเมนต์"
 
+msgid "Contact"
+msgstr "ติดต่อ"
+
 msgid "Default language"
 msgstr "ภาษาเริ่มต้น"
 

@@ -39,6 +39,9 @@ msgstr "ཁ་རྒྱག"
 msgid "Comments"
 msgstr "མཆན་འགྲེལ།"
 
+msgid "Contact"
+msgstr "འབྲེལ་བ།"
+
 msgid "Default language"
 msgstr "གཞི་བཞག་སྐད་རིགས།"
 

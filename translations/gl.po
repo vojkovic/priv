@@ -39,6 +39,9 @@ msgstr "Pechar"
 msgid "Comments"
 msgstr "Comentarios"
 
+msgid "Contact"
+msgstr "Contacto"
+
 msgid "Default language"
 msgstr "Idioma por defecto"
 

@@ -39,6 +39,9 @@ msgstr "Fermi"
 msgid "Comments"
 msgstr "Komentoj"
 
+msgid "Contact"
+msgstr "Kontakto"
+
 msgid "Default language"
 msgstr "Defaŭlta lingvo"
 

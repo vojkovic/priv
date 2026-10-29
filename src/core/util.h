@@ -20,6 +20,7 @@ struct engine_toggle {
 };
 
 extern const char *instance_name;
+extern const char *contact_url;
 extern const char **motd;
 extern const char *listen_addr;
 extern int listen_port;
