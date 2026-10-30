@@ -1,4 +1,4 @@
-CURL_IMPERSONATE_VERSION = v2.3.1
+CURL_IMPERSONATE_VERSION = v2.3.2
 CURL_IMPERSONATE = deps/curl-impersonate
 GIT_HEAD := $(shell git rev-parse HEAD 2>/dev/null)
 ifeq ($(VERSION),)
