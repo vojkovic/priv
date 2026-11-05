@@ -99,8 +99,14 @@ msgstr "Minggu kemarin"
 msgid "Last year"
 msgstr "Tahun kemarin"
 
+msgid "Left"
+msgstr "Kiri"
+
 msgid "Length"
 msgstr "Durasi"
+
+msgid "Middle"
+msgstr "Tengah"
 
 msgid "Moderate"
 msgstr "Menengah"
@@ -161,6 +167,12 @@ msgstr "Resolusi"
 
 msgid "Response time"
 msgstr "Waktu respons"
+
+msgid "Results position"
+msgstr "Posisi hasil"
+
+msgid "Right"
+msgstr "Kanan"
 
 msgid "SafeSearch"
 msgstr "Pencarian Aman"
@@ -224,6 +236,9 @@ msgstr "Tampilan"
 
 msgid "What language do you prefer for search?"
 msgstr "Anda ingin mencari dalam bahasa apa?"
+
+msgid "Where the results sit"
+msgstr "Letak hasil"
 
 msgid "Your connection"
 msgstr "Koneksi Anda"

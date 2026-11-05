@@ -99,8 +99,14 @@ msgstr "క్రిందటి వారం"
 msgid "Last year"
 msgstr "క్రిందటి సంవత్సరం"
 
+msgid "Left"
+msgstr "ఎడమ"
+
 msgid "Length"
 msgstr "పొడవు"
+
+msgid "Middle"
+msgstr "మధ్య"
 
 msgid "Moderate"
 msgstr "మితమైన"
@@ -161,6 +167,12 @@ msgstr "స్పష్టత"
 
 msgid "Response time"
 msgstr "ప్రతిస్పందన సమయం"
+
+msgid "Results position"
+msgstr "ఫలితాల స్థానం"
+
+msgid "Right"
+msgstr "కుడి"
 
 msgid "SafeSearch"
 msgstr "సురక్షితశోధన"
@@ -224,6 +236,9 @@ msgstr "వ్యూస్"
 
 msgid "What language do you prefer for search?"
 msgstr "శోధన కోసం మీరు ఏ భాషను ఇష్టపడతారు?"
+
+msgid "Where the results sit"
+msgstr "ఫలితాలు ఎక్కడ ఉంటాయి"
 
 msgid "Your connection"
 msgstr "మీ కనెక్షన్"

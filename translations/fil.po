@@ -99,8 +99,14 @@ msgstr "Nakaraang linggo"
 msgid "Last year"
 msgstr "Nakaraang taon"
 
+msgid "Left"
+msgstr "Kaliwa"
+
 msgid "Length"
 msgstr "Haba"
+
+msgid "Middle"
+msgstr "Gitna"
 
 msgid "Moderate"
 msgstr "Banayad"
@@ -161,6 +167,12 @@ msgstr "Resolusyon"
 
 msgid "Response time"
 msgstr "Oras ng pagtugon"
+
+msgid "Results position"
+msgstr "Posisyon ng mga resulta"
+
+msgid "Right"
+msgstr "Kanan"
 
 msgid "SafeSearch"
 msgstr "Ligtas na Paghahanap"
@@ -224,6 +236,9 @@ msgstr "mga pananaw"
 
 msgid "What language do you prefer for search?"
 msgstr "Ano ang gusto mong wika sa paghahanap?"
+
+msgid "Where the results sit"
+msgstr "Kung saan nakalagay ang mga resulta"
 
 msgid "Your connection"
 msgstr "Ang iyong koneksyon"

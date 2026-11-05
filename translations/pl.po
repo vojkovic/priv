@@ -99,8 +99,14 @@ msgstr "W ostatnim tygodniu"
 msgid "Last year"
 msgstr "W ostatnim roku"
 
+msgid "Left"
+msgstr "Lewo"
+
 msgid "Length"
 msgstr "Długość"
+
+msgid "Middle"
+msgstr "Środek"
 
 msgid "Moderate"
 msgstr "Umiarkowane"
@@ -161,6 +167,12 @@ msgstr "Rozdzielczość"
 
 msgid "Response time"
 msgstr "Czas odpowiedzi"
+
+msgid "Results position"
+msgstr "Położenie wyników"
+
+msgid "Right"
+msgstr "Prawo"
 
 msgid "SafeSearch"
 msgstr "Bezpieczne wyszukiwanie"
@@ -224,6 +236,9 @@ msgstr "Wyświetlenia"
 
 msgid "What language do you prefer for search?"
 msgstr "W jakim języku wolisz wyszukiwać?"
+
+msgid "Where the results sit"
+msgstr "Gdzie są wyniki"
 
 msgid "Your connection"
 msgstr "Twoje połączenie"

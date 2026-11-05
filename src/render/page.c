@@ -67,7 +67,7 @@ doc_start(struct buf *b, const char *title, const char *body_class, const struct
 	i18n_use(ui);
 	buf_html(b,
 	    "<!doctype html>\n"
-	    "<html lang=\"%s\" data-theme=\"%s\"%r>\n"
+	    "<html lang=\"%s\" data-theme=\"%s\"%r%r>\n"
 	    "<head>\n"
 	    "<meta charset=\"utf-8\">\n"
 	    "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
@@ -77,7 +77,11 @@ doc_start(struct buf *b, const char *title, const char *body_class, const struct
 	    "<link rel=\"stylesheet\" href=\"/style.css\">\n"
 	    "<link rel=\"search\" type=\"application/opensearchdescription+xml\" title=\"%s\" href=\"/opensearch.xml\">\n"
 	    "<script src=\"/priv.js\" defer></script>\n",
-	    ui->tag, p->theme, ui->rtl ? " dir=\"rtl\"" : "", title, instance_name);
+	    ui->tag, p->theme, ui->rtl ? " dir=\"rtl\"" : "",
+	    !strcmp(p->align, "center")    ? " data-align=\"center\"" :
+	        !strcmp(p->align, "right") ? " data-align=\"right\"" :
+	                                     "",
+	    title, instance_name);
 	if (limiter && limiter_link_token)
 		buf_html(b,
 		    "<link rel=\"stylesheet\" href=\"/client%s.css\">\n"

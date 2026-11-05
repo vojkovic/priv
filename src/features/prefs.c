@@ -60,6 +60,9 @@ const struct theme themes[] = {
 };
 const size_t nthemes = LEN(themes);
 
+const struct align aligns[] = {{"left", "Left"}, {"center", "Middle"}, {"right", "Right"}};
+const size_t naligns = LEN(aligns);
+
 static const struct ui_lang *current;
 
 static int
@@ -206,6 +209,17 @@ pick(const char *name, const void *list, size_t n, size_t size)
 	return NULL;
 }
 
+static const char *
+align_pick(const char *name)
+{
+	size_t i;
+
+	for (i = 0; name && i < naligns; i++)
+		if (!strcmp(aligns[i].name, name))
+			return aligns[i].name;
+	return NULL;
+}
+
 /* a timeout in tenths of a second, 0 for the category's own default */
 static int
 timeout_pick(const char *s, size_t cat)
@@ -240,6 +254,7 @@ prefs_parse(struct arena *a, struct request *r, struct prefs *p)
 	p->ui_code = "";
 	p->safesearch = SAFESEARCH_DEFAULT;
 	p->theme = THEME_DEFAULT;
+	p->align = ALIGN_DEFAULT;
 	p->favicon = FAVICON_DEFAULT;
 	p->autocomplete = AUTOCOMPLETE_DEFAULT;
 	if (c) {
@@ -251,6 +266,8 @@ prefs_parse(struct arena *a, struct request *r, struct prefs *p)
 			p->safesearch = v[0] - '0';
 		if ((v = THEME(query_param(a, c, "theme"))))
 			p->theme = v;
+		if ((v = align_pick(query_param(a, c, "align"))))
+			p->align = v;
 		if ((v = FAVICON(query_param(a, c, "favicon"))))
 			p->favicon = v;
 		if ((v = AUTOCOMPLETE(query_param(a, c, "autocomplete"))))
@@ -303,6 +320,7 @@ prefs_from_form(struct arena *a, struct request *r, struct prefs *p)
 	v = query_param(a, qs, "safesearch");
 	p->safesearch = v && v[0] >= '0' && v[0] <= '2' && !v[1] ? v[0] - '0' : SAFESEARCH_DEFAULT;
 	p->theme = (v = THEME(query_param(a, qs, "theme"))) ? v : THEME_DEFAULT;
+	p->align = (v = align_pick(query_param(a, qs, "align"))) ? v : ALIGN_DEFAULT;
 	p->favicon = (v = FAVICON(query_param(a, qs, "favicon"))) ? v : FAVICON_DEFAULT;
 	p->autocomplete = (v = AUTOCOMPLETE(query_param(a, qs, "autocomplete"))) ? v : AUTOCOMPLETE_DEFAULT;
 	for (; *qs; qs = *end ? end + 1 : end) {
@@ -339,6 +357,8 @@ prefs_cookie(struct arena *a, const struct prefs *p, int secure)
 		buf_printf(&b, "&safesearch=%d", p->safesearch);
 	if (strcmp(p->theme, THEME_DEFAULT))
 		buf_printf(&b, "&theme=%s", p->theme);
+	if (strcmp(p->align, ALIGN_DEFAULT))
+		buf_printf(&b, "&align=%s", p->align);
 	if (strcmp(p->favicon, FAVICON_DEFAULT))
 		buf_printf(&b, "&favicon=%s", p->favicon);
 	if (strcmp(p->autocomplete, AUTOCOMPLETE_DEFAULT))

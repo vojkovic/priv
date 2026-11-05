@@ -99,8 +99,14 @@ msgstr "Tuần trước"
 msgid "Last year"
 msgstr "Năm trước"
 
+msgid "Left"
+msgstr "Trái"
+
 msgid "Length"
 msgstr "Độ dài"
+
+msgid "Middle"
+msgstr "Giữa"
 
 msgid "Moderate"
 msgstr "Vừa phải"
@@ -161,6 +167,12 @@ msgstr "Độ phân giải"
 
 msgid "Response time"
 msgstr "Thời gian phản hồi"
+
+msgid "Results position"
+msgstr "Vị trí kết quả"
+
+msgid "Right"
+msgstr "Phải"
 
 msgid "SafeSearch"
 msgstr "Tìm Kiếm An Toàn"
@@ -224,6 +236,9 @@ msgstr "Lượt xem"
 
 msgid "What language do you prefer for search?"
 msgstr "Bạn muốn tìm kiếm bằng ngôn ngữ nào?"
+
+msgid "Where the results sit"
+msgstr "Vị trí kết quả"
 
 msgid "Your connection"
 msgstr "Kết nối của bạn"

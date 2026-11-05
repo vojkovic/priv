@@ -99,8 +99,14 @@ msgstr "An tseachtain seo caite"
 msgid "Last year"
 msgstr "An bhliain seo caite"
 
+msgid "Left"
+msgstr "Clé"
+
 msgid "Length"
 msgstr "Fad"
+
+msgid "Middle"
+msgstr "Lár"
 
 msgid "Moderate"
 msgstr "Measartha"
@@ -161,6 +167,12 @@ msgstr "Réiteach"
 
 msgid "Response time"
 msgstr "Am freagartha"
+
+msgid "Results position"
+msgstr "Suíomh na dtorthaí"
+
+msgid "Right"
+msgstr "Deas"
 
 msgid "SafeSearch"
 msgstr "Cuardach Sábháilte"
@@ -224,6 +236,9 @@ msgstr "Amharcanna"
 
 msgid "What language do you prefer for search?"
 msgstr "Cén teanga is fearr leat le haghaidh cuardaigh?"
+
+msgid "Where the results sit"
+msgstr "Cá háit a bhfuil na torthaí"
 
 msgid "Your connection"
 msgstr "Do cheangal"

@@ -100,8 +100,14 @@ msgstr "الأسبوع الماضي"
 msgid "Last year"
 msgstr "السنة الفارطة"
 
+msgid "Left"
+msgstr "يسار"
+
 msgid "Length"
 msgstr "الطول"
+
+msgid "Middle"
+msgstr "وسط"
 
 msgid "Moderate"
 msgstr "معتدل"
@@ -162,6 +168,12 @@ msgstr "الدقة"
 
 msgid "Response time"
 msgstr "مدة الإستجابة"
+
+msgid "Results position"
+msgstr "موضع النتائج"
+
+msgid "Right"
+msgstr "يمين"
 
 msgid "SafeSearch"
 msgstr "البحث المؤمَّن"
@@ -225,6 +237,9 @@ msgstr "المشاهدات"
 
 msgid "What language do you prefer for search?"
 msgstr "ما هي لغتك المفضلة للبحث ؟"
+
+msgid "Where the results sit"
+msgstr "مكان النتائج"
 
 msgid "Your connection"
 msgstr "اتصالك"

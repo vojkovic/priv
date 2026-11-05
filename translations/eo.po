@@ -99,8 +99,14 @@ msgstr "Pasinta semajno"
 msgid "Last year"
 msgstr "Pasinta jaro"
 
+msgid "Left"
+msgstr "Maldekstre"
+
 msgid "Length"
 msgstr "Longo"
+
+msgid "Middle"
+msgstr "Meze"
 
 msgid "Moderate"
 msgstr "Modera"
@@ -161,6 +167,12 @@ msgstr "Distingivo"
 
 msgid "Response time"
 msgstr "Tempo de respondo"
+
+msgid "Results position"
+msgstr "Pozicio de rezultoj"
+
+msgid "Right"
+msgstr "Dekstre"
 
 msgid "SafeSearch"
 msgstr "SekuraSerĉo"
@@ -224,6 +236,9 @@ msgstr "Spektoj"
 
 msgid "What language do you prefer for search?"
 msgstr "Kiun lingvon vi pli ŝatas por serĉi?"
+
+msgid "Where the results sit"
+msgstr "Kie la rezultoj staras"
 
 msgid "Your connection"
 msgstr "Via konekto"

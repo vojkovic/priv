@@ -99,8 +99,14 @@ msgstr "Legutóbbi hét"
 msgid "Last year"
 msgstr "Előző év"
 
+msgid "Left"
+msgstr "Balra"
+
 msgid "Length"
 msgstr "Hossz"
+
+msgid "Middle"
+msgstr "Középen"
 
 msgid "Moderate"
 msgstr "Enyhe"
@@ -161,6 +167,12 @@ msgstr "Felbontás"
 
 msgid "Response time"
 msgstr "Válaszidő"
+
+msgid "Results position"
+msgstr "Találatok helye"
+
+msgid "Right"
+msgstr "Jobbra"
 
 msgid "SafeSearch"
 msgstr "Felnőtt tartalom szűrése"
@@ -224,6 +236,9 @@ msgstr "Nézetek"
 
 msgid "What language do you prefer for search?"
 msgstr "Milyen nyelven keres?"
+
+msgid "Where the results sit"
+msgstr "Hol jelennek meg a találatok"
 
 msgid "Your connection"
 msgstr "Az Ön kapcsolata"

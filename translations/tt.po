@@ -99,8 +99,14 @@ msgstr "Соңгы атна"
 msgid "Last year"
 msgstr "Соңгы ел"
 
+msgid "Left"
+msgstr "Сулда"
+
 msgid "Length"
 msgstr "Озынлык"
+
+msgid "Middle"
+msgstr "Уртада"
 
 msgid "Moderate"
 msgstr "Уртача"
@@ -161,6 +167,12 @@ msgstr "Ачыклык"
 
 msgid "Response time"
 msgstr "Җавап вакыты"
+
+msgid "Results position"
+msgstr "Нәтиҗәләр урыны"
+
+msgid "Right"
+msgstr "Уңда"
 
 msgid "SafeSearch"
 msgstr "Имин эзләү"
@@ -224,6 +236,9 @@ msgstr "Карау"
 
 msgid "What language do you prefer for search?"
 msgstr "Эзләү өчен сез нинди телне яхшырак табасыз?"
+
+msgid "Where the results sit"
+msgstr "Нәтиҗәләр кайда тора"
 
 msgid "Your connection"
 msgstr "Сезнең тоташу"

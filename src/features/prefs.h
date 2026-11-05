@@ -10,6 +10,7 @@
 #define PREFS_CATEGORIES 16
 #define SAFESEARCH_DEFAULT 1
 #define THEME_DEFAULT "sorbetnight"
+#define ALIGN_DEFAULT "left"
 
 struct engine;
 
@@ -21,10 +22,17 @@ struct theme {
 extern const struct theme themes[];
 extern const size_t nthemes;
 
+struct align {
+	const char *name, *label;
+};
+
+extern const struct align aligns[];
+extern const size_t naligns;
+
 /* what a user chose on /preferences, kept only in their own cookie */
 struct prefs {
 	const struct ui_lang *ui, *ui_auto;
-	const char *ui_code, *language, *theme, *favicon, *autocomplete;
+	const char *ui_code, *language, *theme, *align, *favicon, *autocomplete;
 	int safesearch, saved;
 	int timeout[PREFS_CATEGORIES];
 	uint64_t off[PREFS_CATEGORIES];

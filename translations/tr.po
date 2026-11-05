@@ -99,8 +99,14 @@ msgstr "Geçen hafta"
 msgid "Last year"
 msgstr "Geçen yıl"
 
+msgid "Left"
+msgstr "Sol"
+
 msgid "Length"
 msgstr "Uzunluk"
+
+msgid "Middle"
+msgstr "Orta"
 
 msgid "Moderate"
 msgstr "Orta"
@@ -161,6 +167,12 @@ msgstr "Çözünürlük"
 
 msgid "Response time"
 msgstr "Yanıt süresi"
+
+msgid "Results position"
+msgstr "Sonuçların konumu"
+
+msgid "Right"
+msgstr "Sağ"
 
 msgid "SafeSearch"
 msgstr "Güvenli Arama"
@@ -224,6 +236,9 @@ msgstr "Görüntülemeler"
 
 msgid "What language do you prefer for search?"
 msgstr "Arama için hangi dili tercih edersiniz?"
+
+msgid "Where the results sit"
+msgstr "Sonuçların yeri"
 
 msgid "Your connection"
 msgstr "Bağlantınız"

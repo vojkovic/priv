@@ -99,8 +99,14 @@ msgstr "ਪਿਛਲਾ ਹਫ਼ਤਾ"
 msgid "Last year"
 msgstr "ਪਿਛਲਾ ਸਾਲ"
 
+msgid "Left"
+msgstr "ਖੱਬੇ"
+
 msgid "Length"
 msgstr "ਲੰਬਾਈ"
+
+msgid "Middle"
+msgstr "ਵਿਚਕਾਰ"
 
 msgid "Moderate"
 msgstr "ਦਰਮਿਆਨਾ"
@@ -161,6 +167,12 @@ msgstr "ਰੈਜ਼ੋਲਿਊਸ਼ਨ"
 
 msgid "Response time"
 msgstr "ਜਵਾਬ ਦਾ ਸਮਾਂ"
+
+msgid "Results position"
+msgstr "ਨਤੀਜਿਆਂ ਦੀ ਥਾਂ"
+
+msgid "Right"
+msgstr "ਸੱਜੇ"
 
 msgid "SafeSearch"
 msgstr "ਸੁਰੱਖਿਅਤ ਖੋਜ"
@@ -224,6 +236,9 @@ msgstr "ਵਿਊ"
 
 msgid "What language do you prefer for search?"
 msgstr "ਤੁਸੀਂ ਖੋਜ ਲਈ ਕਿਹੜੀ ਭਾਸ਼ਾ ਪਸੰਦ ਕਰਦੇ ਹੋ?"
+
+msgid "Where the results sit"
+msgstr "ਨਤੀਜੇ ਕਿੱਥੇ ਹੋਣ"
 
 msgid "Your connection"
 msgstr "ਤੁਹਾਡਾ ਕਨੈਕਸ਼ਨ"

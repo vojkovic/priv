@@ -117,6 +117,11 @@ render_preferences(struct buf *b, const struct prefs *p, const struct locale *br
 		option(b, themes[i].name, themes[i].label, !strcmp(p->theme, themes[i].name));
 	buf_puts(b, "</select></div>\n");
 
+	pref_select(b, "align", "Results position", "Where the results sit");
+	for (i = 0; i < naligns; i++)
+		option(b, aligns[i].name, tr(aligns[i].label), !strcmp(p->align, aligns[i].name));
+	buf_puts(b, "</select></div>\n");
+
 	pref_select(b, "favicon", "Favicon Resolver", "Display favicons near search results");
 	for (i = 0; i < nfavicon_resolvers; i++)
 		option(b, favicon_resolvers[i].name, favicon_resolvers[i].label,

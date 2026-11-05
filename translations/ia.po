@@ -99,8 +99,14 @@ msgstr "Le septimana passate"
 msgid "Last year"
 msgstr "Le anno passate"
 
+msgid "Left"
+msgstr "Sinistra"
+
 msgid "Length"
 msgstr "Longitude"
+
+msgid "Middle"
+msgstr "Medio"
 
 msgid "Moderate"
 msgstr "Moderate"
@@ -161,6 +167,12 @@ msgstr "Resolution"
 
 msgid "Response time"
 msgstr "Tempore de responsa"
+
+msgid "Results position"
+msgstr "Position del resultatos"
+
+msgid "Right"
+msgstr "Dextra"
 
 msgid "SafeSearch"
 msgstr "Filtro de contento potentialmente offensive"
@@ -224,6 +236,9 @@ msgstr "Visualisationes"
 
 msgid "What language do you prefer for search?"
 msgstr "Qual lingua tu prefere pro recercar?"
+
+msgid "Where the results sit"
+msgstr "Ubi le resultatos sta"
 
 msgid "Your connection"
 msgstr "Tu connexion"

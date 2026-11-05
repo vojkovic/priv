@@ -99,8 +99,14 @@ msgstr "Förra veckan"
 msgid "Last year"
 msgstr "Förra året"
 
+msgid "Left"
+msgstr "Vänster"
+
 msgid "Length"
 msgstr "Längd"
+
+msgid "Middle"
+msgstr "Mitten"
 
 msgid "Moderate"
 msgstr "Måttlig"
@@ -161,6 +167,12 @@ msgstr "Upplösning"
 
 msgid "Response time"
 msgstr "Svarstid"
+
+msgid "Results position"
+msgstr "Resultatens placering"
+
+msgid "Right"
+msgstr "Höger"
 
 msgid "SafeSearch"
 msgstr "Säker sökning"
@@ -224,6 +236,9 @@ msgstr "Visningar"
 
 msgid "What language do you prefer for search?"
 msgstr "Vilket språk föredrar du för att söka?"
+
+msgid "Where the results sit"
+msgstr "Var resultaten står"
 
 msgid "Your connection"
 msgstr "Din anslutning"

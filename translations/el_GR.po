@@ -99,8 +99,14 @@ msgstr "Τελευταία βδομάδα"
 msgid "Last year"
 msgstr "Τελευταίο έτος"
 
+msgid "Left"
+msgstr "Αριστερά"
+
 msgid "Length"
 msgstr "Μήκος"
+
+msgid "Middle"
+msgstr "Μέση"
 
 msgid "Moderate"
 msgstr "Μέτριο"
@@ -161,6 +167,12 @@ msgstr "Ανάλυση"
 
 msgid "Response time"
 msgstr "Χρόνος απόκρισης"
+
+msgid "Results position"
+msgstr "Θέση αποτελεσμάτων"
+
+msgid "Right"
+msgstr "Δεξιά"
 
 msgid "SafeSearch"
 msgstr "Ασφαλής Αναζήτηση"
@@ -224,6 +236,9 @@ msgstr "Προβολές"
 
 msgid "What language do you prefer for search?"
 msgstr "Τι γλώσσα προτιμάτε για αναζήτηση;"
+
+msgid "Where the results sit"
+msgstr "Πού βρίσκονται τα αποτελέσματα"
 
 msgid "Your connection"
 msgstr "Η σύνδεσή σας"

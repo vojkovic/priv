@@ -99,8 +99,14 @@ msgstr "Pēdējā nedēļa"
 msgid "Last year"
 msgstr "Pēdējais gads"
 
+msgid "Left"
+msgstr "Pa kreisi"
+
 msgid "Length"
 msgstr "Garums"
+
+msgid "Middle"
+msgstr "Vidū"
 
 msgid "Moderate"
 msgstr "Mērena"
@@ -161,6 +167,12 @@ msgstr "Izšķirtspēja"
 
 msgid "Response time"
 msgstr "Atbildes laiks"
+
+msgid "Results position"
+msgstr "Rezultātu novietojums"
+
+msgid "Right"
+msgstr "Pa labi"
 
 msgid "SafeSearch"
 msgstr "Drošā meklēšana"
@@ -224,6 +236,9 @@ msgstr "Skatījumi"
 
 msgid "What language do you prefer for search?"
 msgstr "Kādai valodai dodat priekšroku priekš meklēšanas?"
+
+msgid "Where the results sit"
+msgstr "Kur atrodas rezultāti"
 
 msgid "Your connection"
 msgstr "Jūsu savienojums"

@@ -99,8 +99,14 @@ msgstr "Afgelopen week"
 msgid "Last year"
 msgstr "Afgelopen jaar"
 
+msgid "Left"
+msgstr "Links"
+
 msgid "Length"
 msgstr "Lengte"
+
+msgid "Middle"
+msgstr "Midden"
 
 msgid "Moderate"
 msgstr "Gemiddeld"
@@ -161,6 +167,12 @@ msgstr "Resolutie"
 
 msgid "Response time"
 msgstr "Responstijd"
+
+msgid "Results position"
+msgstr "Positie van de resultaten"
+
+msgid "Right"
+msgstr "Rechts"
 
 msgid "SafeSearch"
 msgstr "VeiligZoeken"
@@ -224,6 +236,9 @@ msgstr "Aantal keer bekeken"
 
 msgid "What language do you prefer for search?"
 msgstr "Met welke taalinstelling wil je zoeken?"
+
+msgid "Where the results sit"
+msgstr "Waar de resultaten staan"
 
 msgid "Your connection"
 msgstr "Je verbinding"

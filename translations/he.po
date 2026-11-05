@@ -100,8 +100,14 @@ msgstr "מהשבוע האחרון"
 msgid "Last year"
 msgstr "מהשנה האחרונה"
 
+msgid "Left"
+msgstr "שמאל"
+
 msgid "Length"
 msgstr "אורך"
+
+msgid "Middle"
+msgstr "אמצע"
 
 msgid "Moderate"
 msgstr "מתון"
@@ -162,6 +168,12 @@ msgstr "רזולוציה"
 
 msgid "Response time"
 msgstr "זמן תגובה"
+
+msgid "Results position"
+msgstr "מיקום התוצאות"
+
+msgid "Right"
+msgstr "ימין"
 
 msgid "SafeSearch"
 msgstr "חיפוש בטוח"
@@ -225,6 +237,9 @@ msgstr "צפיות"
 
 msgid "What language do you prefer for search?"
 msgstr "באיזו שפה ברצונך לחפש?"
+
+msgid "Where the results sit"
+msgstr "היכן התוצאות מוצגות"
 
 msgid "Your connection"
 msgstr "החיבור שלך"

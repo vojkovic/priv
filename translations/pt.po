@@ -99,8 +99,14 @@ msgstr "Semana passada"
 msgid "Last year"
 msgstr "Ano passado"
 
+msgid "Left"
+msgstr "Esquerda"
+
 msgid "Length"
 msgstr "Comprimento"
+
+msgid "Middle"
+msgstr "Meio"
 
 msgid "Moderate"
 msgstr "Moderado"
@@ -161,6 +167,12 @@ msgstr "Resolução"
 
 msgid "Response time"
 msgstr "Tempo de resposta"
+
+msgid "Results position"
+msgstr "Posição dos resultados"
+
+msgid "Right"
+msgstr "Direita"
 
 msgid "SafeSearch"
 msgstr "Pesquisa segura"
@@ -224,6 +236,9 @@ msgstr "Viazualisações"
 
 msgid "What language do you prefer for search?"
 msgstr "Que idioma de pesquisa prefere?"
+
+msgid "Where the results sit"
+msgstr "Onde ficam os resultados"
 
 msgid "Your connection"
 msgstr "A sua ligação"

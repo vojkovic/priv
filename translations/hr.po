@@ -99,8 +99,14 @@ msgstr "Prošli tjedan"
 msgid "Last year"
 msgstr "Prošle godine"
 
+msgid "Left"
+msgstr "Lijevo"
+
 msgid "Length"
 msgstr "Dužina"
+
+msgid "Middle"
+msgstr "Sredina"
 
 msgid "Moderate"
 msgstr "Umjereno"
@@ -161,6 +167,12 @@ msgstr "Razlučivost"
 
 msgid "Response time"
 msgstr "Vrijeme odziva"
+
+msgid "Results position"
+msgstr "Položaj rezultata"
+
+msgid "Right"
+msgstr "Desno"
 
 msgid "SafeSearch"
 msgstr "Sigurno pretraživanje"
@@ -224,6 +236,9 @@ msgstr "Pogledi"
 
 msgid "What language do you prefer for search?"
 msgstr "Koji jezik želite za pretraživanje?"
+
+msgid "Where the results sit"
+msgstr "Gdje su rezultati"
 
 msgid "Your connection"
 msgstr "Vaša veza"

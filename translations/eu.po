@@ -99,8 +99,14 @@ msgstr "Azken astea"
 msgid "Last year"
 msgstr "Azken urtea"
 
+msgid "Left"
+msgstr "Ezkerrean"
+
 msgid "Length"
 msgstr "Luzera"
+
+msgid "Middle"
+msgstr "Erdian"
 
 msgid "Moderate"
 msgstr "Moderatua"
@@ -161,6 +167,12 @@ msgstr "Ebazpena"
 
 msgid "Response time"
 msgstr "Erantzuteko denbora"
+
+msgid "Results position"
+msgstr "Emaitzen kokapena"
+
+msgid "Right"
+msgstr "Eskuinean"
 
 msgid "SafeSearch"
 msgstr "Bilaketa segurua"
@@ -224,6 +236,9 @@ msgstr "Ikuspegiak"
 
 msgid "What language do you prefer for search?"
 msgstr "Zein hizkuntzan egin nahi duzu bilaketa?"
+
+msgid "Where the results sit"
+msgstr "Emaitzak non dauden"
 
 msgid "Your connection"
 msgstr "Zure konexioa"

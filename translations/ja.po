@@ -99,8 +99,14 @@ msgstr "1 週間以内"
 msgid "Last year"
 msgstr "1 年以内"
 
+msgid "Left"
+msgstr "左"
+
 msgid "Length"
 msgstr "長さ"
+
+msgid "Middle"
+msgstr "中央"
 
 msgid "Moderate"
 msgstr "標準"
@@ -161,6 +167,12 @@ msgstr "解像度"
 
 msgid "Response time"
 msgstr "応答時間"
+
+msgid "Results position"
+msgstr "検索結果の位置"
+
+msgid "Right"
+msgstr "右"
 
 msgid "SafeSearch"
 msgstr "セーフサーチ"
@@ -224,6 +236,9 @@ msgstr "閲覧数"
 
 msgid "What language do you prefer for search?"
 msgstr "どの言語で検索しますか？"
+
+msgid "Where the results sit"
+msgstr "検索結果の位置"
 
 msgid "Your connection"
 msgstr "お使いの接続"

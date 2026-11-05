@@ -99,8 +99,14 @@ msgstr "Ultima săptămână"
 msgid "Last year"
 msgstr "Ultimul an"
 
+msgid "Left"
+msgstr "Stânga"
+
 msgid "Length"
 msgstr "Lungime"
+
+msgid "Middle"
+msgstr "Mijloc"
 
 msgid "Moderate"
 msgstr "Moderat"
@@ -161,6 +167,12 @@ msgstr "Rezoluție"
 
 msgid "Response time"
 msgstr "Timp de răspuns"
+
+msgid "Results position"
+msgstr "Poziția rezultatelor"
+
+msgid "Right"
+msgstr "Dreapta"
 
 msgid "SafeSearch"
 msgstr "CăutareSigură"
@@ -224,6 +236,9 @@ msgstr "Afișări"
 
 msgid "What language do you prefer for search?"
 msgstr "Ce limbă preferați pentru căutare?"
+
+msgid "Where the results sit"
+msgstr "Unde stau rezultatele"
 
 msgid "Your connection"
 msgstr "Conexiunea ta"

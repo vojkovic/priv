@@ -18,13 +18,28 @@ msgstr ""
 msgid "Languages"
 msgstr ""
 
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
 msgid "More"
+msgstr ""
+
+msgid "Results position"
+msgstr ""
+
+msgid "Right"
 msgstr ""
 
 msgid "Timeout"
 msgstr ""
 
 msgid "User agent"
+msgstr ""
+
+msgid "Where the results sit"
 msgstr ""
 
 msgid "Your connection"

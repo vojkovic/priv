@@ -99,8 +99,14 @@ msgstr "கடந்த வாரம்"
 msgid "Last year"
 msgstr "கடந்த ஆண்டு"
 
+msgid "Left"
+msgstr "இடது"
+
 msgid "Length"
 msgstr "நீளம்"
+
+msgid "Middle"
+msgstr "நடு"
 
 msgid "Moderate"
 msgstr "மிதமான"
@@ -161,6 +167,12 @@ msgstr "பகுத்தல்"
 
 msgid "Response time"
 msgstr "பதில் நேரம்"
+
+msgid "Results position"
+msgstr "முடிவுகளின் இடம்"
+
+msgid "Right"
+msgstr "வலது"
 
 msgid "SafeSearch"
 msgstr "பாதுகாப்பன தேடல்"
@@ -224,6 +236,9 @@ msgstr "பார்க்கப்பட்டது"
 
 msgid "What language do you prefer for search?"
 msgstr "தேடலுக்கு எந்த மொழியை விரும்புகிறீர்கள்?"
+
+msgid "Where the results sit"
+msgstr "முடிவுகள் எங்கே இருக்கும்"
 
 msgid "Your connection"
 msgstr "உங்கள் இணைப்பு"

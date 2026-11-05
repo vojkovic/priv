@@ -99,8 +99,14 @@ msgstr "Yr wythnos diwethaf"
 msgid "Last year"
 msgstr "Y flwyddyn ddiwethaf"
 
+msgid "Left"
+msgstr "Chwith"
+
 msgid "Length"
 msgstr "Hyd"
+
+msgid "Middle"
+msgstr "Canol"
 
 msgid "Moderate"
 msgstr "Cymedrol"
@@ -161,6 +167,12 @@ msgstr "Cydraniad"
 
 msgid "Response time"
 msgstr "Amser ymateb"
+
+msgid "Results position"
+msgstr "Safle'r canlyniadau"
+
+msgid "Right"
+msgstr "De"
 
 msgid "SafeSearch"
 msgstr "Chwilio'n ddiogel"
@@ -224,6 +236,9 @@ msgstr "Golygon"
 
 msgid "What language do you prefer for search?"
 msgstr "Ym mha iaith ydych chi'n ffafrio chwilio?"
+
+msgid "Where the results sit"
+msgstr "Ble mae'r canlyniadau"
 
 msgid "Your connection"
 msgstr "Eich cysylltiad"

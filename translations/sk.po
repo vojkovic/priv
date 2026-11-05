@@ -99,8 +99,14 @@ msgstr "Posledný týždeň"
 msgid "Last year"
 msgstr "Posledný rok"
 
+msgid "Left"
+msgstr "Vľavo"
+
 msgid "Length"
 msgstr "Dĺžka"
+
+msgid "Middle"
+msgstr "Uprostred"
 
 msgid "Moderate"
 msgstr "Mierne"
@@ -161,6 +167,12 @@ msgstr "Rozlíšenie"
 
 msgid "Response time"
 msgstr "Doba odozvy"
+
+msgid "Results position"
+msgstr "Umiestnenie výsledkov"
+
+msgid "Right"
+msgstr "Vpravo"
 
 msgid "SafeSearch"
 msgstr "Bezpečné vyhľadávanie"
@@ -224,6 +236,9 @@ msgstr "Zobrazenia"
 
 msgid "What language do you prefer for search?"
 msgstr "Aký jazyk preferujete pre vyhľadávanie?"
+
+msgid "Where the results sit"
+msgstr "Kde sú výsledky"
 
 msgid "Your connection"
 msgstr "Vaše pripojenie"

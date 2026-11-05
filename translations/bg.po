@@ -99,8 +99,14 @@ msgstr "Миналата седмица"
 msgid "Last year"
 msgstr "Миналата година"
 
+msgid "Left"
+msgstr "Ляво"
+
 msgid "Length"
 msgstr "Дължина"
+
+msgid "Middle"
+msgstr "Среда"
 
 msgid "Moderate"
 msgstr "Умерено"
@@ -161,6 +167,12 @@ msgstr "Резолюция"
 
 msgid "Response time"
 msgstr "Време за отговор"
+
+msgid "Results position"
+msgstr "Позиция на резултатите"
+
+msgid "Right"
+msgstr "Дясно"
 
 msgid "SafeSearch"
 msgstr "Безопасно търсене"
@@ -224,6 +236,9 @@ msgstr "Изгледи"
 
 msgid "What language do you prefer for search?"
 msgstr "Кой език предпочитате за търсене?"
+
+msgid "Where the results sit"
+msgstr "Къде стоят резултатите"
 
 msgid "Your connection"
 msgstr "Вашата връзка"

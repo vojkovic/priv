@@ -99,8 +99,14 @@ msgstr "පසුගිය සතිය"
 msgid "Last year"
 msgstr "පසුගිය වසර"
 
+msgid "Left"
+msgstr "වම"
+
 msgid "Length"
 msgstr "දිග"
+
+msgid "Middle"
+msgstr "මැද"
 
 msgid "Moderate"
 msgstr "මධ්‍යස්ථ"
@@ -161,6 +167,12 @@ msgstr "විභේදනය"
 
 msgid "Response time"
 msgstr "ප්‍රතිචාර කාලය"
+
+msgid "Results position"
+msgstr "ප්‍රතිඵල ස්ථානය"
+
+msgid "Right"
+msgstr "දකුණ"
 
 msgid "SafeSearch"
 msgstr "ආරක්ෂිත සෙවුම්"
@@ -224,6 +236,9 @@ msgstr "නැරඹුම්"
 
 msgid "What language do you prefer for search?"
 msgstr "සෙවුම් සඳහා ඔබ කැමති භාෂාව කුමක්ද?"
+
+msgid "Where the results sit"
+msgstr "ප්‍රතිඵල පිහිටන තැන"
 
 msgid "Your connection"
 msgstr "ඔබගේ සම්බන්ධතාව"

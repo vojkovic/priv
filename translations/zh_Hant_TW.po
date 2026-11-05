@@ -99,8 +99,14 @@ msgstr "一週內"
 msgid "Last year"
 msgstr "一年內"
 
+msgid "Left"
+msgstr "左"
+
 msgid "Length"
 msgstr "長度"
+
+msgid "Middle"
+msgstr "中間"
 
 msgid "Moderate"
 msgstr "適中"
@@ -161,6 +167,12 @@ msgstr "解析度"
 
 msgid "Response time"
 msgstr "反應時間"
+
+msgid "Results position"
+msgstr "結果位置"
+
+msgid "Right"
+msgstr "右"
 
 msgid "SafeSearch"
 msgstr "安全搜尋"
@@ -224,6 +236,9 @@ msgstr "檢視次數"
 
 msgid "What language do you prefer for search?"
 msgstr "您偏好用哪種語言搜尋？"
+
+msgid "Where the results sit"
+msgstr "結果的位置"
 
 msgid "Your connection"
 msgstr "你的連線"

@@ -99,8 +99,14 @@ msgstr "Z ôstatnigo tydnia"
 msgid "Last year"
 msgstr "Z ôstatnigo roku"
 
+msgid "Left"
+msgstr "Lewo"
+
 msgid "Length"
 msgstr "Dugość"
+
+msgid "Middle"
+msgstr "Postrzodek"
 
 msgid "Moderate"
 msgstr "Postrzednie"
@@ -161,6 +167,12 @@ msgstr "Rozdzielczość"
 
 msgid "Response time"
 msgstr "Czas ôdpowiedzi"
+
+msgid "Results position"
+msgstr "Położynie wynikōw"
+
+msgid "Right"
+msgstr "Prawo"
 
 msgid "SafeSearch"
 msgstr "Bezpieczne szukanie"
@@ -224,6 +236,9 @@ msgstr "Ôbejrzynia"
 
 msgid "What language do you prefer for search?"
 msgstr "W jakim jynzyku wolisz wyszukować?"
+
+msgid "Where the results sit"
+msgstr "Kaj sōm wyniki"
 
 msgid "Your connection"
 msgstr "Twoje połōnczynie"

@@ -99,8 +99,14 @@ msgstr "지난 1주"
 msgid "Last year"
 msgstr "지난 1년"
 
+msgid "Left"
+msgstr "왼쪽"
+
 msgid "Length"
 msgstr "길이"
+
+msgid "Middle"
+msgstr "가운데"
 
 msgid "Moderate"
 msgstr "보통"
@@ -161,6 +167,12 @@ msgstr "해상도"
 
 msgid "Response time"
 msgstr "응답시간"
+
+msgid "Results position"
+msgstr "결과 위치"
+
+msgid "Right"
+msgstr "오른쪽"
 
 msgid "SafeSearch"
 msgstr "세이프서치"
@@ -224,6 +236,9 @@ msgstr "조회수"
 
 msgid "What language do you prefer for search?"
 msgstr "어떤 언어로 검색하시겠습니까?"
+
+msgid "Where the results sit"
+msgstr "결과가 놓이는 위치"
 
 msgid "Your connection"
 msgstr "내 연결"

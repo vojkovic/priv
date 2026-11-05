@@ -99,8 +99,14 @@ msgstr "Viimeinen viikko"
 msgid "Last year"
 msgstr "Viimeinen vuosi"
 
+msgid "Left"
+msgstr "Vasemmalla"
+
 msgid "Length"
 msgstr "Pituus"
+
+msgid "Middle"
+msgstr "Keskellä"
 
 msgid "Moderate"
 msgstr "Keskitaso"
@@ -161,6 +167,12 @@ msgstr "Resoluutio"
 
 msgid "Response time"
 msgstr "Vastausaika"
+
+msgid "Results position"
+msgstr "Tulosten sijainti"
+
+msgid "Right"
+msgstr "Oikealla"
 
 msgid "SafeSearch"
 msgstr "Turvahaku"
@@ -224,6 +236,9 @@ msgstr "Näkymät"
 
 msgid "What language do you prefer for search?"
 msgstr "Millä kielellä haluat etsiä ensisijaisesti?"
+
+msgid "Where the results sit"
+msgstr "Missä tulokset ovat"
 
 msgid "Your connection"
 msgstr "Yhteytesi"

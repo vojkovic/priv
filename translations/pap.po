@@ -99,8 +99,14 @@ msgstr "Último siman"
 msgid "Last year"
 msgstr "Último aña"
 
+msgid "Left"
+msgstr "Robes"
+
 msgid "Length"
 msgstr "Largura"
+
+msgid "Middle"
+msgstr "Meimei"
 
 msgid "Moderate"
 msgstr "Moderá"
@@ -161,6 +167,12 @@ msgstr "Resolushon"
 
 msgid "Response time"
 msgstr "Tempu di kontesta"
+
+msgid "Results position"
+msgstr "Posishon di resultado"
+
+msgid "Right"
+msgstr "Drechi"
 
 msgid "SafeSearch"
 msgstr "Búsketa sigur"
@@ -224,6 +236,9 @@ msgstr "Bista"
 
 msgid "What language do you prefer for search?"
 msgstr "Ki idioma bo ta preferá pa buska?"
+
+msgid "Where the results sit"
+msgstr "Unda e resultadonan ta"
 
 msgid "Your connection"
 msgstr "Bo konekshon"

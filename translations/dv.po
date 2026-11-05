@@ -100,8 +100,14 @@ msgstr "ފާއިތުވި ހަފްތާ"
 msgid "Last year"
 msgstr "ފާއިތުވި އަހަރު"
 
+msgid "Left"
+msgstr "ވާތް"
+
 msgid "Length"
 msgstr "ދިގުމިން"
+
+msgid "Middle"
+msgstr "މެދު"
 
 msgid "Moderate"
 msgstr "މެދުމިނުން"
@@ -162,6 +168,12 @@ msgstr "ރިޒޮލިއުޝަން"
 
 msgid "Response time"
 msgstr "ޖަވާބު ދިން ވަގުތު"
+
+msgid "Results position"
+msgstr "ނަތީޖާގެ ތަން"
+
+msgid "Right"
+msgstr "ކަނާތް"
 
 msgid "SafeSearch"
 msgstr "ރައްކާތެރި ހޯދުން"
@@ -225,6 +237,9 @@ msgstr "ބެލުންތައް"
 
 msgid "What language do you prefer for search?"
 msgstr "ހޯދުމަށް ބޭނުންވަނީ ކޮން ބަހެއް؟"
+
+msgid "Where the results sit"
+msgstr "ނަތީޖާ ހުންނާނެ ތަން"
 
 msgid "Your connection"
 msgstr "ތިބާގެ ކަނެކްޝަން"

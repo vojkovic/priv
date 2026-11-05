@@ -99,8 +99,14 @@ msgstr "শেষ সপ্তাহ"
 msgid "Last year"
 msgstr "শেষ বছর"
 
+msgid "Left"
+msgstr "বাম"
+
 msgid "Length"
 msgstr "দৈর্ঘ্য"
+
+msgid "Middle"
+msgstr "মাঝখানে"
 
 msgid "Moderate"
 msgstr "মধ্যম"
@@ -161,6 +167,12 @@ msgstr "আকার"
 
 msgid "Response time"
 msgstr "প্রতিক্রিয়া সময়"
+
+msgid "Results position"
+msgstr "ফলাফলের অবস্থান"
+
+msgid "Right"
+msgstr "ডান"
 
 msgid "SafeSearch"
 msgstr "নিরাপদ সার্চ"
@@ -224,6 +236,9 @@ msgstr "ভিউ"
 
 msgid "What language do you prefer for search?"
 msgstr "আপনি অনুসন্ধানের জন্য কোন ভাষা পছন্দ করেন?"
+
+msgid "Where the results sit"
+msgstr "ফলাফল কোথায় থাকবে"
 
 msgid "Your connection"
 msgstr "আপনার সংযোগ"

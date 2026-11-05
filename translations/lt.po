@@ -99,8 +99,14 @@ msgstr "Praeitą savaitę"
 msgid "Last year"
 msgstr "Praeitais metais"
 
+msgid "Left"
+msgstr "Kairėje"
+
 msgid "Length"
 msgstr "Trukmė"
+
+msgid "Middle"
+msgstr "Viduryje"
 
 msgid "Moderate"
 msgstr "Nuosaiki"
@@ -161,6 +167,12 @@ msgstr "Raiška"
 
 msgid "Response time"
 msgstr "Atsakymo greitis"
+
+msgid "Results position"
+msgstr "Rezultatų padėtis"
+
+msgid "Right"
+msgstr "Dešinėje"
 
 msgid "SafeSearch"
 msgstr "Saugi paieška"
@@ -224,6 +236,9 @@ msgstr "Peržiūros"
 
 msgid "What language do you prefer for search?"
 msgstr "Kokią kalbą pageidaujate paieškai?"
+
+msgid "Where the results sit"
+msgstr "Kur rodomi rezultatai"
 
 msgid "Your connection"
 msgstr "Jūsų ryšys"
