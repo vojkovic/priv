@@ -135,14 +135,13 @@ attributes(struct buf *b, struct main_result *m)
 	buf_puts(b, "<div class=\"attributes\">\n");
 	for (at = m->attrs; at; at = at->next) {
 		if (!strcmp(at->label, "DOI"))
-			buf_html(b,
-			    "<div><span>%s:</span> <a href=\"https://oadoi.org/%s\" rel=\"noreferrer\">%s</a></div>\n",
-			    at->label, at->value, at->value);
+			buf_html(b, "<div><span>%s:</span> <a href=\"https://oadoi.org/%s\"%r>%s</a></div>\n",
+			    at->label, at->value, link_attrs, at->value);
 		else
 			buf_html(b, "<div><span>%s:</span> %s</div>\n", tr(at->label), at->value);
 	}
 	if (m->pdf_url && *m->pdf_url)
-		buf_html(b, "<div class=\"links\"><a href=\"%s\" rel=\"noreferrer\">PDF</a></div>\n", m->pdf_url);
+		buf_html(b, "<div class=\"links\"><a href=\"%s\"%r>PDF</a></div>\n", m->pdf_url, link_attrs);
 	buf_puts(b, "</div>\n");
 }
 
@@ -211,9 +210,9 @@ static void
 thumbnail(struct buf *b, struct search *s, struct main_result *m, const char *thumb, int video)
 {
 	buf_html(b,
-	    "<a class=\"thumbnail_link\" href=\"%s\" rel=\"noreferrer\">"
+	    "<a class=\"thumbnail_link\" href=\"%s\"%r>"
 	    "<img class=\"thumbnail\" src=\"%s\" alt=\"\" loading=\"lazy\">",
-	    m->url, image_src(s, m->thumbnail, thumb, INLINE_MAX));
+	    m->url, link_attrs, image_src(s, m->thumbnail, thumb, INLINE_MAX));
 	if (video && m->length && *m->length)
 		buf_html(b, "<span class=\"thumbnail_length\">%s</span>", m->length);
 	buf_puts(b, "</a>\n");
@@ -243,9 +242,9 @@ main_result(struct buf *b, struct search *s, struct main_result *m)
 		thumbnail(b, s, m, thumb, 0);
 
 	buf_html(b,
-	    "<a class=\"url_header\" href=\"%s\" rel=\"noreferrer\">"
+	    "<a class=\"url_header\" href=\"%s\"%r>"
 	    "<span class=\"favicon\">",
-	    m->url);
+	    m->url, link_attrs);
 	favicon(b, s, m->parsed.netloc);
 	buf_puts(b,
 	    "</span>"
@@ -254,8 +253,8 @@ main_result(struct buf *b, struct search *s, struct main_result *m)
 	buf_html(b,
 	    "</span>"
 	    "</a>\n"
-	    "<h3><a href=\"%s\" rel=\"noreferrer\">%s</a></h3>\n",
-	    m->url, m->title[0] ? m->title : m->url);
+	    "<h3><a href=\"%s\"%r>%s</a></h3>\n",
+	    m->url, link_attrs, m->title[0] ? m->title : m->url);
 
 	if (video) {
 		buf_puts(b, "<div class=\"video_body\">\n");
@@ -330,17 +329,17 @@ image_result(struct buf *b, struct search *s, struct main_result *m)
 	engine_names(b, m, ", ");
 	buf_html(b,
 	    "\">\n"
-	    "<a class=\"image_thumb\" href=\"%s\" rel=\"noreferrer\">",
-	    full);
+	    "<a class=\"image_thumb\" href=\"%s\"%r>",
+	    full, link_attrs);
 	if (thumb)
 		buf_html(b, "<img src=\"%s\" alt=\"\" loading=\"lazy\">", image_src(s, small, thumb, INLINE_MAX));
 	if (*res)
 		buf_html(b, "<span class=\"image_resolution\">%s</span>", res);
 	buf_html(b,
 	    "</a>\n"
-	    "<a class=\"image_source\" href=\"%s\" rel=\"noreferrer\">"
+	    "<a class=\"image_source\" href=\"%s\"%r>"
 	    "<span class=\"image_site\">",
-	    m->url);
+	    m->url, link_attrs);
 	favicon(b, s, m->parsed.netloc);
 	buf_html(b,
 	    "<span>%s</span>"
@@ -358,23 +357,23 @@ image_detail_template(struct buf *b)
 	    "<template id=\"image_detail\">"
 	    "<aside class=\"image_detail\" aria-label=\"%s\">"
 	    "<div class=\"detail_header\">"
-	    "<a class=\"detail_site\" rel=\"noreferrer\"><img alt=\"\"><span></span></a>"
+	    "<a class=\"detail_site\"%r><img alt=\"\"><span></span></a>"
 	    "<div class=\"detail_buttons\">"
 	    "<button type=\"button\" class=\"detail_prev\" aria-label=\"%s\">" ICON_BACK "</button>"
 	    "<button type=\"button\" class=\"detail_next\" aria-label=\"%s\">" ICON_FORWARD "</button>"
 	    "<button type=\"button\" class=\"detail_close\" aria-label=\"%s\">" ICON_CLOSE "</button>"
 	    "</div>"
 	    "</div>"
-	    "<a class=\"detail_image\" rel=\"noreferrer\"><img alt=\"\"></a>"
+	    "<a class=\"detail_image\"%r><img alt=\"\"></a>"
 	    "<div class=\"detail_body\">"
-	    "<h3><a class=\"detail_title\" rel=\"noreferrer\"></a></h3>"
+	    "<h3><a class=\"detail_title\"%r></a></h3>"
 	    "<p class=\"detail_content\"></p>"
 	    "<dl data-resolution=\"%s\" data-format=\"%s\" data-engines=\"%s\"></dl>"
 	    "</div>"
 	    "</aside>"
 	    "</template>\n",
-	    tr("Image details"), tr("Previous image"), tr("Next image"), tr("Close"), tr("Resolution"), tr("Format"),
-	    tr("Engines"));
+	    tr("Image details"), link_attrs, tr("Previous image"), tr("Next image"), tr("Close"), link_attrs,
+	    link_attrs, tr("Resolution"), tr("Format"), tr("Engines"));
 }
 
 static void
@@ -591,6 +590,7 @@ render_results(struct buf *b, struct search *s)
 	size_t i;
 
 	i18n_use(s->filters.prefs.ui);
+	link_attrs = s->filters.prefs.new_tab ? " target=\"_blank\" " LINK_REL : " " LINK_REL;
 	if (s->pageno == 1 && !strcmp(s->filters.category, "general") && self_query(s->raw))
 		selfinfo(b, &s->filters);
 	answers(b, s);

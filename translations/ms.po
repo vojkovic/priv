@@ -138,6 +138,12 @@ msgstr "Tanpa"
 msgid "Off"
 msgstr "Tutup"
 
+msgid "On"
+msgstr "Hidup"
+
+msgid "Open result links on new browser tabs"
+msgstr "Buka pautan hasil dalam tab pelayar baharu"
+
 msgid "Package"
 msgstr "Pakej"
 
@@ -167,6 +173,9 @@ msgstr "Resolusi"
 
 msgid "Response time"
 msgstr "Masa tindak balas"
+
+msgid "Results on new tabs"
+msgstr "Hasil dalam tab baharu"
 
 msgid "Results position"
 msgstr "Kedudukan hasil"

@@ -122,6 +122,11 @@ render_preferences(struct buf *b, const struct prefs *p, const struct locale *br
 		option(b, aligns[i].name, tr(aligns[i].label), !strcmp(p->align, aligns[i].name));
 	buf_puts(b, "</select></div>\n");
 
+	pref_select(b, "newtab", "Results on new tabs", "Open result links on new browser tabs");
+	option(b, "0", tr("Off"), !p->new_tab);
+	option(b, "1", tr("On"), p->new_tab);
+	buf_puts(b, "</select></div>\n");
+
 	pref_select(b, "favicon", "Favicon Resolver", "Display favicons near search results");
 	for (i = 0; i < nfavicon_resolvers; i++)
 		option(b, favicon_resolvers[i].name, favicon_resolvers[i].label,

@@ -138,6 +138,12 @@ msgstr "Žiadne"
 msgid "Off"
 msgstr "Vypnuté"
 
+msgid "On"
+msgstr "Zapnuté"
+
+msgid "Open result links on new browser tabs"
+msgstr "Otvárať odkazy výsledkov na nových kartách prehliadača"
+
 msgid "Package"
 msgstr "Balík"
 
@@ -167,6 +173,9 @@ msgstr "Rozlíšenie"
 
 msgid "Response time"
 msgstr "Doba odozvy"
+
+msgid "Results on new tabs"
+msgstr "Výsledky na nových kartách"
 
 msgid "Results position"
 msgstr "Umiestnenie výsledkov"

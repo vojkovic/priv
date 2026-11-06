@@ -26,8 +26,11 @@
 #define FAVICON_INLINE_MAX (3 << 10)
 #define FAVICON_INLINE_SITES 16
 
+#define LINK_REL "rel=\"noreferrer\""
+
 /* shared by the page files in render/ */
 extern const char *safe_levels[];
+extern const char *link_attrs;
 extern struct arena scratch;
 
 int self_query(const char *q);

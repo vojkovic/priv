@@ -138,6 +138,12 @@ msgstr "Вимкнений"
 msgid "Off"
 msgstr "Вимк."
 
+msgid "On"
+msgstr "Увімк."
+
+msgid "Open result links on new browser tabs"
+msgstr "Відкривати посилання результатів у нових вкладках браузера"
+
 msgid "Package"
 msgstr "Пакет"
 
@@ -167,6 +173,9 @@ msgstr "Роздільна здатність"
 
 msgid "Response time"
 msgstr "Час відгуку"
+
+msgid "Results on new tabs"
+msgstr "Результати в нових вкладках"
 
 msgid "Results position"
 msgstr "Розташування результатів"

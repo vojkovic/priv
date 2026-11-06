@@ -138,6 +138,12 @@ msgstr "Geen"
 msgid "Off"
 msgstr "Af"
 
+msgid "On"
+msgstr "Aan"
+
+msgid "Open result links on new browser tabs"
+msgstr "Maak resultaatskakels in nuwe blaaieroortjies oop"
+
 msgid "Package"
 msgstr "Pakket"
 
@@ -167,6 +173,9 @@ msgstr "Resolusie"
 
 msgid "Response time"
 msgstr "Reaksietyd"
+
+msgid "Results on new tabs"
+msgstr "Resultate in nuwe oortjies"
 
 msgid "Results position"
 msgstr "Posisie van resultate"

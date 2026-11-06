@@ -138,6 +138,12 @@ msgstr "Bat ere ez"
 msgid "Off"
 msgstr "Itzalita"
 
+msgid "On"
+msgstr "Aktibatuta"
+
+msgid "Open result links on new browser tabs"
+msgstr "Ireki emaitzen estekak nabigatzailearen fitxa berrietan"
+
 msgid "Package"
 msgstr "Paketea"
 
@@ -167,6 +173,9 @@ msgstr "Ebazpena"
 
 msgid "Response time"
 msgstr "Erantzuteko denbora"
+
+msgid "Results on new tabs"
+msgstr "Emaitzak fitxa berrietan"
 
 msgid "Results position"
 msgstr "Emaitzen kokapena"

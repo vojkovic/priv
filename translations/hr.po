@@ -138,6 +138,12 @@ msgstr "Ništa"
 msgid "Off"
 msgstr "Isključeno"
 
+msgid "On"
+msgstr "Uključeno"
+
+msgid "Open result links on new browser tabs"
+msgstr "Otvaraj poveznice rezultata u novim karticama preglednika"
+
 msgid "Package"
 msgstr "Paket"
 
@@ -167,6 +173,9 @@ msgstr "Razlučivost"
 
 msgid "Response time"
 msgstr "Vrijeme odziva"
+
+msgid "Results on new tabs"
+msgstr "Rezultati u novim karticama"
 
 msgid "Results position"
 msgstr "Položaj rezultata"

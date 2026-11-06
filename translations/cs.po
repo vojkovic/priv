@@ -138,6 +138,12 @@ msgstr "Vypnuto"
 msgid "Off"
 msgstr "Vypnuto"
 
+msgid "On"
+msgstr "Zapnuto"
+
+msgid "Open result links on new browser tabs"
+msgstr "Otevírat odkazy výsledků v nových kartách prohlížeče"
+
 msgid "Package"
 msgstr "Balíček"
 
@@ -167,6 +173,9 @@ msgstr "Rozlišení"
 
 msgid "Response time"
 msgstr "Čas odpovědi"
+
+msgid "Results on new tabs"
+msgstr "Výsledky v nových kartách"
 
 msgid "Results position"
 msgstr "Umístění výsledků"

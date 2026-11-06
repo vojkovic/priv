@@ -138,6 +138,12 @@ msgstr "Nulle"
 msgid "Off"
 msgstr "Disactivate"
 
+msgid "On"
+msgstr "Active"
+
+msgid "Open result links on new browser tabs"
+msgstr "Aperir le ligamines del resultatos in nove schedas del navigator"
+
 msgid "Package"
 msgstr "Pacchetto"
 
@@ -167,6 +173,9 @@ msgstr "Resolution"
 
 msgid "Response time"
 msgstr "Tempore de responsa"
+
+msgid "Results on new tabs"
+msgstr "Resultatos in nove schedas"
 
 msgid "Results position"
 msgstr "Position del resultatos"

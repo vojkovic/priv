@@ -138,6 +138,12 @@ msgstr "Ingen"
 msgid "Off"
 msgstr "Fra"
 
+msgid "On"
+msgstr "Til"
+
+msgid "Open result links on new browser tabs"
+msgstr "Åbn links i resultaterne i nye browserfaner"
+
 msgid "Package"
 msgstr "Pakke"
 
@@ -167,6 +173,9 @@ msgstr "Opløsning"
 
 msgid "Response time"
 msgstr "Svartid"
+
+msgid "Results on new tabs"
+msgstr "Resultater i nye faner"
 
 msgid "Results position"
 msgstr "Placering af resultater"

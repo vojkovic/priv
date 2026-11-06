@@ -138,6 +138,12 @@ msgstr "オフ"
 msgid "Off"
 msgstr "無効"
 
+msgid "On"
+msgstr "オン"
+
+msgid "Open result links on new browser tabs"
+msgstr "検索結果のリンクをブラウザの新しいタブで開きます"
+
 msgid "Package"
 msgstr "パッケージ"
 
@@ -167,6 +173,9 @@ msgstr "解像度"
 
 msgid "Response time"
 msgstr "応答時間"
+
+msgid "Results on new tabs"
+msgstr "結果を新しいタブで開く"
 
 msgid "Results position"
 msgstr "検索結果の位置"

@@ -33,7 +33,7 @@ extern const size_t naligns;
 struct prefs {
 	const struct ui_lang *ui, *ui_auto;
 	const char *ui_code, *language, *theme, *align, *favicon, *autocomplete;
-	int safesearch, saved;
+	int safesearch, new_tab, saved;
 	int timeout[PREFS_CATEGORIES];
 	uint64_t off[PREFS_CATEGORIES];
 };

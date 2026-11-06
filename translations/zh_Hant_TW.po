@@ -138,6 +138,12 @@ msgstr "無"
 msgid "Off"
 msgstr "關閉"
 
+msgid "On"
+msgstr "開啟"
+
+msgid "Open result links on new browser tabs"
+msgstr "在新的瀏覽器分頁中開啟結果連結"
+
 msgid "Package"
 msgstr "套件"
 
@@ -167,6 +173,9 @@ msgstr "解析度"
 
 msgid "Response time"
 msgstr "反應時間"
+
+msgid "Results on new tabs"
+msgstr "在新分頁中開啟結果"
 
 msgid "Results position"
 msgstr "結果位置"

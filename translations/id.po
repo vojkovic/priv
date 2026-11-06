@@ -138,6 +138,12 @@ msgstr "Mati"
 msgid "Off"
 msgstr "Nonaktif"
 
+msgid "On"
+msgstr "Aktif"
+
+msgid "Open result links on new browser tabs"
+msgstr "Buka tautan hasil di tab peramban baru"
+
 msgid "Package"
 msgstr "Paket"
 
@@ -167,6 +173,9 @@ msgstr "Resolusi"
 
 msgid "Response time"
 msgstr "Waktu respons"
+
+msgid "Results on new tabs"
+msgstr "Hasil di tab baru"
 
 msgid "Results position"
 msgstr "Posisi hasil"

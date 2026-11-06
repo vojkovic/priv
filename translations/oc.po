@@ -138,6 +138,12 @@ msgstr "Cap"
 msgid "Off"
 msgstr "Non"
 
+msgid "On"
+msgstr "Activat"
+
+msgid "Open result links on new browser tabs"
+msgstr "Dobrir los ligams dels resultats dins d'onglets novèls del navegador"
+
 msgid "Package"
 msgstr "Paquet"
 
@@ -167,6 +173,9 @@ msgstr "Resolucion"
 
 msgid "Response time"
 msgstr "Temps de responsa"
+
+msgid "Results on new tabs"
+msgstr "Resultats dins d'onglets novèls"
 
 msgid "Results position"
 msgstr "Posicion dels resultats"

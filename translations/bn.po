@@ -138,6 +138,12 @@ msgstr "নেই"
 msgid "Off"
 msgstr "বন্ধ"
 
+msgid "On"
+msgstr "চালু"
+
+msgid "Open result links on new browser tabs"
+msgstr "ফলাফলের লিংক নতুন ব্রাউজার ট্যাবে খুলুন"
+
 msgid "Package"
 msgstr "প্যাকেজ"
 
@@ -167,6 +173,9 @@ msgstr "আকার"
 
 msgid "Response time"
 msgstr "প্রতিক্রিয়া সময়"
+
+msgid "Results on new tabs"
+msgstr "নতুন ট্যাবে ফলাফল"
 
 msgid "Results position"
 msgstr "ফলাফলের অবস্থান"

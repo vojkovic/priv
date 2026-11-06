@@ -138,6 +138,12 @@ msgstr "Yok"
 msgid "Off"
 msgstr "Kapalı"
 
+msgid "On"
+msgstr "Açık"
+
+msgid "Open result links on new browser tabs"
+msgstr "Sonuç bağlantılarını yeni tarayıcı sekmelerinde aç"
+
 msgid "Package"
 msgstr "Paket"
 
@@ -167,6 +173,9 @@ msgstr "Çözünürlük"
 
 msgid "Response time"
 msgstr "Yanıt süresi"
+
+msgid "Results on new tabs"
+msgstr "Sonuçlar yeni sekmelerde"
 
 msgid "Results position"
 msgstr "Sonuçların konumu"

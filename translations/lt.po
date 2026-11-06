@@ -138,6 +138,12 @@ msgstr "Nėra"
 msgid "Off"
 msgstr "Išjungta"
 
+msgid "On"
+msgstr "Įjungta"
+
+msgid "Open result links on new browser tabs"
+msgstr "Atverti rezultatų nuorodas naujose naršyklės kortelėse"
+
 msgid "Package"
 msgstr "Paketas"
 
@@ -167,6 +173,9 @@ msgstr "Raiška"
 
 msgid "Response time"
 msgstr "Atsakymo greitis"
+
+msgid "Results on new tabs"
+msgstr "Rezultatai naujose kortelėse"
 
 msgid "Results position"
 msgstr "Rezultatų padėtis"

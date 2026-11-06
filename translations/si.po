@@ -138,6 +138,12 @@ msgstr "කිසිවක් නැත"
 msgid "Off"
 msgstr "අක්‍රීය"
 
+msgid "On"
+msgstr "සක්‍රියයි"
+
+msgid "Open result links on new browser tabs"
+msgstr "ප්‍රතිඵල සබැඳි නව බ්‍රවුසර ටැබ්වල විවෘත කරන්න"
+
 msgid "Package"
 msgstr "පැකේජය"
 
@@ -167,6 +173,9 @@ msgstr "විභේදනය"
 
 msgid "Response time"
 msgstr "ප්‍රතිචාර කාලය"
+
+msgid "Results on new tabs"
+msgstr "නව ටැබ්වල ප්‍රතිඵල"
 
 msgid "Results position"
 msgstr "ප්‍රතිඵල ස්ථානය"

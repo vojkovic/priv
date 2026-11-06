@@ -139,6 +139,12 @@ msgstr "لا شيء"
 msgid "Off"
 msgstr "مُعطَّل"
 
+msgid "On"
+msgstr "تشغيل"
+
+msgid "Open result links on new browser tabs"
+msgstr "فتح روابط النتائج في ألسنة متصفح جديدة"
+
 msgid "Package"
 msgstr "حزمة"
 
@@ -168,6 +174,9 @@ msgstr "الدقة"
 
 msgid "Response time"
 msgstr "مدة الإستجابة"
+
+msgid "Results on new tabs"
+msgstr "النتائج في ألسنة جديدة"
 
 msgid "Results position"
 msgstr "موضع النتائج"

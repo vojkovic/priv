@@ -138,6 +138,12 @@ msgstr "Κανένα"
 msgid "Off"
 msgstr "Ανενεργό"
 
+msgid "On"
+msgstr "Ενεργό"
+
+msgid "Open result links on new browser tabs"
+msgstr "Άνοιγμα των συνδέσμων των αποτελεσμάτων σε νέες καρτέλες του προγράμματος περιήγησης"
+
 msgid "Package"
 msgstr "Πακέτο"
 
@@ -167,6 +173,9 @@ msgstr "Ανάλυση"
 
 msgid "Response time"
 msgstr "Χρόνος απόκρισης"
+
+msgid "Results on new tabs"
+msgstr "Αποτελέσματα σε νέες καρτέλες"
 
 msgid "Results position"
 msgstr "Θέση αποτελεσμάτων"

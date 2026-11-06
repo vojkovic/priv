@@ -138,6 +138,12 @@ msgstr "Wala"
 msgid "Off"
 msgstr "Sara"
 
+msgid "On"
+msgstr "Naka-on"
+
+msgid "Open result links on new browser tabs"
+msgstr "Buksan ang mga link ng resulta sa mga bagong tab ng browser"
+
 msgid "Package"
 msgstr "Package"
 
@@ -167,6 +173,9 @@ msgstr "Resolusyon"
 
 msgid "Response time"
 msgstr "Oras ng pagtugon"
+
+msgid "Results on new tabs"
+msgstr "Mga resulta sa mga bagong tab"
 
 msgid "Results position"
 msgstr "Posisyon ng mga resulta"

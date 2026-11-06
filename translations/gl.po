@@ -138,6 +138,12 @@ msgstr "Ningunha"
 msgid "Off"
 msgstr "Off"
 
+msgid "On"
+msgstr "Activado"
+
+msgid "Open result links on new browser tabs"
+msgstr "Abrir as ligazóns dos resultados en lapelas novas do navegador"
+
 msgid "Package"
 msgstr "Paquete"
 
@@ -167,6 +173,9 @@ msgstr "Resolución"
 
 msgid "Response time"
 msgstr "Tempo de resposta"
+
+msgid "Results on new tabs"
+msgstr "Resultados en lapelas novas"
 
 msgid "Results position"
 msgstr "Posición dos resultados"

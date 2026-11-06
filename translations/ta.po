@@ -138,6 +138,12 @@ msgstr "எதுவுமில்லை"
 msgid "Off"
 msgstr "அமர்த்து"
 
+msgid "On"
+msgstr "இயக்கு"
+
+msgid "Open result links on new browser tabs"
+msgstr "முடிவுகளின் இணைப்புகளைப் புதிய உலாவித் தாவல்களில் திற"
+
 msgid "Package"
 msgstr "தொகுப்பு"
 
@@ -167,6 +173,9 @@ msgstr "பகுத்தல்"
 
 msgid "Response time"
 msgstr "பதில் நேரம்"
+
+msgid "Results on new tabs"
+msgstr "புதிய தாவல்களில் முடிவுகள்"
 
 msgid "Results position"
 msgstr "முடிவுகளின் இடம்"

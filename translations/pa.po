@@ -138,6 +138,12 @@ msgstr "ਕੋਈ ਨਹੀਂ"
 msgid "Off"
 msgstr "ਬੰਦ"
 
+msgid "On"
+msgstr "ਚਾਲੂ"
+
+msgid "Open result links on new browser tabs"
+msgstr "ਨਤੀਜਿਆਂ ਦੇ ਲਿੰਕ ਨਵੀਆਂ ਬ੍ਰਾਊਜ਼ਰ ਟੈਬਾਂ ਵਿੱਚ ਖੋਲ੍ਹੋ"
+
 msgid "Package"
 msgstr "ਪੈਕੇਜ"
 
@@ -167,6 +173,9 @@ msgstr "ਰੈਜ਼ੋਲਿਊਸ਼ਨ"
 
 msgid "Response time"
 msgstr "ਜਵਾਬ ਦਾ ਸਮਾਂ"
+
+msgid "Results on new tabs"
+msgstr "ਨਵੀਆਂ ਟੈਬਾਂ ਵਿੱਚ ਨਤੀਜੇ"
 
 msgid "Results position"
 msgstr "ਨਤੀਜਿਆਂ ਦੀ ਥਾਂ"

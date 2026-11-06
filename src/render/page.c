@@ -23,6 +23,7 @@
 
 const char *safe_levels[] = {"None", "Moderate", "Strict"};
 struct arena scratch;
+const char *link_attrs = " " LINK_REL;
 
 const char *
 html_str(struct arena *a, const char *s)

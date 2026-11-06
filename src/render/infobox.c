@@ -113,9 +113,8 @@ infobox(struct buf *b, struct search *s, struct infobox *ib)
 	if (ib->definition) {
 		buf_puts(b, "<aside class=\"infobox definition\">\n");
 		definition(b, ib->definition);
-		buf_html(b,
-		    "<a class=\"source\" href=\"%s\" rel=\"noreferrer\">Wiktionary" ICON_ARROW_NE "</a>\n</aside>\n",
-		    ib->urls->url);
+		buf_html(b, "<a class=\"source\" href=\"%s\"%r>Wiktionary" ICON_ARROW_NE "</a>\n</aside>\n",
+		    ib->urls->url, link_attrs);
 		return;
 	}
 	for (u = ib->urls; u && !source; u = u->next)
@@ -163,7 +162,7 @@ infobox(struct buf *b, struct search *s, struct infobox *ib)
 			continue;
 		if (!chips++)
 			buf_puts(b, "<div class=\"links\">");
-		buf_html(b, "<a href=\"%s\" rel=\"noreferrer\">", u->url);
+		buf_html(b, "<a href=\"%s\"%r>", u->url, link_attrs);
 		favicon(b, s, url_authority(&s->a, u->url));
 		buf_html(b, "%s</a>", u->title && *u->title ? u->title : u->url);
 	}
@@ -171,8 +170,8 @@ infobox(struct buf *b, struct search *s, struct infobox *ib)
 		buf_puts(b, "</div>\n");
 
 	if (source)
-		buf_html(b, "<a class=\"source\" href=\"%s\" rel=\"noreferrer\">Wikipedia" ICON_ARROW_NE "</a>\n",
-		    source->url);
+		buf_html(b, "<a class=\"source\" href=\"%s\"%r>Wikipedia" ICON_ARROW_NE "</a>\n", source->url,
+		    link_attrs);
 	buf_puts(b, "</aside>\n");
 }
 
@@ -193,8 +192,8 @@ answers(struct buf *b, struct search *s)
 	for (i = 0; i < r->nanswers; i++) {
 		buf_html(b, "<div class=\"answer\"><p>%s</p>", r->answers[i]->answer);
 		if (r->answers[i]->url)
-			buf_html(b, "<a class=\"source\" href=\"%s\" rel=\"noreferrer\">%s" ICON_ARROW_NE "</a>",
-			    r->answers[i]->url, source_name(&s->a, r->answers[i]->url));
+			buf_html(b, "<a class=\"source\" href=\"%s\"%r>%s" ICON_ARROW_NE "</a>", r->answers[i]->url,
+			    link_attrs, source_name(&s->a, r->answers[i]->url));
 		buf_puts(b, "</div>\n");
 	}
 	buf_puts(b, "</div>\n");

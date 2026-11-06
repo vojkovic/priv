@@ -138,6 +138,12 @@ msgstr "Keine"
 msgid "Off"
 msgstr "Aus"
 
+msgid "On"
+msgstr "Ein"
+
+msgid "Open result links on new browser tabs"
+msgstr "Links der Ergebnisse in neuen Browser-Tabs öffnen"
+
 msgid "Package"
 msgstr "Paket"
 
@@ -167,6 +173,9 @@ msgstr "Auflösung"
 
 msgid "Response time"
 msgstr "Antwortzeit"
+
+msgid "Results on new tabs"
+msgstr "Ergebnisse in neuen Tabs"
 
 msgid "Results position"
 msgstr "Position der Ergebnisse"

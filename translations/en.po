@@ -27,6 +27,15 @@ msgstr ""
 msgid "More"
 msgstr ""
 
+msgid "On"
+msgstr ""
+
+msgid "Open result links on new browser tabs"
+msgstr ""
+
+msgid "Results on new tabs"
+msgstr ""
+
 msgid "Results position"
 msgstr ""
 

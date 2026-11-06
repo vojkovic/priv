@@ -139,6 +139,12 @@ msgstr "כבוי"
 msgid "Off"
 msgstr "כבוי"
 
+msgid "On"
+msgstr "מופעל"
+
+msgid "Open result links on new browser tabs"
+msgstr "פתיחת קישורי התוצאות בכרטיסיות דפדפן חדשות"
+
 msgid "Package"
 msgstr "חבילה"
 
@@ -168,6 +174,9 @@ msgstr "רזולוציה"
 
 msgid "Response time"
 msgstr "זמן תגובה"
+
+msgid "Results on new tabs"
+msgstr "תוצאות בכרטיסיות חדשות"
 
 msgid "Results position"
 msgstr "מיקום התוצאות"

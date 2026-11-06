@@ -268,6 +268,8 @@ prefs_parse(struct arena *a, struct request *r, struct prefs *p)
 			p->theme = v;
 		if ((v = align_pick(query_param(a, c, "align"))))
 			p->align = v;
+		if ((v = query_param(a, c, "newtab")))
+			p->new_tab = !strcmp(v, "1");
 		if ((v = FAVICON(query_param(a, c, "favicon"))))
 			p->favicon = v;
 		if ((v = AUTOCOMPLETE(query_param(a, c, "autocomplete"))))
@@ -321,6 +323,7 @@ prefs_from_form(struct arena *a, struct request *r, struct prefs *p)
 	p->safesearch = v && v[0] >= '0' && v[0] <= '2' && !v[1] ? v[0] - '0' : SAFESEARCH_DEFAULT;
 	p->theme = (v = THEME(query_param(a, qs, "theme"))) ? v : THEME_DEFAULT;
 	p->align = (v = align_pick(query_param(a, qs, "align"))) ? v : ALIGN_DEFAULT;
+	p->new_tab = (v = query_param(a, qs, "newtab")) && !strcmp(v, "1");
 	p->favicon = (v = FAVICON(query_param(a, qs, "favicon"))) ? v : FAVICON_DEFAULT;
 	p->autocomplete = (v = AUTOCOMPLETE(query_param(a, qs, "autocomplete"))) ? v : AUTOCOMPLETE_DEFAULT;
 	for (; *qs; qs = *end ? end + 1 : end) {
@@ -359,6 +362,8 @@ prefs_cookie(struct arena *a, const struct prefs *p, int secure)
 		buf_printf(&b, "&theme=%s", p->theme);
 	if (strcmp(p->align, ALIGN_DEFAULT))
 		buf_printf(&b, "&align=%s", p->align);
+	if (p->new_tab)
+		buf_puts(&b, "&newtab=1");
 	if (strcmp(p->favicon, FAVICON_DEFAULT))
 		buf_printf(&b, "&favicon=%s", p->favicon);
 	if (strcmp(p->autocomplete, AUTOCOMPLETE_DEFAULT))

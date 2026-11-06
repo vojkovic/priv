@@ -138,6 +138,12 @@ msgstr "Ei mitään"
 msgid "Off"
 msgstr "Pois"
 
+msgid "On"
+msgstr "Päällä"
+
+msgid "Open result links on new browser tabs"
+msgstr "Avaa tulosten linkit selaimen uusiin välilehtiin"
+
 msgid "Package"
 msgstr "Paketti"
 
@@ -167,6 +173,9 @@ msgstr "Resoluutio"
 
 msgid "Response time"
 msgstr "Vastausaika"
+
+msgid "Results on new tabs"
+msgstr "Tulokset uusiin välilehtiin"
 
 msgid "Results position"
 msgstr "Tulosten sijainti"

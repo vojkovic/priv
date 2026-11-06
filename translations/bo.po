@@ -138,6 +138,12 @@ msgstr "གང་ཡང་མེད།"
 msgid "Off"
 msgstr "ཁ་རྒྱབ།"
 
+msgid "On"
+msgstr "ཁ་ཕྱེ།"
+
+msgid "Open result links on new browser tabs"
+msgstr "འབྲས་བུའི་སྦྲེལ་ཐག་བཤར་ཆས་ཀྱི་ཤོག་བྱང་གསར་པར་ཁ་ཕྱེ།"
+
 msgid "Package"
 msgstr "ཐུམ་སྒྲིལ།"
 
@@ -167,6 +173,9 @@ msgstr "གསལ་ཚད།"
 
 msgid "Response time"
 msgstr "ལན་འདེབས་དུས་ཚོད།"
+
+msgid "Results on new tabs"
+msgstr "ཤོག་བྱང་གསར་པར་འབྲས་བུ།"
 
 msgid "Results position"
 msgstr "འབྲས་བུའི་གནས།"

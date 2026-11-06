@@ -138,6 +138,12 @@ msgstr "Nimic"
 msgid "Off"
 msgstr "Oprit"
 
+msgid "On"
+msgstr "Activat"
+
+msgid "Open result links on new browser tabs"
+msgstr "Deschide linkurile rezultatelor în file noi ale browserului"
+
 msgid "Package"
 msgstr "Pachet"
 
@@ -167,6 +173,9 @@ msgstr "Rezoluție"
 
 msgid "Response time"
 msgstr "Timp de răspuns"
+
+msgid "Results on new tabs"
+msgstr "Rezultate în file noi"
 
 msgid "Results position"
 msgstr "Poziția rezultatelor"

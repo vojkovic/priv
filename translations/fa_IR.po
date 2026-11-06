@@ -139,6 +139,12 @@ msgstr "هیچ"
 msgid "Off"
 msgstr "خاموش"
 
+msgid "On"
+msgstr "روشن"
+
+msgid "Open result links on new browser tabs"
+msgstr "باز کردن پیوندهای نتایج در زبانه‌های جدید مرورگر"
+
 msgid "Package"
 msgstr "بسته"
 
@@ -168,6 +174,9 @@ msgstr "رزولیشن"
 
 msgid "Response time"
 msgstr "زمان پاسخ‌دهی"
+
+msgid "Results on new tabs"
+msgstr "نتایج در زبانه‌های جدید"
 
 msgid "Results position"
 msgstr "جای نتایج"

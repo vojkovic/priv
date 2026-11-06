@@ -138,6 +138,12 @@ msgstr "ఏమీ లేదు"
 msgid "Off"
 msgstr "ఆఫ్"
 
+msgid "On"
+msgstr "ఆన్"
+
+msgid "Open result links on new browser tabs"
+msgstr "ఫలితాల లింక్‌లను కొత్త బ్రౌజర్ ట్యాబ్‌లలో తెరువు"
+
 msgid "Package"
 msgstr "ప్యాకేజీ"
 
@@ -167,6 +173,9 @@ msgstr "స్పష్టత"
 
 msgid "Response time"
 msgstr "ప్రతిస్పందన సమయం"
+
+msgid "Results on new tabs"
+msgstr "కొత్త ట్యాబ్‌లలో ఫలితాలు"
 
 msgid "Results position"
 msgstr "ఫలితాల స్థానం"

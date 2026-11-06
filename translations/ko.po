@@ -138,6 +138,12 @@ msgstr "없음"
 msgid "Off"
 msgstr "사용안함"
 
+msgid "On"
+msgstr "켜기"
+
+msgid "Open result links on new browser tabs"
+msgstr "검색 결과 링크를 새 브라우저 탭에서 엽니다"
+
 msgid "Package"
 msgstr "패키지"
 
@@ -167,6 +173,9 @@ msgstr "해상도"
 
 msgid "Response time"
 msgstr "응답시간"
+
+msgid "Results on new tabs"
+msgstr "새 탭에서 결과 열기"
 
 msgid "Results position"
 msgstr "결과 위치"

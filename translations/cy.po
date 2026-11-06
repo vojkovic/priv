@@ -138,6 +138,12 @@ msgstr "Dim"
 msgid "Off"
 msgstr "I ffwrdd"
 
+msgid "On"
+msgstr "Ymlaen"
+
+msgid "Open result links on new browser tabs"
+msgstr "Agor dolenni canlyniadau mewn tabiau porwr newydd"
+
 msgid "Package"
 msgstr "Pecyn"
 
@@ -167,6 +173,9 @@ msgstr "Cydraniad"
 
 msgid "Response time"
 msgstr "Amser ymateb"
+
+msgid "Results on new tabs"
+msgstr "Canlyniadau mewn tabiau newydd"
 
 msgid "Results position"
 msgstr "Safle'r canlyniadau"

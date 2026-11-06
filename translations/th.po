@@ -138,6 +138,12 @@ msgstr "ไม่มี"
 msgid "Off"
 msgstr "ปิด"
 
+msgid "On"
+msgstr "เปิด"
+
+msgid "Open result links on new browser tabs"
+msgstr "เปิดลิงก์ผลการค้นหาในแท็บใหม่ของเบราว์เซอร์"
+
 msgid "Package"
 msgstr "แพ็กเกจ"
 
@@ -167,6 +173,9 @@ msgstr "ความละเอียดจอ"
 
 msgid "Response time"
 msgstr "เวลาตอบสนอง"
+
+msgid "Results on new tabs"
+msgstr "ผลการค้นหาในแท็บใหม่"
 
 msgid "Results position"
 msgstr "ตำแหน่งผลลัพธ์"

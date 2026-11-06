@@ -138,6 +138,12 @@ msgstr "Neviens"
 msgid "Off"
 msgstr "Izslēgts"
 
+msgid "On"
+msgstr "Ieslēgts"
+
+msgid "Open result links on new browser tabs"
+msgstr "Atvērt rezultātu saites jaunās pārlūka cilnēs"
+
 msgid "Package"
 msgstr "Pakotne"
 
@@ -167,6 +173,9 @@ msgstr "Izšķirtspēja"
 
 msgid "Response time"
 msgstr "Atbildes laiks"
+
+msgid "Results on new tabs"
+msgstr "Rezultāti jaunās cilnēs"
 
 msgid "Results position"
 msgstr "Rezultātu novietojums"

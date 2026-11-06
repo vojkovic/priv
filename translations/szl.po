@@ -138,6 +138,12 @@ msgstr "Brak"
 msgid "Off"
 msgstr "Zastawiōne"
 
+msgid "On"
+msgstr "Załōnczōne"
+
+msgid "Open result links on new browser tabs"
+msgstr "Ôtwiyrej linki wynikōw w nowych kartach przeglōndarki"
+
 msgid "Package"
 msgstr "Paket"
 
@@ -167,6 +173,9 @@ msgstr "Rozdzielczość"
 
 msgid "Response time"
 msgstr "Czas ôdpowiedzi"
+
+msgid "Results on new tabs"
+msgstr "Wyniki w nowych kartach"
 
 msgid "Results position"
 msgstr "Położynie wynikōw"
